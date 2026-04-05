@@ -562,36 +562,42 @@ def write_content_page(fm: dict, body: str, output_dir: Path):
 # Main sync
 # ---------------------------------------------------------------------------
 
-def query_published_packs(db_url: str) -> set[str]:
-    """Query pax_publications table for published pack names.
+def query_published_packs(db_url: str) -> dict[str, dict]:
+    """Query pax_publications + pax_registry for published pack metadata.
 
+    Returns dict: name -> {quality_score, published_at, published_by, status}
     Supports both SQLite paths and PostgreSQL URLs.
+    """
+    query = """
+        SELECT p.name, p.quality_score, p.published_at, p.published_by, p.status
+        FROM pax_publications p
+        WHERE p.status IN ('published', 'deprecated')
     """
     try:
         if db_url.startswith("postgresql://") or db_url.startswith("postgres://"):
             import psycopg2
             conn = psycopg2.connect(db_url)
             cur = conn.cursor()
-            cur.execute("SELECT name FROM pax_publications WHERE status IN ('published', 'deprecated')")
-            rows = cur.fetchall()
+            cur.execute(query)
+            cols = [desc[0] for desc in cur.description]
+            rows = [dict(zip(cols, row)) for row in cur.fetchall()]
             conn.close()
         else:
-            # Treat as SQLite path
             db_path = Path(db_url)
             if not db_path.exists():
                 print(f"  Warning: DB not found at {db_path}, syncing all packs")
-                return set()
+                return {}
             conn = sqlite3.connect(str(db_path))
-            rows = conn.execute(
-                "SELECT name FROM pax_publications WHERE status IN ('published', 'deprecated')"
-            ).fetchall()
+            conn.row_factory = sqlite3.Row
+            rows = [dict(r) for r in conn.execute(query).fetchall()]
             conn.close()
 
-        names = {r[0] for r in rows}
-        print(f"  Published packs filter: {len(names)} packs from DB")
-        return names
+        result = {r["name"]: r for r in rows}
+        print(f"  Published packs filter: {len(result)} packs from DB")
+        return result
     except Exception as e:
         print(f"  Warning: Could not query publications DB: {e}")
+        return {}
         return set()
 
 
@@ -601,26 +607,25 @@ def sync_packs(praxis_dir: Path, published_only: bool = False, db_path: Path | N
         print(f"Error: PAX directory not found at {pax_root}")
         sys.exit(1)
 
-    # If published-only mode, get the set of published pack names
-    published_names = None
+    # If published-only mode, get published pack metadata
+    published_meta = None  # dict: name -> {quality_score, published_at, ...}
     if published_only:
         if db_path:
-            published_names = query_published_packs(str(db_path))
+            published_meta = query_published_packs(str(db_path))
         else:
-            # Try DATABASE_URL env var first (PostgreSQL), then SQLite fallbacks
             import os
             db_url = os.environ.get("DATABASE_URL", "")
             if db_url:
-                published_names = query_published_packs(db_url)
+                published_meta = query_published_packs(db_url)
             else:
                 for candidate in [
                     praxis_dir / "src" / "praxis" / "praxis.db",
                     praxis_dir / "praxis.db",
                 ]:
                     if candidate.exists():
-                        published_names = query_published_packs(str(candidate))
+                        published_meta = query_published_packs(str(candidate))
                         break
-            if published_names is None:
+            if published_meta is None:
                 print("  Warning: --published-only set but no DB found, syncing all packs")
 
     all_packs = []  # Collect all front matter for cross-pack analysis
@@ -630,7 +635,7 @@ def sync_packs(praxis_dir: Path, published_only: bool = False, db_path: Path | N
             continue
 
         # Filter to published packs only (if in that mode)
-        if published_names is not None and pax_dir.name not in published_names:
+        if published_meta is not None and pax_dir.name not in published_meta:
             continue
 
         manifest_path = pax_dir / "pax.yaml"
@@ -650,6 +655,14 @@ def sync_packs(praxis_dir: Path, published_only: bool = False, db_path: Path | N
 
         fm = build_front_matter(manifest, pax_dir, archive_size)
         fm["_sha256"] = sha256  # Temp field for registry
+
+        # Inject publication metadata if available
+        if published_meta and pax_dir.name in published_meta:
+            pub = published_meta[pax_dir.name]
+            fm["quality_score"] = pub.get("quality_score", 0)
+            fm["published_at"] = str(pub.get("published_at", ""))
+            fm["published_by"] = pub.get("published_by", "")
+            fm["pub_status"] = pub.get("status", "published")
 
         # Count detail items
         detail_counts = []

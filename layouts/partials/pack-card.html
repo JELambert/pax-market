@@ -4,7 +4,10 @@
       <span class="badge badge-{{ .Params.pax_type }}">{{ .Params.pax_type }}</span>
       {{ with .Params.domain }}{{ with .display_name }}<span style="font-size: 0.7rem; color: var(--color-text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ . }}</span>{{ end }}{{ end }}
     </div>
-    <span style="font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-mono); white-space: nowrap; margin-left: 0.5rem;">v{{ .Params.version }}</span>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      {{ with .Params.quality_score }}{{ if gt . 0.0 }}<span style="font-size: 0.65rem; font-family: var(--font-mono); padding: 0.125rem 0.375rem; border-radius: 0.25rem; background: {{ if ge . 40.0 }}rgba(52, 211, 153, 0.15); color: var(--color-topic);{{ else if ge . 25.0 }}rgba(250, 204, 21, 0.15); color: var(--color-enterprise);{{ else }}rgba(148, 163, 184, 0.15); color: var(--color-text-muted);{{ end }}">{{ printf "%.0f" . }}</span>{{ end }}{{ end }}
+      <span style="font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-mono); white-space: nowrap;">v{{ .Params.version }}</span>
+    </div>
   </div>
   <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
   <p class="description">{{ .Params.description }}</p>
