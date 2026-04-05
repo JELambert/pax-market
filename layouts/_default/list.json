@@ -26,6 +26,9 @@
     "related_packs" .Params.related_packs
     "download_url" .Params.download_url
     "download_size" .Params.download_size
+    "quality_score" .Params.quality_score
+    "published_at" .Params.published_at
+    "published_by" .Params.published_by
     "url" .RelPermalink
   }}
   {{ $packs = $packs | append $pack }}
