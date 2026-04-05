@@ -1,255 +1,177 @@
 {{ define "main" }}
 <div style="padding: 3rem 0; max-width: 800px;">
-  <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Getting Started</h1>
-  <p style="color: var(--color-text-muted); margin-bottom: 2rem;">From browsing PAX to running research — here's how to get Praxis up and your first analysis running.</p>
+  <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">This Is What It Looks Like</h1>
+  <p style="color: var(--color-text-muted); margin-bottom: 2rem;">You talk to an AI agent. It uses Praxis behind the scenes — searching structured knowledge, incorporating research, running analyses, and comparing results to the literature. Here's a real conversation:</p>
 
-  <!-- Step 1 -->
-  <div class="section">
-    <h2 style="display: flex; align-items: center; gap: 0.75rem;">
-      <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">01</span>
-      Browse & Choose a PAX
-    </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Start by exploring what's available. Each PAX bundles a complete analytical domain — constructs, findings, engines, and playbooks.</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-      <a href="/packs/" class="download-btn" style="text-decoration: none; font-size: 0.85rem;">Browse PAX</a>
-      <a href="/constructs/" style="font-size: 0.85rem; padding: 0.75rem 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); text-decoration: none;">Search by Construct</a>
-      <a href="/graph/" style="font-size: 0.85rem; padding: 0.75rem 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); text-decoration: none;">Explore the Graph</a>
+  <!-- THE CONVERSATION (hero section) -->
+  <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1rem;">
+
+    <!-- User message 1 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <p style="margin: 0; font-size: 0.875rem;">We're seeing higher churn in our mid-tier customers. I want to understand what the research says about predicting and preventing customer churn. What do we know?</p>
+      </div>
     </div>
+
+    <!-- Agent response 1 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Let me check what analytical frameworks we have for this.</p>
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+          <span style="color: var(--color-accent);">praxis_search</span>("customer churn prediction retention") <span style="color: var(--color-topic);">&#10003;</span>
+        </div>
+        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Good news — we have the <strong>customer-segmentation-rfm</strong> PAX installed, which covers RFM analysis for segmentation. But I also see a gap: we don't have a dedicated churn prediction PAX. Let me check the marketplace for one.</p>
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+          <span style="color: var(--color-accent);">praxis_search_pax</span>("churn retention customer lifetime") <span style="color: var(--color-topic);">&#10003;</span>
+        </div>
+        <p style="margin: 0; font-size: 0.875rem;">The <strong>credit-risk-ml</strong> PAX shares relevant constructs — both domains use logistic regression and random forest on binary outcomes with behavioral features. Its <code>prediction_accuracy</code> and <code>false_positive_rate</code> constructs directly apply to churn modeling. Want me to explore what we can pull together?</p>
+      </div>
+    </div>
+
+    <!-- User message 2 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <p style="margin: 0; font-size: 0.875rem;">Yes — and while you're at it, I just read a paper about how customer satisfaction links to retention. Can you incorporate that into our knowledge base?</p>
+      </div>
+    </div>
+
+    <!-- Agent response 2 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Sure, share the paper and I'll extract the key findings into our KB.</p>
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+          <span style="color: var(--color-accent);">praxis_skill_incorporate</span>("Gustafsson et al. 2005 — Effects of customer satisfaction on retention") <span style="color: var(--color-topic);">&#10003;</span>
+        </div>
+        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Done. I extracted 3 constructs and 4 findings from the paper:</p>
+        <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: var(--color-text-muted);">
+          <li><code>customer_satisfaction</code> — overall satisfaction score (positive → retention)</li>
+          <li><code>switching_barriers</code> — contractual/procedural lock-in (positive → retention, but weaker)</li>
+          <li><code>affective_commitment</code> — emotional bond with brand (strongest individual predictor)</li>
+        </ul>
+        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Key finding: <strong>affective commitment mediates 60% of the satisfaction-retention link</strong>. Customers don't stay because they're satisfied — they stay because they feel connected. This changes the intervention target from "make them happy" to "make them feel belonging."</p>
+      </div>
+    </div>
+
+    <!-- User message 3 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <p style="margin: 0; font-size: 0.875rem;">That's a great insight. Now can you build a churn prediction model using our customer data and test whether satisfaction or commitment is the better predictor?</p>
+      </div>
+    </div>
+
+    <!-- Agent response 3 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+          <span style="color: var(--color-accent);">praxis_run_engine</span>("logistic_regression", outcome="churn", predictors=["customer_satisfaction", "affective_commitment", "recency", "frequency", "monetary"]) <span style="color: var(--color-topic);">&#10003;</span>
+        </div>
+        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Logistic regression on 12,400 customer records:</p>
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.625rem 0.75rem; font-size: 0.8rem; margin-bottom: 0.5rem;">
+          <div><code>affective_commitment</code>: <strong style="color: var(--color-topic);">&#946; = -0.71</strong> (p &lt; 0.001) — strongest predictor of retention</div>
+          <div><code>customer_satisfaction</code>: <strong style="color: var(--color-text-muted);">&#946; = -0.12</strong> (p = 0.08) — not significant after controlling for commitment</div>
+          <div><code>recency</code>: <strong style="color: #ef4444;">&#946; = +0.54</strong> (p &lt; 0.001) — longer since last purchase = higher churn risk</div>
+        </div>
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+          <span style="color: var(--color-accent);">praxis_compare_to_literature</span> <span style="color: var(--color-topic);">&#10003;</span>
+        </div>
+        <p style="margin: 0; font-size: 0.875rem;"><strong>KB Comparison:</strong> Your result <strong>confirms</strong> Gustafsson et al.'s finding — commitment dominates satisfaction as a retention driver. Your recency effect is consistent with the RFM literature. Recommendation: <strong>focus retention interventions on community and belonging programs, not just satisfaction surveys.</strong></p>
+      </div>
+    </div>
+
+    <!-- User message 4 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <p style="margin: 0; font-size: 0.875rem;">This is great. Package everything we just did into a PAX so the rest of the analytics team can use it.</p>
+      </div>
+    </div>
+
+    <!-- Agent response 4 -->
+    <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+      <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
+      <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+        <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+          <span style="color: var(--color-accent);">praxis_create_pax</span>("customer-churn-prediction", pax_type="enterprise", ...) <span style="color: var(--color-topic);">&#10003;</span>
+        </div>
+        <p style="margin: 0; font-size: 0.875rem;">Done. Created <strong>customer-churn-prediction</strong> PAX with 5 constructs, 4 findings, and a quick-start playbook that reproduces your analysis. Anyone on the team who installs this PAX gets your constructs, the literature findings, and the playbook — they can run the same analysis on new data without starting from scratch.</p>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Step 2 -->
+  <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 3rem; font-style: italic;">The full loop: ask a question, search the knowledge base, incorporate new research, run an analysis with automatic literature comparison, and package everything into a reusable PAX. All in natural conversation.</p>
+
+  <!-- SET UP YOUR OWN INSTANCE -->
+  <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border);">Set Up Your Own Instance</h2>
+  <p style="color: var(--color-text-muted); margin-bottom: 2rem;">Ready to try it? Here's how to get Praxis running and connect it to your agent.</p>
+
   <div class="section">
-    <h2 style="display: flex; align-items: center; gap: 0.75rem;">
-      <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">02</span>
-      Set Up Praxis
-    </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Praxis is the research infrastructure that runs PAX. Clone the repo and start the MCP server:</p>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;">
-      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.8; color: var(--color-text);"># Clone Praxis
-git clone https://github.com/JELambert/praxis.git
-cd praxis
-
-# Install dependencies (requires Python 3.11+ and uv)
-uv sync
-
-# Start the MCP server
+    <h3 style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="font-size: 1rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">01</span>
+      Install Praxis
+    </h3>
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; margin-top: 0.75rem;">
+      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.8; color: var(--color-text);">git clone https://github.com/JELambert/praxis.git
+cd praxis && uv sync
 uv run python -m praxis.mcp_server</code></pre>
     </div>
-
-    <p style="color: var(--color-text-muted); font-size: 0.85rem;">Praxis runs as an MCP server that AI agents (like Claude) connect to. It exposes 73 tools for knowledge management, analysis, and PAX operations.</p>
   </div>
 
-  <!-- Step 3 -->
   <div class="section">
-    <h2 style="display: flex; align-items: center; gap: 0.75rem;">
-      <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">03</span>
-      Install a PAX
-    </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Download a PAX archive from the marketplace and import it into your Praxis instance:</p>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;">
-      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.8; color: var(--color-text);"># Via MCP tool (from your AI agent)
-praxis_import_pax("happiness-economics.pax.tar.gz", install=True)
-
-# Or download first
-curl -O https://pax-market.com/packs/happiness-economics.pax.tar.gz
-praxis_import_pax("happiness-economics.pax.tar.gz", install=True)</code></pre>
-    </div>
-
-    <p style="color: var(--color-text-muted); font-size: 0.85rem;">Installation loads all constructs, findings, and engines into your local knowledge base. The PAX's playbooks become immediately runnable.</p>
-  </div>
-
-  <!-- Step 4 -->
-  <div class="section">
-    <h2 style="display: flex; align-items: center; gap: 0.75rem;">
-      <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">04</span>
-      Run Your First Analysis
-    </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Each PAX includes playbooks — executable step-by-step analysis recipes. Run the quick start:</p>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;">
-      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.8; color: var(--color-text);"># List available playbooks
-praxis_list_playbooks("happiness-economics")
-
-# Run the quick start (fetches data + correlation analysis)
-praxis_run_playbook("happiness-economics", "quick_start")
-
-# Explore what the PAX knows
-praxis_skill_explore("subjective_wellbeing")
-
-# Find cross-domain pathways
-praxis_pathway(from="per_capita_income", to="life_satisfaction")</code></pre>
-    </div>
-  </div>
-
-  <!-- Step 5 -->
-  <div class="section">
-    <h2 style="display: flex; align-items: center; gap: 0.75rem;">
-      <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">05</span>
-      Contribute Back
-    </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Found new papers? Built a new domain? Package it and publish to the marketplace:</p>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;">
-      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.8; color: var(--color-text);"># Create a PAX from your research
-praxis_create_pax(
-    name="my-research-domain",
-    pax_type="topic",
-    description="...",
-    domain={...},
-    constructs=[...],
-    findings=[...],
-    install=True
-)
-
-# Publish to pax-market.com
-praxis_publish_pax("my-research-domain")
-# → Live on the marketplace in ~15 seconds</code></pre>
-    </div>
-  </div>
-
-  <!-- What It Actually Looks Like -->
-  <div class="section">
-    <h2 style="display: flex; align-items: center; gap: 0.75rem;">
-      <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">06</span>
-      What It Actually Looks Like
-    </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">You don't call MCP tools directly — you talk to an AI agent in natural language and it uses Praxis behind the scenes. Here's what a conversation looks like with Claude Code connected to Praxis:</p>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
-
-      <!-- User message 1 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">We're seeing higher churn in our mid-tier customers. I want to understand what the research says about predicting and preventing customer churn. What do we know?</p>
-        </div>
-      </div>
-
-      <!-- Agent response 1 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Let me check what analytical frameworks we have for this.</p>
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_search</span>("customer churn prediction retention") <span style="color: var(--color-topic);">&#10003;</span>
-          </div>
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Good news — we have the <strong>customer-segmentation-rfm</strong> PAX installed, which covers RFM analysis for segmentation. But I also see a gap: we don't have a dedicated churn prediction PAX. Let me check the marketplace for one.</p>
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_search_pax</span>("churn retention customer lifetime") <span style="color: var(--color-topic);">&#10003;</span>
-          </div>
-          <p style="margin: 0; font-size: 0.875rem;">The <strong>credit-risk-ml</strong> PAX shares relevant constructs — both domains use logistic regression and random forest on binary outcomes with behavioral features. Its <code>prediction_accuracy</code> and <code>false_positive_rate</code> constructs directly apply to churn modeling. Want me to explore what we can pull together?</p>
-        </div>
-      </div>
-
-      <!-- User message 2 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">Yes — and while you're at it, I just read a paper about how customer satisfaction links to retention. Can you incorporate that into our knowledge base?</p>
-        </div>
-      </div>
-
-      <!-- Agent response 2 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Sure, share the paper and I'll extract the key findings into our KB.</p>
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_skill_incorporate</span>("Gustafsson et al. 2005 — Effects of customer satisfaction on retention") <span style="color: var(--color-topic);">&#10003;</span>
-          </div>
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Done. I extracted 3 constructs and 4 findings from the paper:</p>
-          <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: var(--color-text-muted);">
-            <li><code>customer_satisfaction</code> — overall satisfaction score (positive → retention)</li>
-            <li><code>switching_barriers</code> — contractual/procedural lock-in (positive → retention, but weaker)</li>
-            <li><code>affective_commitment</code> — emotional bond with brand (strongest individual predictor)</li>
-          </ul>
-          <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Key finding: <strong>affective commitment mediates 60% of the satisfaction-retention link</strong>. Customers don't stay because they're satisfied — they stay because they feel connected. This changes the intervention target from "make them happy" to "make them feel belonging."</p>
-        </div>
-      </div>
-
-      <!-- User message 3 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">That's a great insight. Now can you build a churn prediction model using our customer data and test whether satisfaction or commitment is the better predictor?</p>
-        </div>
-      </div>
-
-      <!-- Agent response 3 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_run_engine</span>("logistic_regression", outcome="churn", predictors=["customer_satisfaction", "affective_commitment", "recency", "frequency", "monetary"]) <span style="color: var(--color-topic);">&#10003;</span>
-          </div>
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Logistic regression on 12,400 customer records:</p>
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.625rem 0.75rem; font-size: 0.8rem; margin-bottom: 0.5rem;">
-            <div><code>affective_commitment</code>: <strong style="color: var(--color-topic);">&#946; = -0.71</strong> (p &lt; 0.001) — strongest predictor of retention</div>
-            <div><code>customer_satisfaction</code>: <strong style="color: var(--color-text-muted);">&#946; = -0.12</strong> (p = 0.08) — not significant after controlling for commitment</div>
-            <div><code>recency</code>: <strong style="color: #ef4444;">&#946; = +0.54</strong> (p &lt; 0.001) — longer since last purchase = higher churn risk</div>
-          </div>
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_compare_to_literature</span> <span style="color: var(--color-topic);">&#10003;</span>
-          </div>
-          <p style="margin: 0; font-size: 0.875rem;"><strong>KB Comparison:</strong> Your result <strong>confirms</strong> Gustafsson et al.'s finding — commitment dominates satisfaction as a retention driver. Your recency effect is consistent with the RFM literature. Recommendation: <strong>focus retention interventions on community and belonging programs, not just satisfaction surveys.</strong></p>
-        </div>
-      </div>
-
-      <!-- User message 4 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">This is great. Package everything we just did into a PAX so the rest of the analytics team can use it.</p>
-        </div>
-      </div>
-
-      <!-- Agent response 4 -->
-      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
-        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_create_pax</span>("customer-churn-prediction", pax_type="enterprise", ...) <span style="color: var(--color-topic);">&#10003;</span>
-          </div>
-          <p style="margin: 0; font-size: 0.875rem;">Done. Created <strong>customer-churn-prediction</strong> PAX with 5 constructs, 4 findings, and a quick-start playbook that reproduces your analysis. Anyone on the team who installs this PAX gets your constructs, the literature findings, and the playbook — they can run the same analysis on new data without starting from scratch.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 1rem; font-style: italic;">This is the full loop: ask a question, search the knowledge base, incorporate new research, run an analysis with automatic literature comparison, and package everything into a reusable PAX. All in natural conversation.</p>
-  </div>
-
-  <!-- Connect -->
-  <div class="section">
-    <h2>Connect with Claude Code</h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">The fastest way to use Praxis is through Claude Code with the MCP integration. Add this to your Claude Code MCP config:</p>
-
+    <h3 style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="font-size: 1rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">02</span>
+      Connect Your Agent
+    </h3>
+    <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 0.75rem;">Add Praxis to your Claude Code MCP config:</p>
     <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem;">
       <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.6; color: var(--color-text);">{
   "mcpServers": {
     "praxis": {
       "command": "uv",
-      "args": ["run", "--directory", "/path/to/praxis", "python", "-m", "praxis.mcp_server"],
-      "env": {
-        "DATABASE_URL": "sqlite:///path/to/praxis.db"
-      }
+      "args": ["run", "--directory", "/path/to/praxis",
+               "python", "-m", "praxis.mcp_server"]
     }
   }
 }</code></pre>
     </div>
-    <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.75rem;">Once connected, all 73 Praxis tools are available to Claude — including PAX creation, analysis, and publishing.</p>
+    <p style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Works with any MCP-compatible agent — Claude Code, Codex CLI, or custom agents via the Agent SDK.</p>
+  </div>
+
+  <div class="section">
+    <h3 style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="font-size: 1rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">03</span>
+      Install PAX from the Marketplace
+    </h3>
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem;">
+      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.8; color: var(--color-text);">curl -O https://pax-market.com/packs/happiness-economics.pax.tar.gz
+praxis_import_pax("happiness-economics.pax.tar.gz", install=True)</code></pre>
+    </div>
+    <p style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Or just ask your agent: <em>"Install the happiness-economics PAX from the marketplace."</em></p>
+  </div>
+
+  <div class="section">
+    <h3 style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="font-size: 1rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">04</span>
+      Start Talking
+    </h3>
+    <p style="color: var(--color-text-muted); font-size: 0.875rem;">That's it. Ask your agent anything about the domains you've installed. It has 73 Praxis tools available — knowledge search, cross-domain pathways, 18 analytical engines, paper incorporation, and PAX creation. You saw how it works above.</p>
   </div>
 
   <!-- Links -->
   <div class="section">
-    <h2>More Resources</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-      <a href="/api/" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.875rem;">API Documentation</a>
-      <a href="/graph/" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.875rem;">Knowledge Graph</a>
-      <a href="/constructs/" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.875rem;">Construct Browser</a>
-      <a href="https://github.com/JELambert/praxis" target="_blank" rel="noopener" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.875rem;">GitHub</a>
+    <h3>More Resources</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+      <a href="/packs/" class="download-btn" style="text-decoration: none; font-size: 0.85rem;">Browse PAX</a>
+      <a href="/api/" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.85rem;">API Docs</a>
+      <a href="/graph/" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.85rem;">Knowledge Graph</a>
+      <a href="/constructs/" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.85rem;">Constructs</a>
+      <a href="https://github.com/JELambert/praxis" target="_blank" rel="noopener" style="text-decoration: none; padding: 0.75rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-size: 0.85rem;">GitHub</a>
     </div>
   </div>
 </div>
