@@ -40,7 +40,13 @@ echo "==> Syncing published packs from database..."
 echo "==> Building Hugo site..."
 "$HUGO_BIN" --minify
 
-# Step 4: Deploy to CT 110
+# Step 4: Verify build before deploying
+if [ ! -f public/index.html ]; then
+    echo "ERROR: Hugo build produced no index.html — aborting deploy to protect live site"
+    exit 1
+fi
+
+# Step 5: Deploy to CT 110
 echo "==> Deploying to CT 110..."
 rsync -a --delete public/ "root@${CT110_IP}:/var/www/marketplace/"
 
