@@ -1,5 +1,5 @@
 ---
-title: Fearon & Laitin (2003) "Ethnicity, Insurgency, and Civil War"
+title: Fearon & Laitin (2003) — Ethnicity, Insurgency, and Civil War
 pax_name: fearon-laitin-2003
 version: 1.0.0
 pax_type: paper
@@ -38,12 +38,19 @@ findings:
 - noncontig_onset_positive
 - relfrac_onset_null
 - insurgency_mechanism
-engines: []
+engines:
+- ''
+playbooks:
+- quick_start
+propositions: []
 construct_count: 10
 finding_count: 11
+proposition_count: 0
 has_playbooks: true
 has_data_sources: false
 download_url: /packs/fearon-laitin-2003.pax.tar.gz
+download_size: 5.1 KB
+weight: 7997
 ---
 
 # Fearon & Laitin (2003) — Praxis PAX

@@ -8,8 +8,9 @@
   <div class="stats">
     {{ with .Params.construct_count }}<span>{{ . }} constructs</span>{{ end }}
     {{ with .Params.finding_count }}<span>{{ . }} findings</span>{{ end }}
+    {{ with .Params.engines }}{{ if gt (len .) 0 }}<span>{{ len . }} engines</span>{{ end }}{{ end }}
     {{ if .Params.has_playbooks }}<span>playbooks</span>{{ end }}
-    {{ if .Params.has_data_sources }}<span>data sources</span>{{ end }}
+    {{ if .Params.has_data_sources }}<span>data</span>{{ end }}
   </div>
   <div class="meta">
     {{ range first 4 .Params.tags }}
@@ -18,5 +19,6 @@
     {{ if gt (len .Params.tags) 4 }}
       <span class="tag">+{{ sub (len .Params.tags) 4 }}</span>
     {{ end }}
+    {{ with .Params.download_size }}<span style="margin-left: auto; font-size: 0.7rem; color: var(--color-text-muted);">{{ . }}</span>{{ end }}
   </div>
 </div>

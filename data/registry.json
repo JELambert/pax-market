@@ -1,7 +1,117 @@
 [
   {
+    "name": "algorithmic-fairness",
+    "title": "Algorithmic Fairness",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Measurement and mitigation of bias in ML prediction systems. Covers impossibility theorems (Chouldechova, Kleinberg), facial recognition bias (Buolamwini & Gebru), and accuracy-fairness tradeoffs in criminal justice risk assessment.",
+    "author": "",
+    "license": "",
+    "tags": [
+      "topic",
+      "algorithmic-fairness"
+    ],
+    "constructs": [
+      "prediction_accuracy",
+      "false_positive_rate",
+      "demographic_parity",
+      "calibration"
+    ],
+    "construct_count": 4,
+    "finding_count": 2,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "logistic_regression",
+      "random_forest",
+      "gradient_boosting"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/algorithmic-fairness.pax.tar.gz",
+    "download_sha256": "e6b0159842df69cd982da2929f2dd8c7ede88b2b1b5e05076ac802ced1c8d3b4",
+    "download_size": "1.9 KB"
+  },
+  {
+    "name": "climate-economic-impacts",
+    "title": "Economic impacts of climate change",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Economic impacts of climate change \u2014 how temperature and precipitation affect GDP growth, agricultural yields, and long-run development. Built on Dell, Jones & Olken (2012), Burke, Hsiang & Miguel (2015), Nordhaus (2018), Hsiang et al. (2017), and Schlenker & Roberts (2009).",
+    "author": "Dell, Melissa; Burke, Marshall; Nordhaus, William D.; Hsiang, Solomon; Schlenker, Wolfram",
+    "license": "",
+    "tags": [
+      "topic",
+      "climate-economic-impacts"
+    ],
+    "constructs": [
+      "mean_surface_temperature",
+      "gdp_per_capita_growth",
+      "climate_damage_fraction",
+      "agricultural_yield",
+      "precipitation",
+      "social_cost_of_carbon"
+    ],
+    "construct_count": 6,
+    "finding_count": 5,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "instrumental_variables",
+      "difference_in_differences",
+      "correlation_matrix"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/climate-economic-impacts.pax.tar.gz",
+    "download_sha256": "aa782007671541a123419fdd5d591cc3d56c0c5b7edb65608e0859c4beb5e776",
+    "download_size": "3.1 KB"
+  },
+  {
+    "name": "democratic-peace",
+    "title": "Democratic peace theory",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Democratic peace theory \u2014 why democracies rarely fight each other and how regime type, economic interdependence, and international organizations jointly reduce militarized interstate disputes. Built on Doyle (1986), Maoz & Russett (1993), Oneal & Russett (1999), and Gartzke (2007).",
+    "author": "Doyle, Michael W.; Russett, Bruce M.; Oneal, John R.; Maoz, Zeev; Gartzke, Erik",
+    "license": "",
+    "tags": [
+      "topic",
+      "democratic-peace"
+    ],
+    "constructs": [
+      "dyadic_democracy",
+      "militarized_interstate_dispute",
+      "trade_interdependence",
+      "shared_igo_membership",
+      "territorial_contiguity",
+      "capability_ratio"
+    ],
+    "construct_count": 6,
+    "finding_count": 5,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "logistic_regression",
+      "ols_regression",
+      "cox_ph"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/democratic-peace.pax.tar.gz",
+    "download_sha256": "eae780ddf297a3df5b47faa7142192829c39ae01e0d3c86c1c8d3298459a5e0f",
+    "download_size": "2.9 KB"
+  },
+  {
     "name": "dukalskis-et-al-2024-transnational-repression",
-    "title": "First large-N quantitative study of domestic drivers of transnational repression (TR). Tests the hypothesis that authoritarian crackdowns at home increase the subsequent likelihood of the same state repressing its citizens abroad. Uses the Authoritarian Actions Abroad Database (AAAD, ~1,205 events, 1991-2019) across 88 authoritarian regimes in a country-year panel.",
+    "title": "Dukalskis (2024)",
     "version": "1.0.0",
     "pax_type": "paper",
     "description": "First large-N quantitative study of domestic drivers of transnational repression (TR). Tests the hypothesis that authoritarian crackdowns at home increase the subsequent likelihood of the same state repressing its citizens abroad. Uses the Authoritarian Actions Abroad Database (AAAD, ~1,205 events, 1991-2019) across 88 authoritarian regimes in a country-year panel.",
@@ -22,15 +132,61 @@
     ],
     "construct_count": 7,
     "finding_count": 7,
+    "proposition_count": 2,
     "has_playbooks": true,
     "has_data_sources": true,
+    "engines": [
+      "logistic_regression",
+      "ols_regression"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
     "download_url": "/packs/dukalskis-et-al-2024-transnational-repression.pax.tar.gz",
-    "download_sha256": "4f3c8ee9e9e2d0886280a4b41bf9b9ca4810f43711825d11aab07a1c8cb94a75",
-    "download_size": "5.1 KB"
+    "download_sha256": "ce7e96fd53487173ba110abc2cc6842112fd80b3129dc392783d6f638cdf9c16",
+    "download_size": "5.0 KB"
+  },
+  {
+    "name": "economic-growth-panel",
+    "title": "Economic Growth Panel",
+    "version": "1.0.0",
+    "pax_type": "field",
+    "description": "Determinants of long-run economic growth including physical capital accumulation, human capital, population growth, and total factor productivity. Built on Solow (1956), Barro (1991), and Mankiw-Romer-Weil (1992).",
+    "author": "Josh Lambert (stress test)",
+    "license": "",
+    "tags": [
+      "field",
+      "economic-growth"
+    ],
+    "constructs": [
+      "gdp_per_capita",
+      "physical_capital",
+      "human_capital",
+      "population_growth_rate",
+      "total_factor_productivity",
+      "convergence_rate"
+    ],
+    "construct_count": 6,
+    "finding_count": 4,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "ridge_regression",
+      "correlation_matrix",
+      "instrumental_variables"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/economic-growth-panel.pax.tar.gz",
+    "download_sha256": "3f72df22b55da331e57de90145ded78d62e8c955d6fa24f448bb3261183249bf",
+    "download_size": "2.4 KB"
   },
   {
     "name": "fearon-laitin-2003",
-    "title": "Fearon & Laitin (2003) \"Ethnicity, Insurgency, and Civil War\"",
+    "title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
     "version": "1.0.0",
     "pax_type": "paper",
     "description": "Fearon & Laitin (2003) \"Ethnicity, Insurgency, and Civil War\" \u2014 foundational paper on civil war onset. Challenges ethnic grievance explanations, finds insurgency-opportunity factors (poverty, terrain, weak states) are stronger predictors.",
@@ -57,15 +213,22 @@
     ],
     "construct_count": 10,
     "finding_count": 11,
+    "proposition_count": 0,
     "has_playbooks": true,
     "has_data_sources": false,
+    "engines": [
+      ""
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
     "download_url": "/packs/fearon-laitin-2003.pax.tar.gz",
-    "download_sha256": "6c3aeb8e691c4df434d260b196f9760039c8469cb5dd1d122251e2c7f9096085",
-    "download_size": "5.2 KB"
+    "download_sha256": "c35216efb29c5bf31ec2fd02a0cf264ad55bc2a0e13a7f8a70b8bdd8f97694af",
+    "download_size": "5.1 KB"
   },
   {
     "name": "happiness-economics",
-    "title": "Subjective wellbeing and its economic, social, and institutional determinants. Based on the World Happiness Report 2023 framework: GDP per capita, social support, healthy life expectancy, freedom of choice, generosity, and perceptions of corruption as the six key predictors of national life satisfaction.",
+    "title": "Happiness Economics",
     "version": "1.0.0",
     "pax_type": "topic",
     "description": "Subjective wellbeing and its economic, social, and institutional determinants. Based on the World Happiness Report 2023 framework: GDP per capita, social support, healthy life expectancy, freedom of choice, generosity, and perceptions of corruption as the six key predictors of national life satisfaction.",
@@ -88,10 +251,199 @@
     ],
     "construct_count": 6,
     "finding_count": 7,
+    "proposition_count": 4,
     "has_playbooks": true,
     "has_data_sources": true,
+    "engines": [
+      ""
+    ],
+    "playbooks": [
+      "quick_start",
+      "standard_analysis"
+    ],
     "download_url": "/packs/happiness-economics.pax.tar.gz",
-    "download_sha256": "82e72b553f025d7e8d962e761e072f4595f81b83c7acf8a4b067ecfaefb09656",
-    "download_size": "9.9 KB"
+    "download_sha256": "83714bdcb32538993fd1281704907c3cae2e0fdc05a5f1c278df40cb1af9c2a8",
+    "download_size": "9.7 KB"
+  },
+  {
+    "name": "health-outcomes-global",
+    "title": "Health Outcomes Global",
+    "version": "1.0.0",
+    "pax_type": "field",
+    "description": "Relationship between health spending and population health outcomes including life expectancy, infant mortality, and the contested role of public vs private expenditure. Built on WHO Commission (2001), Filmer & Pritchett (1999), and Cutler, Deaton & Lleras-Muney (2006).",
+    "author": "Josh Lambert (stress test)",
+    "license": "",
+    "tags": [
+      "field",
+      "health-expenditure-outcomes"
+    ],
+    "constructs": [
+      "health_expenditure_per_capita",
+      "life_expectancy",
+      "infant_mortality"
+    ],
+    "construct_count": 3,
+    "finding_count": 3,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "correlation_matrix",
+      "meta_analysis"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/health-outcomes-global.pax.tar.gz",
+    "download_sha256": "8079f551168c57ba2988a8afb92c218a52342b86e4bb21a6fd012a707364007c",
+    "download_size": "2.2 KB"
+  },
+  {
+    "name": "human-capital-economics",
+    "title": "Returns to education and human capital economics",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Returns to education and human capital economics \u2014 how educational attainment, cognitive skills, and schooling investment shape GDP growth and economic development. Built on Mankiw, Romer & Weil (1992), Psacharopoulos & Patrinos (2018), Hanushek & Woessmann (2012), Card (1995), and Barro (2001).",
+    "author": "Mankiw, N. Gregory; Hanushek, Eric A.; Psacharopoulos, George; Card, David; Barro, Robert J.",
+    "license": "",
+    "tags": [
+      "topic",
+      "human-capital-economics"
+    ],
+    "constructs": [
+      "mean_years_schooling",
+      "cognitive_skills",
+      "school_enrollment_rate",
+      "physical_capital_investment"
+    ],
+    "construct_count": 4,
+    "finding_count": 4,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "instrumental_variables",
+      "meta_analysis",
+      "correlation_matrix"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/human-capital-economics.pax.tar.gz",
+    "download_sha256": "396f97f169f7dabc2c1c5c590fbac8b838a3c5d60d572f1298bf2e767fd0b704",
+    "download_size": "2.8 KB"
+  },
+  {
+    "name": "institutional-quality-development",
+    "title": "Institutional quality and economic development",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Institutional quality and economic development \u2014 how property rights, rule of law, corruption control, and democratic governance shape long-run per capita income. Built on Acemoglu, Johnson & Robinson (2001), North (1990), Rodrik et al. (2004), Kaufmann et al. (2010), and Mauro (1995).",
+    "author": "Acemoglu, Daron; North, Douglass C.; Rodrik, Dani; Kaufmann, Daniel; Mauro, Paolo",
+    "license": "",
+    "tags": [
+      "topic",
+      "institutional-quality-development"
+    ],
+    "constructs": [
+      "rule_of_law",
+      "control_of_corruption",
+      "property_rights_security",
+      "government_effectiveness",
+      "democratic_governance"
+    ],
+    "construct_count": 5,
+    "finding_count": 5,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "instrumental_variables",
+      "difference_in_differences",
+      "lasso_regression"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/institutional-quality-development.pax.tar.gz",
+    "download_sha256": "77b4586939d51067ec5fd3e3a693e63b1f0431fd2b93139c64275d462025a4a8",
+    "download_size": "3.1 KB"
+  },
+  {
+    "name": "social-determinants-of-health",
+    "title": "Social determinants of health",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Social determinants of health \u2014 how income, education, housing, social support, and neighborhood environment shape health outcomes and drive health inequalities. Built on Berkman & Syme (1979), Marmot (2005), Cutler & Lleras-Muney (2010), Chetty et al. (2016), and Holt-Lunstad et al. (2015).",
+    "author": "Berkman, Lisa F.; Marmot, Michael; Cutler, David M.; Chetty, Raj; Holt-Lunstad, Julianne",
+    "license": "",
+    "tags": [
+      "topic",
+      "social-determinants-of-health"
+    ],
+    "constructs": [
+      "household_income",
+      "educational_attainment",
+      "income_inequality",
+      "social_support",
+      "social_isolation",
+      "life_expectancy"
+    ],
+    "construct_count": 6,
+    "finding_count": 5,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "logistic_regression",
+      "cox_ph",
+      "meta_analysis",
+      "instrumental_variables"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/social-determinants-of-health.pax.tar.gz",
+    "download_sha256": "c4b34d31affc01e1627e06f3ac0342b7793e9402779b5e970b84638106b24c1c",
+    "download_size": "3.2 KB"
+  },
+  {
+    "name": "sports-performance",
+    "title": "Sports Performance",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Statistical analysis of team performance, Elo ratings, and win probability in professional sports. Tests domain-agnosticism with a deliberately non-academic domain.",
+    "author": "",
+    "license": "",
+    "tags": [
+      "topic",
+      "sports-analytics"
+    ],
+    "constructs": [
+      "elo_rating",
+      "win_probability",
+      "offensive_efficiency",
+      "defensive_efficiency"
+    ],
+    "construct_count": 4,
+    "finding_count": 1,
+    "proposition_count": 0,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "engines": [
+      "ols_regression",
+      "logistic_regression",
+      "random_forest"
+    ],
+    "playbooks": [
+      "quick_start"
+    ],
+    "download_url": "/packs/sports-performance.pax.tar.gz",
+    "download_sha256": "d2a0f4519a0393dcf45bf42c4ae470889b5e9813aa525de8d0a8013e2413261a",
+    "download_size": "1.7 KB"
   }
 ]

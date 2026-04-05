@@ -17,16 +17,19 @@
   <p style="font-size: 1.05rem; color: var(--color-text-muted); max-width: 720px; margin-bottom: 1.5rem;">{{ .Params.description }}</p>
 
   {{ with .Params.download_url }}
-  <a href="{{ . }}" class="download-btn" download>
-    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
-    Download .pax.tar.gz
-  </a>
+  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+    <a href="{{ . }}" class="download-btn" download>
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+      Download .pax.tar.gz
+    </a>
+    {{ with $.Params.download_size }}<span style="font-size: 0.8rem; color: var(--color-text-muted);">{{ . }}</span>{{ end }}
+  </div>
   {{ end }}
 
   <!-- Stats overview -->
   <div class="section">
     <h2>Overview</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
       {{ with .Params.construct_count }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">{{ . }}</div>
@@ -39,15 +42,27 @@
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Findings</div>
       </div>
       {{ end }}
-      {{ if .Params.has_playbooks }}
+      {{ with .Params.proposition_count }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
-        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">Yes</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-paper);">{{ . }}</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted);">Propositions</div>
+      </div>
+      {{ end }}
+      {{ with .Params.playbooks }}
+      <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">{{ len . }}</div>
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Playbooks</div>
+      </div>
+      {{ end }}
+      {{ with .Params.engines }}
+      <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-engine);">{{ len . }}</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted);">Engines</div>
       </div>
       {{ end }}
       {{ if .Params.has_data_sources }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
-        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">Yes</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-field);">Yes</div>
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Data Sources</div>
       </div>
       {{ end }}
@@ -78,6 +93,18 @@
   </div>
   {{ end }}
 
+  <!-- Propositions -->
+  {{ with .Params.propositions }}
+  <div class="section">
+    <h2>Propositions</h2>
+    <div class="construct-list">
+      {{ range . }}
+        <span class="construct-chip" style="background: rgba(250, 204, 21, 0.1); color: var(--color-enterprise); border-color: rgba(250, 204, 21, 0.2);">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
   <!-- Engines -->
   {{ with .Params.engines }}
   <div class="section">
@@ -85,6 +112,18 @@
     <div class="construct-list">
       {{ range . }}
         <span class="construct-chip" style="background: rgba(244, 114, 182, 0.1); color: var(--color-engine); border-color: rgba(244, 114, 182, 0.2);">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Playbooks -->
+  {{ with .Params.playbooks }}
+  <div class="section">
+    <h2>Playbooks</h2>
+    <div class="construct-list">
+      {{ range . }}
+        <span class="construct-chip" style="background: rgba(52, 211, 153, 0.1); color: var(--color-topic); border-color: rgba(52, 211, 153, 0.2);">{{ . }}</span>
       {{ end }}
     </div>
   </div>

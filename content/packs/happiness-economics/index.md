@@ -1,8 +1,5 @@
 ---
-title: 'Subjective wellbeing and its economic, social, and institutional determinants.
-  Based on the World Happiness Report 2023 framework: GDP per capita, social support,
-  healthy life expectancy, freedom of choice, generosity, and perceptions of corruption
-  as the six key predictors of national life satisfaction.'
+title: Happiness Economics
 pax_name: happiness-economics
 version: 1.0.0
 pax_type: topic
@@ -27,12 +24,20 @@ constructs:
 - generosity
 - perceptions_of_corruption
 findings: []
-engines: []
+engines:
+- ''
+playbooks:
+- quick_start
+- standard_analysis
+propositions: []
 construct_count: 6
 finding_count: 7
+proposition_count: 4
 has_playbooks: true
 has_data_sources: true
 download_url: /packs/happiness-economics.pax.tar.gz
+download_size: 9.7 KB
+weight: 7977
 ---
 
 # happiness-economics — Praxis PAX
