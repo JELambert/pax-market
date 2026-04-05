@@ -45,13 +45,33 @@
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Domains</div>
     </div>
     <div style="text-align: center;">
-      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">25</div>
+      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">{{ len (where .Site.RegularPages "Section" "packs") }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Published PAX</div>
     </div>
   </div>
 </section>
 
-<!-- Featured PAX -->
+<!-- Recently Published -->
+{{ $withDates := where (where .Site.RegularPages "Section" "packs") ".Params.published_at" "!=" "" }}
+{{ if $withDates }}
+<section style="margin-bottom: 3rem;">
+  <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Recently Published</h2>
+  <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+    {{ range first 5 (sort $withDates ".Params.published_at" "desc") }}
+    <a href="{{ .RelPermalink }}" style="display: flex; justify-content: space-between; align-items: center; padding: 0.875rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; text-decoration: none; transition: border-color 0.15s;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; min-width: 0;">
+        <span class="badge badge-{{ .Params.pax_type }}" style="flex-shrink: 0;">{{ .Params.pax_type }}</span>
+        <span style="color: var(--color-text); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ .Title }}</span>
+        <span style="color: var(--color-text-muted); font-size: 0.8rem; flex-shrink: 0;">{{ .Params.construct_count }}c {{ .Params.finding_count }}f</span>
+      </div>
+      <span style="color: var(--color-text-muted); font-size: 0.75rem; font-family: var(--font-mono); white-space: nowrap; margin-left: 1rem;">{{ .Params.published_at | truncate 10 "" }}</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<!-- Browse PAX -->
 <section>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
     <h2 style="font-size: 1.5rem;">Browse PAX</h2>
