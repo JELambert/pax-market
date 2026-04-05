@@ -30,7 +30,7 @@ git pull --ff-only origin main 2>&1 || echo "  (git pull skipped)"
 echo "==> Generating registry.json..."
 cd "$PRAXIS_DIR" && $UV_BIN run python marketplace/scripts/generate_registry.py
 cd "$MARKETPLACE_DIR"
-cp "$PRAXIS_DIR/marketplace/data/registry.json" static/registry.json
+cp "$PRAXIS_DIR/marketplace/data/registry.json" "$MARKETPLACE_DIR/static/registry.json"
 
 # Step 2: Sync rich content from database
 echo "==> Syncing published packs from database..."
