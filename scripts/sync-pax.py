@@ -212,49 +212,52 @@ def extract_sources_for_findings(conn, findings: list[dict]) -> list[dict]:
     return results
 
 
-def extract_playbooks_for_pack(conn, pax_dir: Path | None) -> list[dict]:
-    """Get playbook summaries from disk (playbooks aren't in DB yet)."""
-    if not pax_dir or not Path(pax_dir).is_dir():
+def extract_playbooks_for_pack(conn, pax_name: str, provides: dict) -> list[dict]:
+    """Get playbook summaries from provides_json.
+
+    Playbooks don't have their own DB table yet, but provides_json
+    lists playbook IDs, and engine_construct_mappings tells us which
+    engines are associated. We build summaries from what's available.
+    """
+    playbook_ids = provides.get("playbooks", [])
+    if not playbook_ids:
         return []
-    pb_dir = Path(pax_dir) / "playbooks"
-    if not pb_dir.is_dir():
-        return []
+    # We know the playbook IDs but not their full YAML content from DB.
+    # Build minimal summaries using what we have.
     results = []
-    for pb_file in sorted(pb_dir.glob("*.yaml")):
-        try:
-            with open(pb_file) as f:
-                pb = yaml.safe_load(f) or {}
-        except Exception:
-            continue
-        steps = pb.get("steps", [])
-        engines_used = list({s.get("engine") for s in steps if isinstance(s, dict) and s.get("engine")})
+    for pb_id in playbook_ids:
         results.append({
-            "id": pb.get("id", pb_file.stem),
-            "display_name": pb.get("display_name", pb_file.stem),
-            "description": pb.get("description", ""),
-            "estimated_runtime": pb.get("estimated_runtime", ""),
-            "step_count": len(steps),
-            "engines_used": engines_used,
+            "id": pb_id,
+            "display_name": pb_id.replace("_", " ").replace("-", " ").title(),
+            "description": "",
+            "estimated_runtime": "",
+            "step_count": 0,
+            "engines_used": [],
         })
     return results
 
 
-def extract_engines_for_pack(conn, pax_dir: Path | None, provides: dict) -> list[str]:
-    """Get engine names from provides or disk."""
+def extract_engines_for_pack(conn, pax_name: str, provides: dict) -> list[str]:
+    """Get engine names from DB — provides_json first, then engine_construct_mappings."""
     engines = provides.get("engines", [])
     if engines:
         return engines
-    if pax_dir and Path(pax_dir).is_dir():
-        reg_file = Path(pax_dir) / "engines" / "registry.json"
-        if reg_file.exists():
-            try:
-                with open(reg_file) as f:
-                    data = json.load(f)
-                if isinstance(data, list):
-                    return [e.get("id", e.get("name", "")) for e in data if isinstance(e, dict)]
-            except Exception:
-                pass
-    return []
+    # Query engine_construct_mappings for engines linked to this pack's constructs
+    construct_ids = provides.get("constructs", [])
+    if not construct_ids:
+        return []
+    placeholders = ", ".join(f"'{cid}'" for cid in construct_ids[:20])
+    rows = query(conn, f"""
+        SELECT DISTINCT engine_id FROM engine_construct_mappings
+        WHERE construct_id IN ({placeholders})
+    """)
+    return [r["engine_id"] for r in rows]
+
+
+def extract_data_sources_for_pack(conn, pax_name: str) -> bool:
+    """Check if this pack has registered data sources in the DB."""
+    rows = query(conn, "SELECT count(*) as c FROM data_sources WHERE pax_name = %(n)s", {"n": pax_name})
+    return rows[0]["c"] > 0 if rows else False
 
 
 # ---------------------------------------------------------------------------
@@ -464,33 +467,33 @@ def sync_packs(db_url: str, praxis_dir: Path | None = None):
         propositions_detail = extract_propositions_for_pack(conn, proposition_ids)
         sources_detail = extract_sources_for_findings(conn, findings_detail)
 
-        # Playbooks + engines still from disk (not in DB yet)
+        # Engines and playbooks from DB
+        engine_names = extract_engines_for_pack(conn, name, provides)
+        playbooks_detail = extract_playbooks_for_pack(conn, name, provides)
+        playbook_names = [p["id"] for p in playbooks_detail]
+        has_data = extract_data_sources_for_pack(conn, name)
+
+        # Archive — use cached if available, rebuild from disk if possible
+        archive_size = ""
+        sha256 = ""
         pax_dir = None
         if praxis_dir:
             candidate = praxis_dir / "pax" / name
             if candidate.is_dir():
                 pax_dir = candidate
-        playbooks_detail = extract_playbooks_for_pack(conn, pax_dir)
-        engine_names = extract_engines_for_pack(conn, pax_dir, provides)
-        playbook_names = [p["id"] for p in playbooks_detail]
-
-        # Archive
-        archive_size = ""
-        sha256 = ""
         if pax_dir and pax_dir.is_dir():
             archive_path = STATIC_DIR / f"{name}.pax.tar.gz"
             sha256, size_bytes = create_archive(pax_dir, archive_path)
             archive_size = format_size(size_bytes)
             print(f"    Archive: {archive_size}")
         else:
-            # Check if archive already exists from previous build
             existing = STATIC_DIR / f"{name}.pax.tar.gz"
             if existing.exists():
                 sha256 = hashlib.sha256(existing.read_bytes()).hexdigest()
                 archive_size = format_size(existing.stat().st_size)
                 print(f"    Archive: {archive_size} (cached)")
             else:
-                print(f"    No pax_dir on disk — skipping archive")
+                print(f"    No archive available")
 
         # Counts
         construct_count = len(constructs_detail) or len(construct_ids)
@@ -528,7 +531,7 @@ def sync_packs(db_url: str, praxis_dir: Path | None = None):
             "finding_count": finding_count,
             "proposition_count": proposition_count,
             "has_playbooks": bool(playbook_names),
-            "has_data_sources": pax_dir is not None and (pax_dir / "data").is_dir(),
+            "has_data_sources": has_data,
             # Rich detail
             "domain": domain,
             "constructs_detail": constructs_detail,
