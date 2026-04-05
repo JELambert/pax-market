@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="pack-detail">
   <div style="margin-bottom: 1rem;">
-    <a href="/packs/" style="font-size: 0.875rem; color: var(--color-text-muted);">&larr; Back to all packs</a>
+    <a href="/packs/" style="font-size: 0.875rem; color: var(--color-text-muted);">&larr; Browse all PAX</a>
   </div>
 
   <h1>{{ .Title }}</h1>
@@ -218,7 +218,7 @@
   <!-- Related Packs -->
   {{ with .Params.related_packs }}
   <div class="section">
-    <h2>Related Packs</h2>
+    <h2>Related PAX</h2>
     <div class="pack-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
       {{ range . }}
         {{ $pack := $.Site.GetPage (printf "/packs/%s" .) }}

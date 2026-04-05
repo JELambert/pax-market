@@ -1,12 +1,12 @@
 baseURL = 'https://pax-market.com/'
 languageCode = 'en-us'
-title = 'Praxis Marketplace'
-description = 'Browse and discover PAX — Portable Analytical eXpertise packs for the Praxis research infrastructure'
+title = 'PAX Marketplace'
+description = 'Browse and discover PAX — Portable Analytical eXpertise for structured research'
 
 [params]
   tagline = 'Portable Analytical eXpertise'
-  github_url = 'https://github.com/praxis-marketplace'
-  praxis_url = 'https://github.com/praxis-research/praxis'
+  github_url = 'https://github.com/JELambert/pax-market'
+  praxis_url = 'https://github.com/JELambert/praxis'
 
 [taxonomies]
   tag = 'tags'
@@ -21,7 +21,7 @@ description = 'Browse and discover PAX — Portable Analytical eXpertise packs f
 
 [menu]
   [[menu.main]]
-    name = 'Browse Packs'
+    name = 'Browse PAX'
     url = '/packs/'
     weight = 1
   [[menu.main]]
@@ -34,7 +34,7 @@ description = 'Browse and discover PAX — Portable Analytical eXpertise packs f
     weight = 3
   [[menu.main]]
     name = 'GitHub'
-    url = 'https://github.com/praxis-marketplace'
+    url = 'https://github.com/JELambert/pax-market'
     weight = 4
     [menu.main.params]
       external = true

@@ -1,11 +1,11 @@
 {{ define "main" }}
 <section style="padding: 3rem 0 1rem;">
-  <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Browse Packs</h1>
-  <p style="color: var(--color-text-muted);">{{ len .Pages }} PAX packages available</p>
+  <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Browse PAX</h1>
+  <p style="color: var(--color-text-muted);">{{ len .Pages }} PAX available</p>
 </section>
 
 <div class="search-bar">
-  <input type="text" class="search-input" id="search-input" placeholder="Search packs by name, description, domain, or tag...">
+  <input type="text" class="search-input" id="search-input" placeholder="Search PAX by name, description, domain, or tag...">
   <button class="filter-btn" data-filter="all" onclick="filterByType('all')">All</button>
   <button class="filter-btn" data-filter="paper" onclick="filterByType('paper')">Paper</button>
   <button class="filter-btn" data-filter="topic" onclick="filterByType('topic')">Topic</button>
@@ -27,7 +27,7 @@
 </div>
 
 <div class="no-results" id="no-results" style="display: none;">
-  <p>No packs match your search.</p>
+  <p>No PAX match your search.</p>
 </div>
 {{ end }}
 

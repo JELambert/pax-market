@@ -1,4 +1,4 @@
 ---
 title: "Construct Browser"
-description: "Search all constructs across PAX packs — find packs by what they measure"
+description: "Search all constructs across PAX — find PAX by what they measure"
 ---

@@ -1,3 +1,3 @@
 ---
-title: "Praxis Marketplace"
+title: "PAX Marketplace"
 ---

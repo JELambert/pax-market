@@ -1,5 +1,5 @@
 #!/bin/bash
-# deploy.sh — Build and deploy Praxis Marketplace to Proxmox CT 110
+# deploy.sh — Build and deploy PAX Marketplace to Proxmox CT 110
 #
 # Usage:
 #   ./scripts/deploy.sh              # sync packs + build + deploy
