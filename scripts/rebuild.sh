@@ -1,9 +1,7 @@
 #!/bin/bash
 # rebuild.sh — Rebuild marketplace on CT 105 and deploy to CT 110
 #
-# All knowledge comes from PostgreSQL (single source of truth).
-# Generates both registry.json (thin install contract) and
-# index.json (rich agent API) from the DB.
+# Flow: git pull → generate registry → sync from DB → Hugo build → deploy
 #
 # Called by marketplace.py:rebuild_marketplace() after a pack is published.
 
@@ -21,7 +19,10 @@ if [ -f "$PRAXIS_DIR/.env" ]; then
     export $(grep -v '^#' "$PRAXIS_DIR/.env" | xargs)
 fi
 
+# Step 0: Pull latest from git (single source of truth for templates/config)
+echo "==> Pulling latest from git..."
 cd "$MARKETPLACE_DIR"
+git pull --ff-only origin main 2>&1 || echo "  (git pull skipped — may be detached or no remote changes)"
 
 # Step 1: Generate registry.json (thin install contract) via praxis tooling
 echo "==> Generating registry.json..."
