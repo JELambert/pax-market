@@ -1,0 +1,126 @@
+{{ define "main" }}
+<div class="pack-detail">
+  <div style="margin-bottom: 1rem;">
+    <a href="/packs/" style="font-size: 0.875rem; color: var(--color-text-muted);">&larr; Back to all packs</a>
+  </div>
+
+  <h1>{{ .Title }}</h1>
+
+  <div class="meta-row">
+    <span class="badge badge-{{ .Params.pax_type }}">{{ .Params.pax_type }}</span>
+    <span style="font-family: var(--font-mono);">v{{ .Params.version }}</span>
+    {{ with .Params.author }}<span>by {{ . }}</span>{{ end }}
+    {{ with .Params.license }}<span>{{ . }}</span>{{ end }}
+    {{ with .Params.created }}<span>{{ . }}</span>{{ end }}
+  </div>
+
+  <p style="font-size: 1.05rem; color: var(--color-text-muted); max-width: 720px; margin-bottom: 1.5rem;">{{ .Params.description }}</p>
+
+  {{ with .Params.download_url }}
+  <a href="{{ . }}" class="download-btn" download>
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+    Download .pax.tar.gz
+  </a>
+  {{ end }}
+
+  <!-- Stats overview -->
+  <div class="section">
+    <h2>Overview</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+      {{ with .Params.construct_count }}
+      <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">{{ . }}</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted);">Constructs</div>
+      </div>
+      {{ end }}
+      {{ with .Params.finding_count }}
+      <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">{{ . }}</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted);">Findings</div>
+      </div>
+      {{ end }}
+      {{ if .Params.has_playbooks }}
+      <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">Yes</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted);">Playbooks</div>
+      </div>
+      {{ end }}
+      {{ if .Params.has_data_sources }}
+      <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">Yes</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted);">Data Sources</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- Constructs -->
+  {{ with .Params.constructs }}
+  <div class="section">
+    <h2>Constructs</h2>
+    <div class="construct-list">
+      {{ range . }}
+        <span class="construct-chip">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Findings -->
+  {{ with .Params.findings }}
+  <div class="section">
+    <h2>Findings</h2>
+    <div class="construct-list">
+      {{ range . }}
+        <span class="construct-chip" style="background: rgba(167, 139, 250, 0.1); color: var(--color-paper); border-color: rgba(167, 139, 250, 0.2);">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Engines -->
+  {{ with .Params.engines }}
+  <div class="section">
+    <h2>Engines</h2>
+    <div class="construct-list">
+      {{ range . }}
+        <span class="construct-chip" style="background: rgba(244, 114, 182, 0.1); color: var(--color-engine); border-color: rgba(244, 114, 182, 0.2);">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Tags -->
+  {{ with .Params.tags }}
+  <div class="section">
+    <h2>Tags</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      {{ range . }}
+        <span class="tag">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Body content -->
+  {{ with .Content }}
+  <div class="section">
+    <h2>Details</h2>
+    <div class="content-body">
+      {{ . }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Install instructions -->
+  <div class="section">
+    <h2>Installation</h2>
+    <div style="background: var(--color-surface); padding: 1.5rem; border-radius: 0.5rem;">
+      <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 1rem;">Install this PAX into your Praxis instance:</p>
+      <code style="display: block; background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
+        praxis_import_pax("{{ .Params.pax_name }}.pax.tar.gz", install=True)
+      </code>
+    </div>
+  </div>
+</div>
+{{ end }}

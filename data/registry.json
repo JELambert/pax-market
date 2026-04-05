@@ -1,0 +1,97 @@
+[
+  {
+    "name": "dukalskis-et-al-2024-transnational-repression",
+    "title": "First large-N quantitative study of domestic drivers of transnational repression (TR). Tests the hypothesis that authoritarian crackdowns at home increase the subsequent likelihood of the same state repressing its citizens abroad. Uses the Authoritarian Actions Abroad Database (AAAD, ~1,205 events, 1991-2019) across 88 authoritarian regimes in a country-year panel.",
+    "version": "1.0.0",
+    "pax_type": "paper",
+    "description": "First large-N quantitative study of domestic drivers of transnational repression (TR). Tests the hypothesis that authoritarian crackdowns at home increase the subsequent likelihood of the same state repressing its citizens abroad. Uses the Authoritarian Actions Abroad Database (AAAD, ~1,205 events, 1991-2019) across 88 authoritarian regimes in a country-year panel.",
+    "author": "Dukalskis, Furstenberg, Hellmeier, Scales",
+    "license": "",
+    "tags": [
+      "paper",
+      "transnational-repression"
+    ],
+    "constructs": [
+      "transnational_repression_binary",
+      "transnational_repression_count",
+      "domestic_repression_cli",
+      "diplomatic_capacity_abroad",
+      "state_capacity_latent",
+      "polity_score",
+      "leader_tenure"
+    ],
+    "construct_count": 7,
+    "finding_count": 7,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "download_url": "/packs/dukalskis-et-al-2024-transnational-repression.pax.tar.gz",
+    "download_sha256": "4f3c8ee9e9e2d0886280a4b41bf9b9ca4810f43711825d11aab07a1c8cb94a75",
+    "download_size": "5.1 KB"
+  },
+  {
+    "name": "fearon-laitin-2003",
+    "title": "Fearon & Laitin (2003) \"Ethnicity, Insurgency, and Civil War\"",
+    "version": "1.0.0",
+    "pax_type": "paper",
+    "description": "Fearon & Laitin (2003) \"Ethnicity, Insurgency, and Civil War\" \u2014 foundational paper on civil war onset. Challenges ethnic grievance explanations, finds insurgency-opportunity factors (poverty, terrain, weak states) are stronger predictors.",
+    "author": "Fearon, James D.; Laitin, David D.",
+    "license": "CC-BY-4.0",
+    "tags": [
+      "civil-war",
+      "conflict",
+      "insurgency",
+      "ethnic-fractionalization",
+      "state-capacity"
+    ],
+    "constructs": [
+      "civil_war_onset",
+      "mountainous_terrain",
+      "political_instability",
+      "noncontiguous_territory",
+      "oil_exporter",
+      "new_state",
+      "religious_fractionalization",
+      "per_capita_income",
+      "population_size",
+      "anocracy"
+    ],
+    "construct_count": 10,
+    "finding_count": 11,
+    "has_playbooks": true,
+    "has_data_sources": false,
+    "download_url": "/packs/fearon-laitin-2003.pax.tar.gz",
+    "download_sha256": "6c3aeb8e691c4df434d260b196f9760039c8469cb5dd1d122251e2c7f9096085",
+    "download_size": "5.2 KB"
+  },
+  {
+    "name": "happiness-economics",
+    "title": "Subjective wellbeing and its economic, social, and institutional determinants. Based on the World Happiness Report 2023 framework: GDP per capita, social support, healthy life expectancy, freedom of choice, generosity, and perceptions of corruption as the six key predictors of national life satisfaction.",
+    "version": "1.0.0",
+    "pax_type": "topic",
+    "description": "Subjective wellbeing and its economic, social, and institutional determinants. Based on the World Happiness Report 2023 framework: GDP per capita, social support, healthy life expectancy, freedom of choice, generosity, and perceptions of corruption as the six key predictors of national life satisfaction.",
+    "author": "Helliwell, Layard, Sachs, De Neve, Aknin, Wang",
+    "license": "CC-BY-4.0",
+    "tags": [
+      "happiness",
+      "wellbeing",
+      "economics",
+      "life-satisfaction",
+      "gallup-world-poll"
+    ],
+    "constructs": [
+      "life_satisfaction",
+      "social_support",
+      "healthy_life_expectancy",
+      "freedom_of_choice",
+      "generosity",
+      "perceptions_of_corruption"
+    ],
+    "construct_count": 6,
+    "finding_count": 7,
+    "has_playbooks": true,
+    "has_data_sources": true,
+    "download_url": "/packs/happiness-economics.pax.tar.gz",
+    "download_sha256": "82e72b553f025d7e8d962e761e072f4595f81b83c7acf8a4b067ecfaefb09656",
+    "download_size": "9.9 KB"
+  }
+]

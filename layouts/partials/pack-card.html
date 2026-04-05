@@ -1,0 +1,22 @@
+<div class="pack-card" data-pax-type="{{ .Params.pax_type }}" data-tags="{{ delimit .Params.tags "," }}" data-name="{{ .Params.pax_name }}" data-description="{{ .Params.description }}">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+    <span class="badge badge-{{ .Params.pax_type }}">{{ .Params.pax_type }}</span>
+    <span style="font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-mono);">v{{ .Params.version }}</span>
+  </div>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p class="description">{{ .Params.description }}</p>
+  <div class="stats">
+    {{ with .Params.construct_count }}<span>{{ . }} constructs</span>{{ end }}
+    {{ with .Params.finding_count }}<span>{{ . }} findings</span>{{ end }}
+    {{ if .Params.has_playbooks }}<span>playbooks</span>{{ end }}
+    {{ if .Params.has_data_sources }}<span>data sources</span>{{ end }}
+  </div>
+  <div class="meta">
+    {{ range first 4 .Params.tags }}
+      <span class="tag">{{ . }}</span>
+    {{ end }}
+    {{ if gt (len .Params.tags) 4 }}
+      <span class="tag">+{{ sub (len .Params.tags) 4 }}</span>
+    {{ end }}
+  </div>
+</div>

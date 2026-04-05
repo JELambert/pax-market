@@ -1,0 +1,39 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>Praxis <span>Marketplace</span></h1>
+  <p>Browse and discover PAX — portable packages of domain intelligence that bring constructs, findings, engines, and playbooks together for structured research.</p>
+</section>
+
+<section>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h2 style="font-size: 1.5rem;">Featured Packs</h2>
+    <a href="/packs/" style="font-size: 0.875rem;">View all &rarr;</a>
+  </div>
+
+  <div class="pack-grid">
+    {{ range first 6 (where .Site.RegularPages "Section" "packs") }}
+      {{ partial "pack-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+
+<section style="margin-top: 4rem;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: center;">
+    <div>
+      <div style="font-size: 2rem; margin-bottom: 0.5rem;">📦</div>
+      <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Portable Intelligence</h3>
+      <p style="color: var(--color-text-muted); font-size: 0.875rem;">Each PAX bundles constructs, findings, engines, and playbooks — everything needed for structured analysis in a domain.</p>
+    </div>
+    <div>
+      <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔗</div>
+      <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Composable by Design</h3>
+      <p style="color: var(--color-text-muted); font-size: 0.875rem;">Combine a domain PAX with a methods PAX for sophisticated cross-domain analyses. Knowledge compounds.</p>
+    </div>
+    <div>
+      <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+      <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Agent-Ready</h3>
+      <p style="color: var(--color-text-muted); font-size: 0.875rem;">Built for AI agents. Install a PAX and your agent gains structured context, analytical engines, and reproducible playbooks.</p>
+    </div>
+  </div>
+</section>
+{{ end }}
