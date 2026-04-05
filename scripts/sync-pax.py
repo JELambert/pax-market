@@ -1,31 +1,38 @@
 #!/usr/bin/env python3
 """
-sync-pax.py — Read PAX directories from the praxis repo and generate:
+sync-pax.py — Generate marketplace content from the Praxis PostgreSQL database.
+
+Reads all knowledge from the DB (single source of truth), generates:
   1. Hugo content pages (content/packs/<name>/index.md)
-  2. .pax.tar.gz archives (static/packs/<name>.pax.tar.gz)
+  2. .pax.tar.gz archives (static/packs/<name>.pax.tar.gz) — from disk if available
   3. Registry JSON (data/registry.json) — enriched with full knowledge details
   4. Construct index (data/constructs.json) — cross-pack construct map
 
 Usage:
-  python scripts/sync-pax.py [--praxis-dir /path/to/praxis]
+  python scripts/sync-pax.py --db-url postgresql://... [--praxis-dir /path/to/praxis]
 
-Defaults to ../praxis relative to the marketplace repo root.
+The --praxis-dir is only used for archive creation (tar.gz). All knowledge
+comes from the database.
 """
 
 import argparse
-from collections import defaultdict
+from collections import defaultdict, Counter
 import hashlib
 import json
+import os
 import re
-import sqlite3
 import sys
 import tarfile
 from pathlib import Path
 
 import yaml
 
+try:
+    import psycopg2
+    import psycopg2.extras
+except ImportError:
+    psycopg2 = None
 
-SKIP_DIRS = {"roundtrip-pax", "roundtrip-constructs", "import-basic", "import-with-install"}
 
 MARKETPLACE_ROOT = Path(__file__).resolve().parent.parent
 CONTENT_DIR = MARKETPLACE_ROOT / "content" / "packs"
@@ -36,68 +43,233 @@ REGISTRY_SCHEMA_VERSION = "2.0"
 
 
 # ---------------------------------------------------------------------------
-# Utility
+# Database access
 # ---------------------------------------------------------------------------
 
-def load_json(path: Path):
-    """Load a JSON file, returning [] if missing or invalid."""
-    if not path.exists():
+def get_db_connection(db_url: str):
+    """Get a psycopg2 connection from a DATABASE_URL."""
+    if not psycopg2:
+        print("ERROR: psycopg2 not installed. Run: pip install psycopg2-binary")
+        sys.exit(1)
+    conn = psycopg2.connect(db_url)
+    return conn
+
+
+def query(conn, sql: str, params: dict = None) -> list[dict]:
+    """Run a SELECT and return list of dicts."""
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute(sql, params or {})
+    rows = [dict(r) for r in cur.fetchall()]
+    cur.close()
+    return rows
+
+
+# ---------------------------------------------------------------------------
+# Knowledge extraction from DB
+# ---------------------------------------------------------------------------
+
+def extract_published_packs(conn) -> list[dict]:
+    """Get all published packs with their metadata."""
+    return query(conn, """
+        SELECT ip.name, ip.version, ip.pax_type, ip.description, ip.provides_json,
+               ip.pax_dir, ip.install_status,
+               pp.quality_score, pp.published_at, pp.published_by, pp.status as pub_status
+        FROM installed_pax ip
+        JOIN pax_publications pp ON ip.name = pp.name
+        WHERE pp.status IN ('published', 'deprecated')
+        ORDER BY ip.name
+    """)
+
+
+def extract_domain_for_pack(conn, construct_ids: list[str]) -> dict | None:
+    """Get domain info from the first construct's domain."""
+    if not construct_ids:
+        return None
+    rows = query(conn, """
+        SELECT d.id, d.display_name, d.description, d.temporal_scope,
+               d.population, d.level_of_analysis
+        FROM domains d
+        JOIN domain_constructs dc ON d.id = dc.domain_id
+        WHERE dc.construct_id = %(cid)s
+        LIMIT 1
+    """, {"cid": construct_ids[0]})
+    if not rows:
+        return None
+    d = rows[0]
+    # Get research questions
+    rqs = query(conn, """
+        SELECT question FROM domain_research_questions WHERE domain_id = %(did)s
+    """, {"did": d["id"]})
+    return {
+        "id": d["id"],
+        "display_name": d["display_name"] or "",
+        "description": d["description"] or "",
+        "research_questions": [r["question"] for r in rqs],
+        "temporal_scope": d["temporal_scope"] or "",
+        "population": d["population"] or "",
+        "level_of_analysis": d["level_of_analysis"] or "",
+    }
+
+
+def extract_constructs_for_pack(conn, construct_ids: list[str]) -> list[dict]:
+    """Get full construct definitions with aliases."""
+    if not construct_ids:
         return []
-    try:
-        with open(path) as f:
-            data = json.load(f)
-        if isinstance(data, dict):
-            return [data]
-        return data if isinstance(data, list) else []
-    except (json.JSONDecodeError, Exception):
+    result = []
+    for cid in construct_ids:
+        rows = query(conn, "SELECT * FROM constructs WHERE id = %(id)s", {"id": cid})
+        if not rows:
+            continue
+        c = rows[0]
+        aliases = query(conn, "SELECT alias, alias_type FROM construct_aliases WHERE construct_id = %(id)s", {"id": cid})
+        result.append({
+            "id": c["id"],
+            "display_name": c.get("display_name", cid),
+            "definition": c.get("definition", ""),
+            "aliases": [a["alias"] for a in aliases],
+            "construct_type": c.get("construct_type", ""),
+        })
+    return result
+
+
+def extract_findings_for_pack(conn, construct_ids: list[str]) -> list[dict]:
+    """Get findings that reference this pack's constructs."""
+    if not construct_ids:
         return []
+    results = []
+    seen = set()
+    for cid in construct_ids:
+        rows = query(conn, """
+            SELECT id, source_id, finding_text, construct_ids, direction,
+                   effect_size, confidence, method_used, finding_type, evidence_type
+            FROM findings WHERE construct_ids LIKE %(p)s
+            LIMIT 20
+        """, {"p": f"%{cid}%"})
+        for f in rows:
+            fid = f["id"]
+            if fid in seen:
+                continue
+            seen.add(fid)
+            raw_cids = f.get("construct_ids", "")
+            if raw_cids:
+                cids = [x.strip() for x in raw_cids.split(",") if x.strip()]
+            else:
+                cids = []
+            results.append({
+                "finding_text": f.get("finding_text", ""),
+                "construct_ids": cids,
+                "direction": f.get("direction", ""),
+                "effect_size": f.get("effect_size", ""),
+                "confidence": f.get("confidence", ""),
+                "method_used": f.get("method_used", ""),
+                "finding_type": f.get("finding_type", ""),
+                "evidence_type": f.get("evidence_type", ""),
+            })
+    return results
 
 
-def load_yaml(path: Path):
-    """Load a YAML file, returning {} if missing."""
-    if not path.exists():
-        return {}
-    try:
-        with open(path) as f:
-            return yaml.safe_load(f) or {}
-    except Exception:
-        return {}
+def extract_propositions_for_pack(conn, proposition_ids: list[str]) -> list[dict]:
+    """Get propositions by ID."""
+    if not proposition_ids:
+        return []
+    results = []
+    for pid in proposition_ids:
+        rows = query(conn, "SELECT * FROM propositions WHERE id = %(id)s", {"id": pid})
+        if rows:
+            p = rows[0]
+            results.append({
+                "id": p["id"],
+                "proposition_text": p.get("proposition_text", ""),
+                "construct_from": p.get("construct_from", ""),
+                "construct_to": p.get("construct_to", ""),
+                "direction": p.get("direction", ""),
+                "scope_conditions": p.get("scope_conditions", ""),
+            })
+    return results
 
 
-def has_directory(pax_dir: Path, name: str) -> bool:
-    d = pax_dir / name
-    if not d.is_dir():
-        return False
-    return any(f for f in d.rglob("*") if f.is_file() and not f.name.startswith("."))
+def extract_sources_for_findings(conn, findings: list[dict]) -> list[dict]:
+    """Get unique sources referenced by findings."""
+    source_ids = set(f.get("source_id") for f in findings if isinstance(f, dict) and f.get("source_id"))
+    # Also search finding text for source references
+    results = []
+    seen = set()
+    for sid in source_ids:
+        if sid in seen:
+            continue
+        seen.add(sid)
+        rows = query(conn, "SELECT * FROM sources WHERE id = %(id)s", {"id": sid})
+        if rows:
+            s = rows[0]
+            results.append({
+                "id": s["id"],
+                "title": s.get("title", ""),
+                "authors": s.get("authors", ""),
+                "year": s.get("year"),
+                "doi": s.get("doi"),
+                "source_type": s.get("source_type", ""),
+            })
+    return results
 
 
-def read_readme(pax_dir: Path) -> str:
-    readme = pax_dir / "README.md"
-    if readme.exists():
-        return readme.read_text().strip()
-    return ""
+def extract_playbooks_for_pack(conn, pax_dir: Path | None) -> list[dict]:
+    """Get playbook summaries from disk (playbooks aren't in DB yet)."""
+    if not pax_dir or not Path(pax_dir).is_dir():
+        return []
+    pb_dir = Path(pax_dir) / "playbooks"
+    if not pb_dir.is_dir():
+        return []
+    results = []
+    for pb_file in sorted(pb_dir.glob("*.yaml")):
+        try:
+            with open(pb_file) as f:
+                pb = yaml.safe_load(f) or {}
+        except Exception:
+            continue
+        steps = pb.get("steps", [])
+        engines_used = list({s.get("engine") for s in steps if isinstance(s, dict) and s.get("engine")})
+        results.append({
+            "id": pb.get("id", pb_file.stem),
+            "display_name": pb.get("display_name", pb_file.stem),
+            "description": pb.get("description", ""),
+            "estimated_runtime": pb.get("estimated_runtime", ""),
+            "step_count": len(steps),
+            "engines_used": engines_used,
+        })
+    return results
 
 
-def format_size(size_bytes: int) -> str:
-    if size_bytes < 1024:
-        return f"{size_bytes} B"
-    elif size_bytes < 1024 * 1024:
-        return f"{size_bytes / 1024:.1f} KB"
-    else:
-        return f"{size_bytes / (1024 * 1024):.1f} MB"
+def extract_engines_for_pack(conn, pax_dir: Path | None, provides: dict) -> list[str]:
+    """Get engine names from provides or disk."""
+    engines = provides.get("engines", [])
+    if engines:
+        return engines
+    if pax_dir and Path(pax_dir).is_dir():
+        reg_file = Path(pax_dir) / "engines" / "registry.json"
+        if reg_file.exists():
+            try:
+                with open(reg_file) as f:
+                    data = json.load(f)
+                if isinstance(data, list):
+                    return [e.get("id", e.get("name", "")) for e in data if isinstance(e, dict)]
+            except Exception:
+                pass
+    return []
 
+
+# ---------------------------------------------------------------------------
+# Title derivation
+# ---------------------------------------------------------------------------
 
 def shorten_authors(author: str) -> str:
     parts = [a.strip() for a in re.split(r';| and ', author) if a.strip()]
     if not parts:
         return author
-
     def surname(a):
         if "," in a:
             return a.split(",")[0].strip()
         tokens = a.split()
         return tokens[-1] if tokens else a
-
     surnames = [surname(p) for p in parts]
     if len(surnames) == 1:
         return surnames[0]
@@ -106,150 +278,7 @@ def shorten_authors(author: str) -> str:
     return f"{surnames[0]} et al."
 
 
-# ---------------------------------------------------------------------------
-# Knowledge extraction — the enrichment layer
-# ---------------------------------------------------------------------------
-
-def extract_domain(pax_dir: Path) -> dict | None:
-    """Extract domain metadata from domain.json."""
-    domains = load_json(pax_dir / "knowledge" / "domain.json")
-    if not domains:
-        return None
-    d = domains[0]
-    return {
-        "id": d.get("id", ""),
-        "display_name": d.get("display_name", ""),
-        "description": d.get("description", ""),
-        "research_questions": d.get("research_questions", []),
-        "temporal_scope": d.get("temporal_scope", ""),
-        "population": d.get("population", ""),
-        "level_of_analysis": d.get("level_of_analysis", ""),
-    }
-
-
-def extract_constructs_detail(pax_dir: Path) -> list[dict]:
-    """Extract full construct definitions with aliases."""
-    constructs = load_json(pax_dir / "knowledge" / "constructs.json")
-    result = []
-    for c in constructs:
-        aliases_raw = c.get("aliases", [])
-        aliases = [a["alias"] if isinstance(a, dict) else str(a) for a in aliases_raw]
-        result.append({
-            "id": c.get("id", ""),
-            "display_name": c.get("display_name", c.get("id", "")),
-            "definition": c.get("definition", ""),
-            "aliases": aliases,
-            "construct_type": c.get("construct_type", ""),
-        })
-    return result
-
-
-def extract_findings_detail(pax_dir: Path) -> list[dict]:
-    """Extract full findings with text, direction, effect size, method."""
-    findings = load_json(pax_dir / "knowledge" / "findings.json")
-    result = []
-    for f in findings:
-        result.append({
-            "finding_text": f.get("finding_text", ""),
-            "construct_ids": f.get("construct_ids", []),
-            "direction": f.get("direction", ""),
-            "effect_size": f.get("effect_size", ""),
-            "confidence": f.get("confidence", ""),
-            "method_used": f.get("method_used", ""),
-            "finding_type": f.get("finding_type", ""),
-            "evidence_type": f.get("evidence_type", ""),
-        })
-    return result
-
-
-def extract_propositions_detail(pax_dir: Path) -> list[dict]:
-    """Extract propositions with text and direction."""
-    props = load_json(pax_dir / "knowledge" / "propositions.json")
-    result = []
-    for p in props:
-        result.append({
-            "id": p.get("id", ""),
-            "proposition_text": p.get("proposition_text", ""),
-            "construct_from": p.get("construct_from", ""),
-            "construct_to": p.get("construct_to", ""),
-            "direction": p.get("direction", ""),
-            "scope_conditions": p.get("scope_conditions", ""),
-        })
-    return result
-
-
-def extract_sources_detail(pax_dir: Path) -> list[dict]:
-    """Extract source/bibliographic metadata."""
-    # Sources can be in sources.json or embedded in findings
-    sources = load_json(pax_dir / "knowledge" / "sources.json")
-    if sources:
-        result = []
-        for s in sources:
-            result.append({
-                "id": s.get("id", ""),
-                "title": s.get("title", ""),
-                "authors": s.get("authors", ""),
-                "year": s.get("year"),
-                "doi": s.get("doi"),
-                "source_type": s.get("source_type", ""),
-            })
-        return result
-
-    # Fall back: extract unique sources from findings
-    findings = load_json(pax_dir / "knowledge" / "findings.json")
-    seen = set()
-    result = []
-    for f in findings:
-        src = f.get("source", {})
-        if isinstance(src, dict) and src.get("id") and src["id"] not in seen:
-            seen.add(src["id"])
-            result.append({
-                "id": src.get("id", ""),
-                "title": src.get("title", ""),
-                "authors": src.get("authors", ""),
-                "year": src.get("year"),
-                "doi": src.get("doi"),
-                "source_type": src.get("source_type", ""),
-            })
-    return result
-
-
-def extract_playbooks_detail(pax_dir: Path) -> list[dict]:
-    """Extract playbook summaries with step counts and engines."""
-    pb_dir = pax_dir / "playbooks"
-    if not pb_dir.is_dir():
-        return []
-    result = []
-    for pb_file in sorted(pb_dir.glob("*.yaml")):
-        pb = load_yaml(pb_file)
-        if not pb:
-            continue
-        steps = pb.get("steps", [])
-        engines_used = list({
-            s.get("engine") for s in steps
-            if isinstance(s, dict) and s.get("engine")
-        })
-        result.append({
-            "id": pb.get("id", pb_file.stem),
-            "display_name": pb.get("display_name", pb_file.stem),
-            "description": pb.get("description", ""),
-            "estimated_runtime": pb.get("estimated_runtime", ""),
-            "step_count": len(steps),
-            "engines_used": engines_used,
-        })
-    return result
-
-
-# ---------------------------------------------------------------------------
-# Title derivation (unchanged)
-# ---------------------------------------------------------------------------
-
-def derive_title(manifest: dict) -> str:
-    name = manifest.get("name", "")
-    desc = manifest.get("description", "")
-    pax_type = manifest.get("pax_type", "topic")
-    author = manifest.get("author", "")
-
+def derive_title(name: str, desc: str, pax_type: str, author: str) -> str:
     if pax_type == "paper" and author:
         year_match = re.search(r'(\d{4})', name)
         year = f" ({year_match.group(1)})" if year_match else ""
@@ -261,86 +290,17 @@ def derive_title(manifest: dict) -> str:
         if len(first_sentence) < 60:
             return f"{short_author}{year} — {first_sentence}"
         return f"{short_author}{year}"
-
     for sep in ["—", "–", " - "]:
         if sep in desc:
             prefix = desc.split(sep)[0].strip()
             if len(prefix) < 80:
                 return prefix
             break
-
     return name.replace("-", " ").replace("_", " ").title()
 
 
 # ---------------------------------------------------------------------------
-# Body generation for packs without README
-# ---------------------------------------------------------------------------
-
-def generate_body(manifest: dict, pax_dir: Path) -> str:
-    knowledge_dir = pax_dir / "knowledge"
-    sections = []
-
-    domains = load_json(knowledge_dir / "domain.json")
-    if domains:
-        d = domains[0]
-        parts = [f"**Domain:** {d.get('display_name', d.get('id', ''))}"]
-        if d.get("description"):
-            parts.append(f"\n{d['description']}")
-        meta = []
-        if d.get("temporal_scope"):
-            meta.append(f"**Temporal scope:** {d['temporal_scope']}")
-        if d.get("population"):
-            meta.append(f"**Population:** {d['population']}")
-        if meta:
-            parts.append("\n" + " | ".join(meta))
-        sections.append("\n".join(parts))
-
-    findings = load_json(knowledge_dir / "findings.json")
-    if findings:
-        lines = ["## Key Findings", ""]
-        for f in findings[:8]:
-            text = f.get("finding_text", "")
-            direction = f.get("direction", "")
-            confidence = f.get("confidence", "")
-            if text:
-                meta_parts = [p for p in [direction, confidence] if p]
-                suffix = f" *({', '.join(meta_parts)})*" if meta_parts else ""
-                lines.append(f"- {text}{suffix}")
-        if len(findings) > 8:
-            lines.append(f"\n*...and {len(findings) - 8} more findings*")
-        sections.append("\n".join(lines))
-
-    propositions = load_json(knowledge_dir / "propositions.json")
-    if propositions:
-        lines = ["## Theoretical Propositions", ""]
-        for p in propositions:
-            text = p.get("proposition_text", "")
-            direction = p.get("direction", "")
-            if text:
-                arrow = {"positive": "+", "negative": "−", "null": "∅"}.get(direction, "→")
-                lines.append(f"- [{arrow}] {text}")
-        sections.append("\n".join(lines))
-
-    sources = load_json(knowledge_dir / "sources.json")
-    if sources:
-        lines = ["## Sources", ""]
-        for s in sources[:5]:
-            title = s.get("title", "")
-            authors = s.get("authors", "")
-            year = s.get("year", "")
-            doi = s.get("doi", "")
-            if title:
-                cite = f"- {authors} ({year}). *{title}*." if authors and year else f"- *{title}*"
-                if doi:
-                    cite += f" DOI: {doi}"
-                lines.append(cite)
-        sections.append("\n".join(lines))
-
-    return "\n\n".join(sections)
-
-
-# ---------------------------------------------------------------------------
-# Archive creation
+# Archive + content helpers
 # ---------------------------------------------------------------------------
 
 def create_archive(pax_dir: Path, output_path: Path) -> tuple[str, int]:
@@ -353,112 +313,77 @@ def create_archive(pax_dir: Path, output_path: Path) -> tuple[str, int]:
                     continue
                 tar.add(item, arcname=arcname)
     sha256 = hashlib.sha256(output_path.read_bytes()).hexdigest()
-    size = output_path.stat().st_size
-    return sha256, size
+    return sha256, output_path.stat().st_size
+
+
+def format_size(size_bytes: int) -> str:
+    if size_bytes < 1024:
+        return f"{size_bytes} B"
+    elif size_bytes < 1024 * 1024:
+        return f"{size_bytes / 1024:.1f} KB"
+    return f"{size_bytes / (1024 * 1024):.1f} MB"
+
+
+def write_content_page(fm: dict, body: str, output_dir: Path):
+    output_dir.mkdir(parents=True, exist_ok=True)
+    lines = ["---"]
+    lines.append(yaml.dump(fm, default_flow_style=False, allow_unicode=True, sort_keys=False).strip())
+    lines.append("---")
+    lines.append("")
+    if body:
+        lines.append(body)
+        lines.append("")
+    (output_dir / "index.md").write_text("\n".join(lines))
+
+
+def generate_body(findings: list[dict], propositions: list[dict], domain: dict | None) -> str:
+    """Generate markdown body from DB-sourced knowledge."""
+    sections = []
+    if domain:
+        parts = [f"**Domain:** {domain.get('display_name', '')}"]
+        if domain.get("description"):
+            parts.append(f"\n{domain['description']}")
+        meta = []
+        if domain.get("temporal_scope"):
+            meta.append(f"**Temporal scope:** {domain['temporal_scope']}")
+        if domain.get("population"):
+            meta.append(f"**Population:** {domain['population']}")
+        if meta:
+            parts.append("\n" + " | ".join(meta))
+        sections.append("\n".join(parts))
+
+    if findings:
+        lines = ["## Key Findings", ""]
+        for f in findings[:8]:
+            text = f.get("finding_text", "")
+            if text:
+                meta_parts = [p for p in [f.get("direction"), f.get("confidence")] if p]
+                suffix = f" *({', '.join(meta_parts)})*" if meta_parts else ""
+                lines.append(f"- {text}{suffix}")
+        if len(findings) > 8:
+            lines.append(f"\n*...and {len(findings) - 8} more findings*")
+        sections.append("\n".join(lines))
+
+    if propositions:
+        lines = ["## Theoretical Propositions", ""]
+        for p in propositions:
+            text = p.get("proposition_text", "")
+            if text:
+                arrow = {"positive": "+", "negative": "−", "null": "∅"}.get(p.get("direction", ""), "→")
+                lines.append(f"- [{arrow}] {text}")
+        sections.append("\n".join(lines))
+
+    return "\n\n".join(sections)
 
 
 # ---------------------------------------------------------------------------
-# Front matter builder (enriched)
-# ---------------------------------------------------------------------------
-
-def build_front_matter(manifest: dict, pax_dir: Path, archive_size: str = "") -> dict:
-    provides = manifest.get("provides", {})
-    constructs_ids = provides.get("constructs", [])
-    findings_ids = provides.get("findings", [])
-    engines_ids = provides.get("engines", [])
-    playbook_ids = provides.get("playbooks", [])
-    proposition_ids = provides.get("propositions", [])
-
-    knowledge_dir = pax_dir / "knowledge"
-
-    # Extract rich detail from knowledge files
-    constructs_detail = extract_constructs_detail(pax_dir)
-    findings_detail = extract_findings_detail(pax_dir)
-    propositions_detail = extract_propositions_detail(pax_dir)
-    sources_detail = extract_sources_detail(pax_dir)
-    playbooks_detail = extract_playbooks_detail(pax_dir)
-    domain = extract_domain(pax_dir)
-
-    # Counts
-    construct_count = len(constructs_detail) or len(constructs_ids)
-    finding_count = len(findings_detail) or len(findings_ids)
-    proposition_count = len(propositions_detail) or len(proposition_ids)
-
-    # ID lists (backward compat) — prefer detail-derived
-    constructs = [c["id"] for c in constructs_detail] if constructs_detail else constructs_ids
-    findings = [f.get("finding_text", "")[:60] for f in findings_detail] if findings_detail else findings_ids
-
-    # Engine names from registry file or provides
-    engine_names = engines_ids[:]
-    if not engine_names:
-        engine_reg = pax_dir / "engines" / "registry.json"
-        if engine_reg.exists():
-            eng_data = load_json(engine_reg)
-            engine_names = [e.get("id", e.get("name", "")) for e in eng_data if isinstance(e, dict)]
-
-    # Playbook names
-    playbook_names = [p["id"] for p in playbooks_detail] if playbooks_detail else playbook_ids
-
-    has_playbooks = bool(playbook_names)
-    has_data = has_directory(pax_dir, "data")
-    name = manifest.get("name", pax_dir.name)
-    created = manifest.get("created", "")
-
-    fm = {
-        "title": derive_title(manifest),
-        "pax_name": name,
-        "version": str(manifest.get("version", "0.0.0")),
-        "pax_type": manifest.get("pax_type", "topic"),
-        "description": manifest.get("description", ""),
-        "author": manifest.get("author", ""),
-        "created": str(created) if created else "",
-        "license": manifest.get("license", ""),
-        "tags": manifest.get("tags", []),
-        # ID lists (backward compat)
-        "constructs": constructs,
-        "engines": engine_names,
-        "playbook_names": playbook_names,
-        # Counts
-        "construct_count": construct_count,
-        "finding_count": finding_count,
-        "proposition_count": proposition_count,
-        "has_playbooks": has_playbooks,
-        "has_data_sources": has_data,
-        # Rich detail
-        "domain": domain,
-        "constructs_detail": constructs_detail,
-        "findings_detail": findings_detail,
-        "propositions_detail": propositions_detail,
-        "sources_detail": sources_detail,
-        "playbooks_detail": playbooks_detail,
-        # Download
-        "download_url": f"/packs/{name}.pax.tar.gz",
-        "download_size": archive_size,
-    }
-
-    # Sort weight
-    year = 0
-    if created:
-        year_match = re.search(r'(\d{4})', str(created))
-        if year_match:
-            year = int(year_match.group(1))
-    fm["weight"] = 10000 - year
-
-    return fm
-
-
-# ---------------------------------------------------------------------------
-# Construct index — cross-pack discovery
+# Cross-pack analysis
 # ---------------------------------------------------------------------------
 
 def build_construct_index(all_packs: list[dict]) -> dict:
-    """Build a construct-centric index mapping constructs to packs and findings."""
     index = {}
-
     for pack in all_packs:
         pack_name = pack["pax_name"]
-
-        # Build a lookup of findings by construct for this pack
         construct_findings = defaultdict(list)
         for f in pack.get("findings_detail", []):
             for cid in f.get("construct_ids", []):
@@ -467,52 +392,31 @@ def build_construct_index(all_packs: list[dict]) -> dict:
         for c in pack.get("constructs_detail", []):
             cid = c["id"]
             if cid not in index:
-                index[cid] = {
-                    "id": cid,
-                    "display_name": c.get("display_name", cid),
-                    "definition": c.get("definition", ""),
-                    "aliases": c.get("aliases", []),
-                    "packs": [],
-                }
-            # Prefer the longest definition
+                index[cid] = {"id": cid, "display_name": c.get("display_name", cid),
+                              "definition": c.get("definition", ""), "aliases": c.get("aliases", []), "packs": []}
             if len(c.get("definition", "")) > len(index[cid]["definition"]):
                 index[cid]["definition"] = c["definition"]
                 index[cid]["display_name"] = c.get("display_name", cid)
-            # Merge aliases
             existing = set(index[cid]["aliases"])
             for a in c.get("aliases", []):
                 if a not in existing:
                     index[cid]["aliases"].append(a)
                     existing.add(a)
-
-            # Determine primary direction from findings
             directions = construct_findings.get(cid, [])
-            primary_direction = ""
+            primary = ""
             if directions:
-                from collections import Counter
                 counts = Counter(d for d in directions if d)
                 if counts:
-                    primary_direction = counts.most_common(1)[0][0]
-
-            index[cid]["packs"].append({
-                "pack": pack_name,
-                "pack_title": pack["title"],
-                "direction": primary_direction,
-                "finding_count": len(construct_findings.get(cid, [])),
-            })
-
-    # Add pack_count and sort by it
+                    primary = counts.most_common(1)[0][0]
+            index[cid]["packs"].append({"pack": pack_name, "pack_title": pack["title"],
+                                        "direction": primary, "finding_count": len(construct_findings.get(cid, []))})
     for cid in index:
         index[cid]["pack_count"] = len(index[cid]["packs"])
-
     return index
 
 
 def compute_related_packs(all_packs: list[dict], construct_index: dict) -> dict[str, list[str]]:
-    """Compute related packs for each pack based on shared constructs."""
-    # Build construct → pack set for weighting
     construct_pack_count = {cid: len(c["packs"]) for cid, c in construct_index.items()}
-
     related = {}
     for pack in all_packs:
         name = pack["pax_name"]
@@ -520,229 +424,172 @@ def compute_related_packs(all_packs: list[dict], construct_index: dict) -> dict[
         if not pack_constructs:
             related[name] = []
             continue
-
         scores = defaultdict(float)
         for other in all_packs:
-            other_name = other["pax_name"]
-            if other_name == name:
+            if other["pax_name"] == name:
                 continue
-            other_constructs = set(other.get("constructs", []))
-            shared = pack_constructs & other_constructs
-            if not shared:
-                continue
-            # Weight: constructs shared by fewer packs are more meaningful
-            score = sum(1.0 / construct_pack_count.get(c, 1) for c in shared)
-            scores[other_name] = score
-
-        # Top 3 related
-        top = sorted(scores, key=scores.get, reverse=True)[:3]
-        related[name] = top
-
+            shared = pack_constructs & set(other.get("constructs", []))
+            if shared:
+                scores[other["pax_name"]] = sum(1.0 / construct_pack_count.get(c, 1) for c in shared)
+        related[name] = sorted(scores, key=scores.get, reverse=True)[:3]
     return related
-
-
-# ---------------------------------------------------------------------------
-# Content page writer
-# ---------------------------------------------------------------------------
-
-def write_content_page(fm: dict, body: str, output_dir: Path):
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_file = output_dir / "index.md"
-    lines = ["---"]
-    lines.append(yaml.dump(fm, default_flow_style=False, allow_unicode=True, sort_keys=False).strip())
-    lines.append("---")
-    lines.append("")
-    if body:
-        lines.append(body)
-        lines.append("")
-    output_file.write_text("\n".join(lines))
 
 
 # ---------------------------------------------------------------------------
 # Main sync
 # ---------------------------------------------------------------------------
 
-def query_published_packs(db_url: str) -> dict[str, dict]:
-    """Query pax_publications + pax_registry for published pack metadata.
+def sync_packs(db_url: str, praxis_dir: Path | None = None):
+    print(f"  Connecting to database...")
+    conn = get_db_connection(db_url)
 
-    Returns dict: name -> {quality_score, published_at, published_by, status}
-    Supports both SQLite paths and PostgreSQL URLs.
-    """
-    query = """
-        SELECT p.name, p.quality_score, p.published_at, p.published_by, p.status
-        FROM pax_publications p
-        WHERE p.status IN ('published', 'deprecated')
-    """
-    try:
-        if db_url.startswith("postgresql://") or db_url.startswith("postgres://"):
-            import psycopg2
-            conn = psycopg2.connect(db_url)
-            cur = conn.cursor()
-            cur.execute(query)
-            cols = [desc[0] for desc in cur.description]
-            rows = [dict(zip(cols, row)) for row in cur.fetchall()]
-            conn.close()
+    published = extract_published_packs(conn)
+    print(f"  {len(published)} published packs from DB")
+
+    all_packs = []
+
+    for row in published:
+        name = row["name"]
+        print(f"  Processing {name}...")
+
+        provides = json.loads(row.get("provides_json") or "{}") if row.get("provides_json") else {}
+        construct_ids = provides.get("constructs", [])
+        proposition_ids = provides.get("propositions", [])
+        author = row.get("author") or ""
+
+        # Extract all knowledge from DB
+        domain = extract_domain_for_pack(conn, construct_ids)
+        constructs_detail = extract_constructs_for_pack(conn, construct_ids)
+        findings_detail = extract_findings_for_pack(conn, construct_ids)
+        propositions_detail = extract_propositions_for_pack(conn, proposition_ids)
+        sources_detail = extract_sources_for_findings(conn, findings_detail)
+
+        # Playbooks + engines still from disk (not in DB yet)
+        pax_dir = None
+        if praxis_dir:
+            candidate = praxis_dir / "pax" / name
+            if candidate.is_dir():
+                pax_dir = candidate
+        playbooks_detail = extract_playbooks_for_pack(conn, pax_dir)
+        engine_names = extract_engines_for_pack(conn, pax_dir, provides)
+        playbook_names = [p["id"] for p in playbooks_detail]
+
+        # Archive
+        archive_size = ""
+        sha256 = ""
+        if pax_dir and pax_dir.is_dir():
+            archive_path = STATIC_DIR / f"{name}.pax.tar.gz"
+            sha256, size_bytes = create_archive(pax_dir, archive_path)
+            archive_size = format_size(size_bytes)
+            print(f"    Archive: {archive_size}")
         else:
-            db_path = Path(db_url)
-            if not db_path.exists():
-                print(f"  Warning: DB not found at {db_path}, syncing all packs")
-                return {}
-            conn = sqlite3.connect(str(db_path))
-            conn.row_factory = sqlite3.Row
-            rows = [dict(r) for r in conn.execute(query).fetchall()]
-            conn.close()
-
-        result = {r["name"]: r for r in rows}
-        print(f"  Published packs filter: {len(result)} packs from DB")
-        return result
-    except Exception as e:
-        print(f"  Warning: Could not query publications DB: {e}")
-        return {}
-        return set()
-
-
-def sync_packs(praxis_dir: Path, published_only: bool = False, db_path: Path | None = None):
-    pax_root = praxis_dir / "pax"
-    if not pax_root.is_dir():
-        print(f"Error: PAX directory not found at {pax_root}")
-        sys.exit(1)
-
-    # If published-only mode, get published pack metadata
-    published_meta = None  # dict: name -> {quality_score, published_at, ...}
-    if published_only:
-        if db_path:
-            published_meta = query_published_packs(str(db_path))
-        else:
-            import os
-            db_url = os.environ.get("DATABASE_URL", "")
-            if db_url:
-                published_meta = query_published_packs(db_url)
+            # Check if archive already exists from previous build
+            existing = STATIC_DIR / f"{name}.pax.tar.gz"
+            if existing.exists():
+                sha256 = hashlib.sha256(existing.read_bytes()).hexdigest()
+                archive_size = format_size(existing.stat().st_size)
+                print(f"    Archive: {archive_size} (cached)")
             else:
-                for candidate in [
-                    praxis_dir / "src" / "praxis" / "praxis.db",
-                    praxis_dir / "praxis.db",
-                ]:
-                    if candidate.exists():
-                        published_meta = query_published_packs(str(candidate))
-                        break
-            if published_meta is None:
-                print("  Warning: --published-only set but no DB found, syncing all packs")
+                print(f"    No pax_dir on disk — skipping archive")
 
-    all_packs = []  # Collect all front matter for cross-pack analysis
+        # Counts
+        construct_count = len(constructs_detail) or len(construct_ids)
+        finding_count = len(findings_detail)
+        proposition_count = len(propositions_detail) or len(proposition_ids)
 
-    for pax_dir in sorted(pax_root.iterdir()):
-        if not pax_dir.is_dir() or pax_dir.name in SKIP_DIRS:
-            continue
+        # Build title
+        desc = row.get("description") or ""
+        title = derive_title(name, desc, row.get("pax_type", "topic"), author)
 
-        # Filter to published packs only (if in that mode)
-        if published_meta is not None and pax_dir.name not in published_meta:
-            continue
+        # Sort weight
+        year = 0
+        created = row.get("created") or ""
+        if created:
+            ym = re.search(r'(\d{4})', str(created))
+            if ym:
+                year = int(ym.group(1))
 
-        manifest_path = pax_dir / "pax.yaml"
-        if not manifest_path.exists():
-            print(f"  Skipping {pax_dir.name}: no pax.yaml")
-            continue
+        fm = {
+            "title": title,
+            "pax_name": name,
+            "version": row.get("version", "1.0.0"),
+            "pax_type": row.get("pax_type", "topic"),
+            "description": desc,
+            "author": author,
+            "created": str(created),
+            "license": "",
+            "tags": [],  # Tags come from provides or manifest — minimal without disk
+            # ID lists
+            "constructs": construct_ids,
+            "engines": engine_names,
+            "playbook_names": playbook_names,
+            # Counts
+            "construct_count": construct_count,
+            "finding_count": finding_count,
+            "proposition_count": proposition_count,
+            "has_playbooks": bool(playbook_names),
+            "has_data_sources": pax_dir is not None and (pax_dir / "data").is_dir(),
+            # Rich detail
+            "domain": domain,
+            "constructs_detail": constructs_detail,
+            "findings_detail": findings_detail,
+            "propositions_detail": propositions_detail,
+            "sources_detail": sources_detail,
+            "playbooks_detail": playbooks_detail,
+            # Publication metadata
+            "quality_score": row.get("quality_score", 0) or 0,
+            "published_at": str(row.get("published_at", "")),
+            "published_by": row.get("published_by", ""),
+            "pub_status": row.get("pub_status", "published"),
+            # Download
+            "download_url": f"/packs/{name}.pax.tar.gz" if sha256 else "",
+            "download_size": archive_size,
+            # Internal
+            "_sha256": sha256,
+            "weight": 10000 - year,
+        }
 
-        print(f"  Processing {pax_dir.name}...")
+        # Tags from provides or pack name
+        tags = provides.get("tags", [])
+        if not tags:
+            tags = [row.get("pax_type", "topic"), name.split("-")[0]]
+        fm["tags"] = tags
 
-        with open(manifest_path) as f:
-            manifest = yaml.safe_load(f)
-
-        archive_path = STATIC_DIR / f"{pax_dir.name}.pax.tar.gz"
-        sha256, size_bytes = create_archive(pax_dir, archive_path)
-        archive_size = format_size(size_bytes)
-        print(f"    Archive: {archive_size}")
-
-        fm = build_front_matter(manifest, pax_dir, archive_size)
-        fm["_sha256"] = sha256  # Temp field for registry
-
-        # Inject publication metadata if available
-        if published_meta and pax_dir.name in published_meta:
-            pub = published_meta[pax_dir.name]
-            fm["quality_score"] = pub.get("quality_score", 0)
-            fm["published_at"] = str(pub.get("published_at", ""))
-            fm["published_by"] = pub.get("published_by", "")
-            fm["pub_status"] = pub.get("status", "published")
-
-        # Count detail items
         detail_counts = []
-        if fm["constructs_detail"]:
-            detail_counts.append(f"{len(fm['constructs_detail'])} constructs")
-        if fm["findings_detail"]:
-            detail_counts.append(f"{len(fm['findings_detail'])} findings")
-        if fm["propositions_detail"]:
-            detail_counts.append(f"{len(fm['propositions_detail'])} propositions")
-        if fm["playbooks_detail"]:
-            detail_counts.append(f"{len(fm['playbooks_detail'])} playbooks")
-        if fm["sources_detail"]:
-            detail_counts.append(f"{len(fm['sources_detail'])} sources")
+        if constructs_detail: detail_counts.append(f"{len(constructs_detail)} constructs")
+        if findings_detail: detail_counts.append(f"{len(findings_detail)} findings")
+        if propositions_detail: detail_counts.append(f"{len(propositions_detail)} propositions")
+        if playbooks_detail: detail_counts.append(f"{len(playbooks_detail)} playbooks")
+        if sources_detail: detail_counts.append(f"{len(sources_detail)} sources")
         if detail_counts:
             print(f"    Detail: {', '.join(detail_counts)}")
 
         all_packs.append(fm)
 
     # Cross-pack analysis
-    print("\n  Computing cross-pack relationships...")
+    print(f"\n  Computing cross-pack relationships...")
     construct_index = build_construct_index(all_packs)
     print(f"    Construct index: {len(construct_index)} unique constructs across {len(all_packs)} packs")
 
     related_map = compute_related_packs(all_packs, construct_index)
 
-    # Write content pages and build registry
+    # Write content pages and registry
     registry = []
     for fm in all_packs:
         name = fm["pax_name"]
         sha256 = fm.pop("_sha256")
-
-        # Add related packs
         fm["related_packs"] = related_map.get(name, [])
 
-        # Read README or auto-generate body
-        pax_dir = pax_root / name
-        body = read_readme(pax_dir)
-        if not body:
-            body = generate_body({}, pax_dir)
-
+        body = generate_body(fm.get("findings_detail", []), fm.get("propositions_detail", []), fm.get("domain"))
         write_content_page(fm, body, CONTENT_DIR / name)
 
-        # Registry entry (includes detail fields)
-        entry = {
-            "name": name,
-            "title": fm["title"],
-            "version": fm["version"],
-            "pax_type": fm["pax_type"],
-            "description": fm["description"],
-            "author": fm["author"],
-            "license": fm["license"],
-            "tags": fm["tags"],
-            "schema_version": REGISTRY_SCHEMA_VERSION,
-            # Counts (backward compat)
-            "constructs": fm["constructs"],
-            "construct_count": fm["construct_count"],
-            "finding_count": fm["finding_count"],
-            "proposition_count": fm["proposition_count"],
-            "has_playbooks": fm["has_playbooks"],
-            "has_data_sources": fm["has_data_sources"],
-            "engines": fm["engines"],
-            "playbooks": fm["playbook_names"],
-            # Rich detail
-            "domain": fm["domain"],
-            "constructs_detail": fm["constructs_detail"],
-            "findings_detail": fm["findings_detail"],
-            "propositions_detail": fm["propositions_detail"],
-            "sources_detail": fm["sources_detail"],
-            "playbooks_detail": fm["playbooks_detail"],
-            "related_packs": fm["related_packs"],
-            # Download
-            "download_url": fm["download_url"],
-            "download_sha256": sha256,
-            "download_size": fm["download_size"],
-        }
+        entry = {k: v for k, v in fm.items() if not k.startswith("_") and k != "weight"}
+        entry["download_sha256"] = sha256
+        entry["schema_version"] = REGISTRY_SCHEMA_VERSION
         registry.append(entry)
 
     # Write outputs
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-
     registry_path = DATA_DIR / "registry.json"
     with open(registry_path, "w") as f:
         json.dump(registry, f, indent=2)
@@ -753,29 +600,39 @@ def sync_packs(praxis_dir: Path, published_only: bool = False, db_path: Path | N
         json.dump(construct_index, f, indent=2)
     print(f"  Constructs: {len(construct_index)} unique constructs ({constructs_path.stat().st_size / 1024:.1f} KB)")
 
+    conn.close()
+
 
 def main():
-    parser = argparse.ArgumentParser(description="Sync PAX packs to marketplace")
-    parser.add_argument(
-        "--praxis-dir",
-        type=Path,
-        default=MARKETPLACE_ROOT.parent / "praxis",
-        help="Path to the praxis repository root",
-    )
-    parser.add_argument(
-        "--published-only",
-        action="store_true",
-        help="Only sync packs that appear in pax_publications with status='published'",
-    )
-    parser.add_argument(
-        "--db-path",
-        type=Path,
-        default=None,
-        help="Path to the Praxis SQLite database (for --published-only mode)",
-    )
+    parser = argparse.ArgumentParser(description="Sync PAX marketplace from database")
+    parser.add_argument("--db-url", type=str, default=os.environ.get("DATABASE_URL", ""),
+                        help="PostgreSQL connection URL (or set DATABASE_URL env var)")
+    parser.add_argument("--praxis-dir", type=Path, default=None,
+                        help="Path to praxis repo (for archive creation and playbooks)")
+    # Legacy flags (backward compat)
+    parser.add_argument("--published-only", action="store_true", help="(default behavior, kept for compat)")
+    parser.add_argument("--db-path", type=Path, default=None, help="(legacy, use --db-url instead)")
     args = parser.parse_args()
-    print(f"Syncing PAX packs from {args.praxis_dir}...")
-    sync_packs(args.praxis_dir, published_only=args.published_only, db_path=args.db_path)
+
+    db_url = args.db_url
+    if not db_url and args.db_path:
+        db_url = str(args.db_path)
+    if not db_url:
+        print("ERROR: No database URL. Set DATABASE_URL env var or pass --db-url")
+        sys.exit(1)
+
+    praxis_dir = args.praxis_dir
+    if not praxis_dir:
+        # Try common locations
+        for candidate in [MARKETPLACE_ROOT.parent / "praxis", Path("/opt/praxis")]:
+            if candidate.is_dir():
+                praxis_dir = candidate
+                break
+
+    print(f"Syncing PAX marketplace from database...")
+    if praxis_dir:
+        print(f"  Praxis dir: {praxis_dir} (for archives/playbooks)")
+    sync_packs(db_url, praxis_dir)
     print("Done!")
 
 
