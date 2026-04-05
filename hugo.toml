@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://pax-market.com/'
 languageCode = 'en-us'
 title = 'Praxis Marketplace'
 description = 'Browse and discover PAX — Portable Analytical eXpertise packs for the Praxis research infrastructure'

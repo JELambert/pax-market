@@ -24,18 +24,11 @@ ct_exec() {
   ssh_cmd "pct exec $CT_ID -- bash -c $(printf '%q' "$1")"
 }
 
-get_tunnel_url() {
-  ct_exec "grep -o 'https://[^ ]*trycloudflare.com' /var/log/cloudflared.log 2>/dev/null | tail -1"
-}
+DOMAIN="https://pax-market.com"
 
 if [ "${1:-}" = "--url" ]; then
-  URL=$(get_tunnel_url)
-  if [ -n "$URL" ]; then
-    echo "Marketplace URL: $URL"
-  else
-    echo "No tunnel URL found. Is the cloudflared-tunnel service running?"
-    echo "  Check: proxmox-exec.sh main 110 'systemctl status cloudflared-tunnel'"
-  fi
+  echo "Marketplace URL: $DOMAIN"
+  echo "  LAN: http://192.168.68.110"
   exit 0
 fi
 
@@ -63,9 +56,4 @@ echo "  Deployed $(du -sh public | cut -f1) to /var/www/marketplace"
 echo
 echo "==> Deployment complete!"
 echo "  LAN: http://192.168.68.110"
-URL=$(get_tunnel_url 2>/dev/null || true)
-if [ -n "$URL" ]; then
-  echo "  Public: $URL"
-else
-  echo "  Public tunnel: not running (start with: proxmox-exec.sh main 110 'systemctl start cloudflared-tunnel')"
-fi
+echo "  Public: $DOMAIN"
