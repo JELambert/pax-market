@@ -47,9 +47,21 @@ REGISTRY_SCHEMA_VERSION = "2.0"
 # ---------------------------------------------------------------------------
 
 def get_db_connection(db_url: str):
-    """Get a psycopg2 connection from a DATABASE_URL."""
+    """Get a psycopg2 connection from a PostgreSQL DATABASE_URL.
+
+    Refuses to connect to SQLite — marketplace sync MUST use PostgreSQL
+    to avoid split-brain with the MCP server.
+    """
+    if "sqlite" in db_url.lower():
+        print("ERROR: sync-pax.py requires PostgreSQL, not SQLite.")
+        print("  The MCP server uses PostgreSQL — syncing from SQLite would create split-brain.")
+        print("  Set DATABASE_URL to your PostgreSQL connection string or source /opt/praxis/.env")
+        sys.exit(1)
     if not psycopg2:
         print("ERROR: psycopg2 not installed. Run: pip install psycopg2-binary")
+        sys.exit(1)
+    if not db_url.startswith("postgresql"):
+        print(f"ERROR: Expected postgresql:// URL, got: {db_url[:30]}...")
         sys.exit(1)
     conn = psycopg2.connect(db_url)
     return conn

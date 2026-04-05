@@ -26,7 +26,21 @@ echo "==> Pulling latest from git..."
 cd "$MARKETPLACE_DIR"
 git pull --ff-only origin main 2>&1 || echo "  (git pull skipped)"
 
-# Step 1: Generate registry.json (from praxis repo tooling)
+# Step 1: Recalculate quality scores for all published packs
+echo "==> Recalculating quality scores..."
+cd "$PRAXIS_DIR" && $UV_BIN run python -c "
+from praxis import db
+from praxis.pax.registry import update_registry
+pubs = db.query(\"SELECT name FROM pax_publications WHERE status = 'published'\")
+for p in pubs:
+    try:
+        update_registry(p['name'])
+    except Exception:
+        pass
+print(f'  Rescored {len(pubs)} packs')
+" 2>/dev/null || echo "  (scoring skipped — registry module may not be available)"
+
+# Step 2: Generate registry.json (from praxis repo tooling)
 echo "==> Generating registry.json..."
 cd "$PRAXIS_DIR" && $UV_BIN run python marketplace/scripts/generate_registry.py
 cd "$MARKETPLACE_DIR"
