@@ -1,6 +1,9 @@
-<div class="pack-card" data-pax-type="{{ .Params.pax_type }}" data-tags="{{ delimit .Params.tags "," }}" data-name="{{ .Params.pax_name }}" data-description="{{ .Params.description }}">
+<div class="pack-card" data-pax-type="{{ .Params.pax_type }}" data-tags="{{ delimit .Params.tags "," }}" data-name="{{ .Params.pax_name }}" data-description="{{ .Params.description }}" data-domain="{{ with .Params.domain }}{{ .display_name }}{{ end }}" data-constructs="{{ .Params.construct_count }}">
   <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
-    <span class="badge badge-{{ .Params.pax_type }}">{{ .Params.pax_type }}</span>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <span class="badge badge-{{ .Params.pax_type }}">{{ .Params.pax_type }}</span>
+      {{ with .Params.domain }}{{ with .display_name }}<span style="font-size: 0.75rem; color: var(--color-text-muted);">{{ . }}</span>{{ end }}{{ end }}
+    </div>
     <span style="font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-mono);">v{{ .Params.version }}</span>
   </div>
   <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
@@ -10,7 +13,7 @@
     {{ with .Params.finding_count }}<span>{{ . }} findings</span>{{ end }}
     {{ with .Params.engines }}{{ if gt (len .) 0 }}<span>{{ len . }} engines</span>{{ end }}{{ end }}
     {{ if .Params.has_playbooks }}<span>playbooks</span>{{ end }}
-    {{ if .Params.has_data_sources }}<span>data</span>{{ end }}
+    {{ if .Params.has_data_sources }}<span style="color: var(--color-field);">data</span>{{ end }}
   </div>
   <div class="meta">
     {{ range first 4 .Params.tags }}

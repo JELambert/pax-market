@@ -25,12 +25,16 @@ description = 'Browse and discover PAX — Portable Analytical eXpertise packs f
     url = '/packs/'
     weight = 1
   [[menu.main]]
+    name = 'Constructs'
+    url = '/constructs/'
+    weight = 2
+  [[menu.main]]
     name = 'About'
     url = '/about/'
-    weight = 2
+    weight = 3
   [[menu.main]]
     name = 'GitHub'
     url = 'https://github.com/praxis-marketplace'
-    weight = 3
+    weight = 4
     [menu.main.params]
       external = true

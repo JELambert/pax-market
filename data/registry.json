@@ -11,6 +11,7 @@
       "topic",
       "algorithmic-fairness"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "prediction_accuracy",
       "false_positive_rate",
@@ -30,8 +31,105 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "algorithmic_fairness",
+      "display_name": "Algorithmic Fairness & Bias",
+      "description": "Bias in ML systems, fairness constraints, and societal impacts",
+      "research_questions": [],
+      "temporal_scope": "",
+      "population": "",
+      "level_of_analysis": "micro"
+    },
+    "constructs_detail": [
+      {
+        "id": "prediction_accuracy",
+        "display_name": "Prediction Accuracy",
+        "definition": "Correctness of ML model predictions",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "false_positive_rate",
+        "display_name": "False Positive Rate",
+        "definition": "Rate of incorrect positive predictions per group",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "demographic_parity",
+        "display_name": "Demographic Parity",
+        "definition": "Equal positive prediction rates across groups",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "calibration",
+        "display_name": "Calibration",
+        "definition": "Predicted probabilities match observed frequencies",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Mathematically impossible to simultaneously satisfy calibration AND equal FPR/FNR across groups when base rates differ",
+        "construct_ids": [
+          "calibration",
+          "false_positive_rate"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "foundational",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Commercial facial recognition error rates up to 34.7% for dark-skinned women vs 0.8% for light-skinned men",
+        "construct_ids": [
+          "prediction_accuracy",
+          "demographic_parity"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "chouldechova_2017",
+        "title": "Fair Prediction with Disparate Impact",
+        "authors": "Alexandra Chouldechova",
+        "year": 2017,
+        "doi": null,
+        "source_type": "journal_article"
+      },
+      {
+        "id": "buolamwini_gebru_2018",
+        "title": "Gender Shades",
+        "authors": "Joy Buolamwini, Timnit Gebru",
+        "year": 2018,
+        "doi": null,
+        "source_type": "journal_article"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Algorithmic Fairness",
+        "description": "Basic analysis workflow for the algorithmic_fairness domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": []
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/algorithmic-fairness.pax.tar.gz",
-    "download_sha256": "e6b0159842df69cd982da2929f2dd8c7ede88b2b1b5e05076ac802ced1c8d3b4",
+    "download_sha256": "7f1c8753607d74febe411a0639364102fd667ead2a31d4b86fb64bbc222f780f",
     "download_size": "1.9 KB"
   },
   {
@@ -46,6 +144,7 @@
       "topic",
       "climate-economic-impacts"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "mean_surface_temperature",
       "gdp_per_capita_growth",
@@ -68,8 +167,196 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "climate_economic_impacts",
+      "display_name": "Economic Impacts of Climate Change",
+      "description": "How climatic variables affect macroeconomic outcomes including GDP growth, agricultural output, and long-run development. Core debate: level effects vs growth-rate effects.",
+      "research_questions": [],
+      "temporal_scope": "1960-present",
+      "population": "Sovereign states (country-year observations)",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "mean_surface_temperature",
+        "display_name": "Mean Surface Temperature",
+        "definition": "Annual average surface temperature (degrees Celsius) for a country, from gridded meteorological datasets.",
+        "aliases": [
+          "average temperature",
+          "temperature anomaly"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "gdp_per_capita_growth",
+        "display_name": "GDP Per Capita Growth Rate",
+        "definition": "Annual percentage change in real GDP per capita. Growth-rate effects compound; level effects do not.",
+        "aliases": [
+          "economic growth",
+          "income growth"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "climate_damage_fraction",
+        "display_name": "Climate Damage Fraction",
+        "definition": "Share of GDP lost due to climate change impacts, from integrated assessment damage functions.",
+        "aliases": [
+          "climate damages",
+          "GDP loss fraction"
+        ],
+        "construct_type": "outcome"
+      },
+      {
+        "id": "agricultural_yield",
+        "display_name": "Agricultural Yield",
+        "definition": "Crop output per unit of harvested area (tonnes per hectare).",
+        "aliases": [
+          "crop yield",
+          "crop productivity"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "precipitation",
+        "display_name": "Annual Precipitation",
+        "definition": "Total annual precipitation (mm) from gridded meteorological data.",
+        "aliases": [
+          "rainfall",
+          "annual rainfall"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "social_cost_of_carbon",
+        "display_name": "Social Cost of Carbon",
+        "definition": "Marginal economic damage of one additional tonne of CO2, in USD. Ranges from ~$50 to ~$185/tonne.",
+        "aliases": [
+          "SCC",
+          "carbon price"
+        ],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "A 1C increase in temperature reduces GDP per capita growth by ~1.2 percentage points in poor countries. Rich countries show no significant effect.",
+        "construct_ids": [
+          "mean_surface_temperature",
+          "gdp_per_capita_growth"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS with country and year fixed effects",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Economic productivity peaks at ~13C and declines nonlinearly above that threshold, for both rich and poor countries.",
+        "construct_ids": [
+          "mean_surface_temperature",
+          "gdp_per_capita_growth"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS with country and year FE, quadratic",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Unmitigated warming projected to reduce average global incomes by ~23% by 2100 and widen global inequality.",
+        "construct_ids": [
+          "mean_surface_temperature",
+          "climate_damage_fraction"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "Panel econometrics + Monte Carlo projections",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "DICE quadratic damage function implies 2.1% GDP loss at 3C and 8.5% at 6C of warming.",
+        "construct_ids": [
+          "mean_surface_temperature",
+          "climate_damage_fraction",
+          "social_cost_of_carbon"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "Integrated assessment model (DICE)",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Climate trends 1980-2008 reduced global maize yields by 3.8% and wheat by 5.5% vs counterfactual.",
+        "construct_ids": [
+          "mean_surface_temperature",
+          "agricultural_yield"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Panel regression, cross-country",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "dell_jones_olken_2012",
+        "title": "Temperature Shocks and Economic Growth: Evidence from the Last Half Century",
+        "authors": "Dell, Melissa; Jones, Benjamin F.; Olken, Benjamin A.",
+        "year": 2012,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "burke_hsiang_miguel_2015",
+        "title": "Global non-linear effect of temperature on economic production",
+        "authors": "Burke, Marshall; Hsiang, Solomon M.; Miguel, Edward",
+        "year": 2015,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "nordhaus_2018",
+        "title": "Evolution of modeling of the economics of global warming: changes in the DICE model, 1992-2017",
+        "authors": "Nordhaus, William D.",
+        "year": 2018,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "lobell_schlenker_roberts_2011",
+        "title": "Climate Trends and Global Crop Production Since 1980",
+        "authors": "Lobell, David B.; Schlenker, Wolfram; Costa-Roberts, Justin",
+        "year": 2011,
+        "doi": null,
+        "source_type": "academic_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Climate Economic Impacts",
+        "description": "Basic analysis workflow for the climate_economic_impacts domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 2,
+        "engines_used": [
+          "ols_regression",
+          "correlation_matrix"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/climate-economic-impacts.pax.tar.gz",
-    "download_sha256": "aa782007671541a123419fdd5d591cc3d56c0c5b7edb65608e0859c4beb5e776",
+    "download_sha256": "3fea099d0773d59d39d598cf8fca22c01bb056cfd8e20e112fb007cf30641932",
     "download_size": "3.1 KB"
   },
   {
@@ -84,6 +371,7 @@
       "topic",
       "democratic-peace"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "dyadic_democracy",
       "militarized_interstate_dispute",
@@ -105,8 +393,195 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "democratic_peace",
+      "display_name": "Democratic Peace",
+      "description": "Study of why democracies rarely fight each other and how regime type, trade interdependence, and IGO membership jointly reduce interstate conflict probability.",
+      "research_questions": [],
+      "temporal_scope": "1885-present",
+      "population": "Directed and non-directed dyad-year observations of sovereign state pairs",
+      "level_of_analysis": "dyadic"
+    },
+    "constructs_detail": [
+      {
+        "id": "dyadic_democracy",
+        "display_name": "Dyadic Democracy Score",
+        "definition": "The Polity IV score of the less democratic state in a dyad. Captures the binding constraint: a dyad is only jointly democratic if both members clear the threshold.",
+        "aliases": [
+          "joint democracy",
+          "DEML"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "militarized_interstate_dispute",
+        "display_name": "Militarized Interstate Dispute Onset",
+        "definition": "Binary indicator: 1 if a dyad experienced MID onset in a given year, per the COW MID dataset.",
+        "aliases": [
+          "MID onset",
+          "dyadic conflict onset"
+        ],
+        "construct_type": "outcome"
+      },
+      {
+        "id": "trade_interdependence",
+        "display_name": "Bilateral Trade Interdependence",
+        "definition": "The lower of the two states' ratios of bilateral trade to GDP, capturing the dyadic member with least to gain from trade continuity.",
+        "aliases": [
+          "economic interdependence",
+          "TRADEDEPL"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "shared_igo_membership",
+        "display_name": "Shared IGO Memberships",
+        "definition": "Count of intergovernmental organizations to which both states belong simultaneously.",
+        "aliases": [
+          "joint IGO membership",
+          "institutional embeddedness"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "territorial_contiguity",
+        "display_name": "Territorial Contiguity",
+        "definition": "Binary indicator of whether two states share a land border or narrow sea corridor. Standard opportunity control.",
+        "aliases": [
+          "shared border",
+          "geographic proximity"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "capability_ratio",
+        "display_name": "Dyadic Capability Ratio",
+        "definition": "Ratio of the stronger state's CINC score to the sum of both states' CINC scores, capturing power asymmetry.",
+        "aliases": [
+          "power asymmetry",
+          "CINC ratio"
+        ],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Jointly democratic dyads are significantly less likely to experience MIDs than mixed or autocratic dyads, 1946-1986.",
+        "construct_ids": [
+          "dyadic_democracy",
+          "militarized_interstate_dispute"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Logistic regression, dyad-year panel",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Dyadic democracy significantly reduces MID onset probability across 1885-1992, robust to controls for capability ratio, contiguity, alliance ties, and other Kantian variables.",
+        "construct_ids": [
+          "dyadic_democracy",
+          "militarized_interstate_dispute"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Logistic regression with cubic spline",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Bilateral trade interdependence independently reduces dyadic MID onset, net of democracy and IGO membership.",
+        "construct_ids": [
+          "trade_interdependence",
+          "militarized_interstate_dispute"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Logistic regression",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Shared IGO membership count significantly reduces dyadic MID onset, net of democracy and trade.",
+        "construct_ids": [
+          "shared_igo_membership",
+          "militarized_interstate_dispute"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "Logistic regression",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "When financial market integration and aligned state preferences are controlled, democratic peace coefficient is substantially attenuated and loses significance in some specifications.",
+        "construct_ids": [
+          "dyadic_democracy",
+          "trade_interdependence",
+          "militarized_interstate_dispute"
+        ],
+        "direction": "null",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "Logistic regression, dyad-year panel",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "doyle_1986",
+        "title": "Liberalism and World Politics",
+        "authors": "Doyle, Michael W.",
+        "year": 1986,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "maoz_russett_1993",
+        "title": "Normative and Structural Causes of Democratic Peace, 1946-1986",
+        "authors": "Maoz, Zeev; Russett, Bruce M.",
+        "year": 1993,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "oneal_russett_1999",
+        "title": "The Kantian Peace: The Pacific Benefits of Democracy, Interdependence, and International Organizations, 1885-1992",
+        "authors": "Oneal, John R.; Russett, Bruce M.",
+        "year": 1999,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "gartzke_2007",
+        "title": "The Capitalist Peace",
+        "authors": "Gartzke, Erik",
+        "year": 2007,
+        "doi": null,
+        "source_type": "academic_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Democratic Peace",
+        "description": "Basic analysis workflow for the democratic_peace domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": [
+          "logistic_regression"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/democratic-peace.pax.tar.gz",
-    "download_sha256": "eae780ddf297a3df5b47faa7142192829c39ae01e0d3c86c1c8d3298459a5e0f",
+    "download_sha256": "44033e55aa98b47fa27ee4709e4f8c5e310561fa919380cb483abdca2e8caf97",
     "download_size": "2.9 KB"
   },
   {
@@ -121,6 +596,7 @@
       "paper",
       "transnational-repression"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "transnational_repression_binary",
       "transnational_repression_count",
@@ -142,8 +618,239 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "transnational_repression",
+      "display_name": "Transnational Repression",
+      "description": "The extraterritorial use of coercive tactics by authoritarian states to silence, monitor, threaten, abduct, extradite, or assassinate dissidents and regime opponents beyond their national borders. Encompasses threats, arrests, extraditions, abductions, family harassment, and assassination. TR is distinct from domestic repression and from targeting foreign citizens.",
+      "research_questions": [],
+      "temporal_scope": "1991-2019",
+      "population": "Authoritarian states with diaspora populations, country-year panel, 1991-2019",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "transnational_repression_binary",
+        "display_name": "Transnational Repression (Binary)",
+        "definition": "Binary indicator equal to 1 if an authoritarian state carried out one or more transnational repression events (threats, arrests, extraditions, abductions, assassinations) against its own citizens abroad in a given country-year, 0 otherwise. Source: AAAD (Dukalskis 2021).",
+        "aliases": [
+          "TR binary",
+          "transnational repression occurrence",
+          "extraterritorial repression"
+        ],
+        "construct_type": "outcome"
+      },
+      {
+        "id": "transnational_repression_count",
+        "display_name": "Transnational Repression (Count)",
+        "definition": "Count of transnational repression events carried out by an authoritarian state against its own citizens abroad in a given country-year. Ranges from 0 to 61 (Uzbekistan 2005). Source: AAAD (Dukalskis 2021).",
+        "aliases": [
+          "TR count",
+          "number of TR events"
+        ],
+        "construct_type": "outcome"
+      },
+      {
+        "id": "domestic_repression_cli",
+        "display_name": "Domestic Repression (V-Dem CLI)",
+        "definition": "Inverted V-Dem Civil Liberties Index (CLI), measuring the intensity of domestic state repression. The CLI aggregates three component indices: physical violence index (torture, killings), political civil liberties index (censorship, parties, civil society), and private civil liberties index (forced labor, property rights, religion). Higher values indicate more repression. Lagged one year in analysis. Source: V-Dem v12, Coppedge et al. 2022.",
+        "aliases": [
+          "domestic repression",
+          "inverted CLI",
+          "V-Dem civil liberties index (inverted)",
+          "state repression intensity"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "diplomatic_capacity_abroad",
+        "display_name": "Diplomatic Representation Abroad",
+        "definition": "Number of diplomatic representations (embassies, consulates, and other missions) a state maintains abroad in a given year. Captures the logistical infrastructure enabling a state to project repression transnationally. Source: Diplometrics Diplomatic Representation dataset (Moyer et al. 2021), 1960-2020. Mean in sample: 50.8, range: 1-170.",
+        "aliases": [
+          "diplomatic representation",
+          "diplomatic capacity",
+          "embassies abroad"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "state_capacity_latent",
+        "display_name": "State Capacity Index",
+        "definition": "Latent measure of state capacity aggregating 21 variables across three conceptual pillars: extractive capacity, coercive capacity, and administrative capacity. Estimated via item response theory model. Source: Hanson and Sigman (2021), State Capacity Dataset v1. Mean in sample: -0.059, range: -1.541 to 1.28.",
+        "aliases": [
+          "state capacity",
+          "government capacity",
+          "Hanson-Sigman capacity"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "polity_score",
+        "display_name": "Polity Score",
+        "definition": "Revised combined Polity score measuring level of authoritarianism/democracy on a scale from -10 (full autocracy) to +10 (full democracy). Used as control for regime type. Source: Marshall and Gurr (2020). Mean in sample: -4.46.",
+        "aliases": [
+          "Polity",
+          "Polity IV",
+          "regime type score"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "leader_tenure",
+        "display_name": "Leader Tenure (Log)",
+        "definition": "Log of the incumbent ruler's cumulative time in office (years). Controls for the possibility that crackdowns occur around regime consolidation periods and that repression spikes during transitions. Source: Bell, Besaw, and Frank (2021). Mean: 4.60 log-years.",
+        "aliases": [
+          "leader time in office",
+          "incumbent tenure"
+        ],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Domestic repression (inverted V-Dem CLI) is positively and significantly associated with subsequent transnational repression in the bivariate model: \u03b2=1.09, SE=0.20, p<0.001 (logistic regression, country and year FE, N=857 country-years). This is the first large-N quantitative confirmation that domestic crackdowns predict TR.",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "domestic_repression_cli"
+        ],
+        "direction": "positive",
+        "effect_size": "\u03b2=1.09 (SE=0.20), p<0.001 \u2014 bivariate logistic with country/year FE",
+        "confidence": "strong",
+        "method_used": "logistic regression with country and year fixed effects, bias-reducing score adjustments (bife), N=857",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Domestic repression remains positively and significantly associated with transnational repression after adding controls for polity score, elections, leader tenure, military and party dimension, population, GDP per capita, and state capacity: \u03b2=0.83, SE=0.26, p<0.01 (Model 2, logistic regression with country/year FE, N=731).",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "domestic_repression_cli"
+        ],
+        "direction": "positive",
+        "effect_size": "\u03b2=0.83 (SE=0.26), p<0.01 \u2014 full controls model",
+        "confidence": "strong",
+        "method_used": "logistic regression with country and year fixed effects, bias-reducing score adjustments (bife), N=731",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "The interaction between domestic repression and diplomatic representation abroad is positive and statistically significant (\u03b2=0.15, SE=0.05, p<0.01, Model 4). States with high diplomatic capacity are substantially more likely to translate domestic crackdowns into transnational repression than states with few diplomatic ties. The predicted probability of TR increases drastically for states with high diplomatic representation when domestic repression increases, but not for states with few representations.",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "domestic_repression_cli",
+          "diplomatic_capacity_abroad"
+        ],
+        "direction": "positive",
+        "effect_size": "\u03b2=0.15 (SE=0.05), p<0.01 \u2014 interaction term",
+        "confidence": "strong",
+        "method_used": "logistic regression with country/year FE, interaction term, N=723",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "The interaction between domestic repression and state capacity is not statistically significant (\u03b2=0.01, SE=0.03, Model 3, N=731). General state capacity does not significantly moderate the domestic-to-transnational repression pathway, in contrast to diplomatic capacity which does.",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "domestic_repression_cli",
+          "state_capacity_latent"
+        ],
+        "direction": "null",
+        "effect_size": "\u03b2=0.01 (SE=0.03), n.s.",
+        "confidence": "moderate",
+        "method_used": "logistic regression with country/year FE, interaction term, N=731",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "State capacity index is positively and significantly associated with transnational repression in the main model (\u03b2=0.20, SE=0.05, p<0.001, Model 2). More capable states are more likely to engage in TR, though the interaction with domestic repression does not reach significance.",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "state_capacity_latent"
+        ],
+        "direction": "positive",
+        "effect_size": "\u03b2=0.20 (SE=0.05), p<0.001",
+        "confidence": "strong",
+        "method_used": "logistic regression with country/year FE, N=731",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Leader tenure (log) is negatively associated with transnational repression (\u03b2=-0.37, SE=0.18, p<0.05, Model 2), suggesting that more consolidated, longer-tenured regimes are somewhat less likely to engage in TR, possibly because they face fewer acute threats.",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "leader_tenure"
+        ],
+        "direction": "negative",
+        "effect_size": "\u03b2=-0.37 (SE=0.18), p<0.05",
+        "confidence": "moderate",
+        "method_used": "logistic regression with country/year FE, N=731",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Robustness checks confirm the main finding across alternative specifications: conditional logistic regression (bife package), Poisson, negative binomial, and OLS models all yield statistically significant positive relationships between domestic and transnational repression. Results also hold when disaggregating TR events by target type (activists, journalists, citizens) and action type (threats, arrests, extraditions, assassination attempts).",
+        "construct_ids": [
+          "transnational_repression_binary",
+          "domestic_repression_cli"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "conditional logistic (bife), Poisson, negative binomial, OLS",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      }
+    ],
+    "propositions_detail": [
+      {
+        "id": "domestic_crackdown_causes_tr",
+        "proposition_text": "An increase in domestic repression by an authoritarian state is likely to lead to a subsequent increase in transnational repression, because crackdowns at home (1) drive dissidents abroad who then become targets, and (2) activate state surveillance of international links that can be seen as threats to regime stability.",
+        "construct_from": "domestic_repression_cli",
+        "construct_to": "transnational_repression_binary",
+        "direction": "positive",
+        "scope_conditions": "Authoritarian regimes only; lagged effect (t-1 \u2192 t); effect amplified by diplomatic capacity"
+      },
+      {
+        "id": "diplomatic_capacity_amplifies_tr",
+        "proposition_text": "Diplomatic capacity abroad (number of embassies and consulates) moderates the domestic-to-transnational repression pathway: states with greater diplomatic infrastructure are significantly more likely to translate domestic crackdowns into transnational repression, as diplomatic presence provides the logistical means to execute TR in host countries.",
+        "construct_from": "diplomatic_capacity_abroad",
+        "construct_to": "transnational_repression_binary",
+        "direction": "positive",
+        "scope_conditions": "Moderation effect; conditional on domestic repression intensity"
+      }
+    ],
+    "sources_detail": [
+      {
+        "id": "dukalskis_et_al_2024",
+        "title": "The Long Arm and the Iron Fist: Authoritarian Crackdowns and Transnational Repression",
+        "authors": "Dukalskis, Alexander; Furstenberg, Saipira; Hellmeier, Sebastian; Scales, Redmond",
+        "year": 2024,
+        "doi": "10.1177/00220027231188896",
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "dukalskis_2021_aaad",
+        "title": "Authoritarian Actions Abroad Database (AAAD)",
+        "authors": "Dukalskis, Alexander",
+        "year": 2021,
+        "doi": "10.7910/DVN/WIXVLJ",
+        "source_type": "dataset"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Transnational Repression",
+        "description": "Basic analysis workflow for the transnational_repression domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": [
+          "logistic_regression"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/dukalskis-et-al-2024-transnational-repression.pax.tar.gz",
-    "download_sha256": "ce7e96fd53487173ba110abc2cc6842112fd80b3129dc392783d6f638cdf9c16",
+    "download_sha256": "fb653e6362cdfcf84e7676315894828f0e24fb08752d76607c81563d4e9e24d7",
     "download_size": "5.0 KB"
   },
   {
@@ -158,6 +865,7 @@
       "field",
       "economic-growth"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "gdp_per_capita",
       "physical_capital",
@@ -180,8 +888,157 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "economic_growth",
+      "display_name": "Economic Growth & Productivity",
+      "description": "Determinants of long-run economic growth including physical capital, human capital, technology, and institutions",
+      "research_questions": [],
+      "temporal_scope": "1950-present",
+      "population": "Countries worldwide",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "gdp_per_capita",
+        "display_name": "GDP Per Capita",
+        "definition": "Total economic output divided by population in PPP dollars",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "physical_capital",
+        "display_name": "Physical Capital Accumulation",
+        "definition": "Stock of produced means of production \u2014 investment share of GDP",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "human_capital",
+        "display_name": "Human Capital",
+        "definition": "Stock of knowledge and skills embodied in the labor force",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "population_growth_rate",
+        "display_name": "Population Growth Rate",
+        "definition": "Annual rate of change in total population",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "total_factor_productivity",
+        "display_name": "Total Factor Productivity",
+        "definition": "Portion of output not explained by quantity of inputs \u2014 technological progress",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "convergence_rate",
+        "display_name": "Convergence Rate",
+        "definition": "Speed at which poorer economies catch up to richer ones",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Long-run GDP per capita is determined by savings rate and population growth given diminishing returns to capital",
+        "construct_ids": [
+          "gdp_per_capita",
+          "physical_capital",
+          "population_growth_rate"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "foundational",
+        "method_used": "Mathematical growth model",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "TFP growth is the only source of sustained long-run growth in per-capita output",
+        "construct_ids": [
+          "total_factor_productivity",
+          "gdp_per_capita"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "foundational",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Augmented Solow model with human capital explains 80% of cross-country income variation",
+        "construct_ids": [
+          "gdp_per_capita",
+          "human_capital",
+          "physical_capital"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS cross-country, N=98",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Conditional convergence at approximately 2% per year across country samples",
+        "construct_ids": [
+          "convergence_rate",
+          "gdp_per_capita"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS cross-country, N=98",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "solow_1956",
+        "title": "A Contribution to the Theory of Economic Growth",
+        "authors": "Robert M. Solow",
+        "year": 1956,
+        "doi": "10.2307/1884513",
+        "source_type": "journal_article"
+      },
+      {
+        "id": "barro_1991",
+        "title": "Economic Growth in a Cross Section of Countries",
+        "authors": "Robert J. Barro",
+        "year": 1991,
+        "doi": "10.2307/2937943",
+        "source_type": "journal_article"
+      },
+      {
+        "id": "mankiw_romer_weil_1992",
+        "title": "A Contribution to the Empirics of Economic Growth",
+        "authors": "N. Gregory Mankiw, David Romer, David N. Weil",
+        "year": 1992,
+        "doi": "10.2307/2118477",
+        "source_type": "journal_article"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Economic Growth",
+        "description": "Basic analysis workflow for the economic_growth domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": [
+          "correlation_matrix"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/economic-growth-panel.pax.tar.gz",
-    "download_sha256": "3f72df22b55da331e57de90145ded78d62e8c955d6fa24f448bb3261183249bf",
+    "download_sha256": "79d5905aa10ffff3f5696ffac2a0a1bd7da9293173392c6615eb636678bd19ea",
     "download_size": "2.4 KB"
   },
   {
@@ -199,6 +1056,7 @@
       "ethnic-fractionalization",
       "state-capacity"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "civil_war_onset",
       "mountainous_terrain",
@@ -222,8 +1080,286 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "intra_state_conflict",
+      "display_name": "Intra-State Conflict",
+      "description": "Study of civil war onset, duration, and termination within sovereign states. Examines structural, economic, political, and geographic determinants of armed conflict.",
+      "research_questions": [
+        "What conditions increase the probability of civil war onset?",
+        "Does ethnic or religious diversity cause conflict, or do structural factors dominate?",
+        "How do state capacity and economic development affect conflict risk?",
+        "What role does terrain and geography play in insurgency feasibility?"
+      ],
+      "temporal_scope": "1945-present",
+      "population": "Sovereign states (country-year observations)",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "civil_war_onset",
+        "display_name": "Civil War Onset",
+        "definition": "Binary indicator: 1 if a civil war began in this country-year, 0 otherwise. Fearon & Laitin define civil wars as internal conflicts with organized violence, at least 1,000 battle deaths, and effective resistance by both sides.",
+        "aliases": [
+          "conflict onset",
+          "war initiation",
+          "armed conflict start",
+          "intrastate war onset",
+          "onset",
+          "PRIO onset",
+          "UCDP onset"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "mountainous_terrain",
+        "display_name": "Mountainous Terrain",
+        "definition": "Percentage of a country's territory that is mountainous, per the Geomorphic Units of the World dataset. Logged in regression models. Higher values increase insurgency viability by providing rebel sanctuary.",
+        "aliases": [
+          "rough terrain",
+          "percent mountainous",
+          "lmtnest"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "political_instability",
+        "display_name": "Political Instability",
+        "definition": "Binary indicator: 1 if there was a three-or-more-point change in Polity score in the previous three years. Captures regime transitions and political turbulence that may lower the cost of civil war initiation.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "noncontiguous_territory",
+        "display_name": "Noncontiguous Territory",
+        "definition": "Binary indicator: 1 if the state has territory that is physically separated from the main territory (e.g., islands, exclaves). Noncontiguity creates zones where state capacity is lower and rebel control is easier to establish.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "oil_exporter",
+        "display_name": "Oil Exporter",
+        "definition": "Binary indicator: 1 if fuel exports exceeded one-third of export revenues. Oil states may face conflict due to prize capture incentives, weaker tax-based state institutions, or Dutch disease effects on state capacity.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "new_state",
+        "display_name": "New State",
+        "definition": "Binary indicator: 1 if the state became independent within the prior two years. New states face elevated conflict risk due to weak institutions, contested borders, and unresolved ethnic or regional claims.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "religious_fractionalization",
+        "display_name": "Religious Fractionalization",
+        "definition": "Probability that two randomly selected individuals belong to different religious groups (Herfindahl index). Ranges 0-1. Included as a control alongside ethnic fractionalization; not found to be a robust predictor of civil war onset.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "per_capita_income",
+        "display_name": "Per Capita Income",
+        "definition": "GDP per capita, typically logged and lagged one year. One of the strongest predictors of civil war onset: wealthier countries have lower risk, reflecting higher opportunity costs of rebellion and greater state capacity to deter it.",
+        "aliases": [
+          "income per capita",
+          "GDP per capita",
+          "log GDP per capita",
+          "economic development",
+          "national wealth",
+          "lgdp_pc",
+          "lgdp_pc_l1"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "population_size",
+        "display_name": "Population Size",
+        "definition": "Total population, logged and lagged one year. Larger populations increase civil war risk \u2014 more people means more potential recruits and more heterogeneous grievances, though the mechanism is contested.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "anocracy",
+        "display_name": "Anocracy (Mixed Regime)",
+        "definition": "Binary indicator: 1 if Polity IV score is between -5 and +5, indicating a mixed or incoherent regime type. Anocracies are predicted to have higher conflict risk than either full democracies or full autocracies (inverted-U).",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Per capita income (logged, lagged) is one of the strongest predictors of civil war onset: a one standard deviation increase reduces onset probability by roughly half.",
+        "construct_ids": [
+          "civil_war_onset",
+          "per_capita_income"
+        ],
+        "direction": "negative",
+        "effect_size": "strong \u2014 one SD increase (~1.5 log units) \u2248 50% reduction in onset odds",
+        "confidence": "strong",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Ethnic fractionalization (ELF index) is NOT a significant predictor of civil war onset once per capita income, terrain, and state capacity are controlled for.",
+        "construct_ids": [
+          "civil_war_onset",
+          "ethnic_fractionalization"
+        ],
+        "direction": "null",
+        "effect_size": "near zero, not statistically significant (p > .10)",
+        "confidence": "strong",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Mountainous terrain significantly increases civil war onset probability. Log mountainous terrain has a positive and significant coefficient. Mountains provide insurgents with sanctuary and raise the costs of counterinsurgency.",
+        "construct_ids": [
+          "civil_war_onset",
+          "mountainous_terrain"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate \u2014 one SD increase in log terrain \u2248 30% increase in onset odds",
+        "confidence": "strong",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Population size (logged, lagged) increases civil war onset risk. Larger countries have more potential recruits and greater heterogeneity.",
+        "construct_ids": [
+          "civil_war_onset",
+          "population_size"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate",
+        "confidence": "strong",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Political instability (3+ point Polity change in prior 3 years) significantly increases civil war onset. Regime transitions create windows of vulnerability.",
+        "construct_ids": [
+          "civil_war_onset",
+          "political_instability"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate to strong",
+        "confidence": "strong",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Anocracy (mixed regime, Polity -5 to +5) is positively associated with civil war onset, consistent with the inverted-U hypothesis. Neither full democracies nor full autocracies have elevated onset risk compared to anocracies.",
+        "construct_ids": [
+          "civil_war_onset",
+          "anocracy"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate",
+        "confidence": "moderate",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Oil exporters have higher civil war onset probability. Oil rents reduce the need for broad-based taxation, weaken state-society ties, and may create prize-capture incentives for rebel groups.",
+        "construct_ids": [
+          "civil_war_onset",
+          "oil_exporter"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate",
+        "confidence": "moderate",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "New states (independent less than 2 years) have substantially elevated civil war risk. State formation and decolonization create windows of institutional fragility.",
+        "construct_ids": [
+          "civil_war_onset",
+          "new_state"
+        ],
+        "direction": "positive",
+        "effect_size": "strong",
+        "confidence": "moderate",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Noncontiguous territory increases civil war onset. Separated territories are harder to control militarily and may harbor aggrieved groups beyond state reach.",
+        "construct_ids": [
+          "civil_war_onset",
+          "noncontiguous_territory"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate",
+        "confidence": "moderate",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Religious fractionalization is not a significant predictor of civil war onset when controlled for other factors. Religion per se does not drive conflict risk.",
+        "construct_ids": [
+          "civil_war_onset",
+          "religious_fractionalization"
+        ],
+        "direction": "null",
+        "effect_size": "not significant",
+        "confidence": "moderate",
+        "method_used": "Logistic regression, country-year panel, N=6,327",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "The key mechanism for civil war is insurgency feasibility, not ethnic grievance. Conditions that make guerrilla warfare viable (rough terrain, weak states, poverty for cheap recruits) matter more than ethnic diversity or polarization.",
+        "construct_ids": [
+          "civil_war_onset",
+          "ethnic_fractionalization",
+          "per_capita_income",
+          "mountainous_terrain"
+        ],
+        "direction": "conditional",
+        "effect_size": "theoretical framing, not a single coefficient",
+        "confidence": "strong",
+        "method_used": "Comparative analysis + logistic regression",
+        "finding_type": "mechanism",
+        "evidence_type": "mixed"
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "fearon_laitin_2003",
+        "title": "Ethnicity, Insurgency, and Civil War",
+        "authors": "Fearon, James D.; Laitin, David D.",
+        "year": 2003,
+        "doi": "10.1017/S0003055403000534",
+        "source_type": "academic_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Replicate Fearon & Laitin (2003) Core Findings",
+        "description": "Three-step analysis replicating the core Fearon & Laitin (2003) results. Step 1: Correlation matrix of key predictors against civil war onset. Step 2: Core logistic regression (income, terrain, population \u2192 onset). Step 3: Full model with all controls. Validates against known findings from the paper. Requires the conflict panel dataset to be loaded.\n",
+        "estimated_runtime": "30 seconds",
+        "step_count": 3,
+        "engines_used": [
+          "logistic_regression",
+          "correlation_matrix"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/fearon-laitin-2003.pax.tar.gz",
-    "download_sha256": "c35216efb29c5bf31ec2fd02a0cf264ad55bc2a0e13a7f8a70b8bdd8f97694af",
+    "download_sha256": "f9137f27c32fd0d419842b3e8e1770c1a7f2493e28f05f4f6ff7f13e94734d1e",
     "download_size": "5.1 KB"
   },
   {
@@ -241,6 +1377,7 @@
       "life-satisfaction",
       "gallup-world-poll"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "life_satisfaction",
       "social_support",
@@ -261,8 +1398,252 @@
       "quick_start",
       "standard_analysis"
     ],
+    "domain": {
+      "id": "subjective_wellbeing",
+      "display_name": "Subjective Wellbeing",
+      "description": "Study of life satisfaction, happiness, and psychological wellbeing at the population level. Examines structural, social, economic, and institutional correlates of self-reported life evaluations.",
+      "research_questions": [
+        "What economic and social factors predict national life satisfaction?",
+        "Does income growth translate to happiness gains at the national level?",
+        "How do social support and institutional trust affect wellbeing?",
+        "What role does freedom and absence of corruption play in life satisfaction?"
+      ],
+      "temporal_scope": "2005-present",
+      "population": "Sovereign states (country-year Gallup World Poll observations)",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "life_satisfaction",
+        "display_name": "Life Satisfaction",
+        "definition": "Cantril Self-Anchoring Striving Scale: respondents rate their life on a ladder from 0 (worst possible life) to 10 (best possible life). National average. Primary outcome in WHR analyses.",
+        "aliases": [
+          "subjective wellbeing",
+          "SWB",
+          "happiness score",
+          "Cantril ladder",
+          "life evaluation",
+          "wellbeing index"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "social_support",
+        "display_name": "Social Support",
+        "definition": "Share of respondents answering 'yes' to 'If you were in trouble, do you have relatives or friends you can count on?' Gallup World Poll. Ranges 0-1.",
+        "aliases": [
+          "social connections",
+          "social capital (informal)",
+          "having someone to count on",
+          "social ties",
+          "social connectedness"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "healthy_life_expectancy",
+        "display_name": "Healthy Life Expectancy",
+        "definition": "Healthy life expectancy at birth (years), from WHO/GHO data. Captures both longevity and health-adjusted quality of life.",
+        "aliases": [
+          "HLE",
+          "HALE",
+          "health-adjusted life expectancy"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "freedom_of_choice",
+        "display_name": "Freedom of Choice",
+        "definition": "Share of respondents answering 'yes' to 'Are you satisfied or dissatisfied with your freedom to choose what you do with your life?' Ranges 0-1.",
+        "aliases": [
+          "autonomy",
+          "life freedom"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "generosity",
+        "display_name": "Generosity",
+        "definition": "Residual of regressing national average response to 'Have you donated money to a charity in the past month?' on log GDP per capita. Captures pro-social behavior beyond what income explains.",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "perceptions_of_corruption",
+        "display_name": "Perceptions of Corruption",
+        "definition": "Average of two Gallup binary questions: is corruption widespread throughout government/business in this country? Ranges 0-1 (higher = more corruption perceived).",
+        "aliases": [
+          "corruption index",
+          "institutional trust (inverse)"
+        ],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "GDP per capita (log) positively predicts life satisfaction. A one log unit increase is associated with approximately +0.35 points on the Cantril ladder. Log GDP per capita independently explains roughly 25% of cross-national variance in ladder scores.",
+        "construct_ids": [
+          "life_satisfaction",
+          "per_capita_income"
+        ],
+        "direction": "positive",
+        "effect_size": "strong \u2014 explains ~25% of cross-national variance in ladder scores independently",
+        "confidence": "strong",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Social support is a strong positive predictor of life satisfaction. A one-unit increase in the social support proportion is associated with approximately +1.4 points on the Cantril ladder.",
+        "construct_ids": [
+          "life_satisfaction",
+          "social_support"
+        ],
+        "direction": "positive",
+        "effect_size": "strong",
+        "confidence": "strong",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Healthy life expectancy positively predicts life satisfaction. Each additional year of healthy life expectancy at birth is associated with approximately +0.03 points on the Cantril ladder.",
+        "construct_ids": [
+          "life_satisfaction",
+          "healthy_life_expectancy"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate",
+        "confidence": "strong",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Freedom of choice positively predicts life satisfaction. A one-unit increase in the freedom proportion is associated with approximately +1.2 points on the Cantril ladder.",
+        "construct_ids": [
+          "life_satisfaction",
+          "freedom_of_choice"
+        ],
+        "direction": "positive",
+        "effect_size": "moderate to strong",
+        "confidence": "strong",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Perceptions of corruption negatively predict life satisfaction. A one-unit increase in corruption perceptions is associated with approximately -0.7 points on the Cantril ladder.",
+        "construct_ids": [
+          "life_satisfaction",
+          "perceptions_of_corruption"
+        ],
+        "direction": "negative",
+        "effect_size": "moderate",
+        "confidence": "strong",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "Generosity is positively but weakly associated with life satisfaction. A one-unit increase in the generosity residual is associated with approximately +0.5 points on the Cantril ladder, though this relationship is less robust than the other five WHR predictors.",
+        "construct_ids": [
+          "life_satisfaction",
+          "generosity"
+        ],
+        "direction": "positive",
+        "effect_size": "weak to moderate",
+        "confidence": "moderate",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "empirical",
+        "evidence_type": "quantitative"
+      },
+      {
+        "finding_text": "The income-happiness relationship shows diminishing returns at high income levels. The slope between log GDP per capita and life satisfaction is steeper for lower-income countries, suggesting that additional income yields larger wellbeing gains in poorer nations.",
+        "construct_ids": [
+          "life_satisfaction",
+          "per_capita_income"
+        ],
+        "direction": "positive",
+        "effect_size": "nonlinear \u2014 stronger for poor countries",
+        "confidence": "moderate",
+        "method_used": "OLS regression, country-year panel with year fixed effects, N\u22481,700 country-years across 2005-2022, Gallup World Poll",
+        "finding_type": "mechanism",
+        "evidence_type": "mixed"
+      }
+    ],
+    "propositions_detail": [
+      {
+        "id": "gdp_increases_happiness",
+        "proposition_text": "Higher national income (log GDP per capita) is positively associated with higher average life satisfaction scores across countries, though with diminishing returns and contested within-country dynamics (Easterlin Paradox).",
+        "construct_from": "per_capita_income",
+        "construct_to": "life_satisfaction",
+        "direction": "positive",
+        "scope_conditions": "Cross-sectional macro analysis; effect is concave and may not hold within countries over time"
+      },
+      {
+        "id": "social_support_increases_happiness",
+        "proposition_text": "Countries where more people report having someone to count on in times of trouble score substantially higher on the Cantril ladder. Social support is the strongest bivariate predictor of cross-national happiness differences.",
+        "construct_from": "social_support",
+        "construct_to": "life_satisfaction",
+        "direction": "positive",
+        "scope_conditions": "Bivariate association is strong; partial effects smaller in multivariate models controlling for GDP, health, and institutions"
+      },
+      {
+        "id": "freedom_predicts_happiness",
+        "proposition_text": "Freedom to make life choices has a strong positive association with life satisfaction, and dominates as the largest standardized coefficient in full multivariate models including GDP, social support, health, generosity, and corruption perceptions.",
+        "construct_from": "freedom_of_choice",
+        "construct_to": "life_satisfaction",
+        "direction": "positive",
+        "scope_conditions": "Conditional on partialling out other WHR predictors; in bivariate analysis social support is stronger"
+      },
+      {
+        "id": "diminishing_returns_income_happiness",
+        "proposition_text": "The income-happiness relationship follows a logarithmic (concave) function: equal percentage income gains produce roughly equal happiness gains, implying diminishing absolute returns to income as wealth increases.",
+        "construct_from": "per_capita_income",
+        "construct_to": "life_satisfaction",
+        "direction": "positive",
+        "scope_conditions": "Log-linear fit supported in cross-national macro data; individual-level saturation threshold debated (Kahneman $75k vs Killingsworth $100k+)"
+      }
+    ],
+    "sources_detail": [
+      {
+        "id": "world_happiness_report_2023",
+        "title": "World Happiness Report 2023",
+        "authors": "Helliwell, John F.; Layard, Richard; Sachs, Jeffrey D.; De Neve, Jan-Emmanuel; Aknin, Lara B.; Wang, Shun",
+        "year": 2023,
+        "doi": null,
+        "source_type": "academic_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Run This First",
+        "description": "Two-step minimal analysis to verify data acquisition and get an immediate sense of the core happiness-income-social relationships. Runs in under 2 minutes. No prior setup required. Run this before standard_analysis to confirm the data pipeline is working correctly.\n",
+        "estimated_runtime": "1\u20132 minutes",
+        "step_count": 2,
+        "engines_used": [
+          "correlation_matrix"
+        ]
+      },
+      {
+        "id": "standard_analysis",
+        "display_name": "Standard Happiness-Economics Analysis",
+        "description": "Full four-step analysis of cross-national happiness determinants. Runs data acquisition, a full correlation matrix, a multivariate OLS regression of all six WHR predictors, and a bivariate deep dive on the freedom-happiness relationship. Produces publication-ready tables and plots.\n",
+        "estimated_runtime": "3\u20138 minutes depending on API latency",
+        "step_count": 4,
+        "engines_used": [
+          "ols_regression",
+          "correlation_matrix"
+        ]
+      }
+    ],
+    "related_packs": [
+      "social-determinants-of-health"
+    ],
     "download_url": "/packs/happiness-economics.pax.tar.gz",
-    "download_sha256": "83714bdcb32538993fd1281704907c3cae2e0fdc05a5f1c278df40cb1af9c2a8",
+    "download_sha256": "38ddb1cd8b9f85ce39e804b40ba8eb4e9c0ef3c0453ac848b678d2aef456f2a6",
     "download_size": "9.7 KB"
   },
   {
@@ -277,6 +1658,7 @@
       "field",
       "health-expenditure-outcomes"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "health_expenditure_per_capita",
       "life_expectancy",
@@ -295,8 +1677,127 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "health_expenditure_outcomes",
+      "display_name": "Health Expenditure & Outcomes",
+      "description": "Relationship between health spending and population health outcomes",
+      "research_questions": [],
+      "temporal_scope": "1960-present",
+      "population": "Countries worldwide",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "health_expenditure_per_capita",
+        "display_name": "Health Expenditure Per Capita",
+        "definition": "Total health spending per person in PPP dollars",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "life_expectancy",
+        "display_name": "Life Expectancy",
+        "definition": "Expected years of life at birth",
+        "aliases": [
+          "longevity",
+          "all-cause mortality"
+        ],
+        "construct_type": "outcome"
+      },
+      {
+        "id": "infant_mortality",
+        "display_name": "Infant Mortality",
+        "definition": "Deaths per 1000 live births in first year",
+        "aliases": [],
+        "construct_type": "outcome"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Health spending has strong positive effect on life expectancy \u2014 each 10% increase associated with ~0.3 year gain",
+        "construct_ids": [
+          "health_expenditure_per_capita",
+          "life_expectancy"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Public health spending has NO significant effect on child mortality after controlling for income and education",
+        "construct_ids": [
+          "health_expenditure_per_capita",
+          "infant_mortality"
+        ],
+        "direction": "null",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Returns to health spending exhibit strong diminishing returns at high income levels",
+        "construct_ids": [
+          "health_expenditure_per_capita",
+          "life_expectancy"
+        ],
+        "direction": "conditional",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "who_commission_2001",
+        "title": "Macroeconomics and Health: Investing in Health for Economic Development",
+        "authors": "WHO Commission",
+        "year": 2001,
+        "doi": null,
+        "source_type": "report"
+      },
+      {
+        "id": "filmer_pritchett_1999",
+        "title": "The Impact of Public Spending on Health: Does Money Matter?",
+        "authors": "Deon Filmer, Lant Pritchett",
+        "year": 1999,
+        "doi": null,
+        "source_type": "journal_article"
+      },
+      {
+        "id": "cutler_deaton_lleras_muney_2006",
+        "title": "The Determinants of Mortality",
+        "authors": "David Cutler, Angus Deaton, Adriana Lleras-Muney",
+        "year": 2006,
+        "doi": null,
+        "source_type": "working_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Health Expenditure Outcomes",
+        "description": "Basic analysis workflow for the health_expenditure_outcomes domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 2,
+        "engines_used": [
+          "ols_regression",
+          "correlation_matrix"
+        ]
+      }
+    ],
+    "related_packs": [
+      "social-determinants-of-health"
+    ],
     "download_url": "/packs/health-outcomes-global.pax.tar.gz",
-    "download_sha256": "8079f551168c57ba2988a8afb92c218a52342b86e4bb21a6fd012a707364007c",
+    "download_sha256": "ef6ad8d2b2dfe688b017039da06b853914ab6b9d0cfa0aa8240402242d436471",
     "download_size": "2.2 KB"
   },
   {
@@ -311,6 +1812,7 @@
       "topic",
       "human-capital-economics"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "mean_years_schooling",
       "cognitive_skills",
@@ -331,8 +1833,170 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "human_capital_economics",
+      "display_name": "Human Capital Economics",
+      "description": "How educational attainment, cognitive skills, and schooling investment shape GDP growth, productivity, and economic development at the country level.",
+      "research_questions": [],
+      "temporal_scope": "1950-present",
+      "population": "Sovereign states (country-year, 100-150 countries)",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "mean_years_schooling",
+        "display_name": "Mean Years of Schooling",
+        "definition": "Average years of formal education completed by adults aged 25+. Primary macro proxy for human capital stock.",
+        "aliases": [
+          "educational attainment",
+          "years of schooling"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "cognitive_skills",
+        "display_name": "Cognitive Skills",
+        "definition": "National average score on internationally comparable standardized tests (PISA, TIMSS). Captures educational quality.",
+        "aliases": [
+          "test scores",
+          "human capital quality"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "school_enrollment_rate",
+        "display_name": "School Enrollment Rate",
+        "definition": "Gross or net enrollment ratio at primary, secondary, or tertiary level. Flow proxy for human capital investment.",
+        "aliases": [
+          "enrollment ratio",
+          "secondary enrollment"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "physical_capital_investment",
+        "display_name": "Physical Capital Investment",
+        "definition": "Gross fixed capital formation as share of GDP. Key control in augmented Solow growth regressions.",
+        "aliases": [
+          "investment share",
+          "capital accumulation"
+        ],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Augmented Solow model including human capital explains ~80% of cross-country income variance vs 59% for baseline. Human capital coefficient positive and significant.",
+        "construct_ids": [
+          "school_enrollment_rate",
+          "physical_capital_investment",
+          "gdp_per_capita_growth"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS cross-section, N=98",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "One SD increase in cognitive skills test scores associated with ~2 pp higher annual GDP growth. Robust to IV identification.",
+        "construct_ids": [
+          "cognitive_skills",
+          "gdp_per_capita_growth"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS and IV cross-country",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Years of schooling loses significance once cognitive skills are controlled for \u2014 quantity without quality doesn't drive growth.",
+        "construct_ids": [
+          "mean_years_schooling",
+          "cognitive_skills",
+          "gdp_per_capita_growth"
+        ],
+        "direction": "null",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "OLS with joint inclusion",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Global average private return to one year of schooling is ~9% per year across 1,120 estimates in 139 countries.",
+        "construct_ids": [
+          "mean_years_schooling"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Meta-analysis of Mincerian regressions",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "mankiw_romer_weil_1992",
+        "title": "A Contribution to the Empirics of Economic Growth",
+        "authors": "Mankiw, N. Gregory; Romer, David; Weil, David N.",
+        "year": 1992,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "hanushek_woessmann_2012",
+        "title": "Do Better Schools Lead to More Growth? Cognitive Skills, Economic Outcomes, and Causation",
+        "authors": "Hanushek, Eric A.; Woessmann, Ludger",
+        "year": 2012,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "psacharopoulos_patrinos_2018",
+        "title": "Returns to Investment in Education: A Decennial Review of the Global Literature",
+        "authors": "Psacharopoulos, George; Patrinos, Harry Anthony",
+        "year": 2018,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "card_1995",
+        "title": "Using Geographic Variation in College Proximity to Estimate the Return to Schooling",
+        "authors": "Card, David",
+        "year": 1995,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "barro_2001",
+        "title": "Human Capital and Growth",
+        "authors": "Barro, Robert J.",
+        "year": 2001,
+        "doi": null,
+        "source_type": "academic_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Human Capital Economics",
+        "description": "Basic analysis workflow for the human_capital_economics domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": [
+          "correlation_matrix"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/human-capital-economics.pax.tar.gz",
-    "download_sha256": "396f97f169f7dabc2c1c5c590fbac8b838a3c5d60d572f1298bf2e767fd0b704",
+    "download_sha256": "a1e0696126e190fa932f39dc3d58cd5b626919c6264010b69dd74d9146569d43",
     "download_size": "2.8 KB"
   },
   {
@@ -347,6 +2011,7 @@
       "topic",
       "institutional-quality-development"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "rule_of_law",
       "control_of_corruption",
@@ -368,8 +2033,191 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "institutional_quality_development",
+      "display_name": "Institutional Quality and Economic Development",
+      "description": "How formal and informal institutions \u2014 property rights, rule of law, corruption control, governance \u2014 shape long-run economic development outcomes across countries.",
+      "research_questions": [],
+      "temporal_scope": "1960-present",
+      "population": "Sovereign states (country-year)",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "rule_of_law",
+        "display_name": "Rule of Law",
+        "definition": "Confidence in and abidance by the rules of society, including contract enforcement, property rights, and the courts. WGI Rule of Law indicator.",
+        "aliases": [
+          "WGI Rule of Law",
+          "legal institutions quality"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "control_of_corruption",
+        "display_name": "Control of Corruption",
+        "definition": "The extent to which public power is NOT exercised for private gain, including petty and grand corruption.",
+        "aliases": [
+          "WGI Control of Corruption",
+          "CPI score"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "property_rights_security",
+        "display_name": "Property Rights Security",
+        "definition": "Degree to which private property rights are legally protected against state expropriation and private predation.",
+        "aliases": [
+          "expropriation risk",
+          "ICRG property rights"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "government_effectiveness",
+        "display_name": "Government Effectiveness",
+        "definition": "Quality of public services, civil service, and credibility of government commitment to policies. WGI Government Effectiveness.",
+        "aliases": [
+          "bureaucratic quality",
+          "state capacity"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "democratic_governance",
+        "display_name": "Democratic Governance",
+        "definition": "Degree to which political leaders are chosen through free elections with civil liberties protection. Polity2, V-Dem, Freedom House.",
+        "aliases": [
+          "democracy",
+          "Polity2 score"
+        ],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "IV/2SLS using settler mortality shows institutions have a large causal effect on income per capita. 1 SD improvement in expropriation risk ~ 1+ log point increase in income.",
+        "construct_ids": [
+          "property_rights_security",
+          "per_capita_income"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "IV/2SLS, N=64 former colonies",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Once institutions are instrumented, geography has no direct effect and trade is insignificant. Institutions dominate.",
+        "construct_ids": [
+          "rule_of_law",
+          "per_capita_income"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "IV/2SLS horse race, N~80",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "1 SD improvement in corruption index associated with +4 pp investment rate and +0.5 pp annual growth.",
+        "construct_ids": [
+          "control_of_corruption",
+          "per_capita_income"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS and IV, N~67",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "ICRG-based property rights measures have substantially larger positive association with investment and growth than political freedom indices.",
+        "construct_ids": [
+          "property_rights_security",
+          "per_capita_income"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS cross-country, N~97",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Strong correlation (r~0.80) between rule of law and GDP per capita across 200+ countries, though causal inference requires instrumentation.",
+        "construct_ids": [
+          "rule_of_law",
+          "control_of_corruption",
+          "per_capita_income"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "moderate",
+        "method_used": "Descriptive, 200+ countries",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "acemoglu_johnson_robinson_2001",
+        "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
+        "authors": "Acemoglu, Daron; Johnson, Simon; Robinson, James A.",
+        "year": 2001,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "rodrik_subramanian_trebbi_2004",
+        "title": "Institutions Rule: The Primacy of Institutions Over Geography and Integration in Economic Development",
+        "authors": "Rodrik, Dani; Subramanian, Arvind; Trebbi, Francesco",
+        "year": 2004,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "mauro_1995",
+        "title": "Corruption and Growth",
+        "authors": "Mauro, Paolo",
+        "year": 1995,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "kaufmann_kraay_mastruzzi_2010",
+        "title": "The Worldwide Governance Indicators: Methodology and Analytical Issues",
+        "authors": "Kaufmann, Daniel; Kraay, Aart; Mastruzzi, Massimo",
+        "year": 2010,
+        "doi": null,
+        "source_type": "academic_paper"
+      },
+      {
+        "id": "knack_keefer_1995",
+        "title": "Institutions and Economic Performance: Cross-Country Tests Using Alternative Institutional Measures",
+        "authors": "Knack, Stephen; Keefer, Philip",
+        "year": 1995,
+        "doi": null,
+        "source_type": "academic_paper"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Institutional Quality Development",
+        "description": "Basic analysis workflow for the institutional_quality_development domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": []
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/institutional-quality-development.pax.tar.gz",
-    "download_sha256": "77b4586939d51067ec5fd3e3a693e63b1f0431fd2b93139c64275d462025a4a8",
+    "download_sha256": "e63d0328c0f1a3c842dc350ec05bf8c259bf07078badf2b7720f0f884c63dad9",
     "download_size": "3.1 KB"
   },
   {
@@ -384,6 +2232,7 @@
       "topic",
       "social-determinants-of-health"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "household_income",
       "educational_attainment",
@@ -407,8 +2256,207 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "social_determinants_of_health",
+      "display_name": "Social Determinants of Health",
+      "description": "Non-medical factors \u2014 income, education, housing, social support \u2014 that shape health outcomes and drive health inequalities within and between populations.",
+      "research_questions": [],
+      "temporal_scope": "1965-present",
+      "population": "General population, country-year and individual-level",
+      "level_of_analysis": "macro"
+    },
+    "constructs_detail": [
+      {
+        "id": "household_income",
+        "display_name": "Household Income",
+        "definition": "Annual pre-tax income received by all members of a household, inflation-adjusted. Primary measure of material resources for health-relevant consumption.",
+        "aliases": [
+          "family income",
+          "income level"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "educational_attainment",
+        "display_name": "Educational Attainment",
+        "definition": "Highest level of formal schooling completed, operationalized as years of schooling or credential level.",
+        "aliases": [
+          "years of schooling",
+          "education level"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "income_inequality",
+        "display_name": "Income Inequality",
+        "definition": "Degree of dispersion in income distribution, most commonly measured by the Gini coefficient (0-1 scale).",
+        "aliases": [
+          "Gini coefficient",
+          "economic inequality"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "social_support",
+        "display_name": "Social Support",
+        "definition": "Perceived or received availability of emotional, informational, or instrumental assistance from social network members.",
+        "aliases": [
+          "social ties",
+          "social connectedness"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "social_isolation",
+        "display_name": "Social Isolation",
+        "definition": "Objective lack of social contacts or relationships, measured by network size or frequency of social interaction.",
+        "aliases": [
+          "loneliness",
+          "social disconnection"
+        ],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "life_expectancy",
+        "display_name": "Life Expectancy at Birth",
+        "definition": "Average number of years a newborn is expected to live given current age-specific mortality rates.",
+        "aliases": [
+          "longevity",
+          "all-cause mortality"
+        ],
+        "construct_type": "outcome"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "People with fewest social ties had age-adjusted relative mortality risks of 2.3 (men) and 2.8 (women) over nine years, independent of SES and health behaviors.",
+        "construct_ids": [
+          "social_isolation",
+          "life_expectancy"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Cox proportional hazards",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "A consistent social gradient in health runs from top to bottom of the occupational hierarchy; higher social position predicts better health outcomes.",
+        "construct_ids": [
+          "household_income",
+          "life_expectancy"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Descriptive epidemiology",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Income, insurance, and background account for ~30% of the education-health gradient; knowledge and cognitive ability ~30%; social networks ~10%.",
+        "construct_ids": [
+          "educational_attainment",
+          "household_income",
+          "social_support",
+          "life_expectancy"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "OLS regression",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Gap in life expectancy between richest 1% and poorest 1% of Americans is 14.6 years for men and 10.1 years for women.",
+        "construct_ids": [
+          "household_income",
+          "life_expectancy"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Descriptive regression, N=1.4 billion",
+        "finding_type": "",
+        "evidence_type": ""
+      },
+      {
+        "finding_text": "Meta-analysis of 70 studies: social isolation (OR=1.29), loneliness (OR=1.26), and living alone (OR=1.32) each predicted elevated all-cause mortality.",
+        "construct_ids": [
+          "social_isolation",
+          "life_expectancy"
+        ],
+        "direction": "negative",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "Meta-analysis, N=3.4 million",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "berkman_syme_1979",
+        "title": "Social Networks, Host Resistance, and Mortality: A Nine-Year Follow-Up Study of Alameda County Residents",
+        "authors": "Berkman, Lisa F.; Syme, S. Leonard",
+        "year": 1979,
+        "doi": null,
+        "source_type": "journal_article"
+      },
+      {
+        "id": "marmot_2005",
+        "title": "Social Determinants of Health Inequalities",
+        "authors": "Marmot, Michael",
+        "year": 2005,
+        "doi": null,
+        "source_type": "journal_article"
+      },
+      {
+        "id": "cutler_lleras_muney_2010",
+        "title": "Understanding Differences in Health Behaviors by Education",
+        "authors": "Cutler, David M.; Lleras-Muney, Adriana",
+        "year": 2010,
+        "doi": null,
+        "source_type": "journal_article"
+      },
+      {
+        "id": "chetty_2016",
+        "title": "The Association Between Income and Life Expectancy in the United States, 2001-2014",
+        "authors": "Chetty, Raj; Stepner, Michael; Abraham, Sarah",
+        "year": 2016,
+        "doi": null,
+        "source_type": "journal_article"
+      },
+      {
+        "id": "holt_lunstad_2015",
+        "title": "Loneliness and Social Isolation as Risk Factors for Mortality: A Meta-Analytic Review",
+        "authors": "Holt-Lunstad, Julianne; Smith, Timothy B.; Baker, Mark",
+        "year": 2015,
+        "doi": null,
+        "source_type": "journal_article"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Social Determinants Of Health",
+        "description": "Basic analysis workflow for the social_determinants_of_health domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": [
+          "logistic_regression"
+        ]
+      }
+    ],
+    "related_packs": [
+      "happiness-economics",
+      "health-outcomes-global"
+    ],
     "download_url": "/packs/social-determinants-of-health.pax.tar.gz",
-    "download_sha256": "c4b34d31affc01e1627e06f3ac0342b7793e9402779b5e970b84638106b24c1c",
+    "download_sha256": "30960de7c8b1183e6b263f4825715daf0d166675cb5624d6dc83c8922d797ff2",
     "download_size": "3.2 KB"
   },
   {
@@ -423,6 +2471,7 @@
       "topic",
       "sports-analytics"
     ],
+    "schema_version": "2.0",
     "constructs": [
       "elo_rating",
       "win_probability",
@@ -442,8 +2491,86 @@
     "playbooks": [
       "quick_start"
     ],
+    "domain": {
+      "id": "sports_analytics",
+      "display_name": "Sports Analytics",
+      "description": "Statistical analysis of athletic performance, team strategy, and game outcomes",
+      "research_questions": [],
+      "temporal_scope": "",
+      "population": "",
+      "level_of_analysis": "micro"
+    },
+    "constructs_detail": [
+      {
+        "id": "elo_rating",
+        "display_name": "Elo Rating",
+        "definition": "Skill rating based on results against rated opponents",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "win_probability",
+        "display_name": "Win Probability",
+        "definition": "Estimated probability of winning a game",
+        "aliases": [],
+        "construct_type": "outcome"
+      },
+      {
+        "id": "offensive_efficiency",
+        "display_name": "Offensive Efficiency",
+        "definition": "Points or runs scored per possession or opportunity",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      },
+      {
+        "id": "defensive_efficiency",
+        "display_name": "Defensive Efficiency",
+        "definition": "Points or runs allowed per possession or opportunity",
+        "aliases": [],
+        "construct_type": "quantifiable"
+      }
+    ],
+    "findings_detail": [
+      {
+        "finding_text": "Elo ratings with K-factor tuning produce well-calibrated win probabilities, mean absolute error 4-6 percentage points",
+        "construct_ids": [
+          "elo_rating",
+          "win_probability"
+        ],
+        "direction": "positive",
+        "effect_size": "",
+        "confidence": "strong",
+        "method_used": "",
+        "finding_type": "",
+        "evidence_type": ""
+      }
+    ],
+    "propositions_detail": [],
+    "sources_detail": [
+      {
+        "id": "silver_538_elo",
+        "title": "FiveThirtyEight NBA Elo Ratings",
+        "authors": "Nate Silver, FiveThirtyEight",
+        "year": 2015,
+        "doi": null,
+        "source_type": "dataset"
+      }
+    ],
+    "playbooks_detail": [
+      {
+        "id": "quick_start",
+        "display_name": "Quick Start \u2014 Sports Analytics",
+        "description": "Basic analysis workflow for the sports_analytics domain.",
+        "estimated_runtime": "1\u20133 minutes",
+        "step_count": 1,
+        "engines_used": [
+          "logistic_regression"
+        ]
+      }
+    ],
+    "related_packs": [],
     "download_url": "/packs/sports-performance.pax.tar.gz",
-    "download_sha256": "d2a0f4519a0393dcf45bf42c4ae470889b5e9813aa525de8d0a8013e2413261a",
+    "download_sha256": "0446058a2578d99d25caebc1e421be9531bd4e7bf86178cbb6fdbf3b292190a7",
     "download_size": "1.7 KB"
   }
 ]

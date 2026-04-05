@@ -26,10 +26,33 @@
   </div>
   {{ end }}
 
+  <!-- Domain -->
+  {{ with .Params.domain }}
+  {{ if .display_name }}
+  <div class="section">
+    <h2>Domain: {{ .display_name }}</h2>
+    {{ with .description }}<p style="color: var(--color-text-muted); margin-bottom: 1rem;">{{ . }}</p>{{ end }}
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem;">
+      {{ with .temporal_scope }}<span><strong>Period:</strong> {{ . }}</span>{{ end }}
+      {{ with .population }}<span><strong>Population:</strong> {{ . }}</span>{{ end }}
+      {{ with .level_of_analysis }}<span><strong>Level:</strong> {{ . }}</span>{{ end }}
+    </div>
+    {{ with .research_questions }}
+    <div style="margin-top: 0.75rem;">
+      <strong style="font-size: 0.85rem;">Research Questions:</strong>
+      <ul style="margin-top: 0.5rem; padding-left: 1.25rem;">
+        {{ range . }}<li style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 0.25rem;">{{ . }}</li>{{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+
   <!-- Stats overview -->
   <div class="section">
     <h2>Overview</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1rem;">
       {{ with .Params.construct_count }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">{{ . }}</div>
@@ -42,24 +65,24 @@
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Findings</div>
       </div>
       {{ end }}
-      {{ with .Params.proposition_count }}
+      {{ with .Params.proposition_count }}{{ if gt . 0 }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-paper);">{{ . }}</div>
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Propositions</div>
       </div>
-      {{ end }}
-      {{ with .Params.playbooks }}
+      {{ end }}{{ end }}
+      {{ with .Params.playbooks_detail }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">{{ len . }}</div>
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Playbooks</div>
       </div>
       {{ end }}
-      {{ with .Params.engines }}
+      {{ with .Params.engines }}{{ if gt (len .) 0 }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-engine);">{{ len . }}</div>
         <div style="font-size: 0.8rem; color: var(--color-text-muted);">Engines</div>
       </div>
-      {{ end }}
+      {{ end }}{{ end }}
       {{ if .Params.has_data_sources }}
       <div style="background: var(--color-surface); padding: 1rem; border-radius: 0.5rem; text-align: center;">
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-field);">Yes</div>
@@ -69,44 +92,88 @@
     </div>
   </div>
 
-  <!-- Constructs -->
-  {{ with .Params.constructs }}
+  <!-- Constructs (rich) -->
+  {{ with .Params.constructs_detail }}
   <div class="section">
     <h2>Constructs</h2>
-    <div class="construct-list">
-      {{ range . }}
-        <span class="construct-chip">{{ . }}</span>
+    {{ range . }}
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1rem; margin-bottom: 0.75rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.375rem;">
+        <code style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-accent);">{{ .id }}</code>
+        {{ with .display_name }}<span style="font-size: 0.9rem; font-weight: 600;">{{ . }}</span>{{ end }}
+      </div>
+      {{ with .definition }}<p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0; line-height: 1.5;">{{ . }}</p>{{ end }}
+      {{ with .aliases }}
+      <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.375rem;">
+        {{ range . }}<span class="tag" style="font-size: 0.7rem;">{{ . }}</span>{{ end }}
+      </div>
       {{ end }}
     </div>
+    {{ end }}
   </div>
   {{ end }}
 
-  <!-- Findings -->
-  {{ with .Params.findings }}
+  <!-- Findings (rich) -->
+  {{ with .Params.findings_detail }}
   <div class="section">
     <h2>Findings</h2>
-    <div class="construct-list">
-      {{ range . }}
-        <span class="construct-chip" style="background: rgba(167, 139, 250, 0.1); color: var(--color-paper); border-color: rgba(167, 139, 250, 0.2);">{{ . }}</span>
-      {{ end }}
+    {{ range . }}
+    <div style="background: var(--color-surface); border-left: 3px solid {{ if eq .direction "positive" }}var(--color-topic){{ else if eq .direction "negative" }}#ef4444{{ else if eq .direction "null" }}var(--color-text-muted){{ else }}var(--color-accent){{ end }}; border-radius: 0 0.5rem 0.5rem 0; padding: 1rem; margin-bottom: 0.75rem;">
+      <p style="color: var(--color-text); font-size: 0.9rem; margin: 0 0 0.5rem 0; line-height: 1.5;">{{ .finding_text }}</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.75rem; color: var(--color-text-muted);">
+        {{ with .direction }}<span><strong>Direction:</strong> {{ . }}</span>{{ end }}
+        {{ with .confidence }}<span><strong>Confidence:</strong> {{ . }}</span>{{ end }}
+        {{ with .effect_size }}<span><strong>Effect:</strong> {{ . }}</span>{{ end }}
+        {{ with .method_used }}<span><strong>Method:</strong> {{ . }}</span>{{ end }}
+      </div>
     </div>
+    {{ end }}
   </div>
   {{ end }}
 
-  <!-- Propositions -->
-  {{ with .Params.propositions }}
+  <!-- Propositions (rich) -->
+  {{ with .Params.propositions_detail }}
   <div class="section">
     <h2>Propositions</h2>
-    <div class="construct-list">
-      {{ range . }}
-        <span class="construct-chip" style="background: rgba(250, 204, 21, 0.1); color: var(--color-enterprise); border-color: rgba(250, 204, 21, 0.2);">{{ . }}</span>
+    {{ range . }}
+    <div style="background: var(--color-surface); border-left: 3px solid var(--color-enterprise); border-radius: 0 0.5rem 0.5rem 0; padding: 1rem; margin-bottom: 0.75rem;">
+      <p style="color: var(--color-text); font-size: 0.9rem; margin: 0 0 0.5rem 0;">{{ .proposition_text }}</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.75rem; color: var(--color-text-muted);">
+        {{ with .construct_from }}<span><strong>From:</strong> <code style="font-family: var(--font-mono);">{{ . }}</code></span>{{ end }}
+        {{ with .construct_to }}<span><strong>To:</strong> <code style="font-family: var(--font-mono);">{{ . }}</code></span>{{ end }}
+        {{ with .direction }}<span><strong>Direction:</strong> {{ . }}</span>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- Playbooks (rich) -->
+  {{ with .Params.playbooks_detail }}
+  <div class="section">
+    <h2>Playbooks</h2>
+    {{ range . }}
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1rem; margin-bottom: 0.75rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <span style="font-weight: 600; font-size: 0.95rem;">{{ .display_name }}</span>
+        <div style="display: flex; gap: 0.75rem; font-size: 0.75rem; color: var(--color-text-muted);">
+          {{ with .estimated_runtime }}<span>{{ . }}</span>{{ end }}
+          <span>{{ .step_count }} steps</span>
+        </div>
+      </div>
+      {{ with .description }}<p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0 0 0.5rem 0;">{{ . }}</p>{{ end }}
+      {{ with .engines_used }}
+      <div style="display: flex; flex-wrap: wrap; gap: 0.375rem;">
+        {{ range . }}<span class="construct-chip" style="background: rgba(244, 114, 182, 0.1); color: var(--color-engine); border-color: rgba(244, 114, 182, 0.2); font-size: 0.75rem;">{{ . }}</span>{{ end }}
+      </div>
       {{ end }}
     </div>
+    {{ end }}
   </div>
   {{ end }}
 
   <!-- Engines -->
-  {{ with .Params.engines }}
+  {{ with .Params.engines }}{{ if gt (len .) 0 }}
   <div class="section">
     <h2>Engines</h2>
     <div class="construct-list">
@@ -115,17 +182,18 @@
       {{ end }}
     </div>
   </div>
-  {{ end }}
+  {{ end }}{{ end }}
 
-  <!-- Playbooks -->
-  {{ with .Params.playbooks }}
+  <!-- Sources -->
+  {{ with .Params.sources_detail }}
   <div class="section">
-    <h2>Playbooks</h2>
-    <div class="construct-list">
-      {{ range . }}
-        <span class="construct-chip" style="background: rgba(52, 211, 153, 0.1); color: var(--color-topic); border-color: rgba(52, 211, 153, 0.2);">{{ . }}</span>
-      {{ end }}
+    <h2>Sources</h2>
+    {{ range . }}
+    <div style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-border);">
+      <span style="font-size: 0.9rem;">{{ with .authors }}{{ . }}{{ end }}{{ with .year }} ({{ . }}){{ end }}. <em>{{ .title }}</em></span>
+      {{ with .doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener" style="font-size: 0.8rem; margin-left: 0.5rem;">DOI</a>{{ end }}
     </div>
+    {{ end }}
   </div>
   {{ end }}
 
@@ -134,9 +202,7 @@
   <div class="section">
     <h2>Tags</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-      {{ range . }}
-        <span class="tag">{{ . }}</span>
-      {{ end }}
+      {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
     </div>
   </div>
   {{ end }}
@@ -145,13 +211,26 @@
   {{ with .Content }}
   <div class="section">
     <h2>Details</h2>
-    <div class="content-body">
-      {{ . }}
+    <div class="content-body">{{ . }}</div>
+  </div>
+  {{ end }}
+
+  <!-- Related Packs -->
+  {{ with .Params.related_packs }}
+  <div class="section">
+    <h2>Related Packs</h2>
+    <div class="pack-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+      {{ range . }}
+        {{ $pack := $.Site.GetPage (printf "/packs/%s" .) }}
+        {{ if $pack }}
+          {{ partial "pack-card.html" $pack }}
+        {{ end }}
+      {{ end }}
     </div>
   </div>
   {{ end }}
 
-  <!-- Install instructions -->
+  <!-- Install -->
   <div class="section">
     <h2>Installation</h2>
     <div style="background: var(--color-surface); padding: 1.5rem; border-radius: 0.5rem;">

@@ -1,0 +1,1137 @@
+{
+  "prediction_accuracy": {
+    "id": "prediction_accuracy",
+    "display_name": "Prediction Accuracy",
+    "definition": "Correctness of ML model predictions",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "algorithmic-fairness",
+        "pack_title": "Algorithmic Fairness",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "false_positive_rate": {
+    "id": "false_positive_rate",
+    "display_name": "False Positive Rate",
+    "definition": "Rate of incorrect positive predictions per group",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "algorithmic-fairness",
+        "pack_title": "Algorithmic Fairness",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "demographic_parity": {
+    "id": "demographic_parity",
+    "display_name": "Demographic Parity",
+    "definition": "Equal positive prediction rates across groups",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "algorithmic-fairness",
+        "pack_title": "Algorithmic Fairness",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "calibration": {
+    "id": "calibration",
+    "display_name": "Calibration",
+    "definition": "Predicted probabilities match observed frequencies",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "algorithmic-fairness",
+        "pack_title": "Algorithmic Fairness",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "mean_surface_temperature": {
+    "id": "mean_surface_temperature",
+    "display_name": "Mean Surface Temperature",
+    "definition": "Annual average surface temperature (degrees Celsius) for a country, from gridded meteorological datasets.",
+    "aliases": [
+      "average temperature",
+      "temperature anomaly"
+    ],
+    "packs": [
+      {
+        "pack": "climate-economic-impacts",
+        "pack_title": "Economic impacts of climate change",
+        "direction": "negative",
+        "finding_count": 5
+      }
+    ],
+    "pack_count": 1
+  },
+  "gdp_per_capita_growth": {
+    "id": "gdp_per_capita_growth",
+    "display_name": "GDP Per Capita Growth Rate",
+    "definition": "Annual percentage change in real GDP per capita. Growth-rate effects compound; level effects do not.",
+    "aliases": [
+      "economic growth",
+      "income growth"
+    ],
+    "packs": [
+      {
+        "pack": "climate-economic-impacts",
+        "pack_title": "Economic impacts of climate change",
+        "direction": "negative",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "climate_damage_fraction": {
+    "id": "climate_damage_fraction",
+    "display_name": "Climate Damage Fraction",
+    "definition": "Share of GDP lost due to climate change impacts, from integrated assessment damage functions.",
+    "aliases": [
+      "climate damages",
+      "GDP loss fraction"
+    ],
+    "packs": [
+      {
+        "pack": "climate-economic-impacts",
+        "pack_title": "Economic impacts of climate change",
+        "direction": "negative",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "agricultural_yield": {
+    "id": "agricultural_yield",
+    "display_name": "Agricultural Yield",
+    "definition": "Crop output per unit of harvested area (tonnes per hectare).",
+    "aliases": [
+      "crop yield",
+      "crop productivity"
+    ],
+    "packs": [
+      {
+        "pack": "climate-economic-impacts",
+        "pack_title": "Economic impacts of climate change",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "precipitation": {
+    "id": "precipitation",
+    "display_name": "Annual Precipitation",
+    "definition": "Total annual precipitation (mm) from gridded meteorological data.",
+    "aliases": [
+      "rainfall",
+      "annual rainfall"
+    ],
+    "packs": [
+      {
+        "pack": "climate-economic-impacts",
+        "pack_title": "Economic impacts of climate change",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "social_cost_of_carbon": {
+    "id": "social_cost_of_carbon",
+    "display_name": "Social Cost of Carbon",
+    "definition": "Marginal economic damage of one additional tonne of CO2, in USD. Ranges from ~$50 to ~$185/tonne.",
+    "aliases": [
+      "SCC",
+      "carbon price"
+    ],
+    "packs": [
+      {
+        "pack": "climate-economic-impacts",
+        "pack_title": "Economic impacts of climate change",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "dyadic_democracy": {
+    "id": "dyadic_democracy",
+    "display_name": "Dyadic Democracy Score",
+    "definition": "The Polity IV score of the less democratic state in a dyad. Captures the binding constraint: a dyad is only jointly democratic if both members clear the threshold.",
+    "aliases": [
+      "joint democracy",
+      "DEML"
+    ],
+    "packs": [
+      {
+        "pack": "democratic-peace",
+        "pack_title": "Democratic peace theory",
+        "direction": "negative",
+        "finding_count": 3
+      }
+    ],
+    "pack_count": 1
+  },
+  "militarized_interstate_dispute": {
+    "id": "militarized_interstate_dispute",
+    "display_name": "Militarized Interstate Dispute Onset",
+    "definition": "Binary indicator: 1 if a dyad experienced MID onset in a given year, per the COW MID dataset.",
+    "aliases": [
+      "MID onset",
+      "dyadic conflict onset"
+    ],
+    "packs": [
+      {
+        "pack": "democratic-peace",
+        "pack_title": "Democratic peace theory",
+        "direction": "negative",
+        "finding_count": 5
+      }
+    ],
+    "pack_count": 1
+  },
+  "trade_interdependence": {
+    "id": "trade_interdependence",
+    "display_name": "Bilateral Trade Interdependence",
+    "definition": "The lower of the two states' ratios of bilateral trade to GDP, capturing the dyadic member with least to gain from trade continuity.",
+    "aliases": [
+      "economic interdependence",
+      "TRADEDEPL"
+    ],
+    "packs": [
+      {
+        "pack": "democratic-peace",
+        "pack_title": "Democratic peace theory",
+        "direction": "negative",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "shared_igo_membership": {
+    "id": "shared_igo_membership",
+    "display_name": "Shared IGO Memberships",
+    "definition": "Count of intergovernmental organizations to which both states belong simultaneously.",
+    "aliases": [
+      "joint IGO membership",
+      "institutional embeddedness"
+    ],
+    "packs": [
+      {
+        "pack": "democratic-peace",
+        "pack_title": "Democratic peace theory",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "territorial_contiguity": {
+    "id": "territorial_contiguity",
+    "display_name": "Territorial Contiguity",
+    "definition": "Binary indicator of whether two states share a land border or narrow sea corridor. Standard opportunity control.",
+    "aliases": [
+      "shared border",
+      "geographic proximity"
+    ],
+    "packs": [
+      {
+        "pack": "democratic-peace",
+        "pack_title": "Democratic peace theory",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "capability_ratio": {
+    "id": "capability_ratio",
+    "display_name": "Dyadic Capability Ratio",
+    "definition": "Ratio of the stronger state's CINC score to the sum of both states' CINC scores, capturing power asymmetry.",
+    "aliases": [
+      "power asymmetry",
+      "CINC ratio"
+    ],
+    "packs": [
+      {
+        "pack": "democratic-peace",
+        "pack_title": "Democratic peace theory",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "transnational_repression_binary": {
+    "id": "transnational_repression_binary",
+    "display_name": "Transnational Repression (Binary)",
+    "definition": "Binary indicator equal to 1 if an authoritarian state carried out one or more transnational repression events (threats, arrests, extraditions, abductions, assassinations) against its own citizens abroad in a given country-year, 0 otherwise. Source: AAAD (Dukalskis 2021).",
+    "aliases": [
+      "TR binary",
+      "transnational repression occurrence",
+      "extraterritorial repression"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "positive",
+        "finding_count": 7
+      }
+    ],
+    "pack_count": 1
+  },
+  "transnational_repression_count": {
+    "id": "transnational_repression_count",
+    "display_name": "Transnational Repression (Count)",
+    "definition": "Count of transnational repression events carried out by an authoritarian state against its own citizens abroad in a given country-year. Ranges from 0 to 61 (Uzbekistan 2005). Source: AAAD (Dukalskis 2021).",
+    "aliases": [
+      "TR count",
+      "number of TR events"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "domestic_repression_cli": {
+    "id": "domestic_repression_cli",
+    "display_name": "Domestic Repression (V-Dem CLI)",
+    "definition": "Inverted V-Dem Civil Liberties Index (CLI), measuring the intensity of domestic state repression. The CLI aggregates three component indices: physical violence index (torture, killings), political civil liberties index (censorship, parties, civil society), and private civil liberties index (forced labor, property rights, religion). Higher values indicate more repression. Lagged one year in analysis. Source: V-Dem v12, Coppedge et al. 2022.",
+    "aliases": [
+      "domestic repression",
+      "inverted CLI",
+      "V-Dem civil liberties index (inverted)",
+      "state repression intensity"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "positive",
+        "finding_count": 5
+      }
+    ],
+    "pack_count": 1
+  },
+  "diplomatic_capacity_abroad": {
+    "id": "diplomatic_capacity_abroad",
+    "display_name": "Diplomatic Representation Abroad",
+    "definition": "Number of diplomatic representations (embassies, consulates, and other missions) a state maintains abroad in a given year. Captures the logistical infrastructure enabling a state to project repression transnationally. Source: Diplometrics Diplomatic Representation dataset (Moyer et al. 2021), 1960-2020. Mean in sample: 50.8, range: 1-170.",
+    "aliases": [
+      "diplomatic representation",
+      "diplomatic capacity",
+      "embassies abroad"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "state_capacity_latent": {
+    "id": "state_capacity_latent",
+    "display_name": "State Capacity Index",
+    "definition": "Latent measure of state capacity aggregating 21 variables across three conceptual pillars: extractive capacity, coercive capacity, and administrative capacity. Estimated via item response theory model. Source: Hanson and Sigman (2021), State Capacity Dataset v1. Mean in sample: -0.059, range: -1.541 to 1.28.",
+    "aliases": [
+      "state capacity",
+      "government capacity",
+      "Hanson-Sigman capacity"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "null",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "polity_score": {
+    "id": "polity_score",
+    "display_name": "Polity Score",
+    "definition": "Revised combined Polity score measuring level of authoritarianism/democracy on a scale from -10 (full autocracy) to +10 (full democracy). Used as control for regime type. Source: Marshall and Gurr (2020). Mean in sample: -4.46.",
+    "aliases": [
+      "Polity",
+      "Polity IV",
+      "regime type score"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "leader_tenure": {
+    "id": "leader_tenure",
+    "display_name": "Leader Tenure (Log)",
+    "definition": "Log of the incumbent ruler's cumulative time in office (years). Controls for the possibility that crackdowns occur around regime consolidation periods and that repression spikes during transitions. Source: Bell, Besaw, and Frank (2021). Mean: 4.60 log-years.",
+    "aliases": [
+      "leader time in office",
+      "incumbent tenure"
+    ],
+    "packs": [
+      {
+        "pack": "dukalskis-et-al-2024-transnational-repression",
+        "pack_title": "Dukalskis (2024)",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "gdp_per_capita": {
+    "id": "gdp_per_capita",
+    "display_name": "GDP Per Capita",
+    "definition": "Total economic output divided by population in PPP dollars",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "economic-growth-panel",
+        "pack_title": "Economic Growth Panel",
+        "direction": "positive",
+        "finding_count": 4
+      }
+    ],
+    "pack_count": 1
+  },
+  "physical_capital": {
+    "id": "physical_capital",
+    "display_name": "Physical Capital Accumulation",
+    "definition": "Stock of produced means of production \u2014 investment share of GDP",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "economic-growth-panel",
+        "pack_title": "Economic Growth Panel",
+        "direction": "positive",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "human_capital": {
+    "id": "human_capital",
+    "display_name": "Human Capital",
+    "definition": "Stock of knowledge and skills embodied in the labor force",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "economic-growth-panel",
+        "pack_title": "Economic Growth Panel",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "population_growth_rate": {
+    "id": "population_growth_rate",
+    "display_name": "Population Growth Rate",
+    "definition": "Annual rate of change in total population",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "economic-growth-panel",
+        "pack_title": "Economic Growth Panel",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "total_factor_productivity": {
+    "id": "total_factor_productivity",
+    "display_name": "Total Factor Productivity",
+    "definition": "Portion of output not explained by quantity of inputs \u2014 technological progress",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "economic-growth-panel",
+        "pack_title": "Economic Growth Panel",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "convergence_rate": {
+    "id": "convergence_rate",
+    "display_name": "Convergence Rate",
+    "definition": "Speed at which poorer economies catch up to richer ones",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "economic-growth-panel",
+        "pack_title": "Economic Growth Panel",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "civil_war_onset": {
+    "id": "civil_war_onset",
+    "display_name": "Civil War Onset",
+    "definition": "Binary indicator: 1 if a civil war began in this country-year, 0 otherwise. Fearon & Laitin define civil wars as internal conflicts with organized violence, at least 1,000 battle deaths, and effective resistance by both sides.",
+    "aliases": [
+      "conflict onset",
+      "war initiation",
+      "armed conflict start",
+      "intrastate war onset",
+      "onset",
+      "PRIO onset",
+      "UCDP onset"
+    ],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 11
+      }
+    ],
+    "pack_count": 1
+  },
+  "mountainous_terrain": {
+    "id": "mountainous_terrain",
+    "display_name": "Mountainous Terrain",
+    "definition": "Percentage of a country's territory that is mountainous, per the Geomorphic Units of the World dataset. Logged in regression models. Higher values increase insurgency viability by providing rebel sanctuary.",
+    "aliases": [
+      "rough terrain",
+      "percent mountainous",
+      "lmtnest"
+    ],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "political_instability": {
+    "id": "political_instability",
+    "display_name": "Political Instability",
+    "definition": "Binary indicator: 1 if there was a three-or-more-point change in Polity score in the previous three years. Captures regime transitions and political turbulence that may lower the cost of civil war initiation.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "noncontiguous_territory": {
+    "id": "noncontiguous_territory",
+    "display_name": "Noncontiguous Territory",
+    "definition": "Binary indicator: 1 if the state has territory that is physically separated from the main territory (e.g., islands, exclaves). Noncontiguity creates zones where state capacity is lower and rebel control is easier to establish.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "oil_exporter": {
+    "id": "oil_exporter",
+    "display_name": "Oil Exporter",
+    "definition": "Binary indicator: 1 if fuel exports exceeded one-third of export revenues. Oil states may face conflict due to prize capture incentives, weaker tax-based state institutions, or Dutch disease effects on state capacity.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "new_state": {
+    "id": "new_state",
+    "display_name": "New State",
+    "definition": "Binary indicator: 1 if the state became independent within the prior two years. New states face elevated conflict risk due to weak institutions, contested borders, and unresolved ethnic or regional claims.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "religious_fractionalization": {
+    "id": "religious_fractionalization",
+    "display_name": "Religious Fractionalization",
+    "definition": "Probability that two randomly selected individuals belong to different religious groups (Herfindahl index). Ranges 0-1. Included as a control alongside ethnic fractionalization; not found to be a robust predictor of civil war onset.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "null",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "per_capita_income": {
+    "id": "per_capita_income",
+    "display_name": "Per Capita Income",
+    "definition": "GDP per capita, typically logged and lagged one year. One of the strongest predictors of civil war onset: wealthier countries have lower risk, reflecting higher opportunity costs of rebellion and greater state capacity to deter it.",
+    "aliases": [
+      "income per capita",
+      "GDP per capita",
+      "log GDP per capita",
+      "economic development",
+      "national wealth",
+      "lgdp_pc",
+      "lgdp_pc_l1"
+    ],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "negative",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "population_size": {
+    "id": "population_size",
+    "display_name": "Population Size",
+    "definition": "Total population, logged and lagged one year. Larger populations increase civil war risk \u2014 more people means more potential recruits and more heterogeneous grievances, though the mechanism is contested.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "anocracy": {
+    "id": "anocracy",
+    "display_name": "Anocracy (Mixed Regime)",
+    "definition": "Binary indicator: 1 if Polity IV score is between -5 and +5, indicating a mixed or incoherent regime type. Anocracies are predicted to have higher conflict risk than either full democracies or full autocracies (inverted-U).",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "fearon-laitin-2003",
+        "pack_title": "Fearon & Laitin (2003) \u2014 Ethnicity, Insurgency, and Civil War",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "life_satisfaction": {
+    "id": "life_satisfaction",
+    "display_name": "Life Satisfaction",
+    "definition": "Cantril Self-Anchoring Striving Scale: respondents rate their life on a ladder from 0 (worst possible life) to 10 (best possible life). National average. Primary outcome in WHR analyses.",
+    "aliases": [
+      "subjective wellbeing",
+      "SWB",
+      "happiness score",
+      "Cantril ladder",
+      "life evaluation",
+      "wellbeing index"
+    ],
+    "packs": [
+      {
+        "pack": "happiness-economics",
+        "pack_title": "Happiness Economics",
+        "direction": "positive",
+        "finding_count": 7
+      }
+    ],
+    "pack_count": 1
+  },
+  "social_support": {
+    "id": "social_support",
+    "display_name": "Social Support",
+    "definition": "Share of respondents answering 'yes' to 'If you were in trouble, do you have relatives or friends you can count on?' Gallup World Poll. Ranges 0-1.",
+    "aliases": [
+      "social connections",
+      "social capital (informal)",
+      "having someone to count on",
+      "social ties",
+      "social connectedness"
+    ],
+    "packs": [
+      {
+        "pack": "happiness-economics",
+        "pack_title": "Happiness Economics",
+        "direction": "positive",
+        "finding_count": 1
+      },
+      {
+        "pack": "social-determinants-of-health",
+        "pack_title": "Social determinants of health",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 2
+  },
+  "healthy_life_expectancy": {
+    "id": "healthy_life_expectancy",
+    "display_name": "Healthy Life Expectancy",
+    "definition": "Healthy life expectancy at birth (years), from WHO/GHO data. Captures both longevity and health-adjusted quality of life.",
+    "aliases": [
+      "HLE",
+      "HALE",
+      "health-adjusted life expectancy"
+    ],
+    "packs": [
+      {
+        "pack": "happiness-economics",
+        "pack_title": "Happiness Economics",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "freedom_of_choice": {
+    "id": "freedom_of_choice",
+    "display_name": "Freedom of Choice",
+    "definition": "Share of respondents answering 'yes' to 'Are you satisfied or dissatisfied with your freedom to choose what you do with your life?' Ranges 0-1.",
+    "aliases": [
+      "autonomy",
+      "life freedom"
+    ],
+    "packs": [
+      {
+        "pack": "happiness-economics",
+        "pack_title": "Happiness Economics",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "generosity": {
+    "id": "generosity",
+    "display_name": "Generosity",
+    "definition": "Residual of regressing national average response to 'Have you donated money to a charity in the past month?' on log GDP per capita. Captures pro-social behavior beyond what income explains.",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "happiness-economics",
+        "pack_title": "Happiness Economics",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "perceptions_of_corruption": {
+    "id": "perceptions_of_corruption",
+    "display_name": "Perceptions of Corruption",
+    "definition": "Average of two Gallup binary questions: is corruption widespread throughout government/business in this country? Ranges 0-1 (higher = more corruption perceived).",
+    "aliases": [
+      "corruption index",
+      "institutional trust (inverse)"
+    ],
+    "packs": [
+      {
+        "pack": "happiness-economics",
+        "pack_title": "Happiness Economics",
+        "direction": "negative",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "health_expenditure_per_capita": {
+    "id": "health_expenditure_per_capita",
+    "display_name": "Health Expenditure Per Capita",
+    "definition": "Total health spending per person in PPP dollars",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "health-outcomes-global",
+        "pack_title": "Health Outcomes Global",
+        "direction": "positive",
+        "finding_count": 3
+      }
+    ],
+    "pack_count": 1
+  },
+  "life_expectancy": {
+    "id": "life_expectancy",
+    "display_name": "Life Expectancy at Birth",
+    "definition": "Average number of years a newborn is expected to live given current age-specific mortality rates.",
+    "aliases": [
+      "longevity",
+      "all-cause mortality"
+    ],
+    "packs": [
+      {
+        "pack": "health-outcomes-global",
+        "pack_title": "Health Outcomes Global",
+        "direction": "positive",
+        "finding_count": 2
+      },
+      {
+        "pack": "social-determinants-of-health",
+        "pack_title": "Social determinants of health",
+        "direction": "positive",
+        "finding_count": 5
+      }
+    ],
+    "pack_count": 2
+  },
+  "infant_mortality": {
+    "id": "infant_mortality",
+    "display_name": "Infant Mortality",
+    "definition": "Deaths per 1000 live births in first year",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "health-outcomes-global",
+        "pack_title": "Health Outcomes Global",
+        "direction": "null",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "mean_years_schooling": {
+    "id": "mean_years_schooling",
+    "display_name": "Mean Years of Schooling",
+    "definition": "Average years of formal education completed by adults aged 25+. Primary macro proxy for human capital stock.",
+    "aliases": [
+      "educational attainment",
+      "years of schooling"
+    ],
+    "packs": [
+      {
+        "pack": "human-capital-economics",
+        "pack_title": "Returns to education and human capital economics",
+        "direction": "null",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "cognitive_skills": {
+    "id": "cognitive_skills",
+    "display_name": "Cognitive Skills",
+    "definition": "National average score on internationally comparable standardized tests (PISA, TIMSS). Captures educational quality.",
+    "aliases": [
+      "test scores",
+      "human capital quality"
+    ],
+    "packs": [
+      {
+        "pack": "human-capital-economics",
+        "pack_title": "Returns to education and human capital economics",
+        "direction": "positive",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "school_enrollment_rate": {
+    "id": "school_enrollment_rate",
+    "display_name": "School Enrollment Rate",
+    "definition": "Gross or net enrollment ratio at primary, secondary, or tertiary level. Flow proxy for human capital investment.",
+    "aliases": [
+      "enrollment ratio",
+      "secondary enrollment"
+    ],
+    "packs": [
+      {
+        "pack": "human-capital-economics",
+        "pack_title": "Returns to education and human capital economics",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "physical_capital_investment": {
+    "id": "physical_capital_investment",
+    "display_name": "Physical Capital Investment",
+    "definition": "Gross fixed capital formation as share of GDP. Key control in augmented Solow growth regressions.",
+    "aliases": [
+      "investment share",
+      "capital accumulation"
+    ],
+    "packs": [
+      {
+        "pack": "human-capital-economics",
+        "pack_title": "Returns to education and human capital economics",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "rule_of_law": {
+    "id": "rule_of_law",
+    "display_name": "Rule of Law",
+    "definition": "Confidence in and abidance by the rules of society, including contract enforcement, property rights, and the courts. WGI Rule of Law indicator.",
+    "aliases": [
+      "WGI Rule of Law",
+      "legal institutions quality"
+    ],
+    "packs": [
+      {
+        "pack": "institutional-quality-development",
+        "pack_title": "Institutional quality and economic development",
+        "direction": "positive",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "control_of_corruption": {
+    "id": "control_of_corruption",
+    "display_name": "Control of Corruption",
+    "definition": "The extent to which public power is NOT exercised for private gain, including petty and grand corruption.",
+    "aliases": [
+      "WGI Control of Corruption",
+      "CPI score"
+    ],
+    "packs": [
+      {
+        "pack": "institutional-quality-development",
+        "pack_title": "Institutional quality and economic development",
+        "direction": "negative",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "property_rights_security": {
+    "id": "property_rights_security",
+    "display_name": "Property Rights Security",
+    "definition": "Degree to which private property rights are legally protected against state expropriation and private predation.",
+    "aliases": [
+      "expropriation risk",
+      "ICRG property rights"
+    ],
+    "packs": [
+      {
+        "pack": "institutional-quality-development",
+        "pack_title": "Institutional quality and economic development",
+        "direction": "positive",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "government_effectiveness": {
+    "id": "government_effectiveness",
+    "display_name": "Government Effectiveness",
+    "definition": "Quality of public services, civil service, and credibility of government commitment to policies. WGI Government Effectiveness.",
+    "aliases": [
+      "bureaucratic quality",
+      "state capacity"
+    ],
+    "packs": [
+      {
+        "pack": "institutional-quality-development",
+        "pack_title": "Institutional quality and economic development",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "democratic_governance": {
+    "id": "democratic_governance",
+    "display_name": "Democratic Governance",
+    "definition": "Degree to which political leaders are chosen through free elections with civil liberties protection. Polity2, V-Dem, Freedom House.",
+    "aliases": [
+      "democracy",
+      "Polity2 score"
+    ],
+    "packs": [
+      {
+        "pack": "institutional-quality-development",
+        "pack_title": "Institutional quality and economic development",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "household_income": {
+    "id": "household_income",
+    "display_name": "Household Income",
+    "definition": "Annual pre-tax income received by all members of a household, inflation-adjusted. Primary measure of material resources for health-relevant consumption.",
+    "aliases": [
+      "family income",
+      "income level"
+    ],
+    "packs": [
+      {
+        "pack": "social-determinants-of-health",
+        "pack_title": "Social determinants of health",
+        "direction": "positive",
+        "finding_count": 3
+      }
+    ],
+    "pack_count": 1
+  },
+  "educational_attainment": {
+    "id": "educational_attainment",
+    "display_name": "Educational Attainment",
+    "definition": "Highest level of formal schooling completed, operationalized as years of schooling or credential level.",
+    "aliases": [
+      "years of schooling",
+      "education level"
+    ],
+    "packs": [
+      {
+        "pack": "social-determinants-of-health",
+        "pack_title": "Social determinants of health",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "income_inequality": {
+    "id": "income_inequality",
+    "display_name": "Income Inequality",
+    "definition": "Degree of dispersion in income distribution, most commonly measured by the Gini coefficient (0-1 scale).",
+    "aliases": [
+      "Gini coefficient",
+      "economic inequality"
+    ],
+    "packs": [
+      {
+        "pack": "social-determinants-of-health",
+        "pack_title": "Social determinants of health",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "social_isolation": {
+    "id": "social_isolation",
+    "display_name": "Social Isolation",
+    "definition": "Objective lack of social contacts or relationships, measured by network size or frequency of social interaction.",
+    "aliases": [
+      "loneliness",
+      "social disconnection"
+    ],
+    "packs": [
+      {
+        "pack": "social-determinants-of-health",
+        "pack_title": "Social determinants of health",
+        "direction": "negative",
+        "finding_count": 2
+      }
+    ],
+    "pack_count": 1
+  },
+  "elo_rating": {
+    "id": "elo_rating",
+    "display_name": "Elo Rating",
+    "definition": "Skill rating based on results against rated opponents",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "sports-performance",
+        "pack_title": "Sports Performance",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "win_probability": {
+    "id": "win_probability",
+    "display_name": "Win Probability",
+    "definition": "Estimated probability of winning a game",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "sports-performance",
+        "pack_title": "Sports Performance",
+        "direction": "positive",
+        "finding_count": 1
+      }
+    ],
+    "pack_count": 1
+  },
+  "offensive_efficiency": {
+    "id": "offensive_efficiency",
+    "display_name": "Offensive Efficiency",
+    "definition": "Points or runs scored per possession or opportunity",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "sports-performance",
+        "pack_title": "Sports Performance",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  },
+  "defensive_efficiency": {
+    "id": "defensive_efficiency",
+    "display_name": "Defensive Efficiency",
+    "definition": "Points or runs allowed per possession or opportunity",
+    "aliases": [],
+    "packs": [
+      {
+        "pack": "sports-performance",
+        "pack_title": "Sports Performance",
+        "direction": "",
+        "finding_count": 0
+      }
+    ],
+    "pack_count": 1
+  }
+}
