@@ -17,6 +17,7 @@ from collections import defaultdict
 import hashlib
 import json
 import re
+import sqlite3
 import sys
 import tarfile
 from pathlib import Path
@@ -561,16 +562,75 @@ def write_content_page(fm: dict, body: str, output_dir: Path):
 # Main sync
 # ---------------------------------------------------------------------------
 
-def sync_packs(praxis_dir: Path):
+def query_published_packs(db_url: str) -> set[str]:
+    """Query pax_publications table for published pack names.
+
+    Supports both SQLite paths and PostgreSQL URLs.
+    """
+    try:
+        if db_url.startswith("postgresql://") or db_url.startswith("postgres://"):
+            import psycopg2
+            conn = psycopg2.connect(db_url)
+            cur = conn.cursor()
+            cur.execute("SELECT name FROM pax_publications WHERE status IN ('published', 'deprecated')")
+            rows = cur.fetchall()
+            conn.close()
+        else:
+            # Treat as SQLite path
+            db_path = Path(db_url)
+            if not db_path.exists():
+                print(f"  Warning: DB not found at {db_path}, syncing all packs")
+                return set()
+            conn = sqlite3.connect(str(db_path))
+            rows = conn.execute(
+                "SELECT name FROM pax_publications WHERE status IN ('published', 'deprecated')"
+            ).fetchall()
+            conn.close()
+
+        names = {r[0] for r in rows}
+        print(f"  Published packs filter: {len(names)} packs from DB")
+        return names
+    except Exception as e:
+        print(f"  Warning: Could not query publications DB: {e}")
+        return set()
+
+
+def sync_packs(praxis_dir: Path, published_only: bool = False, db_path: Path | None = None):
     pax_root = praxis_dir / "pax"
     if not pax_root.is_dir():
         print(f"Error: PAX directory not found at {pax_root}")
         sys.exit(1)
 
+    # If published-only mode, get the set of published pack names
+    published_names = None
+    if published_only:
+        if db_path:
+            published_names = query_published_packs(str(db_path))
+        else:
+            # Try DATABASE_URL env var first (PostgreSQL), then SQLite fallbacks
+            import os
+            db_url = os.environ.get("DATABASE_URL", "")
+            if db_url:
+                published_names = query_published_packs(db_url)
+            else:
+                for candidate in [
+                    praxis_dir / "src" / "praxis" / "praxis.db",
+                    praxis_dir / "praxis.db",
+                ]:
+                    if candidate.exists():
+                        published_names = query_published_packs(str(candidate))
+                        break
+            if published_names is None:
+                print("  Warning: --published-only set but no DB found, syncing all packs")
+
     all_packs = []  # Collect all front matter for cross-pack analysis
 
     for pax_dir in sorted(pax_root.iterdir()):
         if not pax_dir.is_dir() or pax_dir.name in SKIP_DIRS:
+            continue
+
+        # Filter to published packs only (if in that mode)
+        if published_names is not None and pax_dir.name not in published_names:
             continue
 
         manifest_path = pax_dir / "pax.yaml"
@@ -689,9 +749,20 @@ def main():
         default=MARKETPLACE_ROOT.parent / "praxis",
         help="Path to the praxis repository root",
     )
+    parser.add_argument(
+        "--published-only",
+        action="store_true",
+        help="Only sync packs that appear in pax_publications with status='published'",
+    )
+    parser.add_argument(
+        "--db-path",
+        type=Path,
+        default=None,
+        help="Path to the Praxis SQLite database (for --published-only mode)",
+    )
     args = parser.parse_args()
     print(f"Syncing PAX packs from {args.praxis_dir}...")
-    sync_packs(args.praxis_dir)
+    sync_packs(args.praxis_dir, published_only=args.published_only, db_path=args.db_path)
     print("Done!")
 
 
