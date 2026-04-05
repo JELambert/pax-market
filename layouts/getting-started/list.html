@@ -115,7 +115,7 @@ praxis_publish_pax("my-research-domain")
       <span style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-mono);">06</span>
       What It Actually Looks Like
     </h2>
-    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">You don't call MCP tools directly — you talk to an AI agent in natural language and it uses Praxis behind the scenes. Here's a real conversation with Claude Code connected to Praxis:</p>
+    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">You don't call MCP tools directly — you talk to an AI agent in natural language and it uses Praxis behind the scenes. Here's what a conversation looks like with Claude Code connected to Praxis:</p>
 
     <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
 
@@ -123,7 +123,7 @@ praxis_publish_pax("my-research-domain")
       <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
         <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
         <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">I want to understand what drives civil war onset. What does the literature say about economic factors?</p>
+          <p style="margin: 0; font-size: 0.875rem;">We're seeing higher churn in our mid-tier customers. I want to understand what the research says about predicting and preventing customer churn. What do we know?</p>
         </div>
       </div>
 
@@ -131,11 +131,15 @@ praxis_publish_pax("my-research-domain")
       <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
         <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
         <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Let me search the knowledge base for constructs related to civil war and economic factors.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Let me check what analytical frameworks we have for this.</p>
           <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_skill_explore</span>("intra_state_conflict") <span style="color: var(--color-topic);">&#10003;</span>
+            <span style="color: var(--color-accent);">praxis_search</span>("customer churn prediction retention") <span style="color: var(--color-topic);">&#10003;</span>
           </div>
-          <p style="margin: 0; font-size: 0.875rem;">The <strong>fearon-laitin-2003</strong> PAX has strong evidence here. Per capita income is one of the strongest predictors — a one standard deviation increase reduces civil war onset probability by ~50%. Ethnic fractionalization, surprisingly, shows <strong>no significant relationship</strong>. The key drivers are insurgency-opportunity factors: poverty, rough terrain, and weak state capacity.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Good news — we have the <strong>customer-segmentation-rfm</strong> PAX installed, which covers RFM analysis for segmentation. But I also see a gap: we don't have a dedicated churn prediction PAX. Let me check the marketplace for one.</p>
+          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+            <span style="color: var(--color-accent);">praxis_search_pax</span>("churn retention customer lifetime") <span style="color: var(--color-topic);">&#10003;</span>
+          </div>
+          <p style="margin: 0; font-size: 0.875rem;">The <strong>credit-risk-ml</strong> PAX shares relevant constructs — both domains use logistic regression and random forest on binary outcomes with behavioral features. Its <code>prediction_accuracy</code> and <code>false_positive_rate</code> constructs directly apply to churn modeling. Want me to explore what we can pull together?</p>
         </div>
       </div>
 
@@ -143,7 +147,7 @@ praxis_publish_pax("my-research-domain")
       <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
         <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
         <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">Interesting. Does income affect anything else in the knowledge base? I'm curious about cross-domain connections.</p>
+          <p style="margin: 0; font-size: 0.875rem;">Yes — and while you're at it, I just read a paper about how customer satisfaction links to retention. Can you incorporate that into our knowledge base?</p>
         </div>
       </div>
 
@@ -151,16 +155,17 @@ praxis_publish_pax("my-research-domain")
       <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
         <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
         <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Sure, share the paper and I'll extract the key findings into our KB.</p>
           <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_pathway</span>(from="per_capita_income", to="life_satisfaction") <span style="color: var(--color-topic);">&#10003;</span>
+            <span style="color: var(--color-accent);">praxis_skill_incorporate</span>("Gustafsson et al. 2005 — Effects of customer satisfaction on retention") <span style="color: var(--color-topic);">&#10003;</span>
           </div>
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;"><code>per_capita_income</code> is a hub construct — it appears across multiple PAX and domains:</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Done. I extracted 3 constructs and 4 findings from the paper:</p>
           <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: var(--color-text-muted);">
-            <li><strong>Negative</strong> predictor of civil war onset (fearon-laitin-2003)</li>
-            <li><strong>Positive</strong> predictor of life satisfaction (happiness-economics)</li>
-            <li><strong>Positive</strong> predictor of institutional quality (institutional-quality-development)</li>
+            <li><code>customer_satisfaction</code> — overall satisfaction score (positive → retention)</li>
+            <li><code>switching_barriers</code> — contractual/procedural lock-in (positive → retention, but weaker)</li>
+            <li><code>affective_commitment</code> — emotional bond with brand (strongest individual predictor)</li>
           </ul>
-          <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">These connections emerged automatically — each PAX was created independently, but they share the same construct vocabulary.</p>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Key finding: <strong>affective commitment mediates 60% of the satisfaction-retention link</strong>. Customers don't stay because they're satisfied — they stay because they feel connected. This changes the intervention target from "make them happy" to "make them feel belonging."</p>
         </div>
       </div>
 
@@ -168,7 +173,7 @@ praxis_publish_pax("my-research-domain")
       <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
         <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
         <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
-          <p style="margin: 0; font-size: 0.875rem;">Can you run a regression on the conflict data to test the income-onset relationship?</p>
+          <p style="margin: 0; font-size: 0.875rem;">That's a great insight. Now can you build a churn prediction model using our customer data and test whether satisfaction or commitment is the better predictor?</p>
         </div>
       </div>
 
@@ -177,23 +182,43 @@ praxis_publish_pax("my-research-domain")
         <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
         <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
           <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
-            <span style="color: var(--color-accent);">praxis_run_engine</span>("logistic_regression", outcome="civil_war_onset", predictors=["per_capita_income", "mountainous_terrain"]) <span style="color: var(--color-topic);">&#10003;</span>
+            <span style="color: var(--color-accent);">praxis_run_engine</span>("logistic_regression", outcome="churn", predictors=["customer_satisfaction", "affective_commitment", "recency", "frequency", "monetary"]) <span style="color: var(--color-topic);">&#10003;</span>
           </div>
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Logistic regression on 6,327 country-year observations:</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Logistic regression on 12,400 customer records:</p>
           <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.625rem 0.75rem; font-size: 0.8rem; margin-bottom: 0.5rem;">
-            <div><code>per_capita_income</code>: <strong style="color: var(--color-topic);">&#946; = -0.42</strong> (p &lt; 0.001) — confirms negative relationship</div>
-            <div><code>mountainous_terrain</code>: <strong style="color: #ef4444;">&#946; = +0.18</strong> (p = 0.003) — rough terrain increases onset risk</div>
+            <div><code>affective_commitment</code>: <strong style="color: var(--color-topic);">&#946; = -0.71</strong> (p &lt; 0.001) — strongest predictor of retention</div>
+            <div><code>customer_satisfaction</code>: <strong style="color: var(--color-text-muted);">&#946; = -0.12</strong> (p = 0.08) — not significant after controlling for commitment</div>
+            <div><code>recency</code>: <strong style="color: #ef4444;">&#946; = +0.54</strong> (p &lt; 0.001) — longer since last purchase = higher churn risk</div>
           </div>
           <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
             <span style="color: var(--color-accent);">praxis_compare_to_literature</span> <span style="color: var(--color-topic);">&#10003;</span>
           </div>
-          <p style="margin: 0; font-size: 0.875rem;"><strong>KB Comparison:</strong> Your result <strong>agrees</strong> with 4 of 5 prior findings on income-onset. The negative coefficient matches Fearon & Laitin's original estimate. One finding (Collier & Hoeffler 2004) found a stronger effect — possible specification difference.</p>
+          <p style="margin: 0; font-size: 0.875rem;"><strong>KB Comparison:</strong> Your result <strong>confirms</strong> Gustafsson et al.'s finding — commitment dominates satisfaction as a retention driver. Your recency effect is consistent with the RFM literature. Recommendation: <strong>focus retention interventions on community and belonging programs, not just satisfaction surveys.</strong></p>
+        </div>
+      </div>
+
+      <!-- User message 4 -->
+      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">You</div>
+        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+          <p style="margin: 0; font-size: 0.875rem;">This is great. Package everything we just did into a PAX so the rest of the analytics team can use it.</p>
+        </div>
+      </div>
+
+      <!-- Agent response 4 -->
+      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-paper); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-bg); flex-shrink: 0;">AI</div>
+        <div style="background: var(--color-bg); border-radius: 0.5rem; padding: 0.75rem 1rem; max-width: 85%;">
+          <div style="background: var(--color-surface); border-radius: 0.375rem; padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+            <span style="color: var(--color-accent);">praxis_create_pax</span>("customer-churn-prediction", pax_type="enterprise", ...) <span style="color: var(--color-topic);">&#10003;</span>
+          </div>
+          <p style="margin: 0; font-size: 0.875rem;">Done. Created <strong>customer-churn-prediction</strong> PAX with 5 constructs, 4 findings, and a quick-start playbook that reproduces your analysis. Anyone on the team who installs this PAX gets your constructs, the literature findings, and the playbook — they can run the same analysis on new data without starting from scratch.</p>
         </div>
       </div>
 
     </div>
 
-    <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 1rem; font-style: italic;">This is a real workflow. The user asks questions in natural language. The agent calls Praxis tools behind the scenes — searching the KB, finding cross-domain pathways, running regressions, and comparing results to the literature. All automatically.</p>
+    <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 1rem; font-style: italic;">This is the full loop: ask a question, search the knowledge base, incorporate new research, run an analysis with automatic literature comparison, and package everything into a reusable PAX. All in natural conversation.</p>
   </div>
 
   <!-- Connect -->
