@@ -29,16 +29,20 @@ description = 'Browse and discover PAX — Portable Analytical eXpertise for str
     url = '/packs/'
     weight = 2
   [[menu.main]]
+    name = 'Graph'
+    url = '/graph/'
+    weight = 3
+  [[menu.main]]
     name = 'Constructs'
     url = '/constructs/'
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = 'About'
     url = '/about/'
-    weight = 4
+    weight = 5
   [[menu.main]]
     name = 'GitHub'
     url = 'https://github.com/JELambert/pax-market'
-    weight = 5
+    weight = 6
     [menu.main.params]
       external = true
