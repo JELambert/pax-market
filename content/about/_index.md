@@ -1,5 +1,6 @@
 ---
 title: "About PAX Marketplace"
+description: "Learn how Praxis and PAX (Portable Analytical eXpertise) make analytical intelligence composable, transferable, and governed."
 ---
 
 ## What is Praxis?

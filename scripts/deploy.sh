@@ -13,7 +13,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 PX_HOST="192.168.68.70"
-PX_PW="vaultlock1"
+PX_PW="${PX_PW:?Set PX_PW environment variable (Proxmox root password)}"
 CT_ID="110"
 
 ssh_cmd() {

@@ -9,20 +9,15 @@
   <div class="meta-row">
     <span class="badge badge-{{ .Params.pax_type }}">{{ .Params.pax_type }}</span>
     <span style="font-family: var(--font-mono);">v{{ .Params.version }}</span>
-    {{ with .Params.author }}<span>by {{ . }}</span>{{ end }}
+    {{ with .Params.author }}{{ if and (ne . "") (ne . "mcp_agent") }}<span>by {{ . }}</span>{{ end }}{{ end }}
     {{ with .Params.license }}<span>{{ . }}</span>{{ end }}
     {{ with .Params.created }}<span>{{ . }}</span>{{ end }}
-    {{ with .Params.quality_score }}{{ if gt . 0.0 }}
-    <span style="font-size: 0.8rem; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-family: var(--font-mono); {{ if ge . 40.0 }}background: rgba(52, 211, 153, 0.15); color: var(--color-topic);{{ else if ge . 25.0 }}background: rgba(250, 204, 21, 0.15); color: var(--color-enterprise);{{ else }}background: rgba(148, 163, 184, 0.15); color: var(--color-text-muted);{{ end }}">Quality: {{ printf "%.0f" . }}/100</span>
-    {{ end }}{{ end }}
+    <span style="padding: 0.0625rem 0.375rem; border-radius: 0.25rem; background: rgba(167, 139, 250, 0.15); color: var(--color-paper); font-size: 0.75rem;">Agent-extracted</span>
   </div>
 
-  <!-- Provenance -->
-  {{ if or .Params.published_at .Params.published_by }}
-  <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
-    {{ with .Params.published_at }}<span>Published: {{ . | truncate 10 "" }}</span>{{ end }}
-    {{ with .Params.published_by }}<span>By: {{ . }}</span>{{ end }}
-    <span style="padding: 0.0625rem 0.375rem; border-radius: 0.25rem; background: rgba(167, 139, 250, 0.15); color: var(--color-paper); font-size: 0.75rem;">Agent-extracted</span>
+  {{ with .Params.published_at }}
+  <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1rem;">
+    Published {{ . | truncate 10 "" }} by Praxis Agent
   </div>
   {{ end }}
 

@@ -117,21 +117,24 @@
   <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">The Knowledge Graph</h2>
   <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Every PAX published to the marketplace adds to a shared knowledge graph. Constructs are the nodes, findings are the edges, and the graph grows with every paper incorporated.</p>
 
+  {{ $graphData := hugo.Data.graph }}
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    {{ with $graphData }}
     <div style="background: var(--color-surface); padding: 1.25rem; border-radius: 0.5rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">536</div>
+      <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">{{ .stats.nodes }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Constructs</div>
     </div>
     <div style="background: var(--color-surface); padding: 1.25rem; border-radius: 0.5rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">484</div>
+      <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">{{ .stats.edges }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Finding Edges</div>
     </div>
     <div style="background: var(--color-surface); padding: 1.25rem; border-radius: 0.5rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--color-paper);">97</div>
+      <div style="font-size: 2rem; font-weight: 700; color: var(--color-paper);">{{ .stats.domains }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Domains</div>
     </div>
+    {{ end }}
     <div style="background: var(--color-surface); padding: 1.25rem; border-radius: 0.5rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--color-topic);">25</div>
+      <div style="font-size: 2rem; font-weight: 700; color: var(--color-topic);">{{ len (where .Site.RegularPages "Section" "packs") }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Published PAX</div>
     </div>
   </div>

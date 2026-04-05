@@ -281,6 +281,15 @@ def shorten_authors(author: str) -> str:
     return f"{surnames[0]} et al."
 
 
+ACRONYMS = {"ml", "ai", "gdp", "nlp", "rfm", "ols", "ucdp", "stem", "api", "sql", "csv", "rct"}
+
+
+def fix_acronyms(title: str) -> str:
+    """Fix common acronyms after title-casing (Ml → ML, Ai → AI)."""
+    words = title.split()
+    return " ".join(w.upper() if w.lower() in ACRONYMS else w for w in words)
+
+
 def derive_title(name: str, desc: str, pax_type: str, author: str) -> str:
     if pax_type == "paper" and author:
         year_match = re.search(r'(\d{4})', name)
@@ -299,7 +308,7 @@ def derive_title(name: str, desc: str, pax_type: str, author: str) -> str:
             if len(prefix) < 80:
                 return prefix
             break
-    return name.replace("-", " ").replace("_", " ").title()
+    return fix_acronyms(name.replace("-", " ").replace("_", " ").title())
 
 
 # ---------------------------------------------------------------------------
@@ -459,6 +468,10 @@ def sync_packs(db_url: str, praxis_dir: Path | None = None):
         construct_ids = provides.get("constructs", [])
         proposition_ids = provides.get("propositions", [])
         author = row.get("author") or ""
+        # Map mcp_agent to readable name
+        published_by = row.get("published_by", "mcp_agent")
+        if published_by == "mcp_agent":
+            published_by = "Praxis Agent"
 
         # Extract all knowledge from DB
         domain = extract_domain_for_pack(conn, construct_ids)
@@ -542,7 +555,7 @@ def sync_packs(db_url: str, praxis_dir: Path | None = None):
             # Publication metadata
             "quality_score": row.get("quality_score", 0) or 0,
             "published_at": str(row.get("published_at", "")),
-            "published_by": row.get("published_by", ""),
+            "published_by": published_by,
             "pub_status": row.get("pub_status", "published"),
             # Download
             "download_url": f"/packs/{name}.pax.tar.gz" if sha256 else "",

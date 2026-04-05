@@ -1,55 +1,61 @@
 # PAX Marketplace
 
-A static web catalog for browsing and discovering [PAX](https://github.com/JELambert/praxis) — Portable Analytical eXpertise for the Praxis research infrastructure.
+The catalog and distribution hub for [PAX](https://github.com/JELambert/praxis) — Portable Analytical eXpertise packages.
 
 **Live at [pax-market.com](https://pax-market.com)**
 
-## What is PAX?
+## Architecture
 
-PAX are composable, distributable packages of domain intelligence. Each PAX bundles constructs, findings, analytical engines, playbooks, and data acquisition protocols — everything needed for structured research in a domain.
+PAX Marketplace is a Hugo static site generated from the Praxis PostgreSQL database. All knowledge (constructs, findings, sources, domains) comes from the DB — the filesystem is only used for archive creation.
+
+```
+PostgreSQL (CT 105)
+  → sync-pax.py queries DB for published packs
+  → generate_registry.py creates registry.json (install contract)
+  → Hugo builds static site
+  → rsync deploys to CT 110 (nginx)
+  → Cloudflare tunnel serves pax-market.com
+```
+
+### Key Files
+- `registry.json` — thin install contract for `praxis install <name>` (served at site root)
+- `index.json` — rich agent API with full knowledge detail (schema v2.0)
+- `graph.json` — knowledge graph for the interactive D3 visualization
+- `.pax.tar.gz` archives — downloadable PAX packages with SHA-256 checksums
 
 ## Development
 
 ### Prerequisites
+- [Hugo](https://gohugo.io/) extended edition
+- Python 3.11+ with psycopg2 and PyYAML
+- Access to the Praxis PostgreSQL database (for sync)
 
-- [Hugo](https://gohugo.io/) (extended edition)
-- Python 3.11+ with PyYAML
-
-### Commands
-
+### Local Development
 ```bash
-# Local development server
-hugo server
-
-# Sync PAX from the praxis repo (generates content + archives)
-python3 scripts/sync-pax.py
-
-# Build for production
-hugo --minify
-
-# Deploy to Proxmox (sync + build + deploy)
-./scripts/deploy.sh
+hugo server    # dev server at localhost:1313
 ```
 
-### Content Pipeline
-
-PAX content pages are **generated, not hand-edited**. The source of truth is `pax.yaml` in each PAX directory:
-
-1. Run `python3 scripts/sync-pax.py` to read PAX dirs from `../praxis/pax/`
-2. Generates Hugo content pages, `.pax.tar.gz` archives, and `registry.json`
-3. Commit and push — GitHub Actions deploys to Pages automatically
-
-### Agent Publishing
-
-Agents can publish PAX directly via the Praxis MCP:
-
-```
-praxis_create_pax("my-domain", ...)    → creates PAX
-praxis_publish_pax("my-domain")        → publishes to pax-market.com
+### Rebuild & Deploy (CT 105)
+```bash
+# Triggered automatically by praxis_publish_pax()
+# Or manually:
+bash /opt/praxis/marketplace/scripts/rebuild.sh
 ```
 
-## Contributing PAX
+The rebuild script:
+1. Runs `generate_registry.py` (thin registry from DB)
+2. Runs `sync-pax.py` (rich content pages from DB)
+3. Builds Hugo
+4. Rsyncs to CT 110
 
-1. Export your PAX: `praxis_export_pax("my-pax")`
-2. Open a PR adding your PAX files
-3. Or publish directly via `praxis_publish_pax()` if you have MCP access
+### Environment Variables
+- `DATABASE_URL` — PostgreSQL connection string (required for sync)
+- `PRAXIS_ROLE=marketplace` — enables marketplace tables on CT 105
+- `PX_PW` — Proxmox password for deploy.sh (do not commit)
+
+## Agent Publishing
+```
+praxis_create_pax("my-domain", ...)     # create PAX
+praxis_publish_pax("my-domain")         # publish → auto-rebuild → live
+praxis_install_remote("my-domain")      # install from pax-market.com
+```

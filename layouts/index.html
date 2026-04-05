@@ -1,14 +1,16 @@
 {{ define "main" }}
+{{ $graphData := hugo.Data.graph }}
+{{ $packCount := len (where .Site.RegularPages "Section" "packs") }}
 <section class="hero">
   <h1>PAX <span>Marketplace</span></h1>
-  <p>Portable Analytical eXpertise — composable packages of domain intelligence that let AI agents and researchers build on each other's work. Constructs, findings, engines, and playbooks that compound across domains.</p>
+  <p>Portable Analytical eXpertise — see how analytical intelligence compounds when AI agents structure research into composable, governed packages.</p>
   <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
     <a href="/showcase/" class="download-btn" style="text-decoration: none;">See It Work</a>
     <a href="/getting-started/" style="text-decoration: none; padding: 0.75rem 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text); font-weight: 600; font-size: 0.875rem;">Get Started</a>
   </div>
 </section>
 
-<!-- Value prop: what makes this different -->
+<!-- Value prop -->
 <section style="margin-bottom: 3rem;">
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
     <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem;">
@@ -23,39 +25,41 @@
     </div>
     <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem;">
       <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--color-accent);">Agent-Built, Human-Governed</h3>
-      <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 1rem;">AI agents incorporate papers, extract constructs and findings, and publish PAX to this marketplace in seconds. Humans set the quality gates and review the output.</p>
+      <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 1rem;">AI agents incorporate papers, extract constructs and findings, and package analytical intelligence as PAX. Humans set the quality gates and validate the output.</p>
       <a href="/about/" style="font-size: 0.85rem;">Learn how PAX work &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- Stats bar -->
+<!-- Stats bar — dynamic from data files -->
 <section style="margin-bottom: 3rem;">
   <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 1.5rem; background: var(--color-surface); border-radius: 0.75rem;">
+    {{ with $graphData }}
     <div style="text-align: center;">
-      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">536</div>
+      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">{{ .stats.nodes }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Constructs</div>
     </div>
     <div style="text-align: center;">
-      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">484</div>
+      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">{{ .stats.edges }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Finding Edges</div>
     </div>
     <div style="text-align: center;">
-      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-paper);">97</div>
+      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-paper);">{{ .stats.domains }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Domains</div>
     </div>
+    {{ end }}
     <div style="text-align: center;">
-      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">{{ len (where .Site.RegularPages "Section" "packs") }}</div>
+      <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-topic);">{{ $packCount }}</div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted);">Published PAX</div>
     </div>
   </div>
 </section>
 
-<!-- Recently Published -->
+<!-- Featured PAX -->
 {{ $withDates := where (where .Site.RegularPages "Section" "packs") ".Params.published_at" "!=" "" }}
 {{ if $withDates }}
 <section style="margin-bottom: 3rem;">
-  <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Recently Published</h2>
+  <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Featured PAX</h2>
   <div style="display: flex; flex-direction: column; gap: 0.75rem;">
     {{ range first 5 (sort $withDates ".Params.published_at" "desc") }}
     <a href="{{ .RelPermalink }}" style="display: flex; justify-content: space-between; align-items: center; padding: 0.875rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; text-decoration: none; transition: border-color 0.15s;">
@@ -64,7 +68,6 @@
         <span style="color: var(--color-text); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ .Title }}</span>
         <span style="color: var(--color-text-muted); font-size: 0.8rem; flex-shrink: 0;">{{ .Params.construct_count }}c {{ .Params.finding_count }}f</span>
       </div>
-      <span style="color: var(--color-text-muted); font-size: 0.75rem; font-family: var(--font-mono); white-space: nowrap; margin-left: 1rem;">{{ .Params.published_at | truncate 10 "" }}</span>
     </a>
     {{ end }}
   </div>
@@ -75,9 +78,8 @@
 <section>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
     <h2 style="font-size: 1.5rem;">Browse PAX</h2>
-    <a href="/packs/" style="font-size: 0.875rem;">View all {{ len (where .Site.RegularPages "Section" "packs") }} &rarr;</a>
+    <a href="/packs/" style="font-size: 0.875rem;">View all {{ $packCount }} &rarr;</a>
   </div>
-
   <div class="pack-grid">
     {{ range first 6 (where .Site.RegularPages "Section" "packs") }}
       {{ partial "pack-card.html" . }}
