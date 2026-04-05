@@ -1,4 +1,4 @@
-baseURL = 'https://praxis-marketplace.github.io/'
+baseURL = 'https://jelambert.com/praxis-marketplace/'
 languageCode = 'en-us'
 title = 'Praxis Marketplace'
 description = 'Browse and discover PAX — Portable Analytical eXpertise packs for the Praxis research infrastructure'
