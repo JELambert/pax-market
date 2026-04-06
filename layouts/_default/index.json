@@ -1,5 +1,5 @@
 {{ $packs := slice }}
-{{ range where .Site.RegularPages "Section" "packs" }}
+{{ range where .Site.RegularPages "Section" "pax" }}
   {{ $pack := dict
     "name" .Params.pax_name
     "title" .Title

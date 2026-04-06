@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $graphData := hugo.Data.graph }}
-{{ $packCount := len (where .Site.RegularPages "Section" "packs") }}
+{{ $packCount := len (where .Site.RegularPages "Section" "pax") }}
 <section class="hero">
   <h1>PAX <span>Marketplace</span></h1>
   <p>Portable Analytical eXpertise — see how analytical intelligence compounds when AI agents structure research into composable, governed packages.</p>
@@ -56,7 +56,7 @@
 </section>
 
 <!-- Featured PAX -->
-{{ $withDates := where (where .Site.RegularPages "Section" "packs") ".Params.published_at" "!=" "" }}
+{{ $withDates := where (where .Site.RegularPages "Section" "pax") ".Params.published_at" "!=" "" }}
 {{ if $withDates }}
 <section style="margin-bottom: 3rem;">
   <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Featured PAX</h2>
@@ -81,7 +81,7 @@
     <a href="/pax/" style="font-size: 0.875rem;">View all {{ $packCount }} &rarr;</a>
   </div>
   <div class="pack-grid">
-    {{ range first 6 (where .Site.RegularPages "Section" "packs") }}
+    {{ range first 6 (where .Site.RegularPages "Section" "pax") }}
       {{ partial "pack-card.html" . }}
     {{ end }}
   </div>
