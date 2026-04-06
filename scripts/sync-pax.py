@@ -224,29 +224,54 @@ def extract_sources_for_findings(conn, findings: list[dict]) -> list[dict]:
     return results
 
 
-def extract_playbooks_for_pack(conn, pax_name: str, provides: dict) -> list[dict]:
-    """Get playbook summaries from provides_json.
+def extract_playbooks_for_pack(conn, pax_name: str, provides: dict, praxis_dir: Path | None = None) -> list[dict]:
+    """Get playbook summaries — from provides_json first, disk YAML as fallback.
 
-    Playbooks don't have their own DB table yet, but provides_json
-    lists playbook IDs, and engine_construct_mappings tells us which
-    engines are associated. We build summaries from what's available.
+    Reads full YAML content from disk when available for rich detail
+    (description, estimated_runtime, step_count, engines_used).
+    Falls back to minimal summaries from provides_json IDs.
     """
     playbook_ids = provides.get("playbooks", [])
+
+    # Try reading full YAML from disk for rich detail
+    pb_dir = None
+    if praxis_dir:
+        candidate = praxis_dir / "pax" / pax_name / "playbooks"
+        if candidate.is_dir():
+            pb_dir = candidate
+
+    if pb_dir:
+        results = []
+        for pb_file in sorted(pb_dir.glob("*.yaml")):
+            try:
+                with open(pb_file) as f:
+                    pb = yaml.safe_load(f) or {}
+            except Exception:
+                continue
+            steps = pb.get("steps", [])
+            engines_used = list({s.get("engine") for s in steps if isinstance(s, dict) and s.get("engine")})
+            results.append({
+                "id": pb.get("id", pb_file.stem),
+                "display_name": pb.get("display_name", pb_file.stem.replace("_", " ").title()),
+                "description": pb.get("description", ""),
+                "estimated_runtime": pb.get("estimated_runtime", ""),
+                "step_count": len(steps),
+                "engines_used": engines_used,
+            })
+        if results:
+            return results
+
+    # Fallback: minimal summaries from provides_json IDs
     if not playbook_ids:
         return []
-    # We know the playbook IDs but not their full YAML content from DB.
-    # Build minimal summaries using what we have.
-    results = []
-    for pb_id in playbook_ids:
-        results.append({
-            "id": pb_id,
-            "display_name": pb_id.replace("_", " ").replace("-", " ").title(),
-            "description": "",
-            "estimated_runtime": "",
-            "step_count": 0,
-            "engines_used": [],
-        })
-    return results
+    return [{
+        "id": pb_id,
+        "display_name": pb_id.replace("_", " ").replace("-", " ").title(),
+        "description": "",
+        "estimated_runtime": "",
+        "step_count": 0,
+        "engines_used": [],
+    } for pb_id in playbook_ids]
 
 
 def extract_engines_for_pack(conn, pax_name: str, provides: dict) -> list[str]:
@@ -494,7 +519,7 @@ def sync_packs(db_url: str, praxis_dir: Path | None = None):
 
         # Engines and playbooks from DB
         engine_names = extract_engines_for_pack(conn, name, provides)
-        playbooks_detail = extract_playbooks_for_pack(conn, name, provides)
+        playbooks_detail = extract_playbooks_for_pack(conn, name, provides, praxis_dir)
         playbook_names = [p["id"] for p in playbooks_detail]
         has_data = extract_data_sources_for_pack(conn, name)
 
