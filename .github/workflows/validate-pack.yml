@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,7 +24,7 @@ jobs:
       - name: Validate packs in PR
         run: |
           python3 -c "
-          import json, sys, os, yaml
+          import json, sys, os, yaml, subprocess
           from pathlib import Path
 
           REQUIRED_MANIFEST = ['name', 'version', 'description', 'pax_type', 'schema_version']
@@ -30,15 +32,28 @@ jobs:
           errors = []
           warnings = []
 
-          # Find changed pack directories
-          packs_dir = Path('pax')
-          if not packs_dir.is_dir():
-              print('No packs/ directory found')
+          # Find only pack directories changed in this PR
+          result = subprocess.run(
+              ['git', 'diff', '--name-only', 'origin/main...HEAD'],
+              capture_output=True, text=True
+          )
+          changed_files = result.stdout.strip().splitlines()
+          changed_packs = set()
+          for f in changed_files:
+              parts = Path(f).parts
+              if len(parts) >= 2 and parts[0] == 'pax':
+                  changed_packs.add(parts[1])
+
+          if not changed_packs:
+              print('No pax/ changes in this PR — skipping validation')
               sys.exit(0)
 
-          for pack_dir in sorted(packs_dir.iterdir()):
+          print(f'Validating {len(changed_packs)} changed pack(s): {sorted(changed_packs)}')
+
+          for pack_name in sorted(changed_packs):
+              pack_dir = Path('pax') / pack_name
               if not pack_dir.is_dir():
-                  continue
+                  continue  # deleted pack, skip
               manifest_path = pack_dir / 'pax.yaml'
               if not manifest_path.exists():
                   errors.append(f'{pack_dir.name}: missing pax.yaml')
