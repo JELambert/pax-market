@@ -30,4 +30,4 @@ provides:
   - dunn_2020_matbench
   - deng_2023_chgnet
 schema_version: '1.0'
-version: 1.0.1
+version: 1.0.2
