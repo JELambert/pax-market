@@ -1,61 +1,70 @@
 # PAX Marketplace
 
-The catalog and distribution hub for [PAX](https://github.com/JELambert/praxis) — Portable Analytical eXpertise packages.
+The git-based registry and catalog for [PAX](https://github.com/JELambert/praxis) — Portable Analytical eXpertise packages.
 
 **Live at [pax-market.com](https://pax-market.com)**
 
 ## Architecture
 
-PAX Marketplace is a Hugo static site generated from the Praxis PostgreSQL database. All knowledge (constructs, findings, sources, domains) comes from the DB — the filesystem is only used for archive creation.
+This repo IS the source of truth for published PAX. Pack directories are committed directly to `packs/<name>/`. No database dependency for builds.
 
 ```
-PostgreSQL (CT 105)
-  → sync-pax.py queries DB for published packs
-  → generate_registry.py creates registry.json (install contract)
-  → Hugo builds static site
-  → rsync deploys to CT 110 (nginx)
-  → Cloudflare tunnel serves pax-market.com
+packs/                        ← Source of truth (committed to git)
+  happiness-economics/
+    pax.yaml                  ← Pack manifest
+    knowledge/
+      domain.json             ← Domain metadata
+      constructs.json         ← Construct definitions
+      findings.json           ← Empirical findings
+      sources.json            ← Bibliographic sources
+    playbooks/
+      quick_start.yaml        ← Executable analysis recipe
+
+scripts/generate-from-git.py  ← Reads packs/*/, generates everything
+registry.json                 ← Thin install contract (at site root)
+data/constructs.json          ← Cross-pack construct index
 ```
 
-### Key Files
-- `registry.json` — thin install contract for `praxis install <name>` (served at site root)
-- `index.json` — rich agent API with full knowledge detail (schema v2.0)
-- `graph.json` — knowledge graph for the interactive D3 visualization
-- `.pax.tar.gz` archives — downloadable PAX packages with SHA-256 checksums
+## How Packs Get Published
+
+1. **Agent creates a pack** in their local Praxis instance
+2. **Agent calls `praxis_publish_pax()`** → creates a PR on this repo adding `packs/<name>/`
+3. **CI validates** the PR (schema, quality score, construct conflicts)
+4. **On merge** → CI rebuilds Hugo site → deploys to pax-market.com
 
 ## Development
 
 ### Prerequisites
 - [Hugo](https://gohugo.io/) extended edition
-- Python 3.11+ with psycopg2 and PyYAML
-- Access to the Praxis PostgreSQL database (for sync)
+- Python 3.11+ with PyYAML
 
-### Local Development
+### Commands
 ```bash
-hugo server    # dev server at localhost:1313
+# Generate content from pack directories (no DB needed)
+python3 scripts/generate-from-git.py
+
+# Local dev server
+hugo server
+
+# Build for production
+hugo --minify
 ```
 
-### Rebuild & Deploy (CT 105)
-```bash
-# Triggered automatically by praxis_publish_pax()
-# Or manually:
-bash /opt/praxis/marketplace/scripts/rebuild.sh
-```
-
-The rebuild script:
-1. Runs `generate_registry.py` (thin registry from DB)
-2. Runs `sync-pax.py` (rich content pages from DB)
-3. Builds Hugo
-4. Rsyncs to CT 110
-
-### Environment Variables
-- `DATABASE_URL` — PostgreSQL connection string (required for sync)
-- `PRAXIS_ROLE=marketplace` — enables marketplace tables on CT 105
-- `PX_PW` — Proxmox password for deploy.sh (do not commit)
+### CI Workflows
+- **validate-pack.yml** — Runs on PRs to `packs/**`. Validates schema, JSON, quality.
+- **deploy-marketplace.yml** — Runs on push to main. Generates content, builds Hugo, deploys.
 
 ## Agent Publishing
 ```
-praxis_create_pax("my-domain", ...)     # create PAX
-praxis_publish_pax("my-domain")         # publish → auto-rebuild → live
-praxis_install_remote("my-domain")      # install from pax-market.com
+praxis_create_pax("my-domain", ...)     # create in local DB
+praxis_publish_pax("my-domain")         # creates PR on this repo
+# → CI validates → merge → live on pax-market.com
+```
+
+## Installing PAX
+```
+praxis_install_remote("happiness-economics")
+# → fetches registry.json from pax-market.com
+# → downloads .pax.tar.gz
+# → installs to local workspace
 ```

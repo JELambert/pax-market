@@ -1,0 +1,98 @@
+name: Validate PAX Pack
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['packs/**']
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate packs in PR
+        run: |
+          python3 -c "
+          import json, sys, os, yaml
+          from pathlib import Path
+
+          REQUIRED_MANIFEST = ['name', 'version', 'description', 'pax_type', 'schema_version']
+          VALID_TYPES = ['paper', 'topic', 'field', 'engine', 'enterprise']
+          errors = []
+          warnings = []
+
+          # Find changed pack directories
+          packs_dir = Path('packs')
+          if not packs_dir.is_dir():
+              print('No packs/ directory found')
+              sys.exit(0)
+
+          for pack_dir in sorted(packs_dir.iterdir()):
+              if not pack_dir.is_dir():
+                  continue
+              manifest_path = pack_dir / 'pax.yaml'
+              if not manifest_path.exists():
+                  errors.append(f'{pack_dir.name}: missing pax.yaml')
+                  continue
+
+              # Parse manifest
+              try:
+                  with open(manifest_path) as f:
+                      manifest = yaml.safe_load(f)
+              except Exception as e:
+                  errors.append(f'{pack_dir.name}: invalid pax.yaml: {e}')
+                  continue
+
+              # Required fields
+              for field in REQUIRED_MANIFEST:
+                  if not manifest.get(field):
+                      errors.append(f'{pack_dir.name}: missing required field: {field}')
+
+              # Valid pax_type
+              if manifest.get('pax_type') and manifest['pax_type'] not in VALID_TYPES:
+                  errors.append(f'{pack_dir.name}: invalid pax_type: {manifest[\"pax_type\"]}')
+
+              # Knowledge files valid JSON
+              knowledge_dir = pack_dir / 'knowledge'
+              if knowledge_dir.is_dir():
+                  for json_file in knowledge_dir.glob('*.json'):
+                      try:
+                          with open(json_file) as f:
+                              json.load(f)
+                      except json.JSONDecodeError as e:
+                          errors.append(f'{pack_dir.name}/knowledge/{json_file.name}: invalid JSON: {e}')
+
+              # Quality check: at least 1 construct
+              constructs_file = knowledge_dir / 'constructs.json' if knowledge_dir.is_dir() else None
+              if constructs_file and constructs_file.exists():
+                  try:
+                      with open(constructs_file) as f:
+                          constructs = json.load(f)
+                      if isinstance(constructs, list) and len(constructs) == 0:
+                          warnings.append(f'{pack_dir.name}: no constructs defined')
+                  except Exception:
+                      pass
+
+          # Report
+          if warnings:
+              print('Warnings:')
+              for w in warnings:
+                  print(f'  ⚠ {w}')
+
+          if errors:
+              print('Errors:')
+              for e in errors:
+                  print(f'  ✗ {e}')
+              sys.exit(1)
+          else:
+              print(f'✓ All packs valid')
+          "
