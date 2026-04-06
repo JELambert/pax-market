@@ -7,10 +7,10 @@ Git-based registry and Hugo static site for PAX (Portable Analytical eXpertise) 
 
 ## Architecture
 ```
-packs/<name>/                  ← Source of truth (committed to git)
+pax/<name>/                  ← Source of truth (committed to git)
   pax.yaml + knowledge/*.json + playbooks/*.yaml
 
-scripts/generate-from-git.py   ← Reads packs/*/, generates all content
+scripts/generate-from-git.py   ← Reads pax/*/, generates all content
   → content/packs/<name>/index.md  (Hugo content pages)
   → data/registry.json             (thin install contract)
   → data/constructs.json           (cross-pack construct index)
@@ -25,7 +25,7 @@ Hugo builds static site → deployed to CT 110 via Cloudflare tunnel
 - `hugo --minify` — Production build
 
 ## How Packs Are Published
-1. Agent calls `praxis_publish_pax()` → creates a PR adding `packs/<name>/`
+1. Agent calls `praxis_publish_pax()` → creates a PR adding `pax/<name>/`
 2. CI validates (`.github/workflows/validate-pack.yml`)
 3. On merge, CI rebuilds (`.github/workflows/deploy-marketplace.yml`)
 4. No DB, no CT 105 rebuild.sh — everything from git
@@ -37,7 +37,7 @@ Hugo builds static site → deployed to CT 110 via Cloudflare tunnel
 
 ## Project Structure
 ```
-packs/                  ← 61 PAX directories (source of truth)
+pax/                    ← 61 PAX directories (source of truth)
 content/packs/          ← Hugo content pages (generated)
 layouts/                ← Hugo templates
 static/packs/           ← .pax.tar.gz archives (generated)
