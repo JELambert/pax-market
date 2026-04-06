@@ -1,10 +1,57 @@
-description: 'Three-step workflow: stability classification, band gap regression,
-  and random forest multi-property prediction on WBM-structured materials data.'
+description: 'Five-step workflow covering the full Matbench benchmark methodology:
+  from linear baselines through gradient boosting (the key tabular benchmark) to random
+  forest stability classification. GNN-based engines (CGCNN, MEGNet, MACE-MP, CHGNet)
+  are cataloged but require external PyTorch infrastructure to run.'
 id: quick_start
 name: Materials Discovery Quick Start
 steps:
-- description: Logistic regression predicting binary thermodynamic stability from
-    formation energy and hull distance.
+- description: Linear baseline predicting band gap from formation energy and hull
+    distance. Represents the composition-only linear model class in Matbench — the
+    floor that GNNs must beat.
+  engine: ridge_regression
+  expectations:
+  - construct: formation_energy_per_atom
+    direction: negative
+    rationale: More strongly bound materials tend toward wider band gaps
+  id: ridge_baseline_band_gap
+  name: Ridge Regression Band Gap Baseline
+  outcome: band_gap
+  predictors:
+  - formation_energy_per_atom
+  - energy_above_convex_hull
+- description: Gradient boosted trees predicting formation energy from hull distance
+    and band gap. Represents the Magpie+GBT approach from Matbench — the strongest
+    tabular baseline and competitive with early GNNs on composition-smooth properties.
+  engine: gradient_boosting
+  expectations:
+  - construct: energy_above_convex_hull
+    direction: positive
+    rationale: Hull distance is derived from formation energy — strong positive relationship
+      expected
+  - construct: band_gap
+    direction: negative
+    rationale: Wide-gap insulators tend to have more negative formation energies
+  id: gradient_boosting_formation_energy
+  name: Gradient Boosting Formation Energy Prediction
+  outcome: formation_energy_per_atom
+  predictors:
+  - energy_above_convex_hull
+  - band_gap
+- description: OLS regression predicting band gap from formation energy and hull distance.
+  engine: ols_regression
+  expectations:
+  - construct: formation_energy_per_atom
+    direction: negative
+    rationale: More strongly bound materials tend to be wider-gap insulators
+  id: band_gap_regression
+  name: OLS Band Gap Regression
+  outcome: band_gap
+  predictors:
+  - formation_energy_per_atom
+  - energy_above_convex_hull
+- description: 'Logistic regression predicting binary thermodynamic stability from
+    formation energy and hull distance. NOTE: requires sufficient class variance —
+    may produce singular matrix on small or perfectly separable samples.'
   engine: logistic_regression
   expectations:
   - construct: energy_above_convex_hull
@@ -19,20 +66,9 @@ steps:
   predictors:
   - formation_energy_per_atom
   - energy_above_convex_hull
-- description: OLS regression predicting band gap from formation energy and hull distance.
-  engine: ols_regression
-  expectations:
-  - construct: formation_energy_per_atom
-    direction: negative
-    rationale: More strongly bound materials tend to be wider-gap insulators
-  id: band_gap_regression
-  name: Band Gap Regression
-  outcome: band_gap
-  predictors:
-  - formation_energy_per_atom
-  - energy_above_convex_hull
-- description: Random forest classifier predicting thermodynamic stability from all
-    available material-level features.
+- description: Random forest classifier using all available features. Represents the
+    ensemble tree baseline in Matbench. Feature importance reveals whether hull distance
+    dominates over band gap and formation energy.
   engine: random_forest
   expectations:
   - construct: energy_above_convex_hull
