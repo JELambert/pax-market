@@ -43,7 +43,7 @@
   <div class="section">
     <h2 style="display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-family: var(--font-mono); font-size: 0.85rem; padding: 0.25rem 0.5rem; background: rgba(52, 211, 153, 0.15); color: var(--color-topic); border-radius: 0.25rem;">GET</span>
-      /packs/index.json
+      /pax/index.json
     </h2>
     <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Same as above — available at the section level.</p>
   </div>
@@ -75,14 +75,14 @@
   <div class="section">
     <h2 style="display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-family: var(--font-mono); font-size: 0.85rem; padding: 0.25rem 0.5rem; background: rgba(52, 211, 153, 0.15); color: var(--color-topic); border-radius: 0.25rem;">GET</span>
-      /packs/{name}.pax.tar.gz
+      /pax/{name}.pax.tar.gz
     </h2>
     <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Downloadable PAX archive. Contains <code>pax.yaml</code>, <code>knowledge/</code>, <code>engines/</code>, <code>playbooks/</code>, and <code>data/</code>. Verify integrity with the <code>download_sha256</code> from the registry.</p>
 
     <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem;">
       <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Install a PAX</div>
       <pre style="background: var(--color-bg); padding: 1rem; border-radius: 0.375rem; overflow-x: auto; margin: 0;"><code style="font-size: 0.8rem; line-height: 1.6; color: var(--color-text);"># Download
-curl -O https://pax-market.com/packs/happiness-economics.pax.tar.gz
+curl -O https://pax-market.com/pax/happiness-economics.pax.tar.gz
 
 # Import into Praxis
 praxis_import_pax("happiness-economics.pax.tar.gz", install=True)</code></pre>

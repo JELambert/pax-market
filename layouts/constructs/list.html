@@ -27,7 +27,7 @@
     {{ end }}
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
       {{ range $c.packs }}
-      <a href="/packs/{{ .pack }}/" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.625rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 0.375rem; font-size: 0.8rem; color: var(--color-text); text-decoration: none; transition: border-color 0.15s;">
+      <a href="/pax/{{ .pack }}/" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.625rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 0.375rem; font-size: 0.8rem; color: var(--color-text); text-decoration: none; transition: border-color 0.15s;">
         {{ .pack_title }}
         {{ if eq .direction "positive" }}<span style="color: var(--color-topic);">+</span>{{ else if eq .direction "negative" }}<span style="color: #ef4444;">−</span>{{ else if eq .direction "null" }}<span style="color: var(--color-text-muted);">∅</span>{{ end }}
       </a>

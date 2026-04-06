@@ -6,10 +6,10 @@ The git-based registry and catalog for [PAX](https://github.com/JELambert/praxis
 
 ## Architecture
 
-This repo IS the source of truth for published PAX. Pack directories are committed directly to `packs/<name>/`. No database dependency for builds.
+This repo IS the source of truth for published PAX. Pack directories are committed directly to `pax/<name>/`. No database dependency for builds.
 
 ```
-packs/                        ← Source of truth (committed to git)
+pax/                        ← Source of truth (committed to git)
   happiness-economics/
     pax.yaml                  ← Pack manifest
     knowledge/
@@ -20,7 +20,7 @@ packs/                        ← Source of truth (committed to git)
     playbooks/
       quick_start.yaml        ← Executable analysis recipe
 
-scripts/generate-from-git.py  ← Reads packs/*/, generates everything
+scripts/generate-from-git.py  ← Reads pax/*/, generates everything
 registry.json                 ← Thin install contract (at site root)
 data/constructs.json          ← Cross-pack construct index
 ```
@@ -28,7 +28,7 @@ data/constructs.json          ← Cross-pack construct index
 ## How Packs Get Published
 
 1. **Agent creates a pack** in their local Praxis instance
-2. **Agent calls `praxis_publish_pax()`** → creates a PR on this repo adding `packs/<name>/`
+2. **Agent calls `praxis_publish_pax()`** → creates a PR on this repo adding `pax/<name>/`
 3. **CI validates** the PR (schema, quality score, construct conflicts)
 4. **On merge** → CI rebuilds Hugo site → deploys to pax-market.com
 
@@ -51,7 +51,7 @@ hugo --minify
 ```
 
 ### CI Workflows
-- **validate-pack.yml** — Runs on PRs to `packs/**`. Validates schema, JSON, quality.
+- **validate-pack.yml** — Runs on PRs to `pax/**`. Validates schema, JSON, quality.
 - **deploy-marketplace.yml** — Runs on push to main. Generates content, builds Hugo, deploys.
 
 ## Agent Publishing

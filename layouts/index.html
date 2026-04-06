@@ -78,7 +78,7 @@
 <section>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
     <h2 style="font-size: 1.5rem;">Browse PAX</h2>
-    <a href="/packs/" style="font-size: 0.875rem;">View all {{ $packCount }} &rarr;</a>
+    <a href="/pax/" style="font-size: 0.875rem;">View all {{ $packCount }} &rarr;</a>
   </div>
   <div class="pack-grid">
     {{ range first 6 (where .Site.RegularPages "Section" "packs") }}

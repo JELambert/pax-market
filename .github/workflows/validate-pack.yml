@@ -3,7 +3,7 @@ name: Validate PAX Pack
 on:
   pull_request:
     branches: [main]
-    paths: ['packs/**']
+    paths: ['pax/**']
 
 jobs:
   validate:
@@ -31,7 +31,7 @@ jobs:
           warnings = []
 
           # Find changed pack directories
-          packs_dir = Path('packs')
+          packs_dir = Path('pax')
           if not packs_dir.is_dir():
               print('No packs/ directory found')
               sys.exit(0)

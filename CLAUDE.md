@@ -11,16 +11,16 @@ pax/<name>/                  ← Source of truth (committed to git)
   pax.yaml + knowledge/*.json + playbooks/*.yaml
 
 scripts/generate-from-git.py   ← Reads pax/*/, generates all content
-  → content/packs/<name>/index.md  (Hugo content pages)
+  → content/pax/<name>/index.md    (Hugo content pages)
   → data/registry.json             (thin install contract)
   → data/constructs.json           (cross-pack construct index)
-  → static/packs/<name>.pax.tar.gz (downloadable archives)
+  → static/pax/<name>.pax.tar.gz  (downloadable archives)
 
 Hugo builds static site → deployed to CT 110 via Cloudflare tunnel
 ```
 
 ## Key Commands
-- `python3 scripts/generate-from-git.py` — Regenerate all content from packs/
+- `python3 scripts/generate-from-git.py` — Regenerate all content from pax/
 - `hugo server` — Local dev server at localhost:1313
 - `hugo --minify` — Production build
 
@@ -38,12 +38,12 @@ Hugo builds static site → deployed to CT 110 via Cloudflare tunnel
 ## Project Structure
 ```
 pax/                    ← 61 PAX directories (source of truth)
-content/packs/          ← Hugo content pages (generated)
+content/pax/            ← Hugo content pages (generated)
 layouts/                ← Hugo templates
-static/packs/           ← .pax.tar.gz archives (generated)
+static/pax/             ← .pax.tar.gz archives (generated)
 data/                   ← registry.json + constructs.json (generated)
 scripts/
-  generate-from-git.py  ← THE generator (reads packs/, writes everything)
+  generate-from-git.py  ← THE generator (reads pax/, writes everything)
   sync-pax.py           ← LEGACY (DB-based, being removed)
   rebuild.sh            ← LEGACY (CT 105 rebuild, being removed)
   deploy.sh             ← Local deploy helper

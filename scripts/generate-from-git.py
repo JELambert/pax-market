@@ -2,11 +2,11 @@
 """
 generate-from-git.py — Generate marketplace content from pack directories in the repo.
 
-Reads packs/*/pax.yaml + knowledge/*.json (committed to git) and generates:
-  1. Hugo content pages (content/packs/<name>/index.md)
+Reads pax/*/pax.yaml + knowledge/*.json (committed to git) and generates:
+  1. Hugo content pages (content/pax/<name>/index.md)
   2. Registry JSON (data/registry.json) — thin install contract
   3. Construct index (data/constructs.json) — cross-pack construct map
-  4. .pax.tar.gz archives (static/packs/<name>.pax.tar.gz)
+  4. .pax.tar.gz archives (static/pax/<name>.pax.tar.gz)
 
 NO database dependency. Everything comes from the git repo.
 
@@ -26,9 +26,9 @@ import yaml
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-PACKS_DIR = REPO_ROOT / "packs"
-CONTENT_DIR = REPO_ROOT / "content" / "packs"
-STATIC_DIR = REPO_ROOT / "static" / "packs"
+PACKS_DIR = REPO_ROOT / "pax"
+CONTENT_DIR = REPO_ROOT / "content" / "pax"
+STATIC_DIR = REPO_ROOT / "static" / "pax"
 DATA_DIR = REPO_ROOT / "data"
 
 MARKETPLACE_BASE_URL = "https://pax-market.com"
@@ -288,7 +288,7 @@ def process_pack(pack_dir: Path) -> dict | None:
         "propositions_detail": propositions_detail,
         "sources_detail": sources_detail,
         "playbooks_detail": playbooks_detail,
-        "download_url": f"{MARKETPLACE_BASE_URL}/packs/{name}.pax.tar.gz",
+        "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.pax.tar.gz",
         "download_sha256": sha256,
         "download_size": archive_size,
         "published_by": "Praxis Agent",
@@ -468,7 +468,7 @@ def generate_registry(all_packs: list[dict]) -> dict:
 
 def main():
     if not PACKS_DIR.is_dir():
-        print(f"No packs/ directory found at {PACKS_DIR}")
+        print(f"No pax/ directory found at {PACKS_DIR}")
         sys.exit(1)
 
     print(f"Scanning {PACKS_DIR}...")
