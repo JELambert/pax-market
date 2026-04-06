@@ -1,0 +1,12 @@
+{
+  "id": "ml_materials_discovery",
+  "display_name": "ML for Materials Discovery",
+  "description": "Application of machine learning \u2014 particularly graph neural networks and gradient boosting on compositional/structural descriptors \u2014 to predict materials properties (formation energy, band gap, elastic moduli, thermodynamic stability) and accelerate computational screening of novel inorganic crystals. Benchmarked against DFT ground truth on standardized datasets from the Materials Project.",
+  "temporal_scope": "2020\u2013present (ML era of materials informatics)",
+  "population": "Inorganic crystalline materials (oxides, sulfides, intermetallics, etc.); benchmark datasets derived from the Materials Project and WBM database (256,963 materials)",
+  "created_at": "2026-04-06T19:46:09.913886+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "material"
+}

@@ -1,0 +1,54 @@
+description: 'Three-step analysis workflow: stability classification, formation energy
+  regression, and random forest multi-property prediction on WBM-structured materials
+  data.'
+id: quick_start
+name: Materials Discovery Quick Start
+steps:
+- description: Logistic regression predicting binary thermodynamic stability from
+    formation energy and hull distance. Tests whether the two primary DFT-derived
+    features are sufficient to classify stable materials.
+  engine: logistic_regression
+  expectations:
+  - construct: energy_above_convex_hull
+    direction: negative
+    rationale: Higher hull distance means less stable — expect strong negative coefficient
+      on stability outcome
+  - construct: formation_energy_per_atom
+    direction: negative
+    rationale: More negative formation energy correlates with thermodynamic stability
+  id: stability_classification
+  name: Thermodynamic Stability Classification
+  outcome: thermodynamic_stability
+  predictors:
+  - formation_energy_per_atom
+  - energy_above_convex_hull
+- description: OLS regression predicting band gap from formation energy. Tests whether
+    thermodynamic stability (formation energy) carries signal about electronic structure.
+  engine: ols_regression
+  expectations:
+  - construct: formation_energy_per_atom
+    direction: negative
+    rationale: More strongly bound materials (more negative Eform) tend to be wider-gap
+      insulators
+  id: band_gap_regression
+  name: Band Gap Regression
+  outcome: band_gap
+  predictors:
+  - formation_energy_per_atom
+  - energy_above_convex_hull
+- description: Random forest classifier predicting thermodynamic stability from all
+    available material-level features. Captures nonlinear interactions between formation
+    energy, hull distance, and band gap.
+  engine: random_forest
+  expectations:
+  - construct: energy_above_convex_hull
+    direction: negative
+    rationale: Hull distance is the definitive stability criterion — expect it to
+      dominate feature importance
+  id: rf_stability
+  name: Random Forest Stability Model
+  outcome: thermodynamic_stability
+  predictors:
+  - formation_energy_per_atom
+  - energy_above_convex_hull
+  - band_gap
