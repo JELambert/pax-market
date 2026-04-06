@@ -1,0 +1,35 @@
+[
+  {
+    "id": "riebesell_2025_matbench_discovery",
+    "source_type": "journal_article",
+    "title": "A framework to evaluate machine learning crystal stability predictions",
+    "authors": "Riebesell, J., Goodall, R.E.A., Jain, A., Benner, P., Persson, K.A., Lee, A.A.",
+    "year": 2025,
+    "doi": "10.1038/s42256-025-00afz",
+    "abstract": null,
+    "added_at": "2026-04-06T19:46:09.854438+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "dunn_2020_matbench",
+    "source_type": "journal_article",
+    "title": "Benchmarking materials property prediction methods: the Matbench test set and Automatminer reference algorithm",
+    "authors": "Dunn, A., Wang, Q., Ganose, A., Dopp, D., Jain, A.",
+    "year": 2020,
+    "doi": "10.1038/s41524-020-00406-3",
+    "abstract": null,
+    "added_at": "2026-04-06T19:46:09.867692+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "deng_2023_chgnet",
+    "source_type": "journal_article",
+    "title": "CHGNet as a pretrained universal neural network potential for charge-informed atomistic modelling",
+    "authors": "Deng, B., Zhong, P., Jun, K., Riebesell, J., Han, K., Bartel, C.J., Ceder, G.",
+    "year": 2023,
+    "doi": "10.1038/s42256-023-00716-3",
+    "abstract": null,
+    "added_at": "2026-04-06T19:46:09.882748+00:00",
+    "added_by": "seed_loader"
+  }
+]
