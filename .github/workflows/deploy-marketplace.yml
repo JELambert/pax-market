@@ -1,4 +1,4 @@
-name: Deploy PAX Marketplace
+name: Verify Marketplace Build
 
 on:
   push:
@@ -7,15 +7,13 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "deploy"
-  cancel-in-progress: false
+  group: "build-verify"
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build-verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +26,7 @@ jobs:
       - name: Install Python dependencies
         run: pip install pyyaml
 
-      - name: Generate marketplace content from packs/
+      - name: Generate marketplace content from pax/
         run: python3 scripts/generate-from-git.py
 
       - name: Setup Hugo
@@ -40,27 +38,16 @@ jobs:
       - name: Build Hugo
         run: hugo --minify
 
-      - name: Verify build
+      - name: Verify build output
         run: |
           if [ ! -f public/index.html ]; then
             echo "ERROR: Hugo build produced no index.html"
             exit 1
           fi
-          echo "Build OK: $(find public -name '*.html' | wc -l) HTML files"
-
-      - name: Deploy to CT 110
-        if: github.event_name == 'push'
-        env:
-          DEPLOY_KEY: ${{ secrets.CT110_SSH_KEY }}
-        run: |
-          if [ -z "$DEPLOY_KEY" ]; then
-            echo "CT110_SSH_KEY not set — skipping rsync deploy"
-            echo "Site built successfully in public/"
-          else
-            mkdir -p ~/.ssh
-            echo "$DEPLOY_KEY" > ~/.ssh/id_ed25519
-            chmod 600 ~/.ssh/id_ed25519
-            ssh-keyscan -H 192.168.68.110 >> ~/.ssh/known_hosts 2>/dev/null
-            rsync -a --delete public/ root@192.168.68.110:/var/www/marketplace/
-            echo "Deployed to CT 110"
+          if [ ! -f public/registry.json ]; then
+            echo "ERROR: registry.json missing from public/"
+            exit 1
           fi
+          HTML_COUNT=$(find public -name '*.html' | wc -l | tr -d ' ')
+          PACK_COUNT=$(find public/pax -name '*.pax.tar.gz' 2>/dev/null | wc -l | tr -d ' ')
+          echo "Build OK: ${HTML_COUNT} HTML files, ${PACK_COUNT} pack archives"

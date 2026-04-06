@@ -26,14 +26,22 @@ Hugo builds static site → deployed to CT 110 via Cloudflare tunnel
 
 ## How Packs Are Published
 1. Agent calls `praxis_publish_pax()` → creates a PR adding `pax/<name>/`
-2. CI validates (`.github/workflows/validate-pack.yml`)
-3. On merge, CI rebuilds (`.github/workflows/deploy-marketplace.yml`)
-4. No DB, no CT 105 rebuild.sh — everything from git
+2. `validate-pack.yml` validates schema on the PR (must pass before merge)
+3. PR merged to `main` → `deploy-marketplace.yml` verifies the build on GitHub (no deploy)
+4. CT 105 autodeploy timer fires within 5 min → generate + hugo + rsync to CT 110 → live
+
+## Deploy Architecture
+- **GitHub Actions** = PR validation + build verification only (cannot reach LAN IPs)
+- **CT 105** = actual deploy: polls GitHub every 5 min, builds, rsyncs to CT 110
+  - Script: `scripts/ct105-autodeploy.sh` (systemd timer via `scripts/systemd/`)
+  - Hugo: `/opt/praxis/bin/hugo`
+  - Python: `/opt/pax-market/.venv/bin/python` (falls back to system python3)
+- **CT 110** = nginx serving `/var/www/marketplace/` via Cloudflare tunnel
+- **Emergency local deploy**: `PX_PW=xxx ./scripts/deploy.sh`
 
 ## Legacy (being deprecated)
 - `scripts/sync-pax.py` — old DB-based sync (replaced by generate-from-git.py)
-- `scripts/rebuild.sh` — old CT 105 rebuild script (replaced by GitHub Actions)
-- `.venv` on CT 105 — no longer needed for marketplace builds
+- `scripts/rebuild.sh` — old CT 105 rebuild script (replaced by ct105-autodeploy.sh)
 
 ## Project Structure
 ```
