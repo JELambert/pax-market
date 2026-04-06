@@ -1,0 +1,46 @@
+[
+  {
+    "id": "lee_2003",
+    "source_type": "journal_article",
+    "title": "The Demographic Transition: Three Centuries of Fundamental Change",
+    "authors": "Ronald Lee",
+    "year": 2003,
+    "doi": "10.1257/089533003772034943",
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:16.913234+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "galor_weil_2000",
+    "source_type": "journal_article",
+    "title": "Population, Technology, and Growth: From Malthusian Stagnation to the Demographic Transition and Beyond",
+    "authors": "Oded Galor, David N. Weil",
+    "year": 2000,
+    "doi": "10.1257/aer.90.4.806",
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:16.929128+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "bloom_2003",
+    "source_type": "journal_article",
+    "title": "The Demographic Dividend: A New Perspective on the Economic Consequences of Population Change",
+    "authors": "David Bloom, David Canning, Jaypee Sevilla",
+    "year": 2003,
+    "doi": "10.7249/MR1274",
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:16.944160+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "dyson_2010",
+    "source_type": "book",
+    "title": "Population and Development: The Demographic Transition",
+    "authors": "Tim Dyson",
+    "year": 2010,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:16.959283+00:00",
+    "added_by": "seed_loader"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "disaster_economic_damage_gdp",
+    "display_name": "Disaster Economic Damage as Share of GDP",
+    "construct_type": "outcome",
+    "definition": "Total direct economic losses from natural disasters expressed as a percentage of national gross domestic product, including infrastructure damage and crop losses",
+    "created_at": "2026-04-05T23:12:33.281550+00:00",
+    "source_id": "emdat_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "disaster_event_frequency",
+    "display_name": "Disaster Event Frequency",
+    "construct_type": "quantifiable",
+    "definition": "Number of recorded natural disaster events per year meeting minimum thresholds for deaths, affected population, or economic damage, tracked through EM-DAT database",
+    "created_at": "2026-04-05T23:12:33.322884+00:00",
+    "source_id": "emdat_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "early_warning_system_coverage",
+    "display_name": "Early Warning System Coverage",
+    "construct_type": "quantifiable",
+    "definition": "Proportion of population covered by multi-hazard early warning systems that provide timely alerts for impending natural disasters",
+    "created_at": "2026-04-05T23:12:33.365099+00:00",
+    "source_id": "emdat_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "disaster_preparedness_spending",
+    "display_name": "Disaster Preparedness Spending",
+    "construct_type": "quantifiable",
+    "definition": "Government expenditure on disaster risk reduction and preparedness measures as a share of total government spending or GDP, including early warning, building codes, and emergency response capacity",
+    "created_at": "2026-04-05T23:12:33.450090+00:00",
+    "source_id": "emdat_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "disaster_deaths_annual",
+    "display_name": "Annual Deaths from Natural Disasters",
+    "construct_type": "outcome",
+    "definition": "Total number of people killed annually as a direct result of natural disasters including earthquakes, floods, storms, droughts, and volcanic eruptions",
+    "created_at": "2026-04-05T23:12:33.239796+00:00",
+    "source_id": "emdat_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "infrastructure_resilience_index",
+    "display_name": "Infrastructure Resilience Index",
+    "construct_type": "quantifiable",
+    "definition": "Composite measure of the capacity of built infrastructure to withstand and recover from natural hazards, incorporating building codes, structural standards, and redundancy",
+    "created_at": "2026-04-05T23:12:33.406954+00:00",
+    "source_id": "emdat_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

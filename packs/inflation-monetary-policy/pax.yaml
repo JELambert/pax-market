@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How central bank policies inflation targeting and monetary frameworks
+  affect price stability output growth and financial conditions
+domain_id: monetary_policy
+license: null
+name: inflation-monetary-policy
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - consumer_price_inflation_annual
+  - central_bank_policy_rate
+  - broad_money_growth_m2
+  - exchange_rate_volatility_neer
+  - real_interest_rate_lending
+  - inflation_expectations_12m
+  engines:
+  - ols_regression
+  - var_model
+  - cointegration_analysis
+  findings:
+  - ?_0
+  - ?_1
+  - ?_2
+  - ?_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - taylor_1993
+  - romer_romer_2004
+  - ball_sheridan_2005
+  - friedman_schwartz_1963
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- monetary-policy
+version: 1.0.0

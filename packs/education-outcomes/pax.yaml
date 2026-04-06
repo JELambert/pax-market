@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How education spending, access, and quality affect learning outcomes,
+  human capital formation, and economic returns across countries.
+domain_id: education_outcomes
+license: null
+name: education-outcomes
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - education_expenditure_gdp_pct
+  - adult_literacy_rate
+  - mean_years_schooling
+  - learning_adjusted_years_schooling
+  - primary_enrollment_rate
+  - pupil_teacher_ratio
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - random_forest
+  findings:
+  - hanushek_woessmann_2012_0
+  - psacharopoulos_patrinos_2018_1
+  - glewwe_muralidharan_2016_2
+  - hanushek_woessmann_2012_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - hanushek_woessmann_2012
+  - world_bank_hci_2020
+  - psacharopoulos_patrinos_2018
+  - glewwe_muralidharan_2016
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- education-outcomes
+version: 1.0.0

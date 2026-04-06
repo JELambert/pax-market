@@ -1,0 +1,12 @@
+{
+  "id": "subjective_wellbeing",
+  "display_name": "Subjective Wellbeing",
+  "description": "Study of life satisfaction, happiness, and psychological wellbeing at the population level. Examines structural, social, economic, and institutional correlates of self-reported life evaluations.",
+  "temporal_scope": "2005-present",
+  "population": "Sovereign states (country-year Gallup World Poll observations)",
+  "created_at": "2026-04-02T15:51:17.607736+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

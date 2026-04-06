@@ -1,0 +1,24 @@
+author: Josh Lambert
+composes: []
+created: null
+data: null
+depends_on: []
+description: Time series ARIMA engine with forecasting capability.
+domain_id: null
+license: null
+name: time-series-methods
+notes: null
+pax_type: engine
+praxis_requires: null
+private: false
+provides:
+  constructs: []
+  engines: []
+  findings: []
+  playbooks: []
+  propositions: []
+  sources: []
+refresh_policy: null
+schema_version: '1.0'
+tags: []
+version: 1.0.1

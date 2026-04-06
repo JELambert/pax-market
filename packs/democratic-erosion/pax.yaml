@@ -1,0 +1,40 @@
+created: '2026-04-06'
+description: 'Democratic erosion and autocratization: measurement, mechanisms, and
+  consequences of democratic backsliding. V-Dem powered analysis of how democracies
+  die in the 21st century.'
+domain_id: democratic_erosion
+name: democratic-erosion
+pax_type: topic
+provides:
+  constructs:
+  - democratic_backsliding_index
+  - executive_aggrandizement
+  - judicial_independence_erosion
+  - media_freedom_decline
+  - civil_society_repression
+  - electoral_manipulation
+  - opposition_suppression
+  - information_control
+  - autocratization_episode
+  engines:
+  - logistic_regression
+  - cox_ph
+  findings:
+  - bermeo_2016_0
+  - luhrmann_lindberg_2019_1
+  - gandhi_przeworski_2007_2
+  - geddes_wright_frantz_2014_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - bermeo_2016
+  - luhrmann_lindberg_2019
+  - geddes_wright_frantz_2014
+  - gandhi_przeworski_2007
+  - vdem_v14_2024
+schema_version: '1.0'
+tags:
+- topic
+- democratic-erosion
+version: 1.0.1

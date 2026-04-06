@@ -1,0 +1,12 @@
+{
+  "id": "climate_economic_impacts",
+  "display_name": "Economic Impacts of Climate Change",
+  "description": "How climatic variables affect macroeconomic outcomes including GDP growth, agricultural output, and long-run development. Core debate: level effects vs growth-rate effects.",
+  "temporal_scope": "1960-present",
+  "population": "Sovereign states (country-year observations)",
+  "created_at": "2026-04-04T17:05:15.001274+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

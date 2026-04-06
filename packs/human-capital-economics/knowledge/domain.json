@@ -1,0 +1,12 @@
+{
+  "id": "human_capital_economics",
+  "display_name": "Human Capital Economics",
+  "description": "How educational attainment, cognitive skills, and schooling investment shape GDP growth, productivity, and economic development at the country level.",
+  "temporal_scope": "1950-present",
+  "population": "Sovereign states (country-year, 100-150 countries)",
+  "created_at": "2026-04-04T17:05:39.439543+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

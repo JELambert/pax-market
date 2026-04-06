@@ -1,0 +1,12 @@
+{
+  "id": "rebel-civilian-violence",
+  "display_name": "Rebel Civilian Violence and Accountability",
+  "description": "The study of how rebel groups decide to target or spare civilians, with focus on how external sponsorship affects these incentives through principal-agent dynamics. Covers one-sided violence, atrocity commission, and civilian victimization by non-state armed groups.",
+  "temporal_scope": "Post-Cold War period",
+  "population": "Rebel group-years with active conflict and potential external state sponsorship",
+  "created_at": "2026-04-02T17:57:18.552934+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "meso"
+}

@@ -1,0 +1,37 @@
+name: global-food-insecurity
+provides:
+  constructs:
+  - prevalence_undernourishment
+  - food_insecurity_experience_scale
+  - ipc_phase_classification
+  - global_hunger_index
+  - food_consumption_score
+  - dietary_energy_supply
+  - crop_yield_variability
+  - food_price_inflation
+  - conflict_food_insecurity
+  - climate_shock_food
+  - food_import_dependency
+  - social_protection_coverage
+  - coping_strategy_index
+  - stunting_prevalence_fi
+  - wasting_prevalence_fi
+  engines:
+  - logistic_regression
+  - random_forest
+  - ols_regression
+  findings:
+  - fao_sofi_2023_0
+  - fao_sofi_2023_1
+  - van_dijk_et_al_2021_2
+  - ray_et_al_2015_3
+  - hasegawa_et_al_2018_4
+  - cafiero_viviani_nord_2017_5
+  - clapp_et_al_2021_6
+  - jones_2017_7
+  - osgood_zimmerman_et_al_2018_8
+  - fao_sofi_2023_9
+  playbooks:
+  - quick_start
+  propositions: []
+version: 1.0.1

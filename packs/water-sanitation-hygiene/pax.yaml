@@ -1,0 +1,43 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: Impact of water, sanitation and hygiene infrastructure on health outcomes
+  and economic development in low and middle income countries
+domain_id: wash_development
+license: null
+name: water-sanitation-hygiene
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - safe_drinking_water_access
+  - basic_sanitation_access
+  - hygiene_facility_access
+  - diarrheal_disease_mortality
+  - stunting_prevalence_under5
+  - wash_investment_per_capita
+  engines:
+  - ols_regression
+  - meta_analysis
+  - cost_benefit_analysis
+  findings:
+  - ?_0
+  - ?_1
+  - ?_2
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - pruss_ustun_2014
+  - wolf_2018
+  - hutton_haller_2004
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- wash-development
+version: 1.0.0

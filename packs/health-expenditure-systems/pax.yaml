@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How health financing models, spending levels, and system organization
+  affect population health outcomes, equity, and financial protection across countries
+  worldwide.
+domain_id: health_systems
+license: null
+name: health-expenditure-systems
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - health_expenditure_per_capita
+  - out_of_pocket_health_pct
+  - hospital_beds_per_1000
+  - physician_density_per_1000
+  - universal_health_coverage_index
+  - catastrophic_health_expenditure_rate
+  engines:
+  - ols_regression
+  - correlation_matrix
+  findings:
+  - moreno_serra_2015_0
+  - xu_2003_catastrophic_1
+  - moreno_serra_2015_2
+  - wagstaff_2018_catastrophic_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - who_ghed_2023
+  - wagstaff_2018_catastrophic
+  - moreno_serra_2015
+  - xu_2003_catastrophic
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- health-systems
+version: 1.0.0

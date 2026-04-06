@@ -1,0 +1,37 @@
+description: 'How sleep duration and quality affect cognitive performance, decision-making,
+  and economic productivity — the neuroscience and economics of sleep deprivation.
+  Built on Walker, Dinges, Gibson & Shrader, Hafner et al. Data from ATUS (American
+  Time Use Survey, 200K+ respondents), NHANES sleep modules, Fitbit/wearable population
+  studies, and natural experiments using daylight saving time shifts. The most data-rich
+  domain nobody packages: sleep is measured at population scale but rarely linked
+  to economic outcomes.'
+name: sleep-cognition-productivity
+pax_type: topic
+provides:
+  constructs:
+  - sleep_duration
+  - cognitive_performance
+  - gdp_cost_of_sleep_loss
+  - sleep_quality
+  - workplace_accident_risk
+  - nap_restoration_effect
+  engines:
+  - ols_regression
+  - instrumental_variables
+  - difference_in_differences
+  - meta_analysis
+  - correlation_matrix
+  findings:
+  - dinges_et_al_2003_0
+  - hafner_et_al_2017_1
+  - gibson_shrader_2018_2
+  - barnes_wagner_2009_3
+  - walker_2017_4
+  - rosekind_et_al_1995_5
+  playbooks:
+  - quick_start
+  propositions:
+  - subjective_adaptation_illusion
+  - sleep_as_economic_input
+schema_version: '1.0'
+version: 1.0.0

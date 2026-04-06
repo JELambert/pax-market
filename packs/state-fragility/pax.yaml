@@ -1,0 +1,41 @@
+created: '2026-04-06'
+description: 'State fragility: measurement, determinants, and prediction of state
+  weakness, institutional collapse, and crisis pathways. Bridges conflict, food insecurity,
+  governance, climate, and economic domains.'
+domain_id: state_fragility
+name: state-fragility
+pax_type: topic
+provides:
+  constructs:
+  - state_fragility_index
+  - institutional_capacity
+  - economic_resilience
+  - security_apparatus_strength
+  - legitimacy_deficit
+  - demographic_pressure
+  - refugee_displacement
+  - external_intervention_fragility
+  - group_grievance
+  - factionalized_elites
+  - public_services_decline
+  - human_flight_brain_drain
+  engines:
+  - logistic_regression
+  - random_forest
+  findings:
+  - goldstone_et_al_2010_0
+  - fund_for_peace_fsi_2024_1
+  - urdal_2006_2
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - fund_for_peace_fsi_2024
+  - goldstone_et_al_2010
+  - call_2011
+  - urdal_2006
+schema_version: '1.0'
+tags:
+- topic
+- state-fragility
+version: 1.0.2

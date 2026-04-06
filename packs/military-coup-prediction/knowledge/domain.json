@@ -1,0 +1,12 @@
+{
+  "id": "military_coup_prediction",
+  "display_name": "Military Coup Prediction",
+  "description": "Determinants, risk factors, and prediction of military coups d'\u00e9tat. Covers structural conditions (economic, political, institutional), civil-military relations, coup-proofing strategies, ethnic dimensions of military loyalty, and quantitative forecasting models.",
+  "temporal_scope": "1950-present",
+  "population": "Sovereign states, country-year panel observations",
+  "created_at": "2026-04-05T20:16:08.998142+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

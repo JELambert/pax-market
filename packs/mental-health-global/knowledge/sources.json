@@ -1,0 +1,46 @@
+[
+  {
+    "id": "gbd_2019_mental",
+    "source_type": "journal_article",
+    "title": "Global, regional, and national burden of 12 mental disorders in 204 countries and territories, 1990-2019",
+    "authors": "GBD 2019 Mental Disorders Collaborators",
+    "year": 2022,
+    "doi": "10.1016/S2215-0366(21)00395-3",
+    "abstract": null,
+    "added_at": "2026-04-05T22:52:50.598013+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "patel_2018_lancet",
+    "source_type": "journal_article",
+    "title": "The Lancet Commission on global mental health and sustainable development",
+    "authors": "Patel V, Saxena S, Lund C, et al.",
+    "year": 2018,
+    "doi": "10.1016/S0140-6736(18)31612-X",
+    "abstract": null,
+    "added_at": "2026-04-05T22:52:50.625940+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "bloom_2011_ncd",
+    "source_type": "report",
+    "title": "The Global Economic Burden of Noncommunicable Diseases",
+    "authors": "Bloom DE, Cafiero ET, Jane-Llopis E, et al.",
+    "year": 2011,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-05T22:52:50.656446+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "who_mh_atlas_2020",
+    "source_type": "report",
+    "title": "Mental Health Atlas 2020",
+    "authors": "World Health Organization",
+    "year": 2021,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-05T22:52:50.672637+00:00",
+    "added_by": "seed_loader"
+  }
+]

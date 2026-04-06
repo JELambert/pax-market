@@ -1,0 +1,62 @@
+[
+  {
+    "id": "external-support-prevalence",
+    "display_name": "External Support Prevalence",
+    "construct_type": "quantifiable",
+    "definition": "The share of armed conflict-dyads or intrastate conflicts that receive at least one form of external support from state or non-state actors in a given time period. ESD documents: 80% of all intrastate conflicts (1975-2017) received external support; 72% of interstate conflicts. External support is the rule, not the exception, in modern armed conflict.",
+    "created_at": "2026-04-02T18:00:46.592510+00:00",
+    "source_id": "meier_2023_ucdp_esd",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "pro-government-intervention",
+    "display_name": "Pro-Government Intervention",
+    "construct_type": "quantifiable",
+    "definition": "External support provided to government forces (rather than rebel groups) in intrastate conflicts. After 9/11, the share of conflict-dyads with exclusively rebel-sided support fell to near zero by 2016, while government-sided support reached 77% of all active conflict-dyads by 2017. Reflects the international anti-terrorism norm shift that reframed rebel groups as terrorist organizations.",
+    "created_at": "2026-04-02T18:00:46.622903+00:00",
+    "source_id": "meier_2023_ucdp_esd",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "direct-military-intervention",
+    "display_name": "Direct Military Intervention (Troop Deployment)",
+    "construct_type": "quantifiable",
+    "definition": "External support involving deployment of foreign troops for combat operations on behalf of a recipient party. Coded separately from indirect support (weapons, training, funding, intelligence, logistics). Direct intervention first exceeded indirect support in 2015 and continues to grow. Conceptually distinct from delegation/orchestration framing by requiring actual combat role.",
+    "created_at": "2026-04-02T18:00:46.654207+00:00",
+    "source_id": "meier_2023_ucdp_esd",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "multilateral-support-coalition",
+    "display_name": "Multilateral Support Coalition",
+    "construct_type": "quantifiable",
+    "definition": "Three or more states coordinating their provision of external support to achieve a common goal. Coalition-based support was rare before 2001 (Gulf War Coalition 1990-91 is the first recorded instance) but grew dramatically after 9/11, reaching nearly one-third of all support instances by 2017. Implications for effective principal discipline over rebel recipients.",
+    "created_at": "2026-04-02T18:00:46.685499+00:00",
+    "source_id": "meier_2023_ucdp_esd",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "non-state-supporter",
+    "display_name": "Non-State External Supporter",
+    "construct_type": "quantifiable",
+    "definition": "An armed opposition organization or rebel group that provides external support to another warring party in a different conflict. ESD is the first global dataset to systematically track non-state actors as supporters (not just recipients). Non-state supporters peaked at 38 active groups in 2012 (including al-Shabaab training Boko Haram). More than a quarter of all support to rebel groups comes from non-state actors.",
+    "created_at": "2026-04-02T18:00:46.716799+00:00",
+    "source_id": "meier_2023_ucdp_esd",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

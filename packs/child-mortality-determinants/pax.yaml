@@ -1,0 +1,47 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: Structural and health system factors driving under-5 mortality across
+  low and middle income countries, examining the roles of maternal education, immunization,
+  skilled birth attendance, and economic development.
+domain_id: child_mortality
+license: null
+name: child-mortality-determinants
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - child_mortality_under5
+  - maternal_education_years
+  - immunization_coverage
+  - skilled_birth_attendance
+  - gdp_per_capita_child
+  - clean_water_access_child
+  engines:
+  - ols_regression
+  - logistic_regression
+  - correlation_matrix
+  findings:
+  - gakidou_2010_0
+  - who_unicef_2023_1
+  - cutler_2006_2
+  - wagstaff_2004_3
+  - who_unicef_2023_4
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - cutler_2006
+  - gakidou_2010
+  - who_unicef_2023
+  - wagstaff_2004
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- child-mortality
+version: 1.0.0

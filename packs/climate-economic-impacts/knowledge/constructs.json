@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gdp_per_capita_growth",
+    "display_name": "GDP Per Capita Growth Rate",
+    "construct_type": "quantifiable",
+    "definition": "Annual percentage change in real GDP per capita. Growth-rate effects compound; level effects do not.",
+    "created_at": "2026-04-04T17:05:15.047974+00:00",
+    "source_id": "dell_jones_olken_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "climate_damage_fraction",
+    "display_name": "Climate Damage Fraction",
+    "construct_type": "outcome",
+    "definition": "Share of GDP lost due to climate change impacts, from integrated assessment damage functions.",
+    "created_at": "2026-04-04T17:05:15.078716+00:00",
+    "source_id": "dell_jones_olken_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "agricultural_yield",
+    "display_name": "Agricultural Yield",
+    "construct_type": "quantifiable",
+    "definition": "Crop output per unit of harvested area (tonnes per hectare).",
+    "created_at": "2026-04-04T17:05:15.109920+00:00",
+    "source_id": "dell_jones_olken_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "precipitation",
+    "display_name": "Annual Precipitation",
+    "construct_type": "quantifiable",
+    "definition": "Total annual precipitation (mm) from gridded meteorological data.",
+    "created_at": "2026-04-04T17:05:15.141400+00:00",
+    "source_id": "dell_jones_olken_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "social_cost_of_carbon",
+    "display_name": "Social Cost of Carbon",
+    "construct_type": "quantifiable",
+    "definition": "Marginal economic damage of one additional tonne of CO2, in USD. Ranges from ~$50 to ~$185/tonne.",
+    "created_at": "2026-04-04T17:05:15.172768+00:00",
+    "source_id": "dell_jones_olken_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "mean_surface_temperature",
+    "display_name": "Mean Surface Temperature",
+    "construct_type": "quantifiable",
+    "definition": "Annual average surface temperature (degrees Celsius) for a country, from gridded meteorological datasets.",
+    "created_at": "2026-04-04T17:05:15.016696+00:00",
+    "source_id": "dell_jones_olken_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

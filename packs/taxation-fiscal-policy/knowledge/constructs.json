@@ -1,0 +1,74 @@
+[
+  {
+    "id": "tax_revenue_gdp_pct",
+    "display_name": "Tax Revenue as Percent of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Total tax revenue collected by government as a percentage of gross domestic product, measuring fiscal capacity and the overall tax burden on the economy",
+    "created_at": "2026-04-05T23:12:46.969918+00:00",
+    "source_id": "mertens_ravn_2013",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "income_tax_share",
+    "display_name": "Income Tax Share of Revenue",
+    "construct_type": "quantifiable",
+    "definition": "Proportion of total tax revenue derived from personal and corporate income taxes, indicating the progressivity and direct taxation reliance of the tax system",
+    "created_at": "2026-04-05T23:12:47.015848+00:00",
+    "source_id": "mertens_ravn_2013",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "government_expenditure_gdp_pct",
+    "display_name": "Government Expenditure as Percent of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Total government spending including consumption and investment as a percentage of gross domestic product, measuring the size of government in the economy",
+    "created_at": "2026-04-05T23:12:47.085056+00:00",
+    "source_id": "mertens_ravn_2013",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "fiscal_balance_gdp_pct",
+    "display_name": "Fiscal Balance as Percent of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Difference between government revenue and expenditure as a percentage of GDP, where negative values indicate budget deficits and positive values indicate surpluses",
+    "created_at": "2026-04-05T23:12:47.126657+00:00",
+    "source_id": "mertens_ravn_2013",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "public_debt_gdp_pct",
+    "display_name": "Public Debt as Percent of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Total accumulated government debt as a percentage of gross domestic product, measuring the long-term fiscal sustainability and debt burden of the public sector",
+    "created_at": "2026-04-05T23:12:47.168860+00:00",
+    "source_id": "mertens_ravn_2013",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "tax_compliance_rate",
+    "display_name": "Tax Compliance Rate",
+    "construct_type": "quantifiable",
+    "definition": "Proportion of tax obligations that are voluntarily fulfilled by taxpayers, reflecting tax morale, administrative effectiveness, and perceived fairness of the tax system",
+    "created_at": "2026-04-05T23:12:47.211139+00:00",
+    "source_id": "mertens_ravn_2013",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

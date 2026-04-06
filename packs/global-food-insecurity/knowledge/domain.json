@@ -1,0 +1,12 @@
+{
+  "id": "global_food_insecurity",
+  "display_name": "Global Food Insecurity",
+  "description": "Measurement, determinants, and geospatial variation in food insecurity at global, national, and subnational scales. Covers prevalence of undernourishment, food insecurity experience, acute food crises (IPC phases), and links to climate, conflict, poverty, and governance.",
+  "temporal_scope": "1990-present",
+  "population": "Countries and subnational regions, household and individual observations",
+  "created_at": "2026-04-05T21:20:25.336158+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "cross-level"
+}

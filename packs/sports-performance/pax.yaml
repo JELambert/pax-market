@@ -1,0 +1,22 @@
+description: Statistical analysis of team performance, Elo ratings, and win probability
+  in professional sports. Tests domain-agnosticism with a deliberately non-academic
+  domain.
+name: sports-performance
+pax_type: topic
+provides:
+  constructs:
+  - elo_rating
+  - win_probability
+  - offensive_efficiency
+  - defensive_efficiency
+  engines:
+  - ols_regression
+  - logistic_regression
+  - random_forest
+  findings:
+  - silver_538_elo_0
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

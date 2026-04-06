@@ -1,0 +1,37 @@
+created: '2026-04-06'
+description: The causal chain from climate shocks through agricultural disruption
+  to food insecurity, displacement, and armed conflict. Maps the transmission mechanisms
+  and compounding effects across environmental, food system, and political violence
+  domains.
+domain_id: climate_conflict_food_nexus
+name: climate-conflict-food-nexus
+pax_type: topic
+provides:
+  constructs:
+  - drought_severity_index
+  - crop_failure_index
+  - livelihood_vulnerability
+  - resource_competition
+  - food_riot_incidence
+  - climate_migration
+  - pastoral_conflict
+  - compounding_shocks
+  engines:
+  - logistic_regression
+  - random_forest
+  findings:
+  - mach_et_al_2019_0
+  - burke_hsiang_miguel_2015_1
+  - hendrix_salehyan_2012_2
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - mach_et_al_2019
+  - burke_hsiang_miguel_2015
+  - hendrix_salehyan_2012
+schema_version: '1.0'
+tags:
+- topic
+- climate-conflict-food-nexus
+version: 1.0.1

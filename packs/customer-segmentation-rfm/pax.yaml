@@ -1,0 +1,19 @@
+description: Customer segmentation using RFM (Recency, Frequency, Monetary) analysis.
+  Compares K-means and DBSCAN clustering approaches.
+name: customer-segmentation-rfm
+pax_type: topic
+provides:
+  constructs:
+  - recency_days_rfm
+  - purchase_frequency_rfm
+  - monetary_value_rfm
+  engines:
+  - kmeans_clustering
+  - dbscan_clustering
+  - correlation_matrix
+  findings: []
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

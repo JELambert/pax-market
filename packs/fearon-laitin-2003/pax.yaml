@@ -1,0 +1,35 @@
+description: Fearon & Laitin (2003) "Ethnicity, Insurgency, and Civil War" — foundational
+  paper on civil war onset. Challenges ethnic grievance explanations, finds insurgency-opportunity
+  factors (poverty, terrain, weak states) are stronger predictors.
+name: fearon-laitin-2003
+pax_type: paper
+provides:
+  constructs:
+  - civil_war_onset
+  - mountainous_terrain
+  - political_instability
+  - noncontiguous_territory
+  - oil_exporter
+  - new_state
+  - religious_fractionalization
+  - per_capita_income
+  - population_size
+  - anocracy
+  engines: []
+  findings:
+  - income_onset_negative
+  - ethfrac_onset_null
+  - terrain_onset_positive
+  - population_onset_positive
+  - instability_onset_positive
+  - anocracy_onset_positive
+  - oil_onset_positive
+  - newstate_onset_positive
+  - noncontig_onset_positive
+  - relfrac_onset_null
+  - insurgency_mechanism
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

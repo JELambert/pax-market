@@ -1,0 +1,34 @@
+description: Gender inequality across economic participation, education, health, and
+  political empowerment — what drives convergence and where gaps persist. Built on
+  World Economic Forum Gender Gap Index, World Bank Gender Statistics, UNDP Gender
+  Inequality Index, and Goldin's convergence thesis. Data covers 146 countries annually
+  since 2006 with 14 sub-indicators.
+name: global-gender-gap
+pax_type: topic
+provides:
+  constructs:
+  - gender_gap_index
+  - female_labor_force_participation
+  - gender_wage_gap
+  - women_in_parliament
+  - maternal_mortality_ratio
+  - gender_equality_paradox
+  engines:
+  - ols_regression
+  - instrumental_variables
+  - difference_in_differences
+  - correlation_matrix
+  - logistic_regression
+  findings:
+  - goldin_2014_0
+  - jayachandran_2015_1
+  - beaman_et_al_2012_2
+  - stoet_geary_2018_3
+  - who_2023_4
+  playbooks:
+  - quick_start
+  propositions:
+  - development_closes_easy_gaps
+  - representation_shifts_norms
+schema_version: '1.0'
+version: 1.0.0

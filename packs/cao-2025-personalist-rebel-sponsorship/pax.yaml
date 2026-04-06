@@ -1,0 +1,41 @@
+description: 'Investigates when external sponsor states provide direct combat support
+  to rebel groups in civil conflicts. Argues that personalist regime type of the target
+  state drives sponsors toward troop/combat support (vs. other forms) through three
+  mechanisms: perception of the target as aggressive and unreliable, military ineffectiveness
+  due to coup-proofing, and international isolation reducing reputational costs. Tests
+  against NAGs triad-year data 1945-2010. Unit of analysis: sponsor-rebel group-target
+  triad-year.'
+name: cao-2025-personalist-rebel-sponsorship
+pax_type: paper
+provides:
+  constructs:
+  - personalist-regime
+  - combat-support
+  - rebel-sponsorship
+  - internal-constraints
+  - military-effectiveness
+  - coup-proofing
+  - interstate-rivalry
+  - international-isolation
+  engines:
+  - negative_binomial_regression
+  - trend_analysis
+  - descriptive_frequency_analysis
+  - binary_logit_target_initiation_and_ordinal_logit_hostility_level
+  - binary_logit_with_cubic_splines
+  findings:
+  - maoz_sanakca_2012_0
+  - maoz_sanakca_2012_1
+  - maoz_sanakca_2012_2
+  - maoz_sanakca_2012_3
+  - maoz_sanakca_2012_4
+  - salehyan_siroky_wood_2014_5
+  - salehyan_siroky_wood_2014_6
+  - salehyan_siroky_wood_2014_7
+  - meier_2023_ucdp_esd_8
+  - meier_2023_ucdp_esd_9
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

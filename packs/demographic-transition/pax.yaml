@@ -1,0 +1,46 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How societies move from high birth and death rates to low birth and death
+  rates, examining the demographic dividend, urbanization effects, and the relationship
+  between mortality decline and fertility transition.
+domain_id: demographic_transition
+license: null
+name: demographic-transition
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - fertility_rate
+  - life_expectancy_at_birth
+  - dependency_ratio
+  - urbanization_rate
+  - population_growth_rate
+  - infant_mortality_rate
+  engines:
+  - ols_regression
+  - correlation_matrix
+  findings:
+  - bloom_2003_0
+  - dyson_2010_1
+  - lee_2003_2
+  - galor_weil_2000_3
+  - bloom_2003_4
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - lee_2003
+  - galor_weil_2000
+  - bloom_2003
+  - dyson_2010
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- demographic-transition
+version: 1.0.0

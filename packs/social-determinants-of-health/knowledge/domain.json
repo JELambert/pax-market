@@ -1,0 +1,12 @@
+{
+  "id": "social_determinants_of_health",
+  "display_name": "Social Determinants of Health",
+  "description": "Non-medical factors \u2014 income, education, housing, social support \u2014 that shape health outcomes and drive health inequalities within and between populations.",
+  "temporal_scope": "1965-present",
+  "population": "General population, country-year and individual-level",
+  "created_at": "2026-04-04T17:04:02.640640+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

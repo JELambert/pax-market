@@ -1,0 +1,47 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How lifestyle risk factors including obesity, tobacco use, alcohol consumption,
+  and physical inactivity drive the global noncommunicable disease epidemic and mortality
+  burden.
+domain_id: ncd_burden
+license: null
+name: noncommunicable-diseases
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - ncd_mortality_rate
+  - obesity_prevalence_adult
+  - tobacco_use_prevalence
+  - alcohol_consumption_per_capita
+  - physical_inactivity_prevalence
+  - metabolic_risk_factor_burden
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - logistic_regression
+  findings:
+  - gbd_2019_risk_0
+  - ncdrisc_2016_bmi_1
+  - who_ncd_2023_2
+  - who_ncd_2023_3
+  - gbd_2019_risk_4
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - gbd_2019_risk
+  - ncdrisc_2016_bmi
+  - who_ncd_2023
+  - afshin_2019_diet
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- ncd-burden
+version: 1.0.0

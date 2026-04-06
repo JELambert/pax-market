@@ -1,0 +1,12 @@
+{
+  "id": "transnational_repression",
+  "display_name": "Transnational Repression",
+  "description": "The extraterritorial use of coercive tactics by authoritarian states to silence, monitor, threaten, abduct, extradite, or assassinate dissidents and regime opponents beyond their national borders. Encompasses threats, arrests, extraditions, abductions, family harassment, and assassination. TR is distinct from domestic repression and from targeting foreign citizens.",
+  "temporal_scope": "1991-2019",
+  "population": "Authoritarian states with diaspora populations, country-year panel, 1991-2019",
+  "created_at": "2026-04-05T17:08:29.855893+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

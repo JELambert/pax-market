@@ -1,0 +1,37 @@
+description: 'Explains state sponsors'' choice between ''hands-on'' delegation and
+  ''hands-off'' orchestration in indirect wars. Develops a governor''s dilemma theory
+  of rebel support modes and tests it with UCDP External Support Dataset 1975-2009.
+  Key finding: ethnic ties and rebel competition favor orchestration; rivalry favors
+  delegation; and counterintuitively, sponsor capabilities increase orchestration
+  likelihood.'
+name: indirect-governance-rebel-support
+pax_type: paper
+provides:
+  constructs:
+  - orchestration-mode
+  - delegation-mode
+  - ethnic-ties-sponsor-rebel
+  - rebel-group-competition
+  - sponsor-military-capabilities
+  - plausible-deniability
+  - governors-dilemma
+  engines:
+  - frequency_tabulation_by_support_type_and_recipient_type
+  - cubic_time_polynomial_analysis_within_tscs_logit_framework
+  - time_series_frequency_analysis
+  - tscs_logit_with_cubic_time_polynomials
+  - theoretical_derivation_from_pa_framework_vs_tscs_logit_on_ucdp_support_dyad_data
+  findings:
+  - heinkelmann_mehrl_2022_0
+  - heinkelmann_mehrl_2022_1
+  - heinkelmann_mehrl_2022_2
+  - heinkelmann_mehrl_2022_3
+  - meier_2023_ucdp_esd_4
+  - salehyan_2010_delegation_5
+  - heinkelmann_mehrl_2022_6
+  - meier_2023_ucdp_esd_7
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How corruption affects economic development, foreign investment, public
+  service delivery, and institutional trust across countries worldwide.
+domain_id: corruption_governance
+license: null
+name: corruption-governance
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - corruption_perception_index
+  - government_effectiveness_score
+  - regulatory_quality_score
+  - fdi_inflows_gdp
+  - bribery_incidence_rate
+  - public_trust_government
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - instrumental_variables
+  findings:
+  - mauro_1995_0
+  - wei_2000_1
+  - kaufmann_2010_2
+  - kaufmann_2010_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - mauro_1995
+  - kaufmann_2010
+  - wei_2000
+  - svensson_2005
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- corruption-governance
+version: 1.0.0

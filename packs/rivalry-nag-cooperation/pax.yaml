@@ -1,0 +1,28 @@
+description: 'Explains why states in strategic rivalries choose to support non-state
+  armed groups (NAGs) targeting their rivals. Develops a rational choice model of
+  rivalry management via indirect confrontation using frustration and opportunity
+  game typologies. Tests with original triad-year data covering 175 NAGs and 83 state
+  supporters, 1946-2001. Key finding: strategic rivalry increases NAG support probability
+  by ~300%; state-NAG cooperation escalates rivalry conflicts.'
+name: rivalry-nag-cooperation
+pax_type: paper
+provides:
+  constructs:
+  - status-quo-satisfaction
+  - capability-ratio
+  - frustration-game
+  - opportunity-game
+  - rivalry-duration
+  - rivalry-intensity
+  - nag-escalation-effect
+  engines:
+  - binary_logit_with_cubic_splines
+  findings:
+  - maoz_sanakca_2012_0
+  - maoz_sanakca_2012_1
+  - maoz_sanakca_2012_2
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

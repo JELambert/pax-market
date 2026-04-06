@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: Causes and consequences of income and wealth inequality including determinants
+  and effects on growth and social outcomes
+domain_id: income_inequality
+license: null
+name: income-inequality-gini
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - gini_coefficient_income
+  - income_share_top_10_pct
+  - poverty_headcount_215_ppp
+  - intergenerational_earnings_elasticity
+  - wealth_share_top_1_pct
+  - labor_income_share_gdp
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - panel_regression
+  findings:
+  - ?_0
+  - ?_1
+  - ?_2
+  - ?_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - piketty_2014
+  - chetty_2014
+  - ostry_2014
+  - atkinson_2011
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- income-inequality
+version: 1.0.0

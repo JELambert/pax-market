@@ -1,0 +1,12 @@
+{
+  "id": "migration_displacement",
+  "display_name": "Migration and Forced Displacement",
+  "description": "Drivers and consequences of international migration forced displacement and remittance flows for origin and host countries",
+  "temporal_scope": "1990-present",
+  "population": "Countries worldwide",
+  "created_at": "2026-04-05T23:12:40.805452+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

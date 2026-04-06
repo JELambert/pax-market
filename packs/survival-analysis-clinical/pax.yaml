@@ -1,0 +1,19 @@
+description: Clinical survival analysis PAX covering lung cancer, HIV, transplant,
+  ICU, and cardiovascular domains. Bundles KM and Cox PH engines with survival-specific
+  constructs.
+name: survival-analysis-clinical
+pax_type: field
+provides:
+  constructs:
+  - time_to_event_generic
+  - event_indicator_generic
+  engines:
+  - kaplan_meier
+  - cox_ph
+  - logistic_regression
+  findings: []
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

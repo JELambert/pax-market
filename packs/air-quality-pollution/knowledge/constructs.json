@@ -1,0 +1,74 @@
+[
+  {
+    "id": "pm25_annual_mean",
+    "display_name": "Annual Mean PM2.5 Concentration",
+    "construct_type": "quantifiable",
+    "definition": "Population-weighted annual mean concentration of fine particulate matter (particles smaller than 2.5 micrometers) in ambient air, measured in micrograms per cubic meter",
+    "created_at": "2026-04-05T22:43:28.866988+00:00",
+    "source_id": "cohen_2017",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "air_pollution_attributable_deaths",
+    "display_name": "Air Pollution Attributable Deaths",
+    "construct_type": "outcome",
+    "definition": "Number of premature deaths annually attributable to exposure to ambient and household air pollution, estimated through integrated exposure-response functions",
+    "created_at": "2026-04-05T22:43:44.418533+00:00",
+    "source_id": "cohen_2017",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "household_air_pollution_exposure",
+    "display_name": "Household Air Pollution Exposure",
+    "construct_type": "quantifiable",
+    "definition": "Level of indoor air pollution exposure from use of solid fuels for cooking and heating, measured by proportion of population relying on polluting fuels",
+    "created_at": "2026-04-05T22:44:00.139788+00:00",
+    "source_id": "cohen_2017",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "respiratory_disease_burden",
+    "display_name": "Respiratory Disease Burden",
+    "construct_type": "outcome",
+    "definition": "Total burden of respiratory diseases including COPD, lower respiratory infections, and lung cancer, measured in disability-adjusted life years (DALYs) or deaths",
+    "created_at": "2026-04-05T22:44:16.962808+00:00",
+    "source_id": "cohen_2017",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "outdoor_ozone_concentration",
+    "display_name": "Outdoor Ozone Concentration",
+    "construct_type": "quantifiable",
+    "definition": "Seasonal average of daily maximum 8-hour mean ozone concentration in ambient outdoor air, measured in parts per billion",
+    "created_at": "2026-04-05T22:44:32.082673+00:00",
+    "source_id": "cohen_2017",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "clean_fuel_access",
+    "display_name": "Access to Clean Fuels for Cooking",
+    "construct_type": "quantifiable",
+    "definition": "Proportion of the population with primary reliance on clean fuels and technology for cooking, including electricity, LPG, natural gas, and biogas",
+    "created_at": "2026-04-05T22:44:48.011271+00:00",
+    "source_id": "cohen_2017",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

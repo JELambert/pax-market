@@ -1,0 +1,86 @@
+[
+  {
+    "id": "continued_influence_effect",
+    "display_name": "Continued Influence Effect",
+    "construct_type": "concept",
+    "definition": "The tendency for previously encoded misinformation to continue shaping reasoning and inference even after an effective correction has been encoded and accepted. Measured via inference questions about a scenario where causal misinformation was retracted.",
+    "created_at": "2026-04-05T17:57:51.336249+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "illusory_truth_effect",
+    "display_name": "Illusory Truth Effect",
+    "construct_type": "concept",
+    "definition": "Repeated exposure to a statement increases its perceived truth, independent of actual veracity. Processing fluency from repetition is misattributed to truth. Effect size typically d=0.3-0.5 per additional exposure.",
+    "created_at": "2026-04-05T17:58:02.475810+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "backfire_effect",
+    "display_name": "Backfire Effect",
+    "construct_type": "concept",
+    "definition": "The hypothesized phenomenon where corrections strengthen rather than weaken false beliefs. Originally reported by Nyhan & Reifler (2010) but largely failed to replicate in subsequent studies. Now considered rare or nonexistent under standard conditions \u2014 corrections generally work, they just do not work completely.",
+    "created_at": "2026-04-05T17:58:15.133808+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "inoculation_effectiveness",
+    "display_name": "Inoculation Effectiveness",
+    "construct_type": "quantifiable",
+    "definition": "Reduction in susceptibility to misinformation after exposure to weakened doses of manipulative arguments plus refutational preemption. Measured as the difference in belief change between inoculated and control groups when subsequently exposed to misinformation. Meta-analytic effect: d=0.29 (Banas & Rains, 2010).",
+    "created_at": "2026-04-05T17:58:29.516548+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "source_credibility",
+    "display_name": "Source Credibility",
+    "construct_type": "quantifiable",
+    "definition": "Perceived expertise and trustworthiness of the information source. Moderates correction effectiveness \u2014 corrections from high-credibility sources are more effective, but the advantage decays over time (sleeper effect). Typically measured via expertise + trustworthiness scales.",
+    "created_at": "2026-04-05T17:58:41.114926+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "analytic_thinking",
+    "display_name": "Analytic Thinking",
+    "construct_type": "quantifiable",
+    "definition": "Disposition toward deliberative, reflective cognitive processing (System 2) versus intuitive processing (System 1). Measured via Cognitive Reflection Test (CRT). Consistently predicts better discernment between true and false news headlines, independent of political ideology.",
+    "created_at": "2026-04-05T17:58:52.877314+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "correction_effectiveness",
+    "display_name": "Correction Effectiveness",
+    "construct_type": "outcome",
+    "definition": "Degree to which a correction reduces reliance on misinformation in subsequent reasoning. Measured as proportion of misinformation-consistent inferences eliminated. Corrections typically reduce but do not eliminate CIE \u2014 residual influence remains even after strong corrections.",
+    "created_at": "2026-04-05T17:59:04.642124+00:00",
+    "source_id": "lewandowsky_ecker_2012",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

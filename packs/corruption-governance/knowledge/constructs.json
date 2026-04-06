@@ -1,0 +1,74 @@
+[
+  {
+    "id": "corruption_perception_index",
+    "display_name": "Corruption Perception Index",
+    "construct_type": "quantifiable",
+    "definition": "Transparency International's composite index measuring perceived levels of public sector corruption across countries, scored 0-100 where higher values indicate less corruption",
+    "created_at": "2026-04-05T22:41:47.817957+00:00",
+    "source_id": "mauro_1995",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "government_effectiveness_score",
+    "display_name": "Government Effectiveness Score",
+    "construct_type": "quantifiable",
+    "definition": "World Governance Indicators measure of the quality of public services, civil service independence from political pressures, quality of policy formulation and implementation",
+    "created_at": "2026-04-05T22:42:03.236543+00:00",
+    "source_id": "mauro_1995",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "regulatory_quality_score",
+    "display_name": "Regulatory Quality Score",
+    "construct_type": "quantifiable",
+    "definition": "World Governance Indicators measure of government ability to formulate and implement sound policies and regulations that permit and promote private sector development",
+    "created_at": "2026-04-05T22:42:24.140385+00:00",
+    "source_id": "mauro_1995",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "fdi_inflows_gdp",
+    "display_name": "FDI Inflows as Percent of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Net inflows of foreign direct investment as a percentage of gross domestic product, measuring international investor confidence and capital attraction",
+    "created_at": "2026-04-05T22:42:39.469919+00:00",
+    "source_id": "mauro_1995",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "bribery_incidence_rate",
+    "display_name": "Bribery Incidence Rate",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of firms or individuals reporting having paid a bribe to a public official in the past year, measuring direct corruption experience rather than perception",
+    "created_at": "2026-04-05T22:42:55.074441+00:00",
+    "source_id": "mauro_1995",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "public_trust_government",
+    "display_name": "Public Trust in Government",
+    "construct_type": "quantifiable",
+    "definition": "Survey-based measure of citizen confidence in national government institutions, typically measured as percentage expressing trust or confidence in government",
+    "created_at": "2026-04-05T22:43:10.126088+00:00",
+    "source_id": "mauro_1995",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

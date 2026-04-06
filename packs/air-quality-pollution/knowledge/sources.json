@@ -1,0 +1,46 @@
+[
+  {
+    "id": "cohen_2017",
+    "source_type": "journal_article",
+    "title": "Estimates and 25-year trends of the global burden of disease attributable to ambient air pollution: an analysis of data from the Global Burden of Diseases Study 2015",
+    "authors": "Cohen, A.J., Brauer, M., Burnett, R., Anderson, H.R., et al.",
+    "year": 2017,
+    "doi": "10.1016/S0140-6736(17)30505-6",
+    "abstract": null,
+    "added_at": "2026-04-05T22:43:12.159129+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "burnett_2018",
+    "source_type": "journal_article",
+    "title": "Global estimates of mortality associated with long-term exposure to outdoor fine particulate matter",
+    "authors": "Burnett, R., Chen, H., Szyszkowicz, M., Fann, N., et al.",
+    "year": 2018,
+    "doi": "10.1073/pnas.1803222115",
+    "abstract": null,
+    "added_at": "2026-04-05T22:43:12.188415+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "who_2021",
+    "source_type": "report",
+    "title": "WHO Global Air Quality Guidelines: Particulate Matter (PM2.5 and PM10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon Monoxide",
+    "authors": "World Health Organization",
+    "year": 2021,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-05T22:43:12.219710+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "gordon_2014",
+    "source_type": "journal_article",
+    "title": "Respiratory risks from household air pollution in low and middle income countries",
+    "authors": "Gordon, S.B., Bruce, N.G., Grigg, J., et al.",
+    "year": 2014,
+    "doi": "10.1016/S2213-2600(14)70168-7",
+    "abstract": null,
+    "added_at": "2026-04-05T22:43:12.234867+00:00",
+    "added_by": "seed_loader"
+  }
+]

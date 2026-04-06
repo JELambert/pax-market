@@ -1,0 +1,30 @@
+description: Economic impacts of climate change — how temperature and precipitation
+  affect GDP growth, agricultural yields, and long-run development. Built on Dell,
+  Jones & Olken (2012), Burke, Hsiang & Miguel (2015), Nordhaus (2018), Hsiang et
+  al. (2017), and Schlenker & Roberts (2009).
+name: climate-economic-impacts
+pax_type: topic
+provides:
+  constructs:
+  - mean_surface_temperature
+  - gdp_per_capita_growth
+  - climate_damage_fraction
+  - agricultural_yield
+  - precipitation
+  - social_cost_of_carbon
+  engines:
+  - ols_regression
+  - instrumental_variables
+  - difference_in_differences
+  - correlation_matrix
+  findings:
+  - dell_jones_olken_2012_0
+  - burke_hsiang_miguel_2015_1
+  - burke_hsiang_miguel_2015_2
+  - nordhaus_2018_3
+  - lobell_schlenker_roberts_2011_4
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

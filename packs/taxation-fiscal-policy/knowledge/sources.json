@@ -1,0 +1,46 @@
+[
+  {
+    "id": "mertens_ravn_2013",
+    "source_type": "journal_article",
+    "title": "The Dynamic Effects of Personal and Corporate Income Tax Changes in the United States",
+    "authors": "Mertens, K., Ravn, M.O.",
+    "year": 2013,
+    "doi": "10.1257/aer.103.4.1212",
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:46.885351+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "besley_persson_2014",
+    "source_type": "journal_article",
+    "title": "Why Do Developing Countries Tax So Little?",
+    "authors": "Besley, T., Persson, T.",
+    "year": 2014,
+    "doi": "10.1257/jep.28.4.99",
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:46.899338+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "reinhart_rogoff_2010",
+    "source_type": "journal_article",
+    "title": "Growth in a Time of Debt",
+    "authors": "Reinhart, C.M., Rogoff, K.S.",
+    "year": 2010,
+    "doi": "10.1257/aer.100.2.573",
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:46.914436+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "piketty_saez_2007",
+    "source_type": "journal_article",
+    "title": "How Progressive is the U.S. Federal Tax System?",
+    "authors": "Piketty, T., Saez, E.",
+    "year": 2007,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-05T23:12:46.930711+00:00",
+    "added_by": "seed_loader"
+  }
+]

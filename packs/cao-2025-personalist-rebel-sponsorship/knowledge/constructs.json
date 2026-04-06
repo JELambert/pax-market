@@ -1,0 +1,98 @@
+[
+  {
+    "id": "combat-support",
+    "display_name": "Combat Support for Rebels",
+    "construct_type": "outcome",
+    "definition": "Direct military intervention by a sponsor state in a civil conflict, involving deployment of troops to fight alongside rebel forces against the target government. Represents the highest level of sponsor involvement and provides direct control over the conflict process. Coded 2 in the NAGs support typology (vs. 1 for material/logistical support, 0 for no support). Predicted probability: ~2% for non-personalist targets, ~6.6% for personalist targets (230% increase).",
+    "created_at": "2026-04-02T16:53:06.091631+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "rebel-sponsorship",
+    "display_name": "Rebel Sponsorship (General)",
+    "construct_type": "outcome",
+    "definition": "Any form of external state support provided to rebel groups in civil conflicts, including material resources (weapons, financing), logistical support (safe haven, training camps, transport), and direct combat support. Emergence of sponsorship is not predicted by personalism (H2); only the type of sponsorship varies.",
+    "created_at": "2026-04-02T16:53:06.167111+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "internal-constraints",
+    "display_name": "Internal Constraints on Leader",
+    "construct_type": "concept",
+    "definition": "The degree to which a leader faces meaningful checks from domestic political elites, military officers, or party structures that limit unilateral foreign policy decisions. High under institutionalized regimes (party-based, military junta, monarchy); minimal under personalist rule where other elites lack independent power bases to challenge the leader.",
+    "created_at": "2026-04-02T16:53:06.264763+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "coup-proofing",
+    "display_name": "Coup-Proofing",
+    "construct_type": "process",
+    "definition": "Strategies adopted by authoritarian leaders to neutralize military threats to their rule: creating parallel security forces with conflicting jurisdictions, frequent purges of senior officers, loyalty-based promotions over competence, restricting inter-unit coordination, and appointing ethnic/family loyalists to command positions. Effective at reducing coup risk but systematically degrades military cohesion and battlefield effectiveness.",
+    "created_at": "2026-04-02T16:53:06.408051+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "interstate-rivalry",
+    "display_name": "Interstate Rivalry",
+    "construct_type": "quantifiable",
+    "definition": "A persistent, militarized dispute relationship between two states characterized by repeated conflicts, mutual threat perception, and ongoing competition. Operationalized as binary indicator from Goertz, Diehl & Balas (2016) peace and rivalry dataset. Strong positive predictor of both general rebel sponsorship emergence and combat support provision. Sponsoring rebels is an indirect, lower-cost strategy for rivals to weaken each other.",
+    "created_at": "2026-04-02T16:53:06.461473+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "international-isolation",
+    "display_name": "International Isolation of Target",
+    "construct_type": "concept",
+    "definition": "The degree to which the target state is excluded from international economic, diplomatic, and military networks. Personalist regimes tend toward greater isolation due to limited trade openness, fewer stable alliances, and repressive practices that draw international condemnation. Reduces the reputational cost for sponsors of directly intervening in the target's civil conflict.",
+    "created_at": "2026-04-02T16:53:06.492701+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "personalist-regime",
+    "display_name": "Personalist Regime",
+    "construct_type": "quantifiable",
+    "definition": "A regime type in which power is concentrated in a single leader who dominates both the military and party (if any), with weak formal institutions and no independent elite power bases. Operationalized as: (1) binary indicator from GWF typology (Geddes, Wright & Frantz 2014) distinguishing personalist from all other regime types including democracies; (2) continuous latent personalism index 0-1 (Geddes, Wright & Frantz 2018) covering 118 authoritarian regimes 1946-2010.",
+    "created_at": "2026-04-02T16:53:06.042060+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "military-effectiveness",
+    "display_name": "Military Effectiveness",
+    "construct_type": "quantifiable",
+    "definition": "The battlefield capacity of state armed forces, including command coordination, tactical competence, and ability to generate intelligence and civilian cooperation. Systematically reduced under personalist regimes due to coup-proofing strategies. Acts as partial mediator between personalism and combat support: weaker target militaries lower the cost and risk of sponsor troop intervention.",
+    "created_at": "2026-04-02T16:53:06.328352+00:00",
+    "source_id": "cao-2025",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

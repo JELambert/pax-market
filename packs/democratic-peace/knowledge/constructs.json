@@ -1,0 +1,74 @@
+[
+  {
+    "id": "dyadic_democracy",
+    "display_name": "Dyadic Democracy Score",
+    "construct_type": "quantifiable",
+    "definition": "The Polity IV score of the less democratic state in a dyad. Captures the binding constraint: a dyad is only jointly democratic if both members clear the threshold.",
+    "created_at": "2026-04-04T17:04:34.833714+00:00",
+    "source_id": "doyle_1986",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "militarized_interstate_dispute",
+    "display_name": "Militarized Interstate Dispute Onset",
+    "construct_type": "outcome",
+    "definition": "Binary indicator: 1 if a dyad experienced MID onset in a given year, per the COW MID dataset.",
+    "created_at": "2026-04-04T17:04:34.865021+00:00",
+    "source_id": "doyle_1986",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "trade_interdependence",
+    "display_name": "Bilateral Trade Interdependence",
+    "construct_type": "quantifiable",
+    "definition": "The lower of the two states' ratios of bilateral trade to GDP, capturing the dyadic member with least to gain from trade continuity.",
+    "created_at": "2026-04-04T17:04:34.896481+00:00",
+    "source_id": "doyle_1986",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "shared_igo_membership",
+    "display_name": "Shared IGO Memberships",
+    "construct_type": "quantifiable",
+    "definition": "Count of intergovernmental organizations to which both states belong simultaneously.",
+    "created_at": "2026-04-04T17:04:34.927009+00:00",
+    "source_id": "doyle_1986",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "territorial_contiguity",
+    "display_name": "Territorial Contiguity",
+    "construct_type": "quantifiable",
+    "definition": "Binary indicator of whether two states share a land border or narrow sea corridor. Standard opportunity control.",
+    "created_at": "2026-04-04T17:04:34.958476+00:00",
+    "source_id": "doyle_1986",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "capability_ratio",
+    "display_name": "Dyadic Capability Ratio",
+    "construct_type": "quantifiable",
+    "definition": "Ratio of the stronger state's CINC score to the sum of both states' CINC scores, capturing power asymmetry.",
+    "created_at": "2026-04-04T17:04:34.989859+00:00",
+    "source_id": "doyle_1986",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

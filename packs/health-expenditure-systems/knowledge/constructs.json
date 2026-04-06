@@ -1,0 +1,74 @@
+[
+  {
+    "id": "health_expenditure_per_capita",
+    "display_name": "Health Expenditure Per Capita",
+    "construct_type": "quantifiable",
+    "definition": "Total health spending per person in purchasing power parity dollars, capturing aggregate resource allocation to health systems.",
+    "created_at": "2026-04-05T01:35:32.304386+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "hospital_beds_per_1000",
+    "display_name": "Hospital Beds Per 1000",
+    "construct_type": "quantifiable",
+    "definition": "Number of inpatient hospital beds available per 1,000 population including public and private facilities",
+    "created_at": "2026-04-05T22:51:31.338232+00:00",
+    "source_id": "who_ghed_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "physician_density_per_1000",
+    "display_name": "Physician Density Per 1000",
+    "construct_type": "quantifiable",
+    "definition": "Number of practicing physicians per 1,000 population including generalists and specialists",
+    "created_at": "2026-04-05T22:51:46.187520+00:00",
+    "source_id": "who_ghed_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "out_of_pocket_health_pct",
+    "display_name": "Out-of-Pocket Health Expenditure Share",
+    "construct_type": "quantifiable",
+    "definition": "Share of total health expenditure paid directly by households at point of service delivery",
+    "created_at": "2026-04-05T22:51:11.401443+00:00",
+    "source_id": "who_ghed_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "universal_health_coverage_index",
+    "display_name": "Universal Health Coverage Index",
+    "construct_type": "quantifiable",
+    "definition": "WHO composite index measuring coverage of essential health services on a scale from 0 to 100",
+    "created_at": "2026-04-05T22:52:04.213809+00:00",
+    "source_id": "who_ghed_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "catastrophic_health_expenditure_rate",
+    "display_name": "Catastrophic Health Expenditure Rate",
+    "construct_type": "outcome",
+    "definition": "Percentage of households spending more than 10% of total household expenditure on out-of-pocket health payments",
+    "created_at": "2026-04-05T22:52:21.749544+00:00",
+    "source_id": "who_ghed_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

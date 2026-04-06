@@ -1,0 +1,98 @@
+[
+  {
+    "id": "drought_severity_index",
+    "display_name": "Drought Severity Index",
+    "construct_type": "quantifiable",
+    "definition": "Standardized Precipitation Index (SPI) or Palmer Drought Severity Index (PDSI) measuring meteorological drought intensity. Negative values indicate drought; values below -2.0 indicate extreme drought. Key trigger for crop failure in rain-fed agricultural systems.",
+    "created_at": "2026-04-06T00:19:02.156701+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "crop_failure_index",
+    "display_name": "Crop Failure Index",
+    "construct_type": "quantifiable",
+    "definition": "Agricultural production shortfall relative to 5-year moving average. Captures acute food supply shocks from weather, pests, or conflict. Directly links climate variability to food availability.",
+    "created_at": "2026-04-06T00:19:16.837254+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "livelihood_vulnerability",
+    "display_name": "Livelihood Vulnerability",
+    "construct_type": "concept",
+    "definition": "Dependence on climate-sensitive livelihoods (rain-fed farming, pastoralism, fishing) without diversification or buffering capacity. High vulnerability means climate shocks translate directly to food insecurity and displacement.",
+    "created_at": "2026-04-06T00:19:32.274933+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "resource_competition",
+    "display_name": "Resource Competition",
+    "construct_type": "concept",
+    "definition": "Competition over scarce natural resources (water, pasture, arable land) as a driver of communal violence and armed conflict. Intensified by climate change reducing resource availability and demographic pressure increasing demand.",
+    "created_at": "2026-04-06T00:19:47.385743+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "food_riot_incidence",
+    "display_name": "Food Riot Incidence",
+    "construct_type": "outcome",
+    "definition": "Occurrence of food-price-triggered social unrest, protests, or riots. Food price spikes have historically triggered political instability \u2014 the 2007-08 and 2010-11 global food price crises sparked unrest in 30+ countries and contributed to the Arab Spring.",
+    "created_at": "2026-04-06T00:20:03.573580+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "climate_migration",
+    "display_name": "Climate Migration",
+    "construct_type": "quantifiable",
+    "definition": "Population movement driven primarily by environmental degradation, climate variability, or extreme weather events. Includes both internal displacement and cross-border migration. World Bank estimates 216 million internal climate migrants by 2050 under pessimistic scenarios.",
+    "created_at": "2026-04-06T00:20:19.029331+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "pastoral_conflict",
+    "display_name": "Pastoral Conflict",
+    "construct_type": "outcome",
+    "definition": "Violence between pastoralist and farming communities driven by resource scarcity, particularly in the Sahel, Horn of Africa, and Central Africa. Droughts compress pastoral range, forcing herders into farming areas. A key transmission mechanism from climate stress to armed violence.",
+    "created_at": "2026-04-06T00:20:34.985723+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "compounding_shocks",
+    "display_name": "Compounding Shocks",
+    "construct_type": "concept",
+    "definition": "The interaction of multiple simultaneous stressors \u2014 climate shock + conflict + economic downturn + pandemic \u2014 that overwhelm coping capacity. Compounding effects are non-linear: each additional shock disproportionately increases food insecurity. The COVID-19 pandemic layered onto existing climate and conflict crises illustrates this dynamic.",
+    "created_at": "2026-04-06T00:20:52.990726+00:00",
+    "source_id": "mach_et_al_2019",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

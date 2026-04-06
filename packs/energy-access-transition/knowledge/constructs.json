@@ -1,0 +1,74 @@
+[
+  {
+    "id": "electricity_access_rate",
+    "display_name": "Electricity Access Rate",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of total population with access to electricity including grid and off-grid sources",
+    "created_at": "2026-04-05T23:11:49.927917+00:00",
+    "source_id": "dinkelman_2011",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "energy_intensity_gdp",
+    "display_name": "Energy Intensity of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Energy use per unit of GDP measured in megajoules per constant 2017 PPP dollar reflecting economic efficiency of energy use",
+    "created_at": "2026-04-05T23:11:50.012366+00:00",
+    "source_id": "dinkelman_2011",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "fossil_fuel_consumption_per_capita",
+    "display_name": "Fossil Fuel Consumption Per Capita",
+    "construct_type": "quantifiable",
+    "definition": "Primary energy consumption from fossil fuels per capita measured in kilowatt-hours per year",
+    "created_at": "2026-04-05T23:11:50.053565+00:00",
+    "source_id": "dinkelman_2011",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "energy_poverty_rate",
+    "display_name": "Energy Poverty Rate",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of population relying on traditional biomass such as wood dung and charcoal for cooking and heating",
+    "created_at": "2026-04-05T23:11:50.096250+00:00",
+    "source_id": "dinkelman_2011",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "co2_emissions_per_capita_energy",
+    "display_name": "CO2 Emissions Per Capita from Energy",
+    "construct_type": "quantifiable",
+    "definition": "Carbon dioxide emissions from energy use per capita measured in metric tonnes per year",
+    "created_at": "2026-04-05T23:11:50.137970+00:00",
+    "source_id": "dinkelman_2011",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "renewable_energy_share_total",
+    "display_name": "Renewable Energy Share of Total",
+    "construct_type": "quantifiable",
+    "definition": "Renewable energy share of total final energy consumption measured as percentage including hydro solar wind and biomass",
+    "created_at": "2026-04-05T23:11:49.970104+00:00",
+    "source_id": "dinkelman_2011",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

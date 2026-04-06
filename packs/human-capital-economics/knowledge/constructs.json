@@ -1,0 +1,50 @@
+[
+  {
+    "id": "mean_years_schooling",
+    "display_name": "Mean Years of Schooling",
+    "construct_type": "quantifiable",
+    "definition": "Average years of formal education completed by adults aged 25+. Primary macro proxy for human capital stock.",
+    "created_at": "2026-04-04T17:05:39.455730+00:00",
+    "source_id": "mankiw_romer_weil_1992",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "cognitive_skills",
+    "display_name": "Cognitive Skills",
+    "construct_type": "quantifiable",
+    "definition": "National average score on internationally comparable standardized tests (PISA, TIMSS). Captures educational quality.",
+    "created_at": "2026-04-04T17:05:39.487181+00:00",
+    "source_id": "mankiw_romer_weil_1992",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "school_enrollment_rate",
+    "display_name": "School Enrollment Rate",
+    "construct_type": "quantifiable",
+    "definition": "Gross or net enrollment ratio at primary, secondary, or tertiary level. Flow proxy for human capital investment.",
+    "created_at": "2026-04-04T17:05:39.517713+00:00",
+    "source_id": "mankiw_romer_weil_1992",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "physical_capital_investment",
+    "display_name": "Physical Capital Investment",
+    "construct_type": "quantifiable",
+    "definition": "Gross fixed capital formation as share of GDP. Key control in augmented Solow growth regressions.",
+    "created_at": "2026-04-04T17:05:39.549176+00:00",
+    "source_id": "mankiw_romer_weil_1992",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

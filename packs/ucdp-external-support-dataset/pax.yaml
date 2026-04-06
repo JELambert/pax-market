@@ -1,0 +1,31 @@
+description: 'Introduces the UCDP External Support Dataset (ESD) covering external
+  support to warring parties in armed conflicts 1975-2017. Presents three key empirical
+  trends: dramatic increase in number of supporters, shift to pro-government interventions
+  post-9/11, and rise of direct military intervention as predominant support mode.
+  Supersedes the Högbladh, Pettersson & Themnér (2011) dataset with expanded coverage
+  including non-state supporters and ten support type dimensions.'
+name: ucdp-external-support-dataset
+pax_type: paper
+provides:
+  constructs:
+  - external-support-prevalence
+  - pro-government-intervention
+  - direct-military-intervention
+  - multilateral-support-coalition
+  - non-state-supporter
+  engines:
+  - descriptive_frequency_analysis
+  - frequency_tabulation_by_support_type_and_recipient_type
+  - trend_analysis
+  - time_series_frequency_analysis
+  findings:
+  - meier_2023_ucdp_esd_0
+  - meier_2023_ucdp_esd_1
+  - meier_2023_ucdp_esd_2
+  - meier_2023_ucdp_esd_3
+  - meier_2023_ucdp_esd_4
+  playbooks:
+  - quick_start
+  propositions: []
+schema_version: '1.0'
+version: 1.0.0

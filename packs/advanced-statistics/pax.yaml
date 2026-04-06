@@ -1,0 +1,25 @@
+author: Josh Lambert
+composes: []
+created: null
+data: null
+depends_on: []
+description: 'Advanced statistical methods: quantile regression for heterogeneous
+  effects and mixed-effects hierarchical models with ICC reporting.'
+domain_id: null
+license: null
+name: advanced-statistics
+notes: null
+pax_type: engine
+praxis_requires: null
+private: false
+provides:
+  constructs: []
+  engines: []
+  findings: []
+  playbooks: []
+  propositions: []
+  sources: []
+refresh_policy: null
+schema_version: '1.0'
+tags: []
+version: 1.0.1

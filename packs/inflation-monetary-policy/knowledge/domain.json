@@ -1,0 +1,12 @@
+{
+  "id": "monetary_policy",
+  "display_name": "Inflation and Monetary Policy",
+  "description": "How central bank policies inflation targeting and monetary frameworks affect price stability output growth and financial conditions",
+  "temporal_scope": "1970-present",
+  "population": "Countries worldwide",
+  "created_at": "2026-04-05T23:13:54.391297+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

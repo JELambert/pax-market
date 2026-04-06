@@ -1,0 +1,26 @@
+[
+  {
+    "id": "time_to_event_generic",
+    "display_name": "Time to Event",
+    "construct_type": "quantifiable",
+    "definition": "Duration from index event to outcome or censoring",
+    "created_at": "2026-04-05T19:43:36.984831+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "event_indicator_generic",
+    "display_name": "Event Indicator",
+    "construct_type": "outcome",
+    "definition": "Binary indicator: 1 if event occurred, 0 if censored",
+    "created_at": "2026-04-05T19:43:47.870840+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

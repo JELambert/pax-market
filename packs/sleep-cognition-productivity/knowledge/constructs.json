@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sleep_duration",
+    "display_name": "Sleep Duration",
+    "construct_type": "quantifiable",
+    "definition": "Total hours of sleep per 24-hour period, measured via polysomnography (gold standard), actigraphy (wearables), or self-report (ATUS, NHANES). Recommended 7-9 hours for adults (AASM). US average: 6.8 hours on workdays. Population-level data available from ATUS (N>200K), NHANES sleep module, and Fitbit aggregate studies (N>6M nights).",
+    "created_at": "2026-04-05T18:07:14.610115+00:00",
+    "source_id": "dinges_et_al_2003",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "cognitive_performance",
+    "display_name": "Cognitive Performance Under Sleep Restriction",
+    "construct_type": "outcome",
+    "definition": "Composite of reaction time (PVT), working memory (n-back), executive function (Stroop), and decision quality measured after controlled sleep restriction. Performance declines are cumulative: 6h/night for 14 days produces impairment equivalent to 48 hours total sleep deprivation. Crucially, subjective sleepiness plateaus after ~3 days while objective impairment continues to worsen.",
+    "created_at": "2026-04-05T18:07:30.087760+00:00",
+    "source_id": "dinges_et_al_2003",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "gdp_cost_of_sleep_loss",
+    "display_name": "GDP Cost of Insufficient Sleep",
+    "construct_type": "quantifiable",
+    "definition": "Estimated annual GDP loss from workforce sleep deprivation through three channels: mortality (shorter lifespan), absenteeism (more sick days), and presenteeism (reduced on-the-job productivity). Hafner et al. (2017) estimate: US loses $411B/year (2.28% GDP), Japan $138B (2.92% GDP), UK $50B (1.86% GDP). Calculated via human capital approach.",
+    "created_at": "2026-04-05T18:07:47.757763+00:00",
+    "source_id": "dinges_et_al_2003",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "sleep_quality",
+    "display_name": "Sleep Quality",
+    "construct_type": "quantifiable",
+    "definition": "Composite measure of sleep efficiency (% time in bed asleep), number of awakenings, time in deep/REM sleep, and sleep onset latency. Pittsburgh Sleep Quality Index (PSQI) is the standard self-report instrument (0-21 scale, >5 = poor quality). Wearable devices now provide objective proxies at population scale.",
+    "created_at": "2026-04-05T18:08:04.282821+00:00",
+    "source_id": "dinges_et_al_2003",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "workplace_accident_risk",
+    "display_name": "Workplace Accident Risk",
+    "construct_type": "outcome",
+    "definition": "Probability of occupational injury or error per shift as a function of prior sleep. Workers sleeping <6 hours have 1.7x the accident risk of those sleeping 7-8 hours. After DST spring-forward (population loses 1 hour), US workplace injuries increase 5.7% and severity increases 67.6% on the following Monday.",
+    "created_at": "2026-04-05T18:08:19.456865+00:00",
+    "source_id": "dinges_et_al_2003",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "nap_restoration_effect",
+    "display_name": "Nap Restoration Effect",
+    "construct_type": "quantifiable",
+    "definition": "Degree to which a daytime nap (10-30 minutes) restores cognitive performance after sleep restriction. A 26-minute nap improves pilot performance by 34% and alertness by 54% (NASA nap study). However, naps do not fully compensate for chronic sleep debt \u2014 they provide temporary relief, not recovery. Longer naps (>30 min) risk sleep inertia.",
+    "created_at": "2026-04-05T18:08:35.213502+00:00",
+    "source_id": "dinges_et_al_2003",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

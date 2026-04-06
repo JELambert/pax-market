@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How tax structure, revenue mobilization, and fiscal policy affect economic
+  growth, inequality, and public goods provision across countries.
+domain_id: taxation_fiscal
+license: null
+name: taxation-fiscal-policy
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - tax_revenue_gdp_pct
+  - income_tax_share
+  - government_expenditure_gdp_pct
+  - fiscal_balance_gdp_pct
+  - public_debt_gdp_pct
+  - tax_compliance_rate
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - difference_in_differences
+  findings:
+  - besley_persson_2014_0
+  - reinhart_rogoff_2010_1
+  - piketty_saez_2007_2
+  - mertens_ravn_2013_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - mertens_ravn_2013
+  - besley_persson_2014
+  - reinhart_rogoff_2010
+  - piketty_saez_2007
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- taxation-fiscal
+version: 1.0.0

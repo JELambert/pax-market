@@ -1,0 +1,45 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: How R&D investment, patent activity, scientific output, and researcher
+  density drive technological change, productivity growth, and national competitiveness.
+domain_id: research_innovation
+license: null
+name: research-innovation
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - rd_expenditure_gdp_pct
+  - patent_applications_per_million
+  - researchers_per_million
+  - high_tech_exports_pct
+  - scientific_publications_per_capita
+  - total_factor_productivity_growth
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - random_forest
+  findings:
+  - jones_williams_1998_0
+  - jaffe_trajtenberg_2002_1
+  - unesco_science_2021_2
+  - aghion_howitt_1992_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - jones_williams_1998
+  - aghion_howitt_1992
+  - unesco_science_2021
+  - jaffe_trajtenberg_2002
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- research-innovation
+version: 1.0.0

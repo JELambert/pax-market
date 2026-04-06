@@ -1,0 +1,57 @@
+[
+  {
+    "id": "geddes_wright_frantz_2014",
+    "source_type": "journal_article",
+    "title": "Autocratic Breakdown and Regime Transitions: A New Data Set",
+    "authors": "Geddes, B., Wright, J., Frantz, E.",
+    "year": 2014,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-05T15:56:07.108246+00:00",
+    "added_by": "api"
+  },
+  {
+    "id": "bermeo_2016",
+    "source_type": "journal_article",
+    "title": "On Democratic Backsliding",
+    "authors": "Nancy Bermeo",
+    "year": 2016,
+    "doi": "10.1353/jod.2016.0012",
+    "abstract": null,
+    "added_at": "2026-04-06T00:09:06.164867+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "luhrmann_lindberg_2019",
+    "source_type": "journal_article",
+    "title": "A third wave of autocratization is here: what is new about it?",
+    "authors": "Anna Luhrmann, Staffan I. Lindberg",
+    "year": 2019,
+    "doi": "10.1080/13510347.2019.1582029",
+    "abstract": null,
+    "added_at": "2026-04-06T00:09:06.179832+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "gandhi_przeworski_2007",
+    "source_type": "journal_article",
+    "title": "Authoritarian Institutions and the Survival of Autocrats",
+    "authors": "Jennifer Gandhi, Adam Przeworski",
+    "year": 2007,
+    "doi": "10.1177/0010414007305817",
+    "abstract": null,
+    "added_at": "2026-04-06T00:09:06.195939+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "vdem_v14_2024",
+    "source_type": "dataset",
+    "title": "V-Dem Dataset v14",
+    "authors": "V-Dem Institute, University of Gothenburg",
+    "year": 2024,
+    "doi": null,
+    "abstract": null,
+    "added_at": "2026-04-06T00:09:06.211311+00:00",
+    "added_by": "seed_loader"
+  }
+]

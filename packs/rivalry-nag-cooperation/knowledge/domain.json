@@ -1,0 +1,12 @@
+{
+  "id": "rivalry-nag-cooperation",
+  "display_name": "Strategic Rivalry and NAG Cooperation",
+  "description": "The study of how interstate rivalries shape states' decisions to support non-state armed groups targeting their rivals. Encompasses both the causes of state-NAG cooperation (rivalry characteristics, satisfaction, capabilities) and the consequences for rivalry escalation.",
+  "temporal_scope": "1946-2001",
+  "population": "Triad-years (NAG, NAG target, potential state supporter in target's PRIE), 1946-2001",
+  "created_at": "2026-04-02T17:55:23.664692+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

@@ -1,20 +1,19 @@
 ---
+name: sports-performance
 title: Sports Performance
-pax_name: sports-performance
 version: 1.0.0
 pax_type: topic
 description: Statistical analysis of team performance, Elo ratings, and win probability
   in professional sports. Tests domain-agnosticism with a deliberately non-academic
   domain.
 author: ''
-created: '2026-04-05'
+created: ''
 license: ''
 tags:
 - topic
-- sports-analytics
 constructs:
-- elo_rating
 - win_probability
+- elo_rating
 - offensive_efficiency
 - defensive_efficiency
 engines:
@@ -24,82 +23,56 @@ engines:
 playbook_names:
 - quick_start
 construct_count: 4
-finding_count: 1
+finding_count: 0
 proposition_count: 0
 has_playbooks: true
-has_data_sources: true
+has_data_sources: false
 domain:
   id: sports_analytics
   display_name: Sports Analytics
-  description: Statistical analysis of athletic performance, team strategy, and game
-    outcomes
+  description: Statistical analysis of athletic performance, team strategy, game outcomes,
+    and player valuation
   research_questions: []
-  temporal_scope: ''
-  population: ''
+  temporal_scope: null
+  population: null
   level_of_analysis: micro
 constructs_detail:
-- id: elo_rating
-  display_name: Elo Rating
-  definition: Skill rating based on results against rated opponents
-  aliases: []
-  construct_type: quantifiable
 - id: win_probability
   display_name: Win Probability
-  definition: Estimated probability of winning a game
+  definition: Estimated probability of winning a game given current state, capturing
+    pre-game expectations and in-game dynamics
   aliases: []
-  construct_type: outcome
+  construct_type: quantifiable
+- id: elo_rating
+  display_name: Elo Rating
+  definition: Skill rating of a team based on results against rated opponents, updated
+    after each game using a transfer function
+  aliases: []
+  construct_type: quantifiable
 - id: offensive_efficiency
   display_name: Offensive Efficiency
-  definition: Points or runs scored per possession or opportunity
+  definition: Points or runs scored per possession or opportunity, measuring a team's
+    ability to convert opportunities into scoring
   aliases: []
   construct_type: quantifiable
 - id: defensive_efficiency
   display_name: Defensive Efficiency
-  definition: Points or runs allowed per possession or opportunity
+  definition: Points or runs allowed per possession or opportunity, measuring a team's
+    ability to prevent opponent scoring
   aliases: []
   construct_type: quantifiable
-findings_detail:
-- finding_text: Elo ratings with K-factor tuning produce well-calibrated win probabilities,
-    mean absolute error 4-6 percentage points
-  construct_ids:
-  - elo_rating
-  - win_probability
-  direction: positive
-  effect_size: ''
-  confidence: strong
-  method_used: ''
-  finding_type: ''
-  evidence_type: ''
+findings_detail: []
 propositions_detail: []
-sources_detail:
-- id: silver_538_elo
-  title: FiveThirtyEight NBA Elo Ratings
-  authors: Nate Silver, FiveThirtyEight
-  year: 2015
-  doi: null
-  source_type: dataset
-playbooks_detail:
-- id: quick_start
-  display_name: Quick Start — Sports Analytics
-  description: Basic analysis workflow for the sports_analytics domain.
-  estimated_runtime: 1–3 minutes
-  step_count: 1
-  engines_used:
-  - logistic_regression
-download_url: /packs/sports-performance.pax.tar.gz
-download_size: 1.7 KB
-weight: 7974
+sources_detail: []
+playbooks_detail: []
+download_url: https://pax-market.com/packs/sports-performance.pax.tar.gz
+download_size: 1.2 KB
+published_by: Praxis Agent
 related_packs: []
+pax_name: sports-performance
+weight: 10000
 ---
 
 **Domain:** Sports Analytics
 
-Statistical analysis of athletic performance, team strategy, and game outcomes
-
-## Key Findings
-
-- Elo ratings with K-factor tuning produce well-calibrated win probabilities, mean absolute error 4-6 percentage points *(positive, strong)*
-
-## Sources
-
-- Nate Silver, FiveThirtyEight (2015). *FiveThirtyEight NBA Elo Ratings*.
+Statistical analysis of athletic performance, team strategy, game outcomes, and player valuation

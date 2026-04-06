@@ -1,0 +1,110 @@
+[
+  {
+    "id": "democratic_backsliding_index",
+    "display_name": "Democratic Backsliding Index",
+    "construct_type": "outcome",
+    "definition": "Sustained decline in V-Dem Liberal Democracy Index (v2x_libdem) over a rolling window. A country is coded as backsliding if its LDI drops by >0.05 over 5 years. The third wave of autocratization (2010-present) has affected 40+ countries including major democracies.",
+    "created_at": "2026-04-06T00:09:22.989776+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "executive_aggrandizement",
+    "display_name": "Executive Aggrandizement",
+    "construct_type": "process",
+    "definition": "The incremental concentration of power in the executive branch through legal and semi-legal means: extending term limits, packing courts, weakening legislative oversight, ruling by decree. The dominant mode of democratic death in the 21st century (Bermeo 2016).",
+    "created_at": "2026-04-06T00:09:38.306220+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "judicial_independence_erosion",
+    "display_name": "Judicial Independence Erosion",
+    "construct_type": "quantifiable",
+    "definition": "V-Dem indicator measuring decline in judicial independence \u2014 court packing, removal of judges, reduced jurisdictional scope, intimidation. Operationalized as v2juhcind (high court independence). Judicial capture is typically an early step in democratic erosion.",
+    "created_at": "2026-04-06T00:09:53.249262+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "media_freedom_decline",
+    "display_name": "Media Freedom Decline",
+    "construct_type": "quantifiable",
+    "definition": "Reduction in press freedom through legal restrictions, ownership concentration, journalist harassment/imprisonment, and internet censorship. Measured by V-Dem media freedom indices, RSF Press Freedom Index, or Freedom House scores.",
+    "created_at": "2026-04-06T00:10:07.984958+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "civil_society_repression",
+    "display_name": "Civil Society Repression",
+    "construct_type": "quantifiable",
+    "definition": "Restrictions on NGOs, protest movements, labor unions, and civic organizations. V-Dem CSO participatory environment index (v2xcs_ccsi). Repression of civil society removes accountability mechanisms and early warning signals.",
+    "created_at": "2026-04-06T00:10:23.386525+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "electoral_manipulation",
+    "display_name": "Electoral Manipulation",
+    "construct_type": "quantifiable",
+    "definition": "Subversion of electoral integrity through gerrymandering, voter suppression, media manipulation, harassment of opposition, and outright fraud. V-Dem clean elections index (v2xel_frefair). Declining electoral quality is a hallmark of competitive authoritarianism.",
+    "created_at": "2026-04-06T00:10:39.413415+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "opposition_suppression",
+    "display_name": "Opposition Suppression",
+    "construct_type": "quantifiable",
+    "definition": "Legal and extralegal measures to weaken political opposition: party bans, leader imprisonment, defamation lawsuits, and selective prosecution. V-Dem opposition parties autonomy index.",
+    "created_at": "2026-04-06T00:10:53.110155+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "information_control",
+    "display_name": "Information Control",
+    "construct_type": "quantifiable",
+    "definition": "State control over information flows: internet shutdowns, social media censorship, disinformation campaigns, and surveillance. Increasingly important mechanism of 21st-century autocratization. V-Dem internet censorship + government disinformation indicators.",
+    "created_at": "2026-04-06T00:11:08.579541+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "autocratization_episode",
+    "display_name": "Autocratization Episode",
+    "construct_type": "outcome",
+    "definition": "V-Dem binary indicator: country is experiencing a sustained and substantial decline in democratic attributes. ~60 countries experienced autocratization episodes between 2012-2022. Distinct from democratic backsliding in that it captures the process, not just the outcome.",
+    "created_at": "2026-04-06T00:11:24.217924+00:00",
+    "source_id": "bermeo_2016",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

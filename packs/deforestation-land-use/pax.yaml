@@ -1,0 +1,47 @@
+author: null
+composes: []
+created: '2026-04-05'
+data: null
+depends_on: []
+description: Causes and consequences of tropical deforestation, land use transitions,
+  and their links to biodiversity loss and carbon emissions. Covers forest cover change
+  dynamics, agricultural expansion as a deforestation driver, and CO2 contributions
+  from land use change.
+domain_id: deforestation_land_use
+license: null
+name: deforestation-land-use
+notes: null
+pax_type: topic
+praxis_requires: null
+private: false
+provides:
+  constructs:
+  - forest_area_percent
+  - annual_deforestation_rate
+  - agricultural_land_share
+  - co2_from_land_use_change
+  - tree_cover_loss_hectares
+  - palm_oil_production
+  engines:
+  - ols_regression
+  - correlation_matrix
+  - random_forest
+  findings:
+  - gibbs_2010_0
+  - hansen_2013_1
+  - curtis_2018_2
+  - hansen_2013_3
+  - gibbs_2010_4
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - hansen_2013
+  - gibbs_2010
+  - curtis_2018
+refresh_policy: null
+schema_version: '1.0'
+tags:
+- topic
+- deforestation-land-use
+version: 1.0.0

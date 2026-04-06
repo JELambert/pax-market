@@ -1,0 +1,74 @@
+[
+  {
+    "id": "refugee_stock_per_capita",
+    "display_name": "Refugee Stock Per Capita",
+    "construct_type": "quantifiable",
+    "definition": "Number of refugees and people in refugee-like situations per 1000 population in the host country",
+    "created_at": "2026-04-05T23:12:40.843860+00:00",
+    "source_id": "unhcr_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "net_migration_rate_per_1000",
+    "display_name": "Net Migration Rate",
+    "construct_type": "quantifiable",
+    "definition": "Difference between immigration and emigration per 1000 population per year measuring net population movement",
+    "created_at": "2026-04-05T23:12:40.922057+00:00",
+    "source_id": "unhcr_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "remittance_inflows_gdp_pct",
+    "display_name": "Remittance Inflows as GDP Percentage",
+    "construct_type": "quantifiable",
+    "definition": "Personal remittances received as percentage of gross domestic product measuring diaspora financial transfers",
+    "created_at": "2026-04-05T23:12:40.983615+00:00",
+    "source_id": "unhcr_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "asylum_applications_per_capita",
+    "display_name": "Asylum Applications Per Capita",
+    "construct_type": "quantifiable",
+    "definition": "Number of new asylum applications per 100000 host country population per year",
+    "created_at": "2026-04-05T23:12:41.045457+00:00",
+    "source_id": "unhcr_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "internally_displaced_persons_total",
+    "display_name": "Internally Displaced Persons",
+    "construct_type": "quantifiable",
+    "definition": "Total number of persons displaced within their own country by conflict violence or disaster",
+    "created_at": "2026-04-05T23:12:41.108139+00:00",
+    "source_id": "unhcr_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "conflict_battle_deaths",
+    "display_name": "Conflict Battle Deaths",
+    "construct_type": "quantifiable",
+    "definition": "Number of battle-related deaths from armed conflicts per 100000 population per year",
+    "created_at": "2026-04-05T23:12:41.169286+00:00",
+    "source_id": "unhcr_2023",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

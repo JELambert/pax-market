@@ -1,0 +1,26 @@
+author: Josh Lambert
+composes: []
+created: null
+data: null
+depends_on: []
+description: 'Bayesian linear regression with conjugate priors. The killer demo: use
+  KB findings as informative priors to formally incorporate prior literature into
+  new analysis.'
+domain_id: null
+license: null
+name: bayesian-methods
+notes: null
+pax_type: engine
+praxis_requires: null
+private: false
+provides:
+  constructs: []
+  engines: []
+  findings: []
+  playbooks: []
+  propositions: []
+  sources: []
+refresh_policy: null
+schema_version: '1.0'
+tags: []
+version: 1.0.1

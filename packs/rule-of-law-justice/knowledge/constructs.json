@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rule_of_law_index",
+    "display_name": "Rule of Law Index",
+    "construct_type": "quantifiable",
+    "definition": "World Governance Indicators composite measure capturing perceptions of the extent to which agents have confidence in and abide by the rules of society, including contract enforcement, property rights, police, and courts",
+    "created_at": "2026-04-05T23:12:44.081021+00:00",
+    "source_id": "acemoglu_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "judicial_independence_score",
+    "display_name": "Judicial Independence Score",
+    "construct_type": "quantifiable",
+    "definition": "Measure of the degree to which the judiciary is independent from interference by the government and other actors, including appointment processes, tenure security, and budget autonomy",
+    "created_at": "2026-04-05T23:12:44.123344+00:00",
+    "source_id": "acemoglu_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "property_rights_protection",
+    "display_name": "Property Rights Protection",
+    "construct_type": "quantifiable",
+    "definition": "Index measuring the degree to which private property rights are protected by law and enforced by the state, including protection from expropriation, ease of registration, and security of tenure",
+    "created_at": "2026-04-05T23:12:44.164575+00:00",
+    "source_id": "acemoglu_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "contract_enforcement_days",
+    "display_name": "Contract Enforcement Days",
+    "construct_type": "quantifiable",
+    "definition": "World Bank Doing Business measure of the average number of calendar days from filing a commercial dispute lawsuit to final enforcement of judgment, capturing judicial efficiency",
+    "created_at": "2026-04-05T23:12:44.206757+00:00",
+    "source_id": "acemoglu_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "incarceration_rate_per_100k",
+    "display_name": "Incarceration Rate per 100,000",
+    "construct_type": "quantifiable",
+    "definition": "Number of prisoners per 100,000 population including pretrial detainees and remand prisoners, measuring the scope of the criminal justice system punitive reach",
+    "created_at": "2026-04-05T23:12:44.249099+00:00",
+    "source_id": "acemoglu_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "control_of_corruption_score",
+    "display_name": "Control of Corruption Score",
+    "construct_type": "quantifiable",
+    "definition": "World Governance Indicators measure of perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption and state capture",
+    "created_at": "2026-04-05T23:12:44.292355+00:00",
+    "source_id": "acemoglu_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

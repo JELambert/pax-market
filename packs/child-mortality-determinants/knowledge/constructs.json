@@ -1,0 +1,74 @@
+[
+  {
+    "id": "maternal_education_years",
+    "display_name": "Maternal Education (Years)",
+    "construct_type": "quantifiable",
+    "definition": "Average years of formal schooling completed by women of reproductive age in a given country, a key social determinant of child health outcomes",
+    "created_at": "2026-04-05T22:38:26.135539+00:00",
+    "source_id": "cutler_2006",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "immunization_coverage",
+    "display_name": "Immunization Coverage",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of children aged 12-23 months who have received all basic recommended vaccinations including DPT3, measles, and polio",
+    "created_at": "2026-04-05T22:38:41.919599+00:00",
+    "source_id": "cutler_2006",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "skilled_birth_attendance",
+    "display_name": "Skilled Birth Attendance",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of births attended by skilled health personnel such as doctors, nurses, or midwives trained in providing life-saving obstetric care",
+    "created_at": "2026-04-05T22:38:57.274041+00:00",
+    "source_id": "cutler_2006",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "gdp_per_capita_child",
+    "display_name": "GDP per Capita",
+    "construct_type": "quantifiable",
+    "definition": "Gross domestic product divided by midyear population in constant international dollars, measuring average economic output per person as a proxy for development level",
+    "created_at": "2026-04-05T22:39:12.402460+00:00",
+    "source_id": "cutler_2006",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "clean_water_access_child",
+    "display_name": "Clean Water Access",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of the population using at least basic drinking water services from an improved source within 30 minutes round trip collection time",
+    "created_at": "2026-04-05T22:39:27.115260+00:00",
+    "source_id": "cutler_2006",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "child_mortality_under5",
+    "display_name": "Under-5 Mortality Rate",
+    "construct_type": "outcome",
+    "definition": "The probability of a child dying before reaching age 5, expressed per 1,000 live births, a key indicator of child health and development progress",
+    "created_at": "2026-04-05T22:38:10.929590+00:00",
+    "source_id": "cutler_2006",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]

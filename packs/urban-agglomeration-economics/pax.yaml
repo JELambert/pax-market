@@ -1,0 +1,35 @@
+description: Why cities make people more productive and what the limits are — agglomeration
+  economies, knowledge spillovers, sorting, and congestion costs. Built on Glaeser,
+  Moretti, Duranton & Puga, and Combes. Data from OECD Metropolitan Database (650+
+  metro areas), US Census urban-rural panels, and European city-level wage regressions.
+  Covers the urban wage premium, innovation clustering, housing affordability tradeoffs,
+  and remote work disruption.
+name: urban-agglomeration-economics
+pax_type: topic
+provides:
+  constructs:
+  - urban_wage_premium
+  - population_density
+  - knowledge_spillovers
+  - housing_cost_burden
+  - patent_density
+  - commute_time
+  engines:
+  - ols_regression
+  - instrumental_variables
+  - difference_in_differences
+  - correlation_matrix
+  - logistic_regression
+  findings:
+  - combes_et_al_2012_0
+  - moretti_2021_1
+  - jaffe_et_al_1993_2
+  - duranton_puga_2020_3
+  - glaeser_2022_4
+  playbooks:
+  - quick_start
+  propositions:
+  - sorting_halves_premium
+  - housing_eats_gains
+schema_version: '1.0'
+version: 1.0.0

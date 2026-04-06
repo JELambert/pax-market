@@ -1,0 +1,25 @@
+author: Josh Lambert
+composes: []
+created: null
+data: null
+depends_on: []
+description: 'Advanced ML engines: support vector machines with auto-detect classification/regression
+  and permutation feature importance.'
+domain_id: null
+license: null
+name: advanced-ml
+notes: null
+pax_type: engine
+praxis_requires: null
+private: false
+provides:
+  constructs: []
+  engines: []
+  findings: []
+  playbooks: []
+  propositions: []
+  sources: []
+refresh_policy: null
+schema_version: '1.0'
+tags: []
+version: 1.0.1

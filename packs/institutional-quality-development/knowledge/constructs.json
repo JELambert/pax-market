@@ -1,0 +1,62 @@
+[
+  {
+    "id": "rule_of_law",
+    "display_name": "Rule of Law",
+    "construct_type": "quantifiable",
+    "definition": "Confidence in and abidance by the rules of society, including contract enforcement, property rights, and the courts. WGI Rule of Law indicator.",
+    "created_at": "2026-04-04T17:06:07.901861+00:00",
+    "source_id": "acemoglu_johnson_robinson_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "control_of_corruption",
+    "display_name": "Control of Corruption",
+    "construct_type": "quantifiable",
+    "definition": "The extent to which public power is NOT exercised for private gain, including petty and grand corruption.",
+    "created_at": "2026-04-04T17:06:07.933272+00:00",
+    "source_id": "acemoglu_johnson_robinson_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "property_rights_security",
+    "display_name": "Property Rights Security",
+    "construct_type": "quantifiable",
+    "definition": "Degree to which private property rights are legally protected against state expropriation and private predation.",
+    "created_at": "2026-04-04T17:06:07.964707+00:00",
+    "source_id": "acemoglu_johnson_robinson_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "government_effectiveness",
+    "display_name": "Government Effectiveness",
+    "construct_type": "quantifiable",
+    "definition": "Quality of public services, civil service, and credibility of government commitment to policies. WGI Government Effectiveness.",
+    "created_at": "2026-04-04T17:06:07.995236+00:00",
+    "source_id": "acemoglu_johnson_robinson_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "democratic_governance",
+    "display_name": "Democratic Governance",
+    "construct_type": "quantifiable",
+    "definition": "Degree to which political leaders are chosen through free elections with civil liberties protection. Polity2, V-Dem, Freedom House.",
+    "created_at": "2026-04-04T17:06:08.026713+00:00",
+    "source_id": "acemoglu_johnson_robinson_2001",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  }
+]

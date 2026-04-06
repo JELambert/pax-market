@@ -1,0 +1,38 @@
+name: military-coup-prediction
+provides:
+  constructs:
+  - coup_attempt
+  - coup_success
+  - gdp_per_capita_coup
+  - economic_growth_shock
+  - military_spending_share
+  - regime_durability_coup
+  - coup_history
+  - ethnic_fractionalization_military
+  - military_autonomy
+  - ethnic_stacking
+  - parallel_security_forces
+  - coup_contagion
+  - foreign_military_aid_coup
+  - cold_war_era_coup
+  - anocracy_coup
+  - leader_tenure_coup
+  - coup_forecast_score
+  engines:
+  - logistic_regression
+  - random_forest
+  findings:
+  - gassebner_gutmann_voigt_2016_0
+  - gassebner_gutmann_voigt_2016_1
+  - gassebner_gutmann_voigt_2016_2
+  - roessler_2011_3
+  - acemoglu_ticchi_vindigni_2009_4
+  - harkness_2014_5
+  - makara_2013_6
+  - carey_colaresi_mitchell_2015_7
+  - kim_sudduth_2021_8
+  playbooks:
+  - quick_start
+  - drc_coup_analysis
+  propositions: []
+version: 1.0.3

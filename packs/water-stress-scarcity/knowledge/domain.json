@@ -1,0 +1,12 @@
+{
+  "id": "water_stress",
+  "display_name": "Water Stress and Scarcity",
+  "description": "Global freshwater scarcity, agricultural water use, and the water-energy-food nexus with implications for conflict and development",
+  "temporal_scope": "1990-present",
+  "population": "Water-stressed regions worldwide",
+  "created_at": "2026-04-05T23:12:50.237676+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "macro"
+}

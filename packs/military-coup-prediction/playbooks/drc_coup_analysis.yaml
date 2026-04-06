@@ -1,0 +1,227 @@
+description: End-to-end pipeline capturing the data acquisition, merging, ingestion,
+  and analysis workflow used to analyze coup dynamics in the Democratic Republic of
+  Congo. Acquires Powell & Thyne coup events and World Bank WDI indicators, merges
+  into a country-year panel, ingests into Praxis, validates, and runs bivariate and
+  multivariate models. Developed during an April 2026 analytical session.
+display_name: DRC Coup Analysis — Full Pipeline
+estimated_runtime: 5-10 minutes
+id: drc_coup_analysis
+steps:
+- action: data_acquire
+  display_name: Acquire Powell & Thyne coup event data
+  id: acquire_powell_thyne
+  params:
+    entity_id_column: country
+    entity_id_convention: country_name
+    format: tsv
+    notes: 'Each row is a coup event, NOT a country-year. Column ''coup'': 1=successful,
+      2=attempted/failed. Column ''ccode'' is the COW country code. Must be collapsed
+      to country-year panel with binary coup_attempt indicator. Version field tracks
+      dataset updates (e.g., V2026.01.13).'
+    quality_notes: 'Coverage: 1950-2025, 497 events across 97 countries. Some historical
+      country names need standardization (e.g., ''Democratic Republic of the Congo''
+      vs ''Zaire''). DRC coding note: 1960 and 1965 coups coded as type=2 (failed)
+      which may be incorrect for 1965 Mobutu coup — see issue #208.'
+    source_url: https://www.uky.edu/~clthyn2/coup_data/powell_thyne_coups_final.txt
+    year_column: year
+  step: 1
+- action: data_acquire
+  display_name: Acquire World Bank GDP per capita and growth data
+  id: acquire_wdi_gdp
+  params:
+    entity_id_convention: iso3
+    notes: World Bank uses ISO3 codes (e.g., COD for DRC). No registration required.
+      Data updated annually around February.
+    sources:
+    - format: api_json
+      id: wdi_gdp_pcap
+      notes: GDP per capita in constant 2015 USD. Paginated JSON — set per_page=20000
+        to get all records in one call. Filter out aggregate entities (keep only ISO3
+        codes).
+      url: https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.KD?format=json&per_page=20000&date=1950:2025
+    - format: api_json
+      id: wdi_gdp_growth
+      notes: GDP growth annual %. Same API pattern. Null values are common for early
+        years and small states.
+      url: https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=20000&date=1950:2025
+  step: 2
+- action: data_merge
+  display_name: Build country-year panel from coup events
+  id: build_country_year_panel
+  params:
+    description: Transform Powell & Thyne event data into a country-year panel. For
+      each country with any coup event, create rows for every year 1950-2025.
+    notes: Panel should have ~7,000 rows (97 countries × ~75 years). Some countries
+      enter the panel late (post-independence).
+    outputs:
+      coup_attempt: 'Binary: 1 if any coup event in that country-year, else 0'
+      coup_history_count: Running count of prior coup attempts up to (but not including)
+        current year
+      coup_success: 'Binary: 1 if a successful coup (type=1) in that country-year,
+        else 0'
+  step: 3
+- action: data_merge
+  depends_on:
+  - build_country_year_panel
+  - acquire_wdi_gdp
+  display_name: Merge WDI data onto coup panel
+  id: merge_wdi_onto_panel
+  params:
+    crosswalk: 'Powell & Thyne uses country names and COW codes. WDI uses ISO3. Need
+      COW-to-ISO3 mapping. Key mappings: DRC=490/COD, Congo-Brazzaville=484/COG. A
+      comprehensive crosswalk covers ~90% of countries; ~7 COW codes may not match
+      and should be logged as warnings.'
+    edge_cases: WDI data starts 1960 (not 1950). GDP growth starts 1961. Expect ~5,300
+      matched rows out of ~6,800 panel rows. Missing GDP data is concentrated in early
+      years and conflict periods — this is informative missingness, not random.
+    join_keys:
+    - country_name
+    - year
+    left: coup_country_year_panel
+    merge_strategy: left_join
+    right: wdi_indicators
+  step: 4
+- action: data_ingest
+  depends_on:
+  - merge_wdi_onto_panel
+  display_name: Ingest WDI indicators into Praxis
+  id: ingest_wdi_data
+  params:
+    construct_mapping:
+      gdp_growth: economic_growth_shock
+      gdp_per_capita: gdp_per_capita_coup
+    entity_column: country
+    entity_type: country
+    format: long
+    notes: 'Use praxis_ingest_data with the merged panel JSON file. Expected: ~10,600
+      observations inserted across 2 constructs.'
+    source_id: world_bank_wdi_2026
+    year_column: year
+  step: 5
+- action: data_ingest
+  depends_on:
+  - build_country_year_panel
+  display_name: Ingest coup indicators into Praxis
+  id: ingest_coup_data
+  params:
+    construct_mapping:
+      coup_attempt: coup_attempt
+      coup_history_count: coup_history
+      coup_success: coup_success
+    entity_column: country
+    entity_type: country
+    format: long
+    notes: 'Expected: ~20,500 observations across 3 constructs. All country-years
+      get values (0 for no-coup years).'
+    source_id: powell_thyne_dataset_2025
+    year_column: year
+  step: 6
+- action: data_validate
+  depends_on:
+  - ingest_wdi_data
+  - ingest_coup_data
+  display_name: Validate ingested data
+  id: validate_panel
+  params:
+    checks:
+    - coup_attempt values are 0 or 1 only
+    - coup_success values are 0 or 1 only
+    - gdp_per_capita_coup > 0 where not null
+    - 'DRC entity exists: ''Democratic Republic of the Congo'''
+    - DRC has GDP data from 1960 onward
+    entity_count_min: 90
+    expected_constructs_with_data: 5
+    expected_total_observations_min: 30000
+    year_range:
+    - 1950
+    - 2025
+  step: 7
+- action: analyze
+  depends_on:
+  - validate_panel
+  display_name: DRC GDP per capita trend
+  expect: Strong negative trend (~-$18/year) reflecting post-independence economic
+    collapse through Mobutu era and Congo Wars, with partial recovery post-2002.
+  id: drc_gdp_trend
+  params:
+    construct_x: gdp_per_capita_coup
+    entity_id: Democratic Republic of the Congo
+  step: 8
+- action: analyze
+  compare_to_kb: true
+  depends_on:
+  - validate_panel
+  display_name: 'Bivariate: GDP per capita → coup attempt'
+  expect: Significant negative coefficient — lower GDP associated with higher coup
+    probability. Auto-detects binary outcome and uses logistic regression.
+  id: bivariate_gdp_coup
+  params:
+    construct_x: gdp_per_capita_coup
+    construct_y: coup_attempt
+  step: 9
+- action: analyze
+  compare_to_kb: true
+  depends_on:
+  - validate_panel
+  display_name: 'Bivariate: Economic growth → coup attempt'
+  expect: Significant negative coefficient — lower growth associated with higher coup
+    probability.
+  id: bivariate_growth_coup
+  params:
+    construct_x: economic_growth_shock
+    construct_y: coup_attempt
+  step: 10
+- action: analyze
+  compare_to_kb: true
+  depends_on:
+  - validate_panel
+  display_name: 'Bivariate: Coup history → coup attempt'
+  expect: Positive coefficient — more prior coups predict future attempts (coup trap
+    hypothesis). KB should agree.
+  id: bivariate_history_coup
+  params:
+    construct_x: coup_history
+    construct_y: coup_attempt
+  step: 11
+- action: run_engine
+  compare_to_kb: true
+  depends_on:
+  - bivariate_gdp_coup
+  - bivariate_growth_coup
+  - bivariate_history_coup
+  display_name: 'Multivariate logistic regression: coup prediction'
+  engine: logistic_regression
+  expect: GDP and growth significant negative predictors. Coup history positive but
+    may lose significance due to collinearity with GDP (r=-0.11).
+  expected_results:
+    coup_history:
+      direction: positive
+    economic_growth_shock:
+      direction: negative
+    gdp_per_capita_coup:
+      direction: negative
+  id: multivariate_logistic
+  on_failure: continue
+  params:
+    outcome: coup_attempt
+    predictors:
+    - gdp_per_capita_coup
+    - economic_growth_shock
+    - coup_history
+  step: 12
+- action: run_engine
+  depends_on:
+  - validate_panel
+  display_name: Full correlation matrix
+  engine: correlation_matrix
+  expect: '7 of 10 pairs significant. Strongest: coup_attempt↔coup_success (r≈0.69).
+    GDP↔coup_history negative (r≈-0.11) confirming poverty-coup trap link.'
+  id: correlation_matrix
+  params:
+    variables:
+    - coup_attempt
+    - coup_success
+    - coup_history
+    - gdp_per_capita_coup
+    - economic_growth_shock
+  step: 13

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gini_coefficient_income",
+    "display_name": "Gini Coefficient Income",
+    "construct_type": "quantifiable",
+    "definition": "Index from 0 to 1 measuring the degree of inequality in national income distribution where 0 is perfect equality",
+    "created_at": "2026-04-05T23:15:15.507135+00:00",
+    "source_id": "piketty_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "income_share_top_10_pct",
+    "display_name": "Income Share Top 10 Percent",
+    "construct_type": "quantifiable",
+    "definition": "Share of pre-tax national income accruing to the top 10 percent of earners in the income distribution",
+    "created_at": "2026-04-05T23:15:15.547486+00:00",
+    "source_id": "piketty_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "poverty_headcount_215_ppp",
+    "display_name": "Poverty Headcount 2.15 PPP",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of population living below international poverty line of 2.15 dollars per day at purchasing power parity",
+    "created_at": "2026-04-05T23:15:15.590150+00:00",
+    "source_id": "piketty_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "intergenerational_earnings_elasticity",
+    "display_name": "Intergenerational Earnings Elasticity",
+    "construct_type": "quantifiable",
+    "definition": "Correlation between parent and child income rankings measuring the degree of social mobility across generations",
+    "created_at": "2026-04-05T23:15:15.632285+00:00",
+    "source_id": "piketty_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "wealth_share_top_1_pct",
+    "display_name": "Wealth Share Top 1 Percent",
+    "construct_type": "quantifiable",
+    "definition": "Share of total national wealth held by the wealthiest 1 percent of the adult population",
+    "created_at": "2026-04-05T23:15:15.675326+00:00",
+    "source_id": "piketty_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "labor_income_share_gdp",
+    "display_name": "Labor Income Share of GDP",
+    "construct_type": "quantifiable",
+    "definition": "Total employee compensation as share of gross domestic product measuring the split between labor and capital",
+    "created_at": "2026-04-05T23:15:15.715771+00:00",
+    "source_id": "piketty_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]
