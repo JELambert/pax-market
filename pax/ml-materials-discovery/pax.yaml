@@ -1,0 +1,33 @@
+description: Machine learning for computational materials discovery — benchmarking
+  ML models on crystal stability prediction, thermodynamic property regression, and
+  high-throughput materials screening. Covers graph neural network interatomic potentials,
+  compositional feature engineering, and discovery-rate evaluation frameworks. Built
+  on the Matbench and Matbench Discovery benchmark suites from the Materials Project.
+name: ml-materials-discovery
+pax_type: field
+provides:
+  constructs:
+  - formation_energy_per_atom
+  - energy_above_convex_hull
+  - thermodynamic_stability
+  - discovery_acceleration_factor
+  - band_gap
+  - gnn_interatomic_potential
+  - mean_absolute_error_materials
+  engines:
+  - random_forest
+  - gradient_boosting
+  findings:
+  - riebesell_2025_matbench_discovery_0
+  - riebesell_2025_matbench_discovery_1
+  - dunn_2020_matbench_2
+  - deng_2023_chgnet_3
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - riebesell_2025_matbench_discovery
+  - dunn_2020_matbench
+  - deng_2023_chgnet
+schema_version: '1.0'
+version: 1.0.1
