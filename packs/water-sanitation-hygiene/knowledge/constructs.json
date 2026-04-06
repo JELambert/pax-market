@@ -1,0 +1,74 @@
+[
+  {
+    "id": "safe_drinking_water_access",
+    "display_name": "Safe Drinking Water Access",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of population using safely managed drinking water services as defined by WHO/UNICEF Joint Monitoring Programme",
+    "created_at": "2026-04-05T23:11:11.069152+00:00",
+    "source_id": "pruss_ustun_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "basic_sanitation_access",
+    "display_name": "Basic Sanitation Access",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of population using at least basic sanitation services including flush and pit latrines",
+    "created_at": "2026-04-05T23:11:11.110450+00:00",
+    "source_id": "pruss_ustun_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "hygiene_facility_access",
+    "display_name": "Hygiene Facility Access",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of population with basic handwashing facility with soap and water on premises",
+    "created_at": "2026-04-05T23:11:11.584438+00:00",
+    "source_id": "pruss_ustun_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "diarrheal_disease_mortality",
+    "display_name": "Diarrheal Disease Mortality",
+    "construct_type": "quantifiable",
+    "definition": "Deaths from diarrheal diseases per 100000 population per year including cholera dysentery and rotavirus",
+    "created_at": "2026-04-05T23:11:11.626148+00:00",
+    "source_id": "pruss_ustun_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "stunting_prevalence_under5",
+    "display_name": "Stunting Prevalence Under 5",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of children under 5 years with height-for-age z-score below minus 2 standard deviations from median",
+    "created_at": "2026-04-05T23:11:11.667860+00:00",
+    "source_id": "pruss_ustun_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "wash_investment_per_capita",
+    "display_name": "WASH Investment Per Capita",
+    "construct_type": "quantifiable",
+    "definition": "Annual per capita expenditure on water supply and sanitation infrastructure measured in constant USD",
+    "created_at": "2026-04-05T23:11:11.710166+00:00",
+    "source_id": "pruss_ustun_2014",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  }
+]
