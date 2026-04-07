@@ -1,5 +1,17 @@
 [
   {
+    "id": "discovery_acceleration_factor",
+    "display_name": "Discovery Acceleration Factor (DAF)",
+    "construct_type": "quantifiable",
+    "definition": "The ratio of a model's precision at top-k screening relative to random selection baseline. Quantifies how much faster a model identifies stable materials compared to untargeted DFT calculation. A DAF of 6 means 6x more discoveries per DFT calculation than random. Primary efficiency metric in Matbench Discovery.",
+    "created_at": "2026-04-06T19:47:17.943280+00:00",
+    "source_id": "riebesell_2025_matbench_discovery",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
     "id": "band_gap",
     "display_name": "Band Gap",
     "construct_type": "quantifiable",
@@ -41,6 +53,18 @@
     "construct_type": "process",
     "definition": "A machine-learned force field that maps crystal graph inputs to total energies, atomic forces, and stresses using message-passing neural networks. Trained on DFT trajectories (e.g., MPtrj ~1.6M structures), enabling geometry optimization at DFT accuracy but orders of magnitude faster. Examples: M3GNet, CHGNet, MACE-MP, SevenNet.",
     "created_at": "2026-04-06T19:48:30.765720+00:00",
+    "source_id": "riebesell_2025_matbench_discovery",
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "mean_absolute_error_materials",
+    "display_name": "Mean Absolute Error (MAE) for Property Prediction",
+    "construct_type": "quantifiable",
+    "definition": "Primary regression metric in Matbench: average absolute difference between predicted and DFT-computed material properties (eV/atom for energies, eV for band gaps, GPa for moduli). Lower is better; state-of-the-art models achieve ~0.02\u20130.05 eV/atom for formation energy.",
+    "created_at": "2026-04-06T19:49:07.646670+00:00",
     "source_id": "riebesell_2025_matbench_discovery",
     "status": "active",
     "parent_construct_id": null,
@@ -264,6 +288,18 @@
     "canonical": 0
   },
   {
+    "id": "cation_disorder_energy",
+    "display_name": "Cation Disorder Energy",
+    "construct_type": "quantifiable",
+    "definition": "The energy difference (eV/atom) between the fully ordered and disordered cation arrangements in a mixed-metal oxide. In rocksalt cathodes, partial cation disorder can enable percolating Li diffusion pathways while maintaining structural stability. Computed via special quasi-random structures (SQS) or cluster expansion.",
+    "created_at": "2026-04-06T23:54:06.727718+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
     "id": "li_diffusion_barrier",
     "display_name": "Li Diffusion Barrier",
     "construct_type": "quantifiable",
@@ -432,6 +468,18 @@
     "canonical": 0
   },
   {
+    "id": "spinel_cation_inversion",
+    "display_name": "Spinel Cation Inversion",
+    "construct_type": "quantifiable",
+    "definition": "The degree to which cations in a spinel structure (AB2X4) occupy non-ideal crystallographic sites (tetrahedral vs octahedral), often expressed as inversion fraction. Affects Mg migration pathways and electrochemical properties.",
+    "created_at": "2026-04-07T00:03:44.380119+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
     "id": "selectivity_metric",
     "display_name": "Selectivity Metric",
     "construct_type": "quantifiable",
@@ -449,6 +497,18 @@
     "construct_type": "quantifiable",
     "definition": "The degree to which a solid-state synthesis pathway preferentially forms one crystal polymorph over thermodynamically competing polymorphs, governed by the interplay of reaction energy, surface energy, and nucleation barriers.",
     "created_at": "2026-04-07T00:04:22.157609+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "thermodynamic_control_threshold",
+    "display_name": "Thermodynamic Control Threshold",
+    "construct_type": "quantifiable",
+    "definition": "The minimum energy difference (in meV/atom) between the most favorable initial reaction product and competing phases above which product formation is reliably predicted by thermodynamics alone, empirically determined to be approximately 60 meV/atom.",
+    "created_at": "2026-04-07T00:04:40.138620+00:00",
     "source_id": null,
     "status": "active",
     "parent_construct_id": null,
@@ -492,6 +552,18 @@
     "canonical": 0
   },
   {
+    "id": "dft_functional_accuracy",
+    "display_name": "DFT Functional Accuracy for Solids",
+    "construct_type": "quantifiable",
+    "definition": "The accuracy of different density functional theory exchange-correlation approximations (PBE, SCAN, r2SCAN) for predicting thermodynamic properties of inorganic solids, including formation enthalpies and phase stability.",
+    "created_at": "2026-04-07T00:05:52.068771+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
     "id": "ca_ion_diffusion_barrier",
     "display_name": "Ca-Ion Diffusion Barrier",
     "construct_type": "quantifiable",
@@ -504,11 +576,35 @@
     "canonical": 0
   },
   {
+    "id": "nitride_perovskite_formability",
+    "display_name": "Nitride Perovskite Formability",
+    "construct_type": "quantifiable",
+    "definition": "The likelihood that an ABN3 composition will crystallize in the perovskite structure. Nitride perovskites are extremely rare compared to oxide/halide analogs due to challenging synthesis and stability requirements.",
+    "created_at": "2026-04-07T00:01:33.510456+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
     "id": "synthesis_condition_prediction",
     "display_name": "Synthesis Condition Prediction",
     "construct_type": "quantifiable",
     "definition": "ML-based prediction of optimal solid-state synthesis conditions (temperature, time, atmosphere) from precursor properties and reaction features, trained on text-mined literature data.",
     "created_at": "2026-04-07T00:06:27.975605+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "ion_exchange_activation_energy",
+    "display_name": "Ion Exchange Activation Energy",
+    "construct_type": "quantifiable",
+    "definition": "The energy barrier governing the rate of ion exchange reactions in solid-state synthesis, determined by defect formation energies and hopping barriers in the salt precursor rather than the ceramic target material.",
+    "created_at": "2026-04-07T00:06:44.653944+00:00",
     "source_id": null,
     "status": "active",
     "parent_construct_id": null,
@@ -533,6 +629,18 @@
     "construct_type": "process",
     "definition": "A double-ion exchange synthesis strategy where two anions are simultaneously exchanged between precursors, enabling formation of complex oxides at substantially lower temperatures than conventional ceramic routes by providing large thermodynamic driving forces.",
     "created_at": "2026-04-07T00:07:47.680729+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "dft_prediction_accuracy",
+    "display_name": "DFT Prediction Accuracy for Solid Stability",
+    "construct_type": "quantifiable",
+    "definition": "The accuracy with which density functional theory approximations (PBE, SCAN, r2SCAN) predict the thermodynamic stability of inorganic solids, measured as mean absolute error relative to experimental formation enthalpies.",
+    "created_at": "2026-04-07T00:08:05.333599+00:00",
     "source_id": null,
     "status": "active",
     "parent_construct_id": null,
@@ -569,6 +677,18 @@
     "construct_type": "quantifiable",
     "definition": "The enthalpy change associated with a compound decomposing into competing phases (other compounds and/or elemental forms). Unlike formation enthalpy which measures stability relative to elements only, decomposition enthalpy captures the true thermodynamic competition that determines compound stability.",
     "created_at": "2026-04-07T00:09:39.766042+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "high_throughput_screening_yield",
+    "display_name": "High-Throughput Screening Yield",
+    "construct_type": "quantifiable",
+    "definition": "The fraction of computationally screened candidate materials that pass stability and property filters and are ultimately validated experimentally, reflecting the efficiency of computational materials discovery pipelines.",
+    "created_at": "2026-04-07T00:09:56.338010+00:00",
     "source_id": null,
     "status": "active",
     "parent_construct_id": null,
@@ -653,6 +773,18 @@
     "construct_type": "quantifiable",
     "definition": "Quantitative metrics (primary and secondary competition) assessing the favorability of target phase formation versus impurity phase formation in solid-state reactions. Used to rank and select synthesis reactions that maximize target yield.",
     "created_at": "2026-04-07T00:12:59.450034+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
+    "id": "adaptive_measurement_efficiency",
+    "display_name": "Adaptive Measurement Efficiency",
+    "construct_type": "quantifiable",
+    "definition": "The improvement in measurement effectiveness achieved by ML-guided adaptive experimentation compared to conventional static measurement protocols. For XRD, this means using early diffraction data to steer subsequent measurements toward informative angular ranges.",
+    "created_at": "2026-04-07T00:13:17.214782+00:00",
     "source_id": null,
     "status": "active",
     "parent_construct_id": null,
@@ -792,6 +924,54 @@
     "canonical": 0
   },
   {
+    "id": "automated_phase_identification",
+    "display_name": "Automated Phase Identification",
+    "construct_type": "process",
+    "definition": "ML-based methods for automatically identifying crystalline phases from X-ray diffraction data, including probabilistic neural networks and adaptive measurement strategies that optimize data collection for phase detection.",
+    "created_at": "2026-04-07T00:16:52.784417+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "ml_formation_energy_model",
+    "display_name": "ML Formation Energy Model",
+    "construct_type": "quantifiable",
+    "definition": "Machine learning models trained to predict formation energies of inorganic crystalline solids from compositional and structural features. Model accuracy depends critically on training data quality, diversity, and balance across chemical space.",
+    "created_at": "2026-04-07T00:08:23.337918+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "pairwise_reaction_model",
+    "display_name": "Pairwise Reaction Model",
+    "construct_type": "concept",
+    "definition": "A model for solid-state synthesis where phase evolution from multiple precursors proceeds as a sequence of interfacial reactions initiating between two phases at a time. The most reactive pairwise interface determines which non-equilibrium intermediate phases form.",
+    "created_at": "2026-04-07T00:17:40.121865+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "post_generation_screening",
+    "display_name": "Post-Generation Screening Efficiency",
+    "construct_type": "process",
+    "definition": "The improvement in success rates achieved by passing ML-generated candidate materials through stability and property filters from pre-trained models (e.g., universal interatomic potentials) as a low-cost post-processing step.",
+    "created_at": "2026-04-07T00:15:39.888753+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0
+  },
+  {
     "id": "topological_electron_density_descriptor",
     "display_name": "Topological Electron Density Descriptor",
     "construct_type": "quantifiable",
@@ -850,5 +1030,41 @@
     "parent_construct_id": null,
     "pax_origin": null,
     "canonical": 0
+  },
+  {
+    "id": "cathode_capacity",
+    "display_name": "Cathode Specific Capacity",
+    "construct_type": "quantifiable",
+    "definition": "The gravimetric charge storage capacity of a battery cathode material (mAh/g). Determined by the number of intercalatable ions per formula unit and the molecular weight. Higher capacity enables higher energy density batteries. Theoretical capacity from DFT; practical capacity from electrochemical cycling.",
+    "created_at": "2026-04-06T23:53:48.362501+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "chalcogenide_perovskite_stability",
+    "display_name": "Chalcogenide Perovskite Stability",
+    "construct_type": "quantifiable",
+    "definition": "The thermodynamic stability of perovskites with chalcogenide anions (S2-, Se2-, Te2-) instead of oxide or halide anions. These materials are scarce despite favorable tolerance factors, suggesting additional instability mechanisms.",
+    "created_at": "2026-04-07T00:01:16.364779+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
+  },
+  {
+    "id": "chemical_looping_material_viability",
+    "display_name": "Chemical Looping Material Viability",
+    "construct_type": "quantifiable",
+    "definition": "The thermodynamic feasibility of a redox-active material to mediate chemical looping processes, assessed through equilibrium analysis of oxidation and reduction half-cycles under process-relevant conditions.",
+    "created_at": "2026-04-07T00:11:48.011532+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 1
   }
 ]
