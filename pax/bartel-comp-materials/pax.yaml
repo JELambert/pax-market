@@ -23,6 +23,64 @@ provides:
   - xrd_phase_identification_accuracy
   - oxygen_evolution_overpotential
   - persistent_homology_descriptor
+  - anion_cometathesis
+  - band_gap
+  - betti_curve_descriptor
+  - bulk_modulus
+  - ca_intercalation_voltage
+  - ca_ion_diffusion_barrier
+  - catalytic_loop_directionality
+  - catalytic_resonance_frequency
+  - cation_vacancy_water_splitting
+  - charge_informed_mlip
+  - crystal_graph_representation
+  - crystal_structure_representation
+  - decomposition_enthalpy
+  - double_perovskite_bandgap
+  - drx_fluorination_degree
+  - energy_prediction_mae
+  - exciton_binding_energy
+  - generative_crystal_model
+  - gibbs_energy_descriptor
+  - gnn_interatomic_potential
+  - goldschmidt_tolerance_factor
+  - halide_perovskite_bandgap
+  - li_diffusion_barrier
+  - metastable_polymorph_selectivity
+  - metathesis_driving_force
+  - metathesis_reaction_feasibility
+  - mg_migration_barrier
+  - mg_solid_electrolyte_conductivity
+  - ml_dft_error_correction
+  - mlip_surface_prediction
+  - nasicon_stability_descriptor
+  - nasicon_tolerance_factor
+  - octahedral_factor
+  - pairwise_reaction_energy
+  - perovskite_decomposition_energy
+  - polymorph_selectivity
+  - precursor_selection_score
+  - programmable_catalyst_enhancement
+  - proton_insertion_thermodynamics
+  - reaction_selectivity_metric
+  - selectivity_metric
+  - sequential_pairwise_mechanism
+  - short_range_order
+  - sulfide_cathode_voltage
+  - synthesis_condition_prediction
+  - synthesis_prediction_calibration
+  - synthesis_selectivity_metric
+  - synthesis_temperature
+  - synthesis_temperature_prediction
+  - text_mined_synthesis_data
+  - text_mined_synthesis_database
+  - thermochemical_ammonia_yield
+  - thermochemical_cycle_efficiency
+  - thermodynamic_stability
+  - tolerance_factor_prediction
+  - topological_descriptor
+  - topological_electron_density_descriptor
+  - topological_fingerprint_similarity
   engines:
   - logistic_regression
   - random_forest
@@ -50,4 +108,4 @@ provides:
   - deng_2023_chgnet
   - bartel_2021_autonomous_design
 schema_version: '1.0'
-version: 1.0.1
+version: 1.0.5
