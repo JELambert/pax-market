@@ -1,0 +1,44 @@
+description: Build an empirical typology from CMAD data using unsupervised learning.
+  Test whether McFate's 2-axis and Singer's 3-tier typologies emerge from the data,
+  or whether a different classification is more appropriate.
+id: pmsc_typology_clustering
+steps:
+- construct_ids:
+  - pmsc_type
+  - pmsc_service_spectrum
+  - pmsc_client_type
+  description: 'K-means clustering on CMAD PMSC characteristics: service categories
+    (11 types), client type, geographic region, actor type (PMSC vs. mercenary). Test
+    k=3 (Singer) and k=4+ to see if more clusters emerge.'
+  engine_id: kmeans_clustering
+  expectations:
+    rationale: If Singer's typology is empirically valid, k=3 should produce interpretable
+      clusters matching provider/consultant/support. If McFate's 2-axis is better,
+      a different k may emerge.
+  id: step_1_kmeans
+- construct_ids:
+  - pmsc_type
+  - pmsc_service_spectrum
+  description: DBSCAN clustering for outlier-aware analysis. PMSCs like Wagner Group
+    that don't fit existing categories should appear as noise points or form their
+    own cluster.
+  engine_id: dbscan_clustering
+  expectations:
+    rationale: Expect noise points capturing atypical actors (Wagner, EO) that challenge
+      neat typological categories
+  id: step_2_dbscan
+- construct_ids:
+  - pmsc_type
+  - conflict_intensity_pmsc
+  - conflict_duration_pmsc
+  - civilian_victimization_pmsc
+  description: Correlation matrix between cluster assignments and conflict outcomes
+    (intensity, duration, civilian victimization). Test whether typological clusters
+    predict different outcomes.
+  engine_id: correlation_matrix
+  expectations:
+    direction: conditional
+    rationale: Combat-heavy clusters should predict higher intensity; consulting/training
+      clusters should show attenuated effects
+  id: step_3_cluster_outcomes
+title: PMSC Typology Empirical Clustering

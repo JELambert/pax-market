@@ -1,0 +1,25 @@
+description: How do PMSC findings connect to the broader conflict literature? Uses
+  cross-domain bridges to trace analytical pathways from PMSCs through rebel sponsorship,
+  external support, and coup-proofing.
+id: cross_domain_pmsc_nexus
+steps:
+- construct_ids:
+  - pmsc_presence
+  - civilian_victimization_pmsc
+  description: 'Trace pathway: pmsc_presence -> rebel-sponsorship -> civilian-abuse.
+    Do PMSCs create similar moral hazard dynamics as rebel sponsors?'
+  engine_id: meta_analysis
+  expectations:
+    rationale: Bridge analysis should reveal structural parallels between PMSC accountability
+      gaps and rebel sponsor moral hazard
+  id: step_1_pathway
+- construct_ids:
+  - pmsc_presence
+  description: Run praxis_find_analogies from pmsc_presence to identify structurally
+    similar constructs across the full KB. Look for unexpected connections.
+  engine_id: meta_analysis
+  expectations:
+    rationale: May discover analogies with foreign military aid, parallel security
+      forces, or other delegation mechanisms
+  id: step_2_analogy
+title: Cross-Domain PMSC-Conflict Nexus

@@ -1,0 +1,175 @@
+description: 'The market for force: private military and security companies (PMSCs),
+  their typologies, conflict consequences, regulatory frameworks, and data infrastructure.
+  Covers the diversity of commercial military actors post-Cold War, their impact on
+  conflict duration/intensity/peace durability, subnational and non-conflict uses,
+  and emerging domains including Chinese BRI security and cyber/space privatization.
+  Built on Avant, Petersohn, McFate, Dunigan, Akcinaroglu & Radziszewski.'
+name: pmsc-market-for-force
+pax_type: field
+provides:
+  constructs:
+  - service_category_disaggregation
+  - local_political_context
+  - civilian_victimization_pmsc
+  - pmsc_personnel_welfare
+  - conflict_onset_pmsc
+  - procurement_network_embeddedness
+  - pmsc_functional_arena
+  - norm_reinterpretation
+  - anti_mercenary_norm
+  - post_conflict_recurrence
+  - pmsc_presence
+  - pmsc_military_effectiveness
+  - state_monopoly_violence
+  - individual_self_defence_framing
+  - security_assemblage
+  - pmsc_client_type
+  - military_defeat_catalyst
+  - state_violence_monopoly_duration
+  - pmsc_type
+  - wagner_group_case
+  - relationship_based_trust
+  - wagner_group_model
+  - state_demand_gap
+  - pmsc_vs_mercenary_distinction
+  - pmsc_market_structure_type
+  - pmsc_industry_size
+  - extractive_industry_presence
+  - market_type_neoliberal
+  - domestic_political_conditions
+  - cross_national_privatization_variation
+  - neomedievalism
+  - montreux_document
+  - conflict_duration_pmsc
+  - icoca_certification
+  - market_type_racketeering
+  - norm_rational_violation
+  - institutional_path_dependency
+  - pmsc_organizational_diversity
+  - historical_mercenary_prevalence
+  - peace_durability_pmsc
+  - pmsc_market_structure
+  - pmsc_service_spectrum
+  - pmsc_support_firm
+  - combat_service_exchange
+  - civil_military_force_mix
+  - pmsc_consulting_firm
+  - regulatory_framework_strength
+  - conflict_intensity_pmsc
+  - pmsc_government_linkage
+  - oversight_mechanism
+  - pmsc_accountability
+  - neomedieval_warfare
+  - democratic_accountability_gap
+  - contract_type
+  - chinese_psc_presence
+  - security_commodification
+  - state_capacity_pmsc
+  - anonymous_price_competition_failure
+  - market_type_hybrid
+  - pmsc_symbolic_power
+  - citizen_army_transition
+  - post_cold_war_supply_shock
+  - bri_security_provision
+  - pmsc_provider_firm
+  - pmsc_market_competition
+  engines:
+  - ols_regression
+  - logistic_regression
+  - cox_ph
+  - kaplan_meier
+  - propensity_score_matching
+  - difference_in_differences
+  - correlation_matrix
+  - kmeans_clustering
+  - meta_analysis
+  findings:
+  - petersohn_2017_effectiveness_severity_0
+  - petersohn_2014_mercenaries_severity_1
+  - akcinaroglu_radziszewski_2013_africa_2
+  - faulkner_lambert_powell_2019_3
+  - petersohn_2024_termination_4
+  - penel_petersohn_2022_civilian_5
+  - petersohn_2021_onset_6
+  - petersohn_2014_anti_mercenary_norm_7
+  - petersohn_lees_2023_escalate_8
+  playbooks:
+  - quick_start
+  - pmsc_conflict_intensity_replication
+  - pmsc_conflict_duration_survival
+  - pmsc_literature_gap_survey
+  - pmsc_peace_durability_analysis
+  - cross_domain_pmsc_nexus
+  - pmsc_typology_clustering
+  propositions:
+  - pmsc_increases_intensity
+  - pmsc_competition_shortens_conflict
+  - pmsc_type_moderates_outcomes
+  - weak_states_demand_pmsc
+  - pmsc_early_intervention_terminates
+  - pmsc_increases_onset
+  - democratic_accountability_constrains
+  - anti_mercenary_norm_circumvented
+  - extractive_drives_demand
+  - competition_coding_unreliable
+  - pmsc_undermines_peace_durability
+  - commodification_erodes_accountability
+  - pmsc_symbolic_power_shapes_security
+  - montreux_reduces_victimization
+  - bri_drives_chinese_psc_growth
+  sources:
+  - ghiselli_2020_chinese_psc_abroad
+  - petersohn_2015_social_structure
+  - ghiselli_2023_chinese_psc_coercion
+  - leander_2005_market_destabilizing
+  - cockayne_2008_montreux
+  - petersohn_2011_privatisation
+  - spearin_2011_peacekeeping
+  - petersohn_2010_sovereignty_privatization
+  - cotton_petersohn_dunigan_2010
+  - spearin_2001_humanitarians
+  - bara_kreutz_2022_peace
+  - dunigan_2011_victory_for_hire
+  - pokalova_2023_wagner_africa
+  - petersohn_2020_disorder
+  - avant_2000_mercenary_to_citizen
+  - leander_2005_power
+  - krahmann_2013_state_monopoly
+  - bures_cusumano_2021_hypocrisy
+  - avant_2000_mercenary_citizen
+  - percy_2007_mercenaries_norm
+  - howe_1998_executive_outcomes
+  - yuan_2021_chinese_psc_interests
+  - petersohn_2021_combat_market
+  - avant_2007_emerging_market
+  - dunigan_2014_out_of_shadows
+  - abrahamsen_williams_2009_assemblages
+  - petersohn_2014_mercenaries_severity
+  - petersohn_2022_cmad
+  - petersohn_lees_2023_escalate
+  - petersohn_2021_onset
+  - cotton_petersohn_dunigan_2010_hired_guns
+  - petersohn_2018_force_of_relationships
+  - akcinaroglu_radziszewski_2020_private_militaries
+  - singer_2003_corporate_warriors
+  - petersohn_2017_effectiveness_severity
+  - avant_neu_2019_psed
+  - arduino_2020_chinese_psc_africa
+  - petersohn_2014_anti_mercenary_norm
+  - petersohn_2024_termination
+  - avant_2005_market_for_force
+  - avant_2006_iraq
+  - avant_2016_pragmatic_networks
+  - legarda_nouwens_2018_bri
+  - penel_petersohn_2022_civilian
+  - akcinaroglu_radziszewski_2013_africa
+  - petersohn_2011_coin
+  - faulkner_lambert_powell_2019
+  - marten_2019_wagner
+  - mcfate_2014_modern_mercenary
+  - avant_sigelman_2010_democracy
+  - leander_2005_destabilizing
+  - dunigan_petersohn_2015_markets
+  - icoca_2010_code
+schema_version: '1.0'
+version: 1.0.25

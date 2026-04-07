@@ -1,0 +1,40 @@
+description: Systematic identification of gaps in the PMSC research landscape. Uses
+  Praxis coverage, maturity, and consensus tools to map what is well-established,
+  what is contested, and what remains unexplored.
+id: pmsc_literature_gap_survey
+steps:
+- construct_ids:
+  - pmsc_presence
+  - pmsc_type
+  description: Run praxis_coverage across all PMSC sub-domains to identify constructs
+    with fewer than 3 findings. These represent evidence deserts.
+  engine_id: meta_analysis
+  expectations:
+    rationale: Expect China/BRI, emerging domains, extractive industry, and peace
+      durability to show the thinnest coverage
+  id: step_1_coverage
+- construct_ids:
+  - conflict_intensity_pmsc
+  - conflict_duration_pmsc
+  - pmsc_military_effectiveness
+  description: Run praxis_consensus_timeline to map how findings on key contested
+    constructs have evolved over time. Focus on conflict intensity, duration, and
+    military effectiveness.
+  engine_id: meta_analysis
+  expectations:
+    rationale: Expect to see early positive-intensity findings (Petersohn 2014) refined
+      by conditional findings (Petersohn 2017, Lees & Petersohn 2023)
+  id: step_2_consensus
+- construct_ids:
+  - pmsc_type
+  - pmsc_market_structure
+  - pmsc_presence
+  description: 'Compare KB coverage against Chris Faulkner''s hypothesized gaps: (1)
+    typology is poorly done, (2) consequences need consolidation, (3) data limitations
+    unexplored, (4) non-conflict uses underexplored, (5) what''s missing overall.'
+  engine_id: meta_analysis
+  expectations:
+    rationale: Expect to confirm Faulkner's assessment that typology work is fragmented
+      and non-conflict/emerging domains are thin
+  id: step_3_chris_gaps
+title: PMSC Literature Gap Survey

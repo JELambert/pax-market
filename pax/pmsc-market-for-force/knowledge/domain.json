@@ -1,0 +1,12 @@
+{
+  "id": "pmsc_market_for_force",
+  "display_name": "Private Military and Security Companies",
+  "description": "The study of private military and security companies (PMSCs), commercial military actors, and mercenaries \u2014 their organizational typologies, market structure, consequences for conflict dynamics, regulatory frameworks, and evolving roles in international security. Encompasses the privatization of security from historical mercenaries through modern corporate military service providers.",
+  "temporal_scope": "1945-present, with focus on post-Cold War (1990-present)",
+  "population": "PMSCs, mercenaries, and commercial military actors involved in armed conflicts and security provision worldwide",
+  "created_at": "2026-04-07T15:42:52.760402+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "meso"
+}

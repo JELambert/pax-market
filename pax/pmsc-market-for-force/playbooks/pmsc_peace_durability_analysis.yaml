@@ -1,0 +1,28 @@
+description: Do PMSCs affect post-conflict peace? Tests Bara & Kreutz (2022) credible
+  commitment hypothesis using survival analysis of peace duration.
+id: pmsc_peace_durability_analysis
+steps:
+- construct_ids:
+  - pmsc_presence
+  - peace_durability_pmsc
+  - post_conflict_recurrence
+  description: 'Kaplan-Meier curves for peace duration: conflicts with prior PMSC
+    involvement vs. without. Measure time from conflict termination to recurrence.'
+  engine_id: kaplan_meier
+  expectations:
+    direction: negative
+    rationale: Bara & Kreutz (2022) predict shorter peace for PMSC-involved conflicts
+  id: step_1_km_peace
+- construct_ids:
+  - pmsc_presence
+  - peace_durability_pmsc
+  - conflict_intensity_pmsc
+  description: Cox PH for peace duration with prior PMSC combat involvement as covariate.
+    Control for conflict severity, duration, and negotiated vs. military outcome.
+  engine_id: cox_ph
+  expectations:
+    direction: positive
+    rationale: PMSC combat involvement should increase hazard of peace failure (shorter
+      peace)
+  id: step_2_cox_peace
+title: PMSC Peace Durability Analysis
