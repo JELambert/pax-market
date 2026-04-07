@@ -1,0 +1,106 @@
+description: Evaluate synthesis feasibility for target materials by combining thermodynamic
+  selectivity analysis with ML classifiers trained on reaction outcomes. References
+  Bartel's synthesis assessment tools.
+display_name: Synthesis Feasibility Assessment
+estimated_runtime: 2 minutes
+id: synthesis_feasibility_assessment
+requires_data: true
+steps:
+- depends_on: []
+  display_name: Thermodynamic Selectivity vs Success Rate
+  engine: correlation_matrix
+  expected_results:
+    reaction_driving_force↔synthesis_temperature:
+      direction: negative
+      note: Stronger driving force may enable lower synthesis temperatures
+    thermodynamic_selectivity↔synthesis_success_rate:
+      direction: positive
+      note: Higher selectivity should predict higher success
+  id: synthesis_thermo_correlations
+  interpretation_hints:
+  - Strong selectivity-success correlation validates the thermodynamic planning approach
+  - If driving_force and temperature are weakly correlated, kinetic barriers dominate
+    over thermodynamics
+  - Metathesis feasibility as a binary predictor — check its correlation with continuous
+    selectivity
+  params:
+    variables:
+    - thermodynamic_selectivity
+    - synthesis_success_rate
+    - reaction_driving_force
+    - synthesis_temperature
+    - metathesis_reaction_feasibility
+  step: 1
+- depends_on: []
+  display_name: 'Logistic Regression: Thermodynamics → Synthesis Outcome'
+  engine: logistic_regression
+  expected_results:
+    accuracy:
+      min: 0.7
+    thermodynamic_selectivity_coefficient:
+      direction: positive
+  id: logistic_synthesis_outcome
+  interpretation_hints:
+  - This is a minimal model — accuracy above 75% with just two features suggests thermodynamics
+    is highly informative
+  - 'Check the decision boundary: what selectivity threshold separates success from
+    failure?'
+  - False negatives (predicted fail, actually succeeded) may indicate kinetically-driven
+    syntheses
+  params:
+    classification: true
+    predictors:
+    - reaction_driving_force
+    - thermodynamic_selectivity
+    target: synthesis_success_rate
+    threshold: 0.5
+  step: 2
+- depends_on: []
+  display_name: 'Random Forest: Full Feature Synthesis Prediction'
+  engine: random_forest
+  expected_results:
+    accuracy:
+      min: 0.78
+    feature_importance_rank_1:
+      expected: thermodynamic_selectivity
+  id: rf_synthesis_full
+  interpretation_hints:
+  - Marginal gain over logistic regression quantifies value of precursor and temperature
+    features
+  - If precursor_selection_score ranks highly, precursor choice is a key synthesis
+    lever
+  - Compare to the autonomous synthesis literature — Bartel's A-Lab reports ~71% first-attempt
+    success rate
+  params:
+    classification: true
+    predictors:
+    - reaction_driving_force
+    - thermodynamic_selectivity
+    - precursor_selection_score
+    - synthesis_temperature
+    - thermodynamic_control_threshold
+    target: synthesis_success_rate
+  step: 3
+- depends_on:
+  - logistic_synthesis_outcome
+  - rf_synthesis_full
+  display_name: Synthesis Assessment Engine Comparison
+  engine: synth_assess_selectivity
+  expected_results:
+    selectivity_threshold:
+      note: Engine implements Bartel's selectivity metric directly
+  id: synth_assess_reference
+  interpretation_hints:
+  - The synth_assess engine encodes domain-specific reaction thermodynamics beyond
+    what generic ML captures
+  - Agreement between ML predictions and synth_assess validates both approaches
+  - Disagreements highlight cases where ML has learned patterns not in the thermodynamic
+    model (or vice versa)
+  - This step requires the synth_assess catalog engine — compare against published
+    selectivity thresholds if unavailable
+  params:
+    compare_to:
+    - logistic_synthesis_outcome
+    - rf_synthesis_full
+    mode: selectivity_analysis
+  step: 4

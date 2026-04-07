@@ -1,0 +1,100 @@
+description: Screen ABX3 compositions for perovskite formability using the revised
+  tolerance factor (tau), geometric descriptors, and ML classifiers. Combines closed-form
+  calculation with statistical validation.
+display_name: Perovskite Formability Screening
+estimated_runtime: 2 minutes
+id: perovskite_screening
+requires_data: true
+steps:
+- depends_on: []
+  display_name: Calculate Revised Tolerance Factor
+  engine: tolerance_factor_calculator
+  expected_results:
+    revised_tolerance_factor:
+      note: tau < 4.18 predicts perovskite formability
+      range:
+      - 0
+      - 5
+  id: calc_tolerance_factor
+  interpretation_hints:
+  - tau < 4.18 is the classification threshold from Bartel et al. (2019)
+  - Compare tau predictions against Goldschmidt tolerance factor (0.8 < t < 1.0) for
+    concordance
+  - Octahedral factor mu > 0.41 is a secondary formability criterion
+  params:
+    variables:
+    - revised_tolerance_factor
+    - goldschmidt_tolerance_factor
+    - octahedral_factor
+  step: 1
+- depends_on: []
+  display_name: Correlation Matrix of Geometric Descriptors
+  engine: correlation_matrix
+  expected_results:
+    goldschmidt_tolerance_factor↔revised_tolerance_factor:
+      direction: negative
+      note: tau and t are inversely related by construction
+    revised_tolerance_factor↔perovskite_decomposition_energy:
+      direction: negative
+  id: geometric_descriptor_correlations
+  interpretation_hints:
+  - Strong tau-decomposition_energy correlation validates tau as a stability proxy
+  - If tau and t are highly collinear, tau subsumes t and t can be dropped from classifiers
+  - Look for octahedral_factor adding independent information beyond tau
+  params:
+    variables:
+    - revised_tolerance_factor
+    - goldschmidt_tolerance_factor
+    - octahedral_factor
+    - perovskite_decomposition_energy
+  step: 2
+- depends_on:
+  - calc_tolerance_factor
+  display_name: 'Logistic Regression: tau + mu → Formability'
+  engine: logistic_regression
+  expected_results:
+    accuracy:
+      min: 0.85
+      note: Bartel reports 92% accuracy with tau alone
+    revised_tolerance_factor_coefficient:
+      direction: negative
+      note: Higher tau = less likely perovskite
+  id: logistic_formability_classifier
+  interpretation_hints:
+  - Accuracy above 90% confirms tau's discriminative power
+  - Check if octahedral_factor coefficient is significant — if not, tau alone suffices
+  - 'Examine false negatives: compositions predicted non-perovskite that actually
+    form perovskites may indicate polymorphism'
+  params:
+    classification: true
+    predictors:
+    - revised_tolerance_factor
+    - octahedral_factor
+    target: perovskite_formability
+  step: 3
+- depends_on:
+  - calc_tolerance_factor
+  display_name: 'Random Forest: All Descriptors → Formability'
+  engine: random_forest
+  expected_results:
+    accuracy:
+      min: 0.9
+    feature_importance_rank_1:
+      expected: revised_tolerance_factor
+  id: rf_formability_comparison
+  interpretation_hints:
+  - If RF accuracy only marginally exceeds logistic regression, the simple tau model
+    is preferred (Occam's razor)
+  - Feature importance ranking validates which descriptors carry real predictive signal
+  - If decomposition_energy ranks high, it suggests thermodynamic data adds value
+    beyond geometric rules
+  params:
+    classification: true
+    predictors:
+    - revised_tolerance_factor
+    - goldschmidt_tolerance_factor
+    - octahedral_factor
+    - halide_perovskite_bandgap
+    - perovskite_decomposition_energy
+    target: perovskite_formability
+  step: 4
