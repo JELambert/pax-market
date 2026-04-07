@@ -134,6 +134,7 @@ def process_pack(pack_dir: Path) -> dict | None:
     propositions = load_json(knowledge_dir / "propositions.json")
     sources = load_json(knowledge_dir / "sources.json")
     domain_data = load_json(knowledge_dir / "domain.json")
+    construct_relationships = load_json(knowledge_dir / "construct_relationships.json")
 
     # Construct details
     constructs_detail = []
@@ -161,6 +162,17 @@ def process_pack(pack_dir: Path) -> dict | None:
             "effect_size": f.get("effect_size", ""),
             "confidence": f.get("confidence", ""),
             "method_used": f.get("method_used", ""),
+            # v2 structured statistics
+            "effect_size_value": f.get("effect_size_value"),
+            "effect_size_se": f.get("effect_size_se"),
+            "effect_size_type": f.get("effect_size_type"),
+            "p_value": f.get("p_value"),
+            "sample_size": f.get("sample_size"),
+            "r_squared": f.get("r_squared"),
+            "ci_lower": f.get("ci_lower"),
+            "ci_upper": f.get("ci_upper"),
+            "model_specification": f.get("model_specification"),
+            "covariates_controlled": f.get("covariates_controlled"),
         })
 
     # Proposition details
@@ -186,6 +198,17 @@ def process_pack(pack_dir: Path) -> dict | None:
                 "id": sid, "title": s.get("title", ""),
                 "authors": s.get("authors", ""), "year": s.get("year"),
                 "doi": s.get("doi"), "source_type": s.get("source_type", ""),
+                # v2 enriched metadata
+                "journal": s.get("journal"),
+                "url": s.get("url"),
+                "abstract": s.get("abstract"),
+                "methodology_summary": s.get("methodology_summary"),
+                "sample_size": s.get("sample_size"),
+                "population_description": s.get("population_description"),
+                "study_design": s.get("study_design"),
+                "key_limitations": s.get("key_limitations"),
+                "replication_status": s.get("replication_status"),
+                "data_availability": s.get("data_availability"),
             })
     # Also extract from findings if sources.json is empty
     if not sources_detail:
@@ -244,6 +267,21 @@ def process_pack(pack_dir: Path) -> dict | None:
     construct_ids = [c["id"] for c in constructs_detail] or provides.get("constructs", [])
     playbook_names = [p["id"] for p in playbooks_detail] or provides.get("playbooks", [])
 
+    # Construct relationships (v2)
+    relationships_detail = []
+    for r in construct_relationships:
+        relationships_detail.append({
+            "construct_from": r.get("construct_from", r.get("from_construct", "")),
+            "construct_to": r.get("construct_to", r.get("to_construct", "")),
+            "relationship_type": r.get("relationship_type", r.get("type", "")),
+            "direction": r.get("direction", ""),
+            "strength": r.get("strength", ""),
+            "mechanism": r.get("mechanism", ""),
+        })
+
+    # Quality scores (v2 sub-dimensions if present)
+    quality = manifest.get("quality", {})
+
     # Tags
     tags = manifest.get("tags", [])
     if not tags:
@@ -288,6 +326,9 @@ def process_pack(pack_dir: Path) -> dict | None:
         "propositions_detail": propositions_detail,
         "sources_detail": sources_detail,
         "playbooks_detail": playbooks_detail,
+        "relationships_detail": relationships_detail,
+        "quality": quality,
+        "pax_schema_version": manifest.get("schema_version", "1.0"),
         "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.pax.tar.gz",
         "download_sha256": sha256,
         "download_size": archive_size,

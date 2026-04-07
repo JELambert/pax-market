@@ -29,6 +29,7 @@ jobs:
 
           REQUIRED_MANIFEST = ['name', 'version', 'description', 'pax_type', 'schema_version']
           VALID_TYPES = ['paper', 'topic', 'field', 'engine', 'enterprise']
+          VALID_SCHEMA_VERSIONS = ['1.0', '2.0']
           errors = []
           warnings = []
 
@@ -75,6 +76,11 @@ jobs:
               # Valid pax_type
               if manifest.get('pax_type') and manifest['pax_type'] not in VALID_TYPES:
                   errors.append(f'{pack_dir.name}: invalid pax_type: {manifest[\"pax_type\"]}')
+
+              # Valid schema_version
+              sv = str(manifest.get('schema_version', ''))
+              if sv and sv not in VALID_SCHEMA_VERSIONS:
+                  errors.append(f'{pack_dir.name}: unrecognized schema_version: {sv}')
 
               # Knowledge files valid JSON
               knowledge_dir = pack_dir / 'knowledge'
