@@ -1,0 +1,53 @@
+description: Comprehensive knowledge pack covering Christopher Bartel's body of work
+  in computational materials science — machine learning for materials discovery, autonomous
+  synthesis laboratories, perovskite stability prediction, battery cathode design,
+  solid-state synthesis thermodynamics, catalysis and energy conversion, and crystal
+  topology characterization. Integrates 142 publications (2016-2026), 6 open-source
+  code repositories from Bartel-Group GitHub, and cross-domain construct linkages
+  spanning tolerance factors, neural network potentials, thermodynamic selectivity,
+  and generative crystal models.
+name: bartel-comp-materials
+pax_type: field
+provides:
+  constructs:
+  - revised_tolerance_factor
+  - formation_energy_per_atom
+  - energy_above_hull
+  - neural_network_potential
+  - synthesis_success_rate
+  - thermodynamic_selectivity
+  - perovskite_formability
+  - intercalation_voltage
+  - force_field_mae
+  - reaction_driving_force
+  - xrd_phase_identification_accuracy
+  - oxygen_evolution_overpotential
+  - persistent_homology_descriptor
+  engines:
+  - logistic_regression
+  - random_forest
+  - gradient_boosting
+  - ridge_regression
+  findings:
+  - bartel_2019_tolerance_factor_0
+  - bartel_2019_tolerance_factor_1
+  - szymanski_2023_autonomous_lab_2
+  - szymanski_2023_autonomous_lab_3
+  - deng_2023_chgnet_4
+  - deng_2023_chgnet_5
+  - bartel_2021_autonomous_design_6
+  - bartel_2021_autonomous_design_7
+  playbooks:
+  - quick_start
+  - perovskite_screening
+  - stability_prediction_benchmark
+  - synthesis_feasibility_assessment
+  - cross_domain_survey
+  propositions: []
+  sources:
+  - bartel_2019_tolerance_factor
+  - szymanski_2023_autonomous_lab
+  - deng_2023_chgnet
+  - bartel_2021_autonomous_design
+schema_version: '1.0'
+version: 1.0.1

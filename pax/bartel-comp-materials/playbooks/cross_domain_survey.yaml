@@ -1,0 +1,111 @@
+description: Literature synthesis across all 7 Bartel research domains. Uses unsupervised
+  clustering to identify natural construct groupings, then probes cross-domain relationships
+  via correlation and regression.
+display_name: Cross-Domain Literature Survey
+estimated_runtime: 2 minutes
+id: cross_domain_survey
+requires_data: true
+steps:
+- depends_on: []
+  display_name: K-Means Clustering of All Constructs
+  engine: kmeans_clustering
+  expected_results:
+    cluster_alignment_with_domains:
+      note: If clusters match domains, constructs are domain-specific; if they cut
+        across, shared structure exists
+  id: construct_clustering
+  interpretation_hints:
+  - Clusters that span multiple domains reveal shared computational methodology (e.g.,
+    DFT-based constructs grouping together)
+  - If discovery_acceleration_factor clusters with synthesis constructs, it suggests
+    synthesis is the bottleneck for discovery
+  - Try k=5 and k=9 as sensitivity checks — stable clusters are more meaningful
+  - Silhouette scores indicate cluster quality; low scores suggest continuous rather
+    than discrete construct space
+  params:
+    n_clusters: 7
+    n_clusters_note: Start with 7 (one per domain) and examine whether natural clusters
+      align with domain boundaries
+    variables:
+    - formation_energy_per_atom
+    - energy_above_hull
+    - revised_tolerance_factor
+    - perovskite_formability
+    - intercalation_voltage
+    - cathode_capacity
+    - thermodynamic_selectivity
+    - synthesis_success_rate
+    - oxygen_evolution_overpotential
+    - persistent_homology_descriptor
+    - discovery_acceleration_factor
+    - neural_network_potential
+  step: 1
+- depends_on: []
+  display_name: Cross-Domain Correlation Matrix
+  engine: correlation_matrix
+  expected_results:
+    discovery_acceleration_factor↔neural_network_potential:
+      direction: positive
+      note: Better ML models accelerate discovery
+    formation_energy_per_atom↔intercalation_voltage:
+      direction: negative
+      note: More negative formation energy → higher voltage (thermodynamic relationship)
+    neural_network_potential↔energy_prediction_mae:
+      direction: negative
+      note: Better NNPs yield lower MAE
+  id: cross_domain_correlations
+  interpretation_hints:
+  - Cross-domain correlations reveal methodological transfer opportunities
+  - Unexpected correlations may indicate confounds (e.g., dataset overlap between
+    domains)
+  - Weak correlations between topology descriptors and other constructs would suggest
+    topology provides orthogonal information
+  - This is an exploratory analysis — interpret correlations as hypotheses, not causal
+    claims
+  params:
+    variables:
+    - formation_energy_per_atom
+    - energy_above_hull
+    - revised_tolerance_factor
+    - intercalation_voltage
+    - thermodynamic_selectivity
+    - oxygen_evolution_overpotential
+    - persistent_homology_descriptor
+    - discovery_acceleration_factor
+    - neural_network_potential
+    - energy_prediction_mae
+    - synthesis_success_rate
+  step: 2
+- depends_on:
+  - cross_domain_correlations
+  display_name: 'OLS: What Drives Discovery Acceleration?'
+  engine: ols_regression
+  expected_results:
+    neural_network_potential_coefficient:
+      direction: positive
+    r_squared:
+      min: 0.4
+      note: Exploratory model — moderate R² expected given construct heterogeneity
+    synthesis_success_rate_coefficient:
+      direction: positive
+  id: discovery_acceleration_regression
+  interpretation_hints:
+  - 'This model asks: what factors most accelerate materials discovery across Bartel''s
+    work?'
+  - Low R² is acceptable — the goal is identifying significant predictors, not prediction
+    accuracy
+  - If synthesis_success_rate dominates, the discovery bottleneck is experimental
+    validation, not computational screening
+  - If neural_network_potential dominates, better ML models are the primary lever
+    for faster discovery
+  - Check residuals for non-linearity — discovery acceleration may have threshold
+    effects
+  params:
+    diagnostics: true
+    predictors:
+    - neural_network_potential
+    - thermodynamic_selectivity
+    - energy_prediction_mae
+    - synthesis_success_rate
+    target: discovery_acceleration_factor
+  step: 3

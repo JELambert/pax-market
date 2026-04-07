@@ -1,0 +1,12 @@
+{
+  "id": "bartel_comp_materials",
+  "display_name": "Bartel Computational Materials Science",
+  "description": "Computational materials science research spanning machine learning for property prediction, autonomous synthesis, perovskite stability, battery materials, solid-state synthesis thermodynamics, catalysis, and crystal topology. Covers the complete body of work of the Design of Materials on Computers (DMC) Lab at the University of Minnesota.",
+  "temporal_scope": "2016-2026",
+  "population": "Inorganic crystalline materials, crystal compositions, synthesis reactions, and electrode materials",
+  "created_at": "2026-04-06T23:47:14.302528+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "Crystal structure and composition level"
+}

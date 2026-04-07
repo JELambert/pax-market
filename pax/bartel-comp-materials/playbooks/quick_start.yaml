@@ -1,0 +1,18 @@
+description: Basic analysis workflow for the bartel_comp_materials domain.
+display_name: Quick Start — Bartel Comp Materials
+estimated_runtime: 1–3 minutes
+id: quick_start
+steps:
+- action: run_engine
+  compare_to_kb: true
+  display_name: Primary Model
+  engine: logistic_regression
+  id: primary_model
+  on_failure: abort
+  params:
+    outcome: synthesis_success_rate
+    predictors:
+    - revised_tolerance_factor
+    - formation_energy_per_atom
+    - energy_above_hull
+  step: 1

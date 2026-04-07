@@ -1,0 +1,107 @@
+description: Compare ML approaches for predicting thermodynamic stability (formation
+  energy, energy above hull). Benchmarks linear models against gradient boosting and
+  CHGNet neural network potentials.
+display_name: Stability Prediction Benchmark
+estimated_runtime: 3 minutes
+id: stability_prediction_benchmark
+requires_data: true
+steps:
+- depends_on: []
+  display_name: Correlation Matrix of Stability Metrics
+  engine: correlation_matrix
+  expected_results:
+    energy_prediction_mae↔force_field_mae:
+      direction: positive
+      note: Model errors on energy and forces tend to co-vary
+    formation_energy_per_atom↔energy_above_hull:
+      direction: positive
+      note: Both measure thermodynamic stability but at different reference frames
+  id: stability_correlations
+  interpretation_hints:
+  - formation_energy and energy_above_hull should correlate but not perfectly — hull
+    distance depends on competing phases
+  - High correlation between MAE metrics suggests a single model quality factor
+  - Low correlation between prediction errors and actual energies is desirable (errors
+    should be random, not systematic)
+  params:
+    variables:
+    - formation_energy_per_atom
+    - energy_above_hull
+    - energy_prediction_mae
+    - force_field_mae
+  step: 1
+- depends_on: []
+  display_name: 'Ridge Regression: Composition → Formation Energy'
+  engine: ridge_regression
+  expected_results:
+    mae:
+      max: 0.15
+      units: eV/atom
+    r_squared:
+      min: 0.7
+      note: Linear baseline; composition alone captures bulk trends
+  id: ridge_formation_energy
+  interpretation_hints:
+  - Ridge serves as a linear baseline — if R² > 0.85, the problem may not need deep
+    learning
+  - Residual analysis reveals which chemical systems are hardest to predict linearly
+  - Compare MAE to DFT accuracy (~0.025 eV/atom) to gauge remaining gap
+  params:
+    predictors:
+    - crystal_graph_representation
+    regularization: l2
+    target: formation_energy_per_atom
+  step: 2
+- depends_on:
+  - ridge_formation_energy
+  display_name: 'Gradient Boosting: Full Features → Stability Classification'
+  engine: gradient_boosting
+  expected_results:
+    accuracy:
+      min: 0.8
+    precision_stable_class:
+      min: 0.75
+      note: Precision matters — false stable predictions waste synthesis effort
+  id: gb_hull_classification
+  interpretation_hints:
+  - Precision on the 'stable' class is more important than overall accuracy for discovery
+  - Compare to random baseline (fraction of stable compounds in dataset)
+  - Feature importance reveals whether NNP features add value over compositional descriptors
+  params:
+    classification: true
+    predictors:
+    - formation_energy_per_atom
+    - crystal_graph_representation
+    - neural_network_potential
+    target: energy_above_hull
+    threshold: 0
+    threshold_note: energy_above_hull = 0 means on the hull (stable)
+  step: 3
+- depends_on:
+  - ridge_formation_energy
+  - gb_hull_classification
+  display_name: CHGNet Neural Potential Baseline
+  engine: pydmclab_ml_potential_relaxation
+  expected_results:
+    energy_mae:
+      max: 0.03
+      note: CHGNet typically achieves ~25-30 meV/atom
+      units: eV/atom
+    force_mae:
+      max: 0.075
+      units: eV/Å
+  id: chgnet_baseline_comparison
+  interpretation_hints:
+  - CHGNet should substantially outperform ridge regression — the gap quantifies value
+    of structural information
+  - If gradient boosting approaches CHGNet accuracy, featurization may capture most
+    structural info
+  - Force MAE below 0.05 eV/Å indicates potential suitability for molecular dynamics
+  - This step requires the pydmclab catalog engine — if unavailable, compare against
+    published CHGNet benchmarks
+  params:
+    compare_to:
+    - ridge_formation_energy
+    - gb_hull_classification
+    model: chgnet
+  step: 4
