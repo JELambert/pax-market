@@ -1,0 +1,53 @@
+description: 'Does PMSC involvement extend or shorten conflicts? Tests competing hypotheses:
+  Akcinaroglu & Radziszewski (2013) competition-shortens vs. Petersohn (2024) early-intervention-shortens
+  vs. Faulkner, Lambert & Powell (2019) competition-coding-critique.'
+id: pmsc_conflict_duration_survival
+steps:
+- construct_ids:
+  - pmsc_presence
+  - conflict_duration_pmsc
+  description: Kaplan-Meier survival curves comparing conflict duration for PMSC-involved
+    vs. non-PMSC conflicts. Visual inspection of divergence.
+  engine_id: kaplan_meier
+  expectations:
+    direction: unknown
+    rationale: Direction depends on whether early or late PMSC entry dominates the
+      sample
+  id: step_1_km_curves
+- construct_ids:
+  - pmsc_presence
+  - conflict_duration_pmsc
+  - state_capacity_pmsc
+  description: 'Cox proportional hazard model: time-to-conflict-termination with PMSC
+    presence as covariate. Include state capacity and conflict type controls.'
+  engine_id: cox_ph
+  expectations:
+    direction: negative
+    rationale: Petersohn (2024) finds early CMA intervention increases termination
+      probability (HR > 1 = shorter duration)
+  id: step_2_cox_ph_baseline
+- construct_ids:
+  - pmsc_presence
+  - conflict_duration_pmsc
+  description: Cox PH with PMSC intervention timing (early vs. late entry). Petersohn
+    (2024) finds early intervention (year 1) has HR of 4.75x; late intervention has
+    no effect.
+  engine_id: cox_ph
+  expectations:
+    direction: conditional
+    rationale: Early PMSC entry should strongly predict termination; late entry should
+      show null effect
+  id: step_3_cox_timing
+- construct_ids:
+  - pmsc_market_competition
+  - conflict_duration_pmsc
+  description: Cox PH testing market competition effect on duration. Akcinaroglu &
+    Radziszewski (2013) predict competition shortens; Faulkner, Lambert & Powell (2019)
+    question the operationalization.
+  engine_id: cox_ph
+  expectations:
+    direction: contested
+    rationale: Competition coefficient may be an artifact of aggregation per Faulkner
+      et al. (2019)
+  id: step_4_competition_test
+title: PMSC Conflict Duration Survival Analysis

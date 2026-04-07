@@ -1,0 +1,68 @@
+description: 'Replicate the core question: does PMSC presence increase conflict intensity?
+  Tests Petersohn (2017) and Petersohn (2014) findings using UCDP battle deaths as
+  DV and PMSC presence (from PSED or CMAD) as IV, with controls for state capacity,
+  conflict type, and external support.'
+id: pmsc_conflict_intensity_replication
+steps:
+- construct_ids:
+  - pmsc_presence
+  - conflict_intensity_pmsc
+  - state_capacity_pmsc
+  description: 'OLS regression: pmsc_presence -> conflict_intensity_pmsc with controls
+    (state_capacity_pmsc, conflict type). Expect positive coefficient consistent with
+    Petersohn (2017).'
+  engine_id: ols_regression
+  expectations:
+    direction: positive
+    rationale: Petersohn (2017) finds PMSC services increase conflict severity in
+      weak states
+  id: step_1_ols_baseline
+- construct_ids:
+  - pmsc_presence
+  - conflict_intensity_pmsc
+  description: Negative binomial regression for count data (battle deaths are overdispersed
+    counts). Same specification as step 1. Compare coefficients and model fit.
+  engine_id: negative_binomial
+  expectations:
+    direction: positive
+    rationale: Count data model should confirm OLS direction with better fit for overdispersed
+      battle deaths
+  id: step_2_negative_binomial
+- construct_ids:
+  - pmsc_presence
+  - conflict_intensity_pmsc
+  description: 'Logistic regression: pmsc_presence -> conflict_severity_binary (25+
+    battle deaths threshold, per UCDP definition of war vs. minor conflict).'
+  engine_id: logistic_regression
+  expectations:
+    direction: positive
+    rationale: Binary threshold should show PMSCs increase probability of crossing
+      the 25-death war threshold
+  id: step_3_logistic_threshold
+- construct_ids:
+  - pmsc_service_spectrum
+  - conflict_intensity_pmsc
+  description: Disaggregate by PMSC service type (combat, logistics, training). Interact
+    pmsc_service_spectrum with conflict_intensity_pmsc. Expect combat services to
+    have strongest effect per Petersohn (2017).
+  engine_id: ols_regression
+  expectations:
+    direction: conditional
+    rationale: Combat services should show stronger severity effect than logistics/training
+      per Petersohn (2017)
+  id: step_4_service_type_disaggregation
+- construct_ids:
+  - pmsc_presence
+  - conflict_intensity_pmsc
+  - state_capacity_pmsc
+  description: Propensity score matching to estimate causal effect of PMSC presence
+    on conflict intensity. Match on state capacity, conflict type, region, and prior
+    conflict history to address selection bias.
+  engine_id: propensity_score_matching
+  expectations:
+    direction: positive
+    rationale: Causal estimate should be attenuated relative to OLS but still positive,
+      consistent with Petersohn (2024) finding of no systematic selection into easier
+      conflicts
+  id: step_5_psm_causal
+title: PMSC Conflict Intensity Replication
