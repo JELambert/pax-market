@@ -1,70 +1,91 @@
-# PAX Marketplace
+# PAX Registry
 
-The git-based registry and catalog for [PAX](https://github.com/JELambert/praxis) — Portable Analytical eXpertise packages.
+The source of truth for [PAX](https://github.com/JELambert/praxis) (Portable Analytical eXpertise) packages — structured domain knowledge that gives AI assistants real analytical expertise.
 
-**Live at [pax-market.com](https://pax-market.com)**
+**Browse at [pax-market.com](https://pax-market.com)** | **Submit at [submit.pax-market.com](https://submit.pax-market.com)**
 
-## Architecture
+## What is PAX?
 
-This repo IS the source of truth for published PAX. Pack directories are committed directly to `pax/<name>/`. No database dependency for builds.
+A PAX pack is a portable knowledge package you can drop into any AI assistant (ChatGPT, Claude, Gemini, etc.) to give it structured expertise in a specific domain. Each pack bundles:
+
+- **Constructs** — key concepts with precise definitions
+- **Findings** — empirical results with structured statistics (effect sizes, p-values, methods)
+- **Sources** — papers and datasets the findings trace back to
+- **Playbooks** — reproducible analysis workflows
+
+Packs cover domains from economics and public health to materials science and financial risk. Download one, paste it into your AI, and it can reason with real evidence instead of generic training data.
+
+## Pack Structure
 
 ```
-pax/                        ← Source of truth (committed to git)
-  happiness-economics/
-    pax.yaml                  ← Pack manifest
-    knowledge/
-      domain.json             ← Domain metadata
-      constructs.json         ← Construct definitions
-      findings.json           ← Empirical findings
-      sources.json            ← Bibliographic sources
-    playbooks/
-      quick_start.yaml        ← Executable analysis recipe
-
-scripts/generate-from-git.py  ← Reads pax/*/, generates everything
-registry.json                 ← Thin install contract (at site root)
-data/constructs.json          ← Cross-pack construct index
+pax/<pack-name>/
+  pax.yaml                  # Manifest — name, version, type, description
+  knowledge/
+    domain.json             # Domain metadata
+    constructs.json         # Construct definitions
+    findings.json           # Empirical findings with structured statistics
+    sources.json            # Bibliographic references
+    propositions.json       # Theoretical claims (optional)
+    construct_relationships.json  # Causal/correlational links (optional)
+  playbooks/
+    quick_start.yaml        # Analysis workflow (optional)
 ```
 
-## How Packs Get Published
+## Contributing
 
-1. **Agent creates a pack** in their local Praxis instance
-2. **Agent calls `praxis_publish_pax()`** → creates a PR on this repo adding `pax/<name>/`
-3. **CI validates** the PR (schema, quality score, construct conflicts)
-4. **On merge** → CI rebuilds Hugo site → deploys to pax-market.com
+Anyone can submit a pack.
 
-## Development
+### Option 1: Web Upload
+1. Go to [submit.pax-market.com](https://submit.pax-market.com)
+2. Sign in with GitHub
+3. Upload your pack as a zip file
+4. Validation runs automatically — you'll see errors immediately
+5. After review, your pack goes live on pax-market.com
 
-### Prerequisites
-- [Hugo](https://gohugo.io/) extended edition
-- Python 3.11+ with PyYAML
+### Option 2: Pull Request
+1. Fork this repo
+2. Add your pack directory under `pax/<your-pack-name>/`
+3. Open a PR — CI validates the pack structure
+4. After review and merge, it's published
 
-### Commands
-```bash
-# Generate content from pack directories (no DB needed)
-python3 scripts/generate-from-git.py
+### Creation Guide
+See the full [PAX Creation Guide](https://pax-market.com/guide/) for how to build a pack from scratch. You can also [download the spec](https://pax-market.com/PAX_CREATION_GUIDE.md) and feed it to any LLM along with your source material to generate a valid pack.
 
-# Local dev server
-hugo server
+## Validation
 
-# Build for production
-hugo --minify
+PRs touching `pax/**` are validated automatically:
+
+- Required manifest fields: `name`, `version`, `description`, `pax_type`, `schema_version`
+- Valid `pax_type`: paper, topic, field, engine, enterprise
+- Valid `schema_version`: 1.0, 2.0
+- All JSON files must be valid
+- At least one construct recommended
+
+## How It Works
+
+```
+Pack added to pax/ → PR validated by CI → merged → publish-artifacts.yml runs
+  → GitHub Release created with registry.json + full-catalog.json + tar.gz archives
+  → pax-market.com fetches release → rebuilds → pack appears on the site
 ```
 
-### CI Workflows
-- **validate-pack.yml** — Runs on PRs to `pax/**`. Validates schema, JSON, quality.
-- **deploy-marketplace.yml** — Runs on push to main. Generates content, builds Hugo, deploys.
+This repo is the **registry** — it contains pack data only. The website frontend lives in a [separate repo](https://github.com/JELambert/pax-website).
 
-## Agent Publishing
-```
-praxis_create_pax("my-domain", ...)     # create in local DB
-praxis_publish_pax("my-domain")         # creates PR on this repo
-# → CI validates → merge → live on pax-market.com
+## Using Packs
+
+### With any AI (no setup)
+Download a pack from [pax-market.com](https://pax-market.com), extract the archive, and use the [PAX Usage Guide](https://pax-market.com/PAX_USAGE_GUIDE.md) to load it into your AI assistant.
+
+### With Praxis (full system)
+```python
+praxis_install_remote("pack-name")  # fetches from registry
+# or
+praxis_import_pax("pack-name.pax.tar.gz", install=True)
 ```
 
-## Installing PAX
-```
-praxis_install_remote("happiness-economics")
-# → fetches registry.json from pax-market.com
-# → downloads .pax.tar.gz
-# → installs to local workspace
-```
+## Related Repos
+
+| Repo | Purpose |
+|------|---------|
+| [praxis](https://github.com/JELambert/praxis) | The framework — MCP server, engines, PAX system |
+| [pax-website](https://github.com/JELambert/pax-website) | Frontend for pax-market.com (private) |
