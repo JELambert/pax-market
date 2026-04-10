@@ -1,0 +1,55 @@
+name: Publish Registry Artifacts
+
+on:
+  push:
+    branches: [main]
+    paths: ['pax/**', 'scripts/generate-registry.py']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate registry artifacts
+        run: python3 scripts/generate-registry.py
+
+      - name: Verify artifacts
+        run: |
+          test -f dist/registry.json || (echo "Missing registry.json" && exit 1)
+          test -f dist/constructs.json || (echo "Missing constructs.json" && exit 1)
+          test -f dist/full-catalog.json || (echo "Missing full-catalog.json" && exit 1)
+          PACK_COUNT=$(find dist/pax -name '*.pax.tar.gz' | wc -l)
+          echo "Found $PACK_COUNT pack archives"
+          test "$PACK_COUNT" -gt 0 || (echo "No pack archives found" && exit 1)
+
+      - name: Bundle pack archives
+        run: |
+          cd dist && tar -cf pax-archives.tar pax/
+
+      - name: Create/update release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Delete existing 'latest' release if it exists
+          gh release delete latest --yes 2>/dev/null || true
+          # Create new release
+          gh release create latest \
+            --title "Latest Registry Artifacts" \
+            --notes "Auto-generated registry artifacts from commit ${{ github.sha }}" \
+            dist/registry.json \
+            dist/constructs.json \
+            dist/full-catalog.json \
+            dist/pax-archives.tar

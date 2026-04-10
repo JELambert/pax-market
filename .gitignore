@@ -5,3 +5,5 @@ resources/_gen/
 __pycache__/
 *.pyc
 logs/
+dist/
+artifacts/
