@@ -13,6 +13,7 @@ permissions:
 jobs:
   enable-automerge:
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'community') }}
     steps:
       - name: Enable auto-merge
         run: gh pr merge --auto --squash "$PR_URL"
