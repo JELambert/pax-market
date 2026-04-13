@@ -1,23 +1,46 @@
+description: Determinants, risk factors, and prediction of military coups d'état.
+  Covers structural conditions (economic, political, institutional), civil-military
+  relations, coup-proofing strategies, ethnic dimensions of military loyalty, and
+  quantitative forecasting models. Draws on the Powell & Thyne coup dataset (1950-present)
+  and the broader comparative politics literature on regime instability.
 name: military-coup-prediction
+pax_type: topic
 provides:
   constructs:
-  - coup_attempt
-  - coup_success
-  - gdp_per_capita_coup
-  - economic_growth_shock
-  - military_spending_share
-  - regime_durability_coup
-  - coup_history
-  - ethnic_fractionalization_military
-  - military_autonomy
-  - ethnic_stacking
-  - parallel_security_forces
-  - coup_contagion
-  - foreign_military_aid_coup
-  - cold_war_era_coup
-  - anocracy_coup
-  - leader_tenure_coup
   - coup_forecast_score
+  - praetorian_state
+  - leader_tenure_coup
+  - objective_civilian_control
+  - military_professionalism
+  - elite_purge
+  - oil_rents_coup
+  - income_inequality_coup
+  - coup_attempt
+  - coup_history
+  - coup_success
+  - coup_trap_mechanism
+  - coup_contagion
+  - autogolpe
+  - power_sharing_institutions
+  - cold_war_era_coup
+  - military_autonomy
+  - foreign_military_aid_coup
+  - coordination_problem_coup
+  - military_regime_incumbent
+  - post_coup_civil_war
+  - regime_durability_coup
+  - authoritarian_regime_type
+  - parallel_security_forces
+  - protest_activity_coup
+  - economic_growth_shock
+  - anti_coup_norm
+  - coup_type
+  - military_spending_share
+  - post_coup_democratization
+  - ethnic_stacking
+  - anocracy_coup
+  - gdp_per_capita_coup
+  - ethnic_fractionalization_military
   engines:
   - logistic_regression
   - random_forest
@@ -35,4 +58,46 @@ provides:
   - quick_start
   - drc_coup_analysis
   propositions: []
-version: 1.0.3
+  sources:
+  - casper_tyson_2014
+  - leon_2014
+  - quinlivan_1999
+  - kposowa_jenkins_1993
+  - nordvik_2018
+  - sudduth_2017
+  - singh_2014
+  - souare_2014
+  - perez_linan_polga_2016
+  - besley_robinson_2010
+  - svolik_2012
+  - roessler_2016
+  - miller_2016
+  - bell_2016
+  - bohmelt_et_al_2018
+  - feaver_1996
+  - houle_2016
+  - alesina_et_al_1996
+  - albrecht_koehler_schutz_2021
+  - londregan_poole_1990
+  - croissant_kuehn_2010
+  - bjornskov_rode_2019
+  - collier_hoeffler_2007
+  - svolik_2009
+  - powell_2014
+  - thyne_powell_2014
+  - white_2019
+  - jenkins_kposowa_1990
+  - desch_1999
+  - brooks_2019
+  - svolik_2014
+  - feaver_2003
+  - tansey_2017
+  - bou_nassif_2015
+  - pilster_bohmelt_2011
+  - derpanopoulos_et_al_2016
+  - belkin_schofer_2003
+  - mcgowan_2003
+  - boix_svolik_2013
+  - bell_sudduth_2015
+schema_version: '1.0'
+version: 1.0.17
