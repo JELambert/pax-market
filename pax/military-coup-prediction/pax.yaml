@@ -7,15 +7,27 @@ name: military-coup-prediction
 pax_type: topic
 provides:
   constructs:
+  - rare_events_methodology
+  - postcolonial_military_legacy
   - coup_forecast_score
   - praetorian_state
+  - elite_defection_signal
+  - post_coup_regime_type
+  - social_media_coup_coordination
+  - forecasting_accuracy_auc
   - leader_tenure_coup
+  - patronage_capacity
+  - au_anti_coup_mechanism
   - objective_civilian_control
+  - sahel_coup_wave
   - military_professionalism
   - elite_purge
   - oil_rents_coup
   - income_inequality_coup
   - coup_attempt
+  - leader_fate_post_coup
+  - military_corporate_interest
+  - military_mutiny
   - coup_history
   - coup_success
   - coup_trap_mechanism
@@ -24,11 +36,21 @@ provides:
   - power_sharing_institutions
   - cold_war_era_coup
   - military_autonomy
+  - international_sanctions_coup
   - foreign_military_aid_coup
+  - anti_colonial_coup_framing
   - coordination_problem_coup
   - military_regime_incumbent
   - post_coup_civil_war
+  - military_business_interests
+  - post_coup_elections
+  - post_coup_repression
+  - democratic_coup
+  - disposition_opportunity
+  - foreign_military_training
   - regime_durability_coup
+  - principal_agent_cmr
+  - bureaucratic_authoritarianism
   - authoritarian_regime_type
   - parallel_security_forces
   - protest_activity_coup
@@ -37,6 +59,7 @@ provides:
   - coup_type
   - military_spending_share
   - post_coup_democratization
+  - rentier_state_coup
   - ethnic_stacking
   - anocracy_coup
   - gdp_per_capita_coup
@@ -100,4 +123,4 @@ provides:
   - boix_svolik_2013
   - bell_sudduth_2015
 schema_version: '1.0'
-version: 1.0.17
+version: 1.0.20

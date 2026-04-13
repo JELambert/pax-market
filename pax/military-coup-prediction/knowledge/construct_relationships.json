@@ -204,18 +204,6 @@
     "mechanism": "Professionalism may reduce (Huntington) or enable (officer networks) coups depending on context"
   },
   {
-    "id": 67,
-    "construct_from": "coup_attempt",
-    "construct_to": "post_coup_democratization",
-    "relationship_type": "causal",
-    "direction": "conditional",
-    "strength": "moderate",
-    "source_id": "thyne_powell_2014",
-    "evidence_weight": null,
-    "n_findings": null,
-    "mechanism": "Coups against autocracies can enable democratization; coups against democracies reduce it"
-  },
-  {
     "id": 66,
     "construct_from": "patronage_capacity",
     "construct_to": "coup_attempt",
@@ -226,6 +214,18 @@
     "evidence_weight": null,
     "n_findings": null,
     "mechanism": "Higher patronage raises opportunity cost of plotting and satisfies military demands"
+  },
+  {
+    "id": 67,
+    "construct_from": "coup_attempt",
+    "construct_to": "post_coup_democratization",
+    "relationship_type": "causal",
+    "direction": "conditional",
+    "strength": "moderate",
+    "source_id": "thyne_powell_2014",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Coups against autocracies can enable democratization; coups against democracies reduce it"
   },
   {
     "id": 68,
