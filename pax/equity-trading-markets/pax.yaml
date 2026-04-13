@@ -64,5 +64,5 @@ provides:
   - shleifer_vishny_1997
   - markowitz_1952
   - baker_wurgler_2006
-schema_version: '1.0'
-version: 1.0.3
+schema_version: '2.0'
+version: 1.0.4

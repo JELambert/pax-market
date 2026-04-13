@@ -228,6 +228,18 @@
     "mechanism": "Implied volatility is a forward-looking estimate of realized volatility; the variance risk premium (IV > realized vol) compensates investors for volatility uncertainty"
   },
   {
+    "id": 72,
+    "construct_from": "value_at_risk_etm",
+    "construct_to": "maximum_drawdown_etm",
+    "relationship_type": "correlational",
+    "direction": "positive",
+    "strength": "moderate",
+    "source_id": null,
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Both measure tail risk but at different horizons: VaR captures point-in-time loss probability while max drawdown captures cumulative peak-to-trough loss over a full cycle"
+  },
+  {
     "id": 70,
     "construct_from": "earnings_surprise_etm",
     "construct_to": "price_momentum_etm",
