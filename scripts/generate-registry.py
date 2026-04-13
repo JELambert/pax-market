@@ -17,6 +17,7 @@ Usage:
 """
 
 import hashlib
+import io
 import json
 import re
 import sys
@@ -291,13 +292,39 @@ def process_pack(pack_dir: Path) -> dict | None:
     archive_dir = DIST_DIR / "pax"
     archive_dir.mkdir(parents=True, exist_ok=True)
     archive_path = archive_dir / f"{name}.pax.tar.gz"
+
+    # Collect pack files and compute per-file checksums
+    pack_files = []
+    for item in sorted(pack_dir.rglob("*")):
+        if item.is_file():
+            arcname = str(item.relative_to(pack_dir))
+            if "__pycache__" in arcname or arcname.startswith("."):
+                continue
+            pack_files.append((item, arcname))
+
+    file_checksums = {
+        arcname: hashlib.sha256(item.read_bytes()).hexdigest()
+        for item, arcname in pack_files
+    }
+
+    # Build manifest.json required by praxis import_pax()
+    manifest_data = {
+        "name": name,
+        "version": version,
+        "schema_version": manifest.get("schema_version", "1.0"),
+        "files": file_checksums,
+    }
+    manifest_bytes = json.dumps(manifest_data, indent=2, sort_keys=True).encode()
+
     with tarfile.open(archive_path, "w:gz") as tar:
-        for item in sorted(pack_dir.rglob("*")):
-            if item.is_file():
-                arcname = str(item.relative_to(pack_dir))
-                if "__pycache__" in arcname or arcname.startswith("."):
-                    continue
-                tar.add(item, arcname=arcname)
+        # manifest.json first (archive root)
+        manifest_info = tarfile.TarInfo(name="manifest.json")
+        manifest_info.size = len(manifest_bytes)
+        tar.addfile(manifest_info, io.BytesIO(manifest_bytes))
+        # pack files
+        for item, arcname in pack_files:
+            tar.add(item, arcname=arcname)
+
     sha256 = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     archive_size = format_size(archive_path.stat().st_size)
 
