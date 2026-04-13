@@ -214,5 +214,41 @@
     "evidence_weight": null,
     "n_findings": null,
     "mechanism": "RSI measures momentum exhaustion \u2014 extreme readings signal where short-term momentum may reverse"
+  },
+  {
+    "id": 69,
+    "construct_from": "implied_volatility_etm",
+    "construct_to": "portfolio_volatility_etm",
+    "relationship_type": "correlational",
+    "direction": "positive",
+    "strength": "strong",
+    "source_id": null,
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Implied volatility is a forward-looking estimate of realized volatility; the variance risk premium (IV > realized vol) compensates investors for volatility uncertainty"
+  },
+  {
+    "id": 70,
+    "construct_from": "earnings_surprise_etm",
+    "construct_to": "price_momentum_etm",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "source_id": null,
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "PEAD generates medium-term price continuation as the market slowly incorporates earnings information, creating overlap with 12-1 month momentum returns"
+  },
+  {
+    "id": 71,
+    "construct_from": "sector_rotation_etm",
+    "construct_to": "price_momentum_etm",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "source_id": null,
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Industry-level momentum is the primary driver of individual stock momentum; rotating into past-winning sectors captures the same information as stock-level momentum strategies"
   }
 ]
