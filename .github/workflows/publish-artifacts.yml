@@ -54,11 +54,3 @@ jobs:
             dist/full-catalog.json \
             dist/pax-archives.tar
 
-      - name: Trigger website rebuild
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api repos/JELambert/pax-website/dispatches \
-            --method POST \
-            --field event_type=registry-updated \
-            --field client_payload[sha]="${{ github.sha }}"
