@@ -54,3 +54,18 @@ jobs:
             dist/full-catalog.json \
             dist/pax-archives.tar
 
+      - name: Trigger website deploy
+        env:
+          PAX_WEBSITE_DISPATCH_TOKEN: ${{ secrets.PAX_WEBSITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$PAX_WEBSITE_DISPATCH_TOKEN" ]; then
+            echo "WARNING: PAX_WEBSITE_DISPATCH_TOKEN not set — skipping website dispatch"
+            exit 0
+          fi
+          curl -fsS -X POST \
+            -H "Authorization: token $PAX_WEBSITE_DISPATCH_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/JELambert/pax-website/dispatches \
+            -d '{"event_type":"registry-updated"}'
+          echo "Website deploy triggered."
+
