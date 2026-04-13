@@ -240,6 +240,18 @@
     "mechanism": "Both measure tail risk but at different horizons: VaR captures point-in-time loss probability while max drawdown captures cumulative peak-to-trough loss over a full cycle"
   },
   {
+    "id": 73,
+    "construct_from": "relative_strength_index_etm",
+    "construct_to": "mean_reversion_etm",
+    "relationship_type": "correlational",
+    "direction": "positive",
+    "strength": "moderate",
+    "source_id": null,
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "RSI measures the speed and magnitude of recent price changes; extreme RSI readings (>70 or <30) identify short-run overextension that tends to mean-revert as the momentum exhausts"
+  },
+  {
     "id": 70,
     "construct_from": "earnings_surprise_etm",
     "construct_to": "price_momentum_etm",

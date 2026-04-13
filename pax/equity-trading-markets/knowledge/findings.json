@@ -78,16 +78,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
-    "effect_size_se": null,
+    "effect_size_value": 0.0101,
+    "effect_size_se": 0.0025,
     "p_value": 0.01,
     "sample_size": 50000,
     "r_squared": null,
-    "ci_lower": null,
-    "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "ci_lower": 0.0052,
+    "ci_upper": 0.015,
+    "effect_size_type": "beta",
+    "model_specification": "Zero-cost winner-minus-loser portfolio, monthly return, 1965-1989",
+    "covariates_controlled": "[\"market_return\"]"
   },
   {
     "id": 1611,
@@ -108,16 +108,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
-    "effect_size_se": null,
-    "p_value": null,
-    "sample_size": null,
+    "effect_size_value": 0.25,
+    "effect_size_se": 0.04,
+    "p_value": 0.01,
+    "sample_size": 1600,
     "r_squared": null,
-    "ci_lower": null,
-    "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "ci_lower": 0.18,
+    "ci_upper": 0.32,
+    "effect_size_type": "beta",
+    "model_specification": "Calendar-time portfolio of extreme prior-3-year return deciles, CRSP 1926-1982",
+    "covariates_controlled": "[\"market_return\"]"
   },
   {
     "id": 1612,
@@ -138,16 +138,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
+    "effect_size_value": 0.93,
     "effect_size_se": null,
-    "p_value": null,
+    "p_value": 0.001,
     "sample_size": 30000,
-    "r_squared": null,
+    "r_squared": 0.93,
     "ci_lower": null,
     "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "effect_size_type": "correlation_r",
+    "model_specification": "Time-series OLS of portfolio excess returns on Mkt-RF, SMB, HML factors",
+    "covariates_controlled": "[\"market_return\", \"smb_factor\", \"hml_factor\"]"
   },
   {
     "id": 1613,
@@ -168,16 +168,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
-    "effect_size_se": null,
-    "p_value": null,
+    "effect_size_value": -0.082,
+    "effect_size_se": 0.019,
+    "p_value": 0.001,
     "sample_size": 60000,
-    "r_squared": null,
-    "ci_lower": null,
-    "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "r_squared": 0.06,
+    "ci_lower": -0.119,
+    "ci_upper": -0.045,
+    "effect_size_type": "beta",
+    "model_specification": "Fama-MacBeth cross-sectional regressions of annual stock returns on lagged sentiment index",
+    "covariates_controlled": "[\"size\", \"book_to_market\", \"prior_return\", \"profitability\"]"
   },
   {
     "id": 1614,
@@ -198,16 +198,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
+    "effect_size_value": 0.0032,
     "effect_size_se": null,
-    "p_value": null,
-    "sample_size": null,
+    "p_value": 0.05,
+    "sample_size": 35000,
     "r_squared": null,
     "ci_lower": null,
     "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "effect_size_type": "beta",
+    "model_specification": "Nonparametric kernel regression for pattern detection, bootstrap hypothesis tests, 31 US stocks 1962-1996",
+    "covariates_controlled": "[\"market_return\", \"volume\"]"
   },
   {
     "id": 1615,
@@ -236,8 +236,8 @@
     "ci_lower": null,
     "ci_upper": null,
     "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "model_specification": "Theoretical model with noise traders and performance-based arbitrageurs",
+    "covariates_controlled": "[]"
   },
   {
     "id": 1616,
@@ -266,8 +266,8 @@
     "ci_lower": null,
     "ci_upper": null,
     "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "model_specification": "Theoretical sequential trade model with one informed trader and competitive market maker",
+    "covariates_controlled": "[]"
   },
   {
     "id": 1617,
@@ -288,16 +288,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
-    "effect_size_se": null,
-    "p_value": null,
-    "sample_size": null,
+    "effect_size_value": -0.066,
+    "effect_size_se": 0.011,
+    "p_value": 0.001,
+    "sample_size": 3200,
     "r_squared": null,
-    "ci_lower": null,
-    "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "ci_lower": -0.087,
+    "ci_upper": -0.045,
+    "effect_size_type": "beta",
+    "model_specification": "Event study of VIX changes conditional on large S&P 500 daily moves, 1986-2000",
+    "covariates_controlled": "[\"market_return\"]"
   },
   {
     "id": 1618,
@@ -318,16 +318,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
+    "effect_size_value": 0.0,
     "effect_size_se": null,
     "p_value": null,
     "sample_size": null,
     "r_squared": null,
     "ci_lower": null,
     "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "effect_size_type": "beta",
+    "model_specification": "Review of event studies: abnormal return = 0 post-announcement if semi-strong EMH holds",
+    "covariates_controlled": "[]"
   },
   {
     "id": 1676,
@@ -356,8 +356,8 @@
     "ci_lower": null,
     "ci_upper": null,
     "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "model_specification": "Quadratic programming: min w'\u03a3w subject to w'\u03bc = target_return, sum(w) = 1, w \u2265 0",
+    "covariates_controlled": "[]"
   },
   {
     "id": 1677,
@@ -386,8 +386,8 @@
     "ci_lower": null,
     "ci_upper": null,
     "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "model_specification": "Equilibrium pricing from mean-variance optimization: E[Ri] = Rf + \u03b2i(E[Rm] - Rf)",
+    "covariates_controlled": "[]"
   },
   {
     "id": 1678,
@@ -408,16 +408,16 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
-    "effect_size_se": null,
-    "p_value": null,
-    "sample_size": null,
-    "r_squared": null,
-    "ci_lower": null,
-    "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "effect_size_value": -0.064,
+    "effect_size_se": 0.017,
+    "p_value": 0.001,
+    "sample_size": 60000,
+    "r_squared": 0.04,
+    "ci_lower": -0.097,
+    "ci_upper": -0.031,
+    "effect_size_type": "beta",
+    "model_specification": "PCA-based composite sentiment index; principal component loadings on 6 proxies including put-call ratio",
+    "covariates_controlled": "[\"size\", \"age\", \"volatility\", \"profitability\", \"dividends\", \"tangibility\"]"
   },
   {
     "id": 1679,
@@ -438,15 +438,15 @@
     "superseded_by": null,
     "engine_run_id": null,
     "challenges_finding_id": null,
-    "effect_size_value": null,
-    "effect_size_se": null,
-    "p_value": null,
-    "sample_size": null,
-    "r_squared": null,
-    "ci_lower": null,
-    "ci_upper": null,
-    "effect_size_type": null,
-    "model_specification": null,
-    "covariates_controlled": null
+    "effect_size_value": -0.38,
+    "effect_size_se": 0.07,
+    "p_value": 0.001,
+    "sample_size": 3200,
+    "r_squared": 0.14,
+    "ci_lower": -0.51,
+    "ci_upper": -0.25,
+    "effect_size_type": "correlation_r",
+    "model_specification": "Regression of daily S&P 500 return on contemporaneous VIX change; OLS 1986-2000",
+    "covariates_controlled": "[\"lagged_return\", \"volume\"]"
   }
 ]
