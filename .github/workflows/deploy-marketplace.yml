@@ -29,25 +29,15 @@ jobs:
       - name: Generate marketplace content from pax/
         run: python3 scripts/generate-registry.py
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: 'latest'
-          extended: true
-
-      - name: Build Hugo
-        run: hugo --minify
-
       - name: Verify build output
         run: |
-          if [ ! -f public/index.html ]; then
-            echo "ERROR: Hugo build produced no index.html"
+          if [ ! -f dist/registry.json ]; then
+            echo "ERROR: dist/registry.json missing"
             exit 1
           fi
-          if [ ! -f public/registry.json ]; then
-            echo "ERROR: registry.json missing from public/"
+          if [ ! -f dist/full-catalog.json ]; then
+            echo "ERROR: dist/full-catalog.json missing"
             exit 1
           fi
-          HTML_COUNT=$(find public -name '*.html' | wc -l | tr -d ' ')
-          PACK_COUNT=$(find public/pax -name '*.pax.tar.gz' 2>/dev/null | wc -l | tr -d ' ')
-          echo "Build OK: ${HTML_COUNT} HTML files, ${PACK_COUNT} pack archives"
+          PACK_COUNT=$(find dist/pax -name '*.pax.tar.gz' 2>/dev/null | wc -l | tr -d ' ')
+          echo "Build OK: ${PACK_COUNT} pack archives in dist/"
