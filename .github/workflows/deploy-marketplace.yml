@@ -27,7 +27,7 @@ jobs:
         run: pip install pyyaml
 
       - name: Generate marketplace content from pax/
-        run: python3 scripts/generate-from-git.py
+        run: python3 scripts/generate-registry.py
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
