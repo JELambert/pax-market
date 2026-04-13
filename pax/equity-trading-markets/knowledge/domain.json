@@ -1,0 +1,12 @@
+{
+  "id": "equity_trading_markets",
+  "display_name": "Equity Trading & Markets",
+  "description": "The study of equity market behavior, trading strategies, and financial instruments \u2014 spanning market microstructure, behavioral anomalies, technical analysis, quantitative factor strategies, portfolio theory, and derivatives pricing. Bridges academic finance research with actionable trading frameworks.",
+  "temporal_scope": "Modern equity markets (1950\u2013present)",
+  "population": "Equity markets, individual stocks, ETFs, options markets",
+  "created_at": "2026-04-12T18:25:10.200507+00:00",
+  "source_id": null,
+  "status": "active",
+  "parent_domain_id": null,
+  "level_of_analysis": "Security-level and portfolio-level"
+}

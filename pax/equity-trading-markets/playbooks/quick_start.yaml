@@ -1,0 +1,20 @@
+description: Basic analysis workflow for the equity_trading_markets domain.
+display_name: Quick Start — Equity Trading Markets
+estimated_runtime: 1–3 minutes
+id: quick_start
+steps:
+- action: run_engine
+  compare_to_kb: true
+  display_name: Correlation Matrix
+  engine: correlation_matrix
+  id: correlation
+  on_failure: continue
+  params:
+    variables:
+    - market_efficiency_etm
+    - price_momentum_etm
+    - sharpe_ratio_etm
+    - moving_average_signal_etm
+    - implied_volatility_etm
+    - factor_exposure_etm
+  step: 1

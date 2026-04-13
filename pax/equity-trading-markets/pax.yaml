@@ -1,0 +1,68 @@
+description: Equity market theory, quantitative trading strategies, technical and
+  fundamental analysis, risk management, behavioral finance, and options basics —
+  with live data engines for real-time stock analysis. Covers EMH and its violations,
+  momentum/value/mean-reversion anomalies, technical indicator theory, portfolio optimization,
+  factor models, and options pricing.
+name: equity-trading-markets
+pax_type: field
+provides:
+  constructs:
+  - earnings_surprise_etm
+  - volatility_bands_etm
+  - price_momentum_etm
+  - price_discovery_etm
+  - mean_reversion_etm
+  - pairs_cointegration_etm
+  - moving_average_signal_etm
+  - investor_sentiment_etm
+  - implied_volatility_etm
+  - maximum_drawdown_etm
+  - market_liquidity_etm
+  - volume_confirmation_etm
+  - sharpe_ratio_etm
+  - value_premium_etm
+  - market_efficiency_etm
+  - market_microstructure_etm
+  - value_at_risk_etm
+  - put_call_ratio_etm
+  - factor_exposure_etm
+  - relative_strength_index_etm
+  - options_greeks_etm
+  - support_resistance_etm
+  - portfolio_volatility_etm
+  - beta_systematic_risk_etm
+  - sector_rotation_etm
+  engines:
+  - ols_regression
+  - random_forest
+  - gradient_boosting
+  - lasso_regression
+  - correlation_matrix
+  findings:
+  - 1610
+  - 1611
+  - 1612
+  - 1613
+  - 1614
+  - 1615
+  - 1616
+  - 1617
+  - 1618
+  playbooks:
+  - quick_start
+  propositions: []
+  sources:
+  - fama_1970_emh
+  - kyle_1985
+  - jegadeesh_titman_1993
+  - debondt_thaler_1985
+  - sharpe_1964_capm
+  - lo_mamaysky_wang_2000
+  - fama_french_1993
+  - black_scholes_1973
+  - whaley_2000_vix
+  - shleifer_vishny_1997
+  - markowitz_1952
+  - baker_wurgler_2006
+schema_version: '1.0'
+version: 1.0.2
