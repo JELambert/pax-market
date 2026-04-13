@@ -1,0 +1,51 @@
+description: 'Replicates the core empirical relationship from Piketty & Saez (2003
+  QJE, 2007 JEL): the U-shaped pattern in US top income shares over the 20th century
+  tracks closely with changes in top marginal income tax rates. Uses World Inequality
+  Database (wid.world) public data, which updates the series through 2022. Tests whether
+  tax-income share correlation persists in the post-2000 era.'
+id: piketty_saez_income_shares
+name: Top Income Shares & Tax Progressivity — Piketty & Saez
+steps:
+- action: acquire_data
+  data_sources:
+  - 'wid.world API: top income shares US 1913-2022 (free, requires registration)'
+  - 'OECD Tax Database: top marginal PIT rates US historical'
+  - 'Tax Foundation: US effective marginal rates by year'
+  description: 'Download World Inequality Database (WID) top income share data: sptinc992j_US
+    (top 10% pre-tax income share), sptinc099j_US (top 1% pre-tax income share), US
+    annual 1913-2022. Also download OECD historical top marginal income tax rates
+    for the US from OECD Tax Database. Merge as annual US panel.'
+  expected_obs: ~110 annual US observations
+  step: 1
+  tool_hint: praxis_ingest_data
+- action: visualize_correlation
+  description: 'Plot time series of top 1% income share (left axis) against top marginal
+    income tax rate (right axis, inverted). Identify key policy breaks: 1932 rate
+    increase, 1964 Kennedy cut, 1981 Reagan ERTA, 1986 TRA, 1993 Clinton increase,
+    2001 EGTRRA. Reproduce Piketty-Saez Figure 1.'
+  step: 2
+  tool_hint: praxis_get_data + correlation_matrix engine
+- action: run_regression
+  description: 'Estimate OLS: top_income_share ~ top_marginal_income_tax_rate + trend
+    + controls. Controls: log_rgdp_growth, war_indicator (1941-45), financial_sector_share.
+    Run for full period and post-WWII subsamples. Expected sign: negative (higher
+    top rate → lower income share).'
+  engine: ols_regression
+  specification: top_1pct_share ~ top_marginal_rate + linear_trend + log_rgdp_growth
+    + war_dummy
+  step: 3
+  tool_hint: praxis_run_engine
+- action: extend_to_wealth
+  description: Augment with Saez-Zucman (2016) wealth concentration estimates from
+    WID. Test whether the tax-income share relationship is stronger for capital income
+    vs. labor income. Use income decomposition from WID (labor share of top incomes
+    by year).
+  engine: ols_regression
+  step: 4
+  tool_hint: praxis_run_engine with income_type interaction
+- action: record_findings
+  description: Insert engine-validated findings with effect_size_value and p_value.
+    Confirm or challenge existing piketty_saez_2007 finding on progressive taxation
+    and income inequality.
+  step: 5
+  tool_hint: extend_pax findings

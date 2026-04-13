@@ -14,12 +14,32 @@ praxis_requires: null
 private: false
 provides:
   constructs:
-  - tax_revenue_gdp_pct
-  - income_tax_share
-  - government_expenditure_gdp_pct
-  - fiscal_balance_gdp_pct
-  - public_debt_gdp_pct
   - tax_compliance_rate
+  - statutory_corporate_tax_rate
+  - government_expenditure_gdp_pct
+  - capital_gains_tax_rate
+  - tax_progressivity_index
+  - payroll_tax_rate
+  - effective_tax_rate_quintile
+  - resource_revenue_dependence
+  - non_tax_revenue_share
+  - shadow_economy_share
+  - tax_haven_asset_share
+  - voluntary_compliance_rate
+  - audit_detection_rate
+  - top_marginal_income_tax_rate
+  - income_tax_share
+  - vat_standard_rate
+  - tax_gap_estimate
+  - public_debt_gdp_pct
+  - tax_revenue_gdp_pct
+  - fiscal_balance_gdp_pct
+  - redistributive_effect_taxes
+  - tax_effort_index
+  - cit_revenue_loss_beps
+  - elasticity_of_taxable_income
+  - effective_corporate_tax_rate
+  - profit_shifting_magnitude
   engines:
   - ols_regression
   - correlation_matrix
@@ -31,15 +51,36 @@ provides:
   - mertens_ravn_2013_3
   playbooks:
   - quick_start
+  - tax_multiplier_replication
+  - romer_romer_narrative_replication
+  - piketty_saez_income_shares
+  - eti_bunching_replication
+  - tax_compliance_enforcement
+  - tax_revenue_capacity_frontier
+  - literature_gap_survey
+  - cross_domain_taxation_nexus
   propositions: []
   sources:
-  - mertens_ravn_2013
+  - mankiw_weinzierl_yagan_2009
+  - piketty_saez_2003
+  - oecd_revenue_statistics_2023
+  - saez_slemrod_giertz_2012
   - besley_persson_2014
   - reinhart_rogoff_2010
+  - mertens_ravn_2013
+  - diamond_mirrlees_1971
+  - saez_2010_bunching
+  - pomeranz_2015
+  - romer_romer_2010
+  - zucman_2014_jep
+  - kleven_et_al_2011
+  - gupta_et_al_2007
+  - mirrlees_1971
+  - torslov_wier_zucman_2022
   - piketty_saez_2007
 refresh_policy: null
 schema_version: '1.0'
 tags:
 - topic
 - taxation-fiscal
-version: 1.0.0
+version: 2.0.0

@@ -1,0 +1,52 @@
+description: Implements the Saez (2010 AEJ:EP) bunching estimator to identify behavioral
+  responses to marginal tax rates at income kink points. Uses IRS Statistics of Income
+  (SOI) public use microdata. The bunching methodology is a gold standard for estimating
+  the ETI without requiring policy reform experiments. Compares wage earners vs. self-employed
+  — the core result showing self-employed bunch at EITC kinks but wage earners do
+  not.
+id: eti_bunching_replication
+name: Elasticity of Taxable Income — Saez (2010) Bunching Estimator
+steps:
+- action: acquire_data
+  data_sources:
+  - IRS SOI public use files (irs.gov/statistics)
+  - 'Tax Policy Center: EITC parameters by year'
+  - 'NBER TAXSIM: marginal rate schedule kink points'
+  description: 'Access IRS Statistics of Income (SOI) public use file from IRS.gov
+    (Tax Statistics section). Download annual individual income tax return data: adjusted
+    gross income distribution, earned income, self-employment income, W-2 income.
+    Supplement with EITC parameters by year (phase-in rate, kink point amounts) from
+    Tax Policy Center historical tables.'
+  expected_obs: Cross-sectional income distribution by year
+  step: 1
+  tool_hint: praxis_ingest_data
+- action: identify_kinks
+  description: 'Compute the marginal tax rate schedule for each year 1995-2010. Identify
+    all kink points (where marginal rate changes discontinuously): EITC first kink
+    (phase-out), standard deduction threshold, bracket boundaries at 15%, 25%, 28%,
+    33%, 35%. Record kink amounts in 2015 dollars.'
+  step: 2
+  tool_hint: praxis_get_data + manual kink computation
+- action: estimate_bunching
+  description: 'For each kink point: (1) define bunching window +/- $2,000 around
+    kink, (2) fit polynomial counterfactual to income distribution excluding window,
+    (3) compute excess mass B = (observed - counterfactual) / counterfactual in window,
+    (4) convert to ETI: epsilon = B / (delta_log_net_of_tax_rate). Run separately
+    for wage earners (W-2 income > 80%) and self-employed (Schedule C > 20%).'
+  engine: ols_regression
+  specification: Polynomial fit of income frequency on income bins, excluding bunching
+    window. Manual bunching mass computation.
+  step: 3
+  tool_hint: praxis_run_engine
+- action: compare_to_saez_table1
+  description: 'Compare computed ETI estimates to Saez (2010) Table 1: EITC kink ETI
+    for wage earners (~0.0-0.1), for self-employed (~0.25-0.5). Assess whether our
+    data vintage extends these estimates into 2010s.'
+  step: 4
+  tool_hint: praxis_compare_findings
+- action: record_findings
+  description: Insert engine-validated ETI estimates as findings linked to elasticity_of_taxable_income
+    and tax_compliance_rate constructs. Record effect_size_value as the computed ETI
+    estimate with confidence interval.
+  step: 5
+  tool_hint: extend_pax findings

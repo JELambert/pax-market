@@ -1,0 +1,57 @@
+description: 'Replicates two landmark causal studies on tax compliance. First: Kleven
+  et al. (2011 Econometrica) Danish audit RCT decomposing compliance by income type.
+  Second: Pomeranz (2015 AER) Chilean VAT audit threat experiment demonstrating supply-chain
+  self-enforcement. Together they establish the information-centric model of tax compliance
+  vs. the traditional deterrence model. Replication data available for both.'
+id: tax_compliance_enforcement
+name: Tax Compliance & Enforcement — Kleven et al. (2011) + Pomeranz (2015)
+steps:
+- action: acquire_kleven_data
+  data_sources:
+  - 'Kleven et al. 2011 Econometrica supplemental: replication dataset'
+  - Danish administrative tax records (if accessible via NBER)
+  description: 'Obtain Kleven et al. (2011) replication dataset from the Econometrica
+    supplemental materials. Dataset includes: randomized audit/control assignment,
+    pre- and post-period reported income by source (W-2, self-employment, capital),
+    audit outcome (detected evasion amount), and taxpayer characteristics (income,
+    family status). Approximately 40,000 observations over 2 years.'
+  expected_obs: ~40,000 Danish taxpayer-years
+  step: 1
+  tool_hint: praxis_ingest_data
+- action: estimate_compliance_by_source
+  description: 'Run difference-in-differences: reported_income_change ~ audit_treatment
+    * income_type + fixed_effects. Income types: (1) third-party reported (employer
+    W-2 equivalent), (2) self-reported with matching (bank interest), (3) purely self-reported
+    (self-employment). Expected: near-zero treatment effect for type 1, large effect
+    for type 3. Replicates Kleven Table 3.'
+  engine: ols_regression
+  specification: delta_reported_income ~ audit_dummy * self_employed_share + income_level
+    + family_size
+  step: 2
+  tool_hint: praxis_run_engine
+- action: acquire_pomeranz_data
+  data_sources:
+  - 'AEA supplemental: Pomeranz VAT audit experiment data'
+  - Chilean SII (tax authority) firm registry (if available via Pomeranz lab)
+  description: 'Download Pomeranz (2015) AER replication data from AEA website (DOI:
+    10.1257/aer.20130393). Dataset includes: Chilean firm VAT records, audit threat
+    treatment assignment, invoice amounts by buyer-seller pair. Key variable: B2B
+    transaction compliance before/after audit threat to upstream seller.'
+  step: 3
+  tool_hint: praxis_ingest_data
+- action: estimate_vat_spillover
+  description: 'Run network DID: compliance_change ~ upstream_audit_treatment + firm_size
+    + industry + time_fe. Estimate spillover at one and two degrees of separation
+    in VAT chain. Replicates Pomeranz Figure 2 and Table 4. Expected: significant
+    compliance improvement for direct downstream buyers, attenuating at two degrees.'
+  engine: ols_regression
+  specification: vat_compliance ~ upstream_audit_treat * supply_chain_depth + log_revenue
+    + industry_fe
+  step: 4
+  tool_hint: praxis_run_engine
+- action: record_and_synthesize
+  description: 'Insert engine-validated findings for tax_compliance_rate, voluntary_compliance_rate,
+    audit_detection_rate. Update maturity score. Write synthesis: information-trail
+    model dominates pure-deterrence model across both studies.'
+  step: 5
+  tool_hint: extend_pax findings + praxis_literature(construct_id='tax_compliance_rate')

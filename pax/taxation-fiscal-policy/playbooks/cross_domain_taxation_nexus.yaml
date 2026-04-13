@@ -1,0 +1,53 @@
+description: 'Maps how taxation constructs connect to adjacent economic domains: economic
+  growth, income inequality, sovereign debt, trade globalization, and institutional
+  quality. Uses Praxis bridge tools to identify analytical pathways through which
+  tax policy transmits to macro outcomes. Generates cross-domain propositions for
+  future replication.'
+id: cross_domain_taxation_nexus
+name: Cross-Domain Taxation Nexus Analysis
+steps:
+- action: find_growth_bridges
+  description: 'Run praxis_find_bridges from taxation_fiscal to economic_growth domain.
+    Expected bridges: tax_revenue_gdp_pct <-> gdp_growth (Laffer curve), top_marginal_income_tax_rate
+    <-> human_capital_investment (disincentive effect), effective_corporate_tax_rate
+    <-> fdi_inflows (location channel).'
+  params:
+    domain_from: taxation_fiscal
+    domain_to: economic_growth
+  step: 1
+  tool_hint: praxis_find_bridges
+- action: find_inequality_bridges
+  description: 'Run praxis_find_bridges from taxation_fiscal to income_inequality
+    domain. Expected: tax_progressivity_index <-> gini_coefficient, redistributive_effect_taxes
+    <-> poverty_rate, income_tax_share <-> top_income_share.'
+  params:
+    domain_from: taxation_fiscal
+    domain_to: income_inequality
+  step: 2
+  tool_hint: praxis_find_bridges
+- action: find_debt_bridges
+  description: 'Run praxis_find_bridges from taxation_fiscal to sovereign_debt domain.
+    Expected: fiscal_balance_gdp_pct <-> debt_to_gdp_ratio, tax_revenue_gdp_pct <->
+    sovereign_default_risk.'
+  params:
+    domain_from: taxation_fiscal
+    domain_to: sovereign_debt
+  step: 3
+  tool_hint: praxis_find_bridges
+- action: trace_transmission_pathway
+  description: 'Run praxis_pathway from tax_revenue_gdp_pct through fiscal_balance_gdp_pct
+    to public_debt_gdp_pct. This traces the classic fiscal sustainability chain: revenue
+    mobilization -> balance -> debt dynamics. Extend to economic_growth domain to
+    capture the debt-growth channel.'
+  params:
+    construct_end: public_debt_gdp_pct
+    construct_start: tax_revenue_gdp_pct
+  step: 4
+  tool_hint: praxis_pathway
+- action: analogies_and_synthesis
+  description: Run praxis_find_analogies across tax_compliance_rate and constructs
+    from institutional_quality domain. Assess whether fiscal compliance patterns mirror
+    legal compliance patterns (rule of law). Run praxis_align_constructs to formally
+    register cross-domain bridges discovered in steps 1-4.
+  step: 5
+  tool_hint: praxis_find_analogies + praxis_align_constructs
