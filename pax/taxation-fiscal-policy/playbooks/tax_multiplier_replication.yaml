@@ -1,0 +1,58 @@
+description: 'Replicate the core finding from Mertens & Ravn (2013 AER): personal
+  and corporate income tax cuts have distinct, quantifiable multiplier effects on
+  GDP. Uses their publicly posted narrative tax shock dataset combined with NIPA quarterly
+  data. Tests whether tax cuts for capital income vs. labor income generate different
+  growth paths. Requires OECD or BEA data ingest.'
+id: tax_multiplier_replication
+name: Tax Multiplier Replication — Mertens & Ravn (2013)
+steps:
+- action: acquire_data
+  data_sources:
+  - 'AEA supplemental data: Mertens-Ravn tax shock series'
+  - 'BEA NIPA API: GDP, personal income quarterly'
+  - 'FRED: Federal Funds Rate (control variable)'
+  description: 'Download Mertens-Ravn narrative tax change dataset from AEA data repository
+    (DOI: 10.1257/aer.103.4.1212 supplemental). Also download BEA NIPA Table 1.1.5
+    (GDP quarterly) and Table 2.1 (personal income). Target: US quarterly panel 1950Q1-2006Q4.'
+  output: 'Dataset ingested with variables: personal_income_tax_shock, corporate_income_tax_shock,
+    rgdp_growth, unemployment_rate, fed_funds_rate'
+  step: 1
+  tool_hint: praxis_ingest_data
+- action: validate_data
+  description: 'Check ingest quality: verify quarterly frequency, no gaps 1950-2006,
+    check shock series has ~60 narrative events. Compute summary statistics and compare
+    to Mertens-Ravn Table 1 descriptives.'
+  expected_obs: ~228 quarters
+  step: 2
+  tool_hint: praxis_get_data
+- action: run_baseline_var
+  description: 'Estimate SVAR with 4 lags: [rgdp, personal_income_tax_shock, corporate_income_tax_shock,
+    government_spending]. Use Cholesky ordering with narrative shocks as instruments
+    (IV-SVAR). This replicates the identification strategy in Mertens & Ravn Section
+    III.'
+  engine: ols_regression
+  replication_target: 'Mertens & Ravn Table 2: personal tax multiplier ~1.8, corporate
+    ~0.6'
+  specification: rgdp_growth ~ lag1_personal_tax_shock + lag2_personal_tax_shock +
+    lag3_personal_tax_shock + lag4_personal_tax_shock + lag1_corp_tax_shock + lag2_corp_tax_shock
+    + government_spending_growth
+  step: 3
+  tool_hint: praxis_run_engine
+- action: compute_impulse_responses
+  description: Generate impulse response functions (IRFs) for a 1pp personal income
+    tax cut and 1pp corporate income tax cut. Plot 16-quarter horizon. Compare cumulative
+    multipliers at quarters 4, 8, 12 to paper's Figure 1.
+  engine: ols_regression
+  specification: Cumulative multiplier = sum(dY/dT) / initial_tax_change
+  step: 4
+  tool_hint: praxis_run_engine
+- action: record_findings
+  constructs:
+  - income_tax_share
+  - tax_revenue_gdp_pct
+  - fiscal_balance_gdp_pct
+  description: Insert engine-validated findings into KB. Compare computed multiplier
+    estimates to existing finding (mertens_ravn_2013, finding id 1227). Challenge
+    or confirm. Record any deviation with effect_size_value and p_value from replication.
+  step: 5
+  tool_hint: praxis_challenge_finding OR praxis_insert_finding via extend_pax

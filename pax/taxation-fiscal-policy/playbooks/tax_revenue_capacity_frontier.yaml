@@ -1,0 +1,60 @@
+description: Estimates cross-country tax capacity frontiers using the ICTD/UNU-WIDER
+  Government Revenue Dataset (GRD). Derives tax effort indices (actual/predicted revenue)
+  following Gupta et al. (2007) stochastic frontier methodology. Tests Besley-Persson
+  (2014) prediction that institutional quality and state capacity are the binding
+  constraints on revenue mobilization in developing countries. Uses publicly available
+  ICTD GRD cross-country panel.
+id: tax_revenue_capacity_frontier
+name: Tax Capacity & Effort — Gupta et al. (2007) + Besley & Persson (2014)
+steps:
+- action: acquire_ictd_grd
+  data_sources:
+  - 'ICTD GRD: ictd.ac/dataset/grd (free download)'
+  - 'World Bank WDI API: gdp_pc, trade, agr_share, inflation'
+  - 'V-Dem or WGI: institutional quality controls'
+  description: 'Download ICTD/UNU-WIDER Government Revenue Dataset from ictd.ac/dataset/grd.
+    Contains tax revenue by type (income, VAT, trade, resource) as % of GDP, country-year
+    1980-2020, 190+ countries. Merge with World Bank WDI structural controls: log_gdp_pc
+    (NY.GDP.PCAP.PP.KD), trade_openness (NE.TRD.GNFS.ZS), agriculture_share (NV.AGR.TOTL.ZS),
+    inflation (FP.CPI.TOTL.ZG).'
+  expected_obs: 3,000+ country-year observations
+  step: 1
+  tool_hint: praxis_ingest_data
+- action: estimate_tax_capacity
+  description: 'Run OLS prediction model: log_tax_gdp ~ log_gdp_pc + trade_openness
+    + agr_share + inflation + resource_share + year_fe. Predicted values are tax capacity.
+    Tax effort = actual / predicted. This follows the Gupta et al. (2007) baseline
+    specification. Run separately for OECD, upper-middle-income, and low-income country
+    groups.'
+  engine: ols_regression
+  specification: log_tax_gdp ~ log_gdp_pc + trade_openness + agr_share + inflation
+    + resource_share + year_fe + region_fe
+  step: 2
+  tool_hint: praxis_run_engine
+- action: identify_under_performers
+  description: 'Flag countries with tax effort < 0.7 (collecting less than 70% of
+    predicted capacity) in the most recent 5-year period. Rank by effort deficit.
+    Cross-tab against institutional quality (WGI governance index) to test Besley-Persson
+    hypothesis: institutional weakness explains most of the effort gap.'
+  engine: kmeans_clustering
+  specification: cluster countries on [tax_effort, institutional_quality, gdp_pc]
+    into 4 groups
+  step: 3
+  tool_hint: praxis_get_data + praxis_run_engine kmeans_clustering
+- action: second_stage_institutions
+  description: 'Run second-stage regression: tax_effort ~ institutional_quality +
+    political_stability + rule_of_law + aid_dependency + resource_dependence. Test
+    whether institutional variables fully explain the effort gap after controlling
+    for structural characteristics. Expected: 1 SD improvement in institutional quality
+    associated with 5-10pp increase in tax effort.'
+  engine: lasso_regression
+  specification: tax_effort_index ~ wgi_governance + political_stability + resource_revenue_share
+    + aid_gdp + log_gdp_pc
+  step: 4
+  tool_hint: praxis_run_engine
+- action: record_findings
+  description: Insert engine-validated findings for tax_effort_index, tax_revenue_gdp_pct,
+    resource_revenue_dependence. Compare to Gupta et al. Table 3 estimates. Update
+    maturity map for tax_effort_index construct.
+  step: 5
+  tool_hint: extend_pax findings + praxis_maturity_map

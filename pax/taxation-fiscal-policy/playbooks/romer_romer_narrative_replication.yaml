@@ -1,0 +1,44 @@
+description: 'Replicates Romer & Romer (2010 AER) using their publicly available narrative
+  tax change dataset. Estimates the macroeconomic effects of legislated tax changes
+  on US output using distributed lag OLS with narrative identification. Tests heterogeneous
+  multipliers by fiscal motivation (deficit reduction vs. long-run growth). Data:
+  NBER WP 13264 dataset, FRED RGDP.'
+id: romer_romer_narrative_replication
+name: Narrative Tax Multiplier — Romer & Romer (2010)
+steps:
+- action: acquire_data
+  data_sources:
+  - 'NBER WP 13264 supplemental: R&R tax change series with motivation codes'
+  - 'FRED: GDPC1 (real GDP), GCE (govt spending)'
+  - 'Target: US quarterly 1945Q1-2007Q4'
+  description: Download Romer-Romer narrative tax change dataset from NBER (available
+    with WP 13264 or AER supplemental). Includes quarterly tax change amounts classified
+    by motivation (deficit, inheritance, spending offset, long-run growth). Merge
+    with FRED RGDP (GDPC1) and government spending (GCE) quarterly series.
+  step: 1
+  tool_hint: praxis_ingest_data
+- action: run_baseline_ols
+  description: 'Estimate distributed lag regression: log_rgdp ~ sum_{k=0}^{12}(beta_k
+    * tax_change_{t-k}) + controls. Controls: lagged log_rgdp, government spending
+    changes. This is Romer-Romer equation (1). Replication target: cumulative multiplier
+    of approximately -3.0 at 3-year horizon (Figure 2).'
+  engine: ols_regression
+  specification: delta_log_rgdp ~ sum_lags(rr_tax_change, 12) + sum_lags(delta_log_gov_spending,
+    12) + sum_lags(delta_log_rgdp, 4)
+  step: 2
+  tool_hint: praxis_run_engine
+- action: test_heterogeneity
+  description: 'Split sample by motivation code: deficit-driven tax changes vs. long-run
+    growth tax changes. Estimate separate multipliers for each. Compare to R&R Table
+    4. Expected result: deficit-motivated tax increases have larger negative multipliers
+    than long-run growth motivated changes.'
+  engine: ols_regression
+  specification: separate regressions for motivation subsamples
+  step: 3
+  tool_hint: praxis_run_engine
+- action: record_findings
+  description: Update existing romer_romer_2010 findings with engine-derived effect
+    sizes (effect_size_value, p_value, r_squared). Challenge or confirm finding on
+    fiscal multiplier heterogeneity.
+  step: 4
+  tool_hint: praxis_challenge_finding or extend_pax findings

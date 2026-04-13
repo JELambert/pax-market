@@ -1,0 +1,50 @@
+description: Systematic identification of evidence gaps in the taxation_fiscal domain.
+  Uses Praxis coverage, maturity, and consensus tools to map what is well-established,
+  what is contested, and what remains unexplored (blind spots). Generates a prioritized
+  research agenda identifying the constructs most in need of additional empirical
+  evidence. Run at the start of any research planning session.
+id: literature_gap_survey
+name: Taxation Literature Gap Survey
+steps:
+- action: maturity_audit
+  description: Run praxis_maturity_map(domain_id='taxation_fiscal', format='full').
+    Record all constructs at maturity levels 0 (Blind Spot) and 1 (Theoretical). These
+    are the highest-priority evidence gaps. Compare against constructs at levels 4-5
+    (Robust/Established) to understand where the literature has converged.
+  params:
+    domain_id: taxation_fiscal
+    format: full
+  step: 1
+  tool_hint: praxis_maturity_map
+- action: coverage_check
+  description: 'Run praxis_coverage() to see which constructs have dataset coverage
+    for empirical replication. Cross-reference with maturity map: constructs that
+    are Blind Spots AND have available data are highest priority for engine-run validation.'
+  step: 2
+  tool_hint: praxis_coverage
+- action: consensus_scan
+  constructs_to_check:
+  - income_tax_share
+  - tax_revenue_gdp_pct
+  - tax_compliance_rate
+  description: For each construct with 3+ findings, run praxis_literature(construct_id=...)
+    to assess direction consensus. Flag constructs where findings point in conflicting
+    directions (contested). These represent live empirical debates requiring focused
+    replication.
+  step: 3
+  tool_hint: praxis_literature
+- action: timeline_analysis
+  description: 'Run praxis_consensus_timeline on key contested constructs to see if
+    consensus has changed over time. For taxation: check whether the tax multiplier
+    literature has converged post-2010 (narrative identification era) vs. pre-2010
+    (structural identification).'
+  step: 4
+  tool_hint: praxis_consensus_timeline
+- action: generate_gap_report
+  description: 'Synthesize findings into a structured gap report: (A) Settled knowledge:
+    constructs with maturity 4-5, consistent direction, strong confidence. (B) Active
+    debates: contested constructs with conflicting evidence. (C) Research opportunities:
+    blind spots with data availability. (D) Data-first priorities: constructs with
+    findings but no data ingest (cannot be engine-verified).'
+  step: 5
+  tool_hint: praxis_kb_health(domain_id='taxation_fiscal')
