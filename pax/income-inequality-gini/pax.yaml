@@ -14,12 +14,18 @@ praxis_requires: null
 private: false
 provides:
   constructs:
+  - economic_growth_rate
+  - intergenerational_earnings_elasticity
+  - poverty_headcount_215_ppp
+  - labor_income_share_gdp
+  - intergenerational_mobility
+  - top_income_share
+  - racial_segregation
+  - social_capital
+  - wealth_share_top_1_pct
+  - income_inequality_gini
   - gini_coefficient_income
   - income_share_top_10_pct
-  - poverty_headcount_215_ppp
-  - intergenerational_earnings_elasticity
-  - wealth_share_top_1_pct
-  - labor_income_share_gdp
   engines:
   - ols_regression
   - correlation_matrix
@@ -33,13 +39,20 @@ provides:
   - quick_start
   propositions: []
   sources:
+  - milanovic2016
+  - chetty2014
+  - piketty2014
+  - piketty_saez_2003
+  - atkinson_2011
   - piketty_2014
+  - milanovic_2016
+  - kuznets1955
   - chetty_2014
   - ostry_2014
-  - atkinson_2011
+  - chetty_hendren_kline_saez_2014
 refresh_policy: null
 schema_version: '1.0'
 tags:
 - topic
 - income-inequality
-version: 1.0.0
+version: 1.0.3
