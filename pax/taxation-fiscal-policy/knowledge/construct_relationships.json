@@ -166,5 +166,77 @@
     "evidence_weight": null,
     "n_findings": null,
     "mechanism": "Tax systems relying more on progressive personal income taxes tend to be more progressive overall than those relying on flat-rate consumption or payroll taxes"
+  },
+  {
+    "id": 88,
+    "construct_from": "profit_shifting_magnitude",
+    "construct_to": "cit_revenue_loss_beps",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "source_id": "torslov_wier_zucman_2022",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Profits shifted to low-tax havens are taxed at near-zero rates rather than domestic rates, directly translating to revenue losses proportional to the shifted amount times the rate differential"
+  },
+  {
+    "id": 89,
+    "construct_from": "audit_detection_rate",
+    "construct_to": "tax_compliance_rate",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "source_id": "kleven_et_al_2011",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Deterrence channel: higher audit probability increases expected cost of evasion; Kleven et al. find 17pp compliance increase for self-reported income but near-zero effect for third-party reported income"
+  },
+  {
+    "id": 90,
+    "construct_from": "tax_effort_index",
+    "construct_to": "non_tax_revenue_share",
+    "relationship_type": "correlational",
+    "direction": "negative",
+    "strength": "moderate",
+    "source_id": "gupta_et_al_2007",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Countries relying heavily on non-tax revenues (aid, resource rents) invest less in tax administration capacity, creating a substitution relationship between tax and non-tax revenue mobilization"
+  },
+  {
+    "id": 91,
+    "construct_from": "tax_progressivity_index",
+    "construct_to": "redistributive_effect_taxes",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "source_id": "piketty_saez_2007",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "The Kakwani index directly captures the progressive departure from proportionality; Reynolds-Smolensky redistributive effect is mechanically driven by both the progressivity index and pre-tax inequality"
+  },
+  {
+    "id": 92,
+    "construct_from": "voluntary_compliance_rate",
+    "construct_to": "tax_compliance_rate",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "source_id": "kleven_et_al_2011",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "Voluntary compliance is the primary component of overall compliance; enforcement-based compliance (audit-induced) accounts for a small fraction of total revenue in developed countries"
+  },
+  {
+    "id": 93,
+    "construct_from": "capital_gains_tax_rate",
+    "construct_to": "tax_haven_asset_share",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "source_id": "zucman_2014_jep",
+    "evidence_weight": null,
+    "n_findings": null,
+    "mechanism": "High domestic capital gains taxes increase the return to offshore asset concealment in zero-tax jurisdictions; lock-in effects also increase as rates rise, incentivizing unrealized gains held offshore"
   }
 ]
