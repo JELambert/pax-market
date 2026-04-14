@@ -6,15 +6,15 @@ pax_type: paper
 provides:
   constructs:
   - civil_war_onset
-  - mountainous_terrain
+  - anocracy
   - political_instability
   - noncontiguous_territory
+  - mountainous_terrain
   - oil_exporter
   - new_state
+  - population_size
   - religious_fractionalization
   - per_capita_income
-  - population_size
-  - anocracy
   engines: []
   findings:
   - income_onset_negative
@@ -31,5 +31,7 @@ provides:
   playbooks:
   - quick_start
   propositions: []
+  sources:
+  - fearon_laitin_2003
 schema_version: '1.0'
 version: 1.0.0

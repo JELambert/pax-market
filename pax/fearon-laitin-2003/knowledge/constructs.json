@@ -9,7 +9,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "political_instability",
@@ -21,7 +26,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "noncontiguous_territory",
@@ -33,7 +43,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "oil_exporter",
@@ -45,7 +60,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "new_state",
@@ -57,7 +77,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "religious_fractionalization",
@@ -69,7 +94,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "per_capita_income",
@@ -81,7 +111,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "population_size",
@@ -93,7 +128,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "anocracy",
@@ -105,7 +145,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "civil_war_onset",
@@ -117,6 +162,11 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   }
 ]

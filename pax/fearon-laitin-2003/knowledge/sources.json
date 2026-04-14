@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "fearon_laitin_2003",
+    "source_type": "academic_paper",
+    "title": "Ethnicity, Insurgency, and Civil War",
+    "authors": "Fearon, James D.; Laitin, David D.",
+    "year": 2003,
+    "doi": "10.1017/S0003055403000534",
+    "abstract": "Using a new data set on civil wars, 1945-1999, we challenge the ethnic and religious conflict explanation. We find that neither ethnic nor religious diversity is associated with higher risk of civil war. Instead, conditions that favor insurgency \u2014 poverty, political instability, rough terrain, and large populations \u2014 are the strongest predictors.",
+    "added_at": "2026-04-02T15:51:16.277608+00:00",
+    "added_by": "seed_loader",
+    "methodology_summary": null,
+    "sample_size": null,
+    "population_description": null,
+    "study_design": null,
+    "key_limitations": null,
+    "replication_status": null,
+    "data_availability": null,
+    "journal": null,
+    "url": null
+  }
+]
