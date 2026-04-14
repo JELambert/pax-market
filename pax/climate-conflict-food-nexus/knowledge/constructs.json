@@ -9,7 +9,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "crop_failure_index",
@@ -21,7 +26,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "livelihood_vulnerability",
@@ -33,7 +43,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "resource_competition",
@@ -45,7 +60,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "food_riot_incidence",
@@ -57,7 +77,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "climate_migration",
@@ -69,7 +94,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "pastoral_conflict",
@@ -81,7 +111,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "compounding_shocks",
@@ -93,6 +128,11 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   }
 ]

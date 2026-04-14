@@ -8,7 +8,16 @@
     "doi": null,
     "abstract": null,
     "added_at": "2026-04-04T17:05:14.953721+00:00",
-    "added_by": "seed_loader"
+    "added_by": "seed_loader",
+    "methodology_summary": null,
+    "sample_size": null,
+    "population_description": null,
+    "study_design": null,
+    "key_limitations": null,
+    "replication_status": null,
+    "data_availability": null,
+    "journal": null,
+    "url": null
   },
   {
     "id": "mach_et_al_2019",
@@ -19,7 +28,16 @@
     "doi": "10.1038/s41586-019-1300-6",
     "abstract": null,
     "added_at": "2026-04-06T00:18:46.781006+00:00",
-    "added_by": "seed_loader"
+    "added_by": "seed_loader",
+    "methodology_summary": null,
+    "sample_size": null,
+    "population_description": null,
+    "study_design": null,
+    "key_limitations": null,
+    "replication_status": null,
+    "data_availability": null,
+    "journal": null,
+    "url": null
   },
   {
     "id": "hendrix_salehyan_2012",
@@ -30,6 +48,15 @@
     "doi": "10.1016/j.gloenvcha.2011.12.001",
     "abstract": null,
     "added_at": "2026-04-06T00:18:46.796279+00:00",
-    "added_by": "seed_loader"
+    "added_by": "seed_loader",
+    "methodology_summary": null,
+    "sample_size": null,
+    "population_description": null,
+    "study_design": null,
+    "key_limitations": null,
+    "replication_status": null,
+    "data_availability": null,
+    "journal": null,
+    "url": null
   }
 ]
