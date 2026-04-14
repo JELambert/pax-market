@@ -1,0 +1,34 @@
+description: Analyze the causal chain from climate shocks through food insecurity
+  to conflict onset
+id: quick_start
+name: 'Quick Start: Climate-Conflict-Food Nexus Analysis'
+steps:
+- action: ingest_data
+  description: Load country-year panel data with climate variables (temperature anomalies,
+    precipitation deviations, drought indices), agricultural production (crop yields,
+    caloric availability), food security indicators (FAO prevalence of undernourishment),
+    and conflict data (UCDP/PRIO armed conflict events)
+  id: load_data
+- action: analyze
+  description: Estimate the effect of climate shocks (temperature anomalies, drought)
+    on agricultural output. Control for irrigation, fertilizer use, and crop type.
+    Use fixed effects for country and year
+  engine: regression
+  id: climate_agriculture
+- action: analyze
+  description: Estimate the effect of food price shocks and food insecurity on conflict
+    onset probability. Control for GDP per capita, regime type, ethnic fractionalization,
+    and prior conflict history
+  engine: logistic_regression
+  id: food_conflict
+- action: analyze
+  description: 'Test the full causal chain: climate shock → agricultural disruption
+    → food insecurity → conflict. Use structural equation modeling or sequential mediation
+    analysis'
+  engine: mediation_analysis
+  id: full_pathway
+- action: interpret
+  description: 'Contextualize results with the literature: Hsiang et al. (2013) meta-analysis
+    finds 14% increase in intergroup conflict per 1 SD climate change. Assess whether
+    food insecurity is the primary mechanism or one of several pathways'
+  id: interpret

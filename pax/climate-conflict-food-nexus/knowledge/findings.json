@@ -19,7 +19,15 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   },
   {
     "id": 653,
@@ -41,7 +49,15 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   },
   {
     "id": 787,
@@ -63,7 +79,15 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   },
   {
     "id": 788,
@@ -85,7 +109,15 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   },
   {
     "id": 1270,
@@ -107,7 +139,15 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   },
   {
     "id": 1271,
@@ -129,7 +169,15 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   },
   {
     "id": 1272,
@@ -151,6 +199,14 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": null,
+    "covariates_controlled": null
   }
 ]
