@@ -1,0 +1,36 @@
+description: Replicate key findings from Fearon & Laitin (2003) on civil war onset
+  determinants
+id: quick_start
+name: 'Quick Start: Civil War Onset Analysis'
+steps:
+- action: ingest_data
+  description: Load cross-national panel data with civil war onset indicators, GDP
+    per capita, population, terrain, ethnic fractionalization, and political instability
+    measures
+  id: load_data
+- action: analyze
+  description: Compute summary statistics for civil war onset rate, GDP per capita,
+    mountainous terrain, ethnic fractionalization, and population size across country-years
+  engine: descriptive_statistics
+  id: descriptive_stats
+- action: analyze
+  description: Estimate logistic regression of civil war onset on log GDP per capita,
+    log population, mountainous terrain, oil exporter status, new state indicator,
+    political instability, and ethnic fractionalization
+  engine: logistic_regression
+  id: core_logit
+  outcome: civil_war_onset
+  predictors:
+  - log_gdp_per_capita
+  - log_population
+  - mountainous_terrain_pct
+  - oil_exporter
+  - new_state
+  - political_instability
+  - ethnic_fractionalization
+- action: interpret
+  description: 'Compare results to Fearon & Laitin''s key finding: poverty (low GDP/capita)
+    and state weakness predict civil war onset better than ethnic grievances. Ethnic
+    fractionalization should be non-significant while GDP/capita and state capacity
+    proxies are significant.'
+  id: interpret
