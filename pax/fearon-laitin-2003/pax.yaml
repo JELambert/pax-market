@@ -30,8 +30,9 @@ provides:
   - insurgency_mechanism
   playbooks:
   - quick_start
+  - replication_extension
   propositions: []
   sources:
   - fearon_laitin_2003
 schema_version: '1.0'
-version: 1.0.0
+version: 1.0.1
