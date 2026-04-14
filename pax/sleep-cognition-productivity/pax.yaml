@@ -10,11 +10,11 @@ pax_type: topic
 provides:
   constructs:
   - sleep_duration
-  - cognitive_performance
-  - gdp_cost_of_sleep_loss
-  - sleep_quality
   - workplace_accident_risk
+  - sleep_quality
+  - cognitive_performance
   - nap_restoration_effect
+  - gdp_cost_of_sleep_loss
   engines:
   - ols_regression
   - instrumental_variables
@@ -33,5 +33,12 @@ provides:
   propositions:
   - subjective_adaptation_illusion
   - sleep_as_economic_input
+  sources:
+  - dinges_et_al_2003
+  - walker_2017
+  - gibson_shrader_2018
+  - rosekind_et_al_1995
+  - hafner_et_al_2017
+  - barnes_wagner_2009
 schema_version: '1.0'
 version: 1.0.0
