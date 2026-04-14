@@ -1,0 +1,23 @@
+description: Extend Fearon & Laitin analysis with post-2003 data and additional controls
+id: replication_extension
+name: Extended Replication with Modern Data
+steps:
+- action: ingest_data
+  description: Obtain updated panel data through 2020+ including UCDP/PRIO armed conflict
+    data and World Bank Development Indicators
+  id: update_data
+- action: analyze
+  description: Replicate original specification on 1945-1999 sample to establish baseline
+  engine: logistic_regression
+  id: baseline_replication
+- action: analyze
+  description: Extend model to full 1945-2020 sample; test whether coefficient stability
+    holds in the post-Cold War era
+  engine: logistic_regression
+  id: temporal_extension
+- action: analyze
+  description: 'Add modern controls: democracy score (V-Dem), natural resource rents,
+    climate shocks, neighborhood conflict diffusion. Assess whether original findings
+    survive'
+  engine: logistic_regression
+  id: robustness
