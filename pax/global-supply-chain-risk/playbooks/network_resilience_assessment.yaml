@@ -1,0 +1,82 @@
+description: 'Analyze supply chain network topology: compute centrality measures,
+  identify critical nodes, test robustness via percolation under random and targeted
+  failure scenarios, and detect network communities.'
+display_name: Network Resilience & Cascading Failure Assessment
+id: network_resilience_assessment
+steps:
+- action: data_quality_gate
+  display_name: Network Data Quality Gate
+  id: network_data_quality
+  on_failure: abort
+  params:
+    min_edges: 100
+    min_nodes: 50
+    require_network: true
+  step: 1
+- display_name: Centrality Measures — Critical Node Identification
+  engine: network_centrality_analysis
+  expected_results:
+    high_betweenness_nodes_exist: true
+  id: centrality_analysis
+  params:
+    metrics:
+    - degree
+    - betweenness
+    - eigenvector
+    - pagerank
+    top_n: 20
+    weighted: true
+  step: 2
+- depends_on:
+  - centrality_analysis
+  display_name: Community Detection — Network Modules
+  engine: community_detection
+  id: community_structure
+  params:
+    algorithm: louvain
+    resolution: 1
+  step: 3
+- depends_on:
+  - centrality_analysis
+  display_name: Percolation — Random Failure Robustness
+  engine: percolation_analysis
+  expected_results:
+    percolation_threshold:
+      min_value: 0.15
+  id: random_percolation
+  params:
+    metric: largest_connected_component
+    mode: random_removal
+    removal_fraction_range:
+    - 0.01
+    - 0.5
+    steps: 50
+  step: 4
+- depends_on:
+  - centrality_analysis
+  display_name: Percolation — Targeted Attack on High-Betweenness Nodes
+  engine: percolation_analysis
+  expected_results:
+    fragmentation_faster_than_random: true
+  id: targeted_percolation
+  params:
+    metric: largest_connected_component
+    mode: targeted_removal
+    removal_fraction_range:
+    - 0.01
+    - 0.2
+    steps: 20
+    target_metric: betweenness
+  step: 5
+- action: analyze
+  depends_on:
+  - random_percolation
+  - targeted_percolation
+  - community_structure
+  display_name: Resilience Summary & Recommendations
+  id: resilience_report
+  params:
+    compare_random_vs_targeted: true
+    identify_critical_communities: true
+    recommend_redundancy_targets: true
+  step: 6

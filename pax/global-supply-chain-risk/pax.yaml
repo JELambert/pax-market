@@ -1,0 +1,136 @@
+author: Josh Lambert
+created: '2026-04-14'
+description: Global supply chain risk management — vulnerability assessment, disruption
+  modeling, resilience quantification, spatial contagion, network cascading failure,
+  time series trade forecasting, ML risk prediction, and mitigation strategy evaluation
+  across multi-tier networks. Integrates academic research, industry standards (ISO
+  28000, NIST C-SCRM), and applied analytical methods (spatial econometrics, network
+  science, simulation, machine learning).
+domain_id: global_supply_chain_risk
+name: global-supply-chain-risk
+pax_type: field
+provides:
+  constructs:
+  - supplier_financial_health
+  - scope3_emissions_exposure
+  - supplier_diversification
+  - lead_time_variability
+  - api_geographic_concentration
+  - defense_supply_chain_integrity
+  - inventory_buffer_ratio
+  - recovery_time
+  - ripple_effect
+  - disruption_severity_index
+  - supply_chain_resilience_score
+  - supply_chain_vulnerability_index
+  - cyber_risk_exposure
+  - geopolitical_risk_index
+  - port_congestion_index
+  - climate_exposure_score
+  - risk_exposure_index
+  - bullwhip_effect
+  - food_supply_chain_disruption
+  - trade_flow_volume
+  - supply_chain_visibility
+  - critical_mineral_dependency
+  - morans_i_trade_flow
+  - spatial_contagion
+  - gscpi
+  - trade_policy_uncertainty
+  - pandemic_demand_shock
+  - tier_depth
+  - energy_transition_mineral_demand
+  - semiconductor_concentration
+  - time_to_survive
+  - geographic_concentration_risk
+  - supplier_substitutability
+  - cascading_failure_size
+  - network_betweenness_centrality
+  - nearshoring_reshoring
+  - chokepoint_vulnerability
+  - supply_chain_disruption_binary
+  engines:
+  - ols_regression
+  - logistic_regression
+  - correlation_matrix
+  - random_forest
+  - gradient_boosting
+  - cox_ph
+  - kaplan_meier
+  - kmeans_clustering
+  - meta_analysis
+  - lasso_regression
+  - ridge_regression
+  - elastic_net
+  findings: []
+  playbooks:
+  - quick_start
+  - spatial_contagion_analysis
+  - network_resilience_assessment
+  - trade_flow_forecasting
+  - ml_risk_classification
+  - disruption_simulation
+  - composite_vulnerability_index
+  - cross_domain_nexus
+  propositions:
+  - concentration_increases_disruption_risk
+  - centrality_predicts_cascade_severity
+  - visibility_accelerates_recovery
+  - flexibility_dominates_redundancy
+  - spatial_autocorrelation_signals_contagion_risk
+  - bullwhip_amplifies_upstream
+  - mineral_concentration_creates_structural_vulnerability
+  - interdependent_networks_amplify_cascades
+  sources:
+  - food_climate_vulnerability_2024
+  - tang_2006
+  - tomlin_2006
+  - buldyrev_et_al_2010
+  - acemoglu_et_al_2012
+  - covid_pharma_disruption_2021
+  - anselin_1995
+  - baryannis_et_al_2019
+  - simchi_levi_et_al_2019
+  - mckinsey_2020
+  - melnychuk_et_al_2025
+  - chen_et_al_2025_gnn_xai
+  - irena_critical_materials_2023
+  - papachristou_rahimian_2023
+  - wef_supply_chain_2024
+  - ho_et_al_2015
+  - brintrup_et_al_2018
+  - nist_800_161_2022
+  - mitre_supply_chain_2019
+  - iso_28000_2022
+  - chen_wu_2022
+  - perera_bell_bliemer_2017
+  - snyder_et_al_2016
+  - forrester_1958
+  - dolgui_ivanov_sokolov_2018
+  - chopra_sodhi_2004
+  - lesage_pace_2009
+  - christopher_peck_2004
+  - ivanov_2020
+  - baker_bloom_davis_2016
+  - anderson_van_wincoop_2003
+  - craighead_et_al_2007
+  - kosasih_brintrup_2022
+  - semiconductor_resilience_2024
+  - rand_semiconductor_2023
+  - nature_food_resilience_2021
+  - choi_dooley_rungtusanatham_2001
+  - zhao_et_al_2011
+  - iea_critical_minerals_2025
+  - sheffi_rice_2005
+  - ivanov_dolgui_2021
+  - hosseini_ivanov_dolgui_2019
+  - behrens_ertur_koch_2012
+  - suez_canal_disruption_2021
+  - schmitt_singh_2012
+  - bode_wagner_2015
+  - hendricks_singhal_2005
+schema_version: '2.0'
+tags:
+- field
+- global-supply-chain-risk
+version: 1.0.9
