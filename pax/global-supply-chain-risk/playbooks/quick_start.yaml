@@ -1,0 +1,68 @@
+description: Entry point analysis surveying key risk factor correlations and identifying
+  highest-risk constructs. Run this first to orient.
+display_name: Quick Start — Supply Chain Risk Overview
+id: quick_start
+steps:
+- action: data_quality_gate
+  display_name: Data Quality Gate
+  id: data_quality_gate
+  on_failure: abort
+  params:
+    constructs:
+    - supply_chain_disruption_binary
+    - geographic_concentration_risk
+    - network_betweenness_centrality
+    - supplier_financial_health
+    - lead_time_variability
+    max_missing_pct: 0.25
+    min_observations: 30
+  step: 1
+- display_name: Risk Factor Correlation Matrix
+  engine: correlation_matrix
+  expected_results:
+    geographic_concentration_risk↔supply_chain_disruption_binary:
+      direction: positive
+    supplier_diversification↔supply_chain_disruption_binary:
+      direction: negative
+  id: risk_factor_correlations
+  params:
+    variables:
+    - supply_chain_disruption_binary
+    - geographic_concentration_risk
+    - network_betweenness_centrality
+    - supplier_financial_health
+    - lead_time_variability
+    - supplier_diversification
+    - geopolitical_risk_index
+    - climate_exposure_score
+  step: 2
+- compare_to_kb: true
+  depends_on:
+  - risk_factor_correlations
+  display_name: Baseline Disruption Risk Model
+  engine: logistic_regression
+  expected_results:
+    geographic_concentration_risk:
+      direction: positive
+    supplier_financial_health:
+      direction: negative
+  id: baseline_regression
+  params:
+    outcome: supply_chain_disruption_binary
+    predictors:
+    - geographic_concentration_risk
+    - supplier_financial_health
+    - lead_time_variability
+    - geopolitical_risk_index
+  step: 3
+- action: analyze
+  depends_on:
+  - baseline_regression
+  display_name: Compare Results to KB Findings
+  id: kb_comparison
+  params:
+    compare_to_kb: true
+    constructs:
+    - supply_chain_disruption_binary
+    - geographic_concentration_risk
+  step: 4

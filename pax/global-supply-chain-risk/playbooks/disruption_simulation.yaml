@@ -1,0 +1,91 @@
+description: 'Simulation-based analysis: model supply chain disruption scenarios using
+  discrete-event simulation and system dynamics. Test pandemic, natural disaster,
+  and geopolitical disruption scenarios. Compare mitigation strategies.'
+display_name: Disruption Simulation & Scenario Analysis
+id: disruption_simulation
+steps:
+- action: data_quality_gate
+  display_name: Simulation Data Quality Gate
+  id: sim_data_quality
+  on_failure: abort
+  params:
+    min_nodes: 20
+    require_network: true
+    require_process_times: true
+  step: 1
+- display_name: Baseline DES — Normal Operations
+  engine: discrete_event_simulation
+  id: baseline_simulation
+  params:
+    kpis:
+    - fill_rate
+    - total_cost
+    - average_lead_time
+    n_replications: 100
+    network_source: supply_chain_graph
+    simulation_horizon: 365
+  step: 2
+- depends_on:
+  - baseline_simulation
+  display_name: 'Scenario: Pandemic Facility Closures'
+  engine: discrete_event_simulation
+  expected_results:
+    revenue_loss_pct:
+      min_value: 15
+  id: pandemic_scenario
+  params:
+    closure_duration_days:
+    - 30
+    - 60
+    - 90
+    closure_probability: 0.3
+    n_replications: 100
+    scenario: pandemic
+    staggered_reopening: true
+  step: 3
+- depends_on:
+  - baseline_simulation
+  display_name: 'Scenario: Trade Restriction / Sanctions'
+  engine: discrete_event_simulation
+  id: geopolitical_scenario
+  params:
+    affected_regions:
+    - specified_at_runtime
+    n_replications: 100
+    restriction_severity:
+    - 0.5
+    - 0.75
+    - 1
+    scenario: trade_restriction
+  step: 4
+- display_name: System Dynamics — Bullwhip Effect Analysis
+  engine: system_dynamics
+  expected_results:
+    demand_amplification_ratio:
+      min_value: 2
+  id: bullwhip_dynamics
+  params:
+    demand_shock_pct: 10
+    echelons: 4
+    information_sharing:
+    - false
+    - true
+    model_type: beer_game
+    simulation_horizon: 52
+  step: 5
+- action: analyze
+  depends_on:
+  - pandemic_scenario
+  - geopolitical_scenario
+  - bullwhip_dynamics
+  display_name: Mitigation Strategy Comparison
+  id: mitigation_comparison
+  params:
+    compare_across_scenarios: true
+    cost_benefit_analysis: true
+    strategies:
+    - dual_sourcing
+    - increased_inventory
+    - nearshoring
+    - information_sharing
+  step: 6

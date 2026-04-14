@@ -1,0 +1,92 @@
+description: 'Time series analysis pipeline: fit VAR models to trade flow data, test
+  Granger causality for risk propagation pathways, detect structural breaks and changepoints,
+  and generate disruption forecasts.'
+display_name: Trade Flow Forecasting & Disruption Early Warning
+id: trade_flow_forecasting
+steps:
+- action: data_quality_gate
+  display_name: Time Series Data Quality Gate
+  id: ts_data_quality
+  on_failure: abort
+  params:
+    constructs:
+    - trade_flow_volume
+    - gscpi
+    - geopolitical_risk_index
+    frequency: monthly
+    min_time_periods: 48
+    require_temporal: true
+  step: 1
+- action: analyze
+  display_name: Stationarity Tests (ADF, KPSS)
+  id: stationarity_test
+  params:
+    difference_if_nonstationary: true
+    tests:
+    - adf
+    - kpss
+    variables:
+    - trade_flow_volume
+    - gscpi
+    - geopolitical_risk_index
+  step: 2
+- depends_on:
+  - stationarity_test
+  display_name: VAR Model — Trade Flow Dynamics
+  engine: vector_autoregression
+  expected_results:
+    gscpi_predicts_trade_flow: true
+  id: var_estimation
+  params:
+    ic_criterion: aic
+    max_lags: 12
+    variables:
+    - trade_flow_volume
+    - gscpi
+    - geopolitical_risk_index
+    - port_congestion_index
+  step: 3
+- depends_on:
+  - var_estimation
+  display_name: Granger Causality — Risk Propagation Directions
+  engine: granger_causality
+  expected_results:
+    gscpi_granger_causes_trade_flow:
+      direction: positive
+  id: granger_tests
+  params:
+    max_lags: 6
+    pairs:
+    - - gscpi
+      - trade_flow_volume
+    - - geopolitical_risk_index
+      - trade_flow_volume
+    - - port_congestion_index
+      - lead_time_variability
+    significance_level: 0.05
+  step: 4
+- display_name: Changepoint Detection — Regime Shifts
+  engine: changepoint_detection
+  expected_results:
+    changepoints_found: true
+    covid_regime_detected: true
+  id: changepoint_detection
+  params:
+    algorithm: pelt
+    min_segment_length: 6
+    penalty: bic
+    variable: gscpi
+  step: 5
+- action: analyze
+  depends_on:
+  - var_estimation
+  display_name: Impulse Response Functions — Shock Propagation
+  id: impulse_response
+  params:
+    confidence_interval: 0.95
+    horizon: 24
+    response_variables:
+    - trade_flow_volume
+    - lead_time_variability
+    shock_variable: gscpi
+  step: 6

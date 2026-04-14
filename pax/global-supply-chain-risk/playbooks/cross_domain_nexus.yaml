@@ -1,0 +1,57 @@
+description: Identify connections between supply chain risk and other Praxis domains
+  (climate, conflict, trade, governance). Discover cross-domain findings and research
+  gaps.
+display_name: Cross-Domain Supply Chain Risk Nexus
+id: cross_domain_nexus
+steps:
+- action: analyze
+  display_name: Literature Gap Survey
+  id: literature_gap_survey
+  params:
+    identify_missing_methods: true
+    identify_understudied_relationships: true
+    scan_constructs:
+    - supply_chain_disruption_binary
+    - geographic_concentration_risk
+    - cascading_failure_size
+    - spatial_contagion
+    - supply_chain_resilience_score
+  step: 1
+- action: analyze
+  display_name: Cross-Domain Construct Search
+  id: cross_domain_search
+  params:
+    find_bridging_findings: true
+    find_shared_constructs: true
+    search_domains:
+    - climate_conflict
+    - trade_globalization
+    - institutional_quality
+    - global_food_insecurity
+    - geopolitical_risk
+  step: 2
+- depends_on:
+  - cross_domain_search
+  display_name: Cross-Domain Correlation Analysis
+  engine: correlation_matrix
+  id: cross_domain_correlations
+  params:
+    include_cross_domain_constructs: true
+    variables:
+    - supply_chain_disruption_binary
+    - geographic_concentration_risk
+    - geopolitical_risk_index
+    - climate_exposure_score
+  skip_if: no_shared_data
+  step: 3
+- action: analyze
+  depends_on:
+  - literature_gap_survey
+  - cross_domain_search
+  display_name: Nexus Report & Research Opportunities
+  id: nexus_report
+  params:
+    generate_research_questions: true
+    identify_bridge_constructs: true
+    suggest_new_propositions: true
+  step: 4

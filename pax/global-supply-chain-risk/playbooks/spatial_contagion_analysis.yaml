@@ -1,0 +1,73 @@
+description: 'Full spatial analysis pipeline: test for spatial autocorrelation in
+  supply chain risk indicators using Moran''s I and LISA, fit spatial econometric
+  models to quantify geographic spillover effects, and map risk hotspots.'
+display_name: Spatial Contagion & Geographic Risk Analysis
+id: spatial_contagion_analysis
+steps:
+- action: data_quality_gate
+  display_name: Spatial Data Quality Gate
+  id: spatial_data_quality
+  on_failure: abort
+  params:
+    constructs:
+    - trade_flow_volume
+    - geographic_concentration_risk
+    - supply_chain_disruption_binary
+    max_missing_pct: 0.15
+    min_spatial_units: 20
+    require_spatial: true
+  step: 1
+- display_name: Global Moran's I Test
+  engine: morans_i
+  expected_results:
+    morans_i:
+      direction: positive
+      min_value: 0.1
+  id: global_morans_i
+  params:
+    permutations: 999
+    spatial_weights: queen_contiguity
+    variable: trade_flow_volume
+  step: 2
+- depends_on:
+  - global_morans_i
+  display_name: LISA Local Cluster Analysis
+  engine: morans_i
+  expected_results:
+    hot_spots_identified: true
+  id: lisa_clusters
+  params:
+    local: true
+    significance_level: 0.05
+    spatial_weights: queen_contiguity
+    variable: trade_flow_volume
+  step: 3
+- compare_to_kb: true
+  depends_on:
+  - lisa_clusters
+  display_name: Spatial Lag Model — Trade Disruption Spillovers
+  engine: spatial_lag_model
+  expected_results:
+    geographic_concentration_risk:
+      direction: positive
+    spatial_autocorrelation_parameter_rho:
+      direction: positive
+  id: spatial_lag_regression
+  params:
+    outcome: supply_chain_disruption_binary
+    predictors:
+    - geographic_concentration_risk
+    - geopolitical_risk_index
+    - climate_exposure_score
+    - port_congestion_index
+    spatial_weights: queen_contiguity
+  step: 4
+- action: analyze
+  depends_on:
+  - spatial_lag_regression
+  display_name: Direct vs Indirect Impacts Decomposition
+  id: interpret_spillovers
+  params:
+    decomposition: lesage_pace
+    report_indirect_impacts: true
+  step: 5
