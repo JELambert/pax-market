@@ -1,5 +1,107 @@
 [
   {
+    "id": "income_inequality_gini",
+    "display_name": "Income Inequality (Gini)",
+    "construct_type": "quantifiable",
+    "definition": "Overall income distribution inequality within a population, measured by the Gini coefficient and related indices that capture the extent to which income deviates from a perfectly equal distribution.",
+    "created_at": "2026-04-05T01:23:45.288595+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
+  },
+  {
+    "id": "top_income_share",
+    "display_name": "Top Income Share",
+    "construct_type": "quantifiable",
+    "definition": "Share of total national income going to top earners (e.g., top 1%, top 10%), capturing concentration of income at the upper tail of the distribution.",
+    "created_at": "2026-04-05T01:23:48.466548+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
+  },
+  {
+    "id": "intergenerational_mobility",
+    "display_name": "Intergenerational Mobility",
+    "construct_type": "quantifiable",
+    "definition": "Degree to which children's economic outcomes depend on their parents' income, reflecting equality of opportunity and the persistence of economic advantage across generations.",
+    "created_at": "2026-04-05T01:23:51.493304+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
+  },
+  {
+    "id": "economic_growth_rate",
+    "display_name": "Economic Growth Rate",
+    "construct_type": "outcome",
+    "definition": "Rate of increase in a country's GDP or GDP per capita over time, the standard measure of macroeconomic performance.",
+    "created_at": "2026-04-05T01:23:54.549856+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
+  },
+  {
+    "id": "social_capital",
+    "display_name": "Social Capital",
+    "construct_type": "composite",
+    "definition": "Community networks, norms, and trust that facilitate cooperation and collective action, enabling individuals and groups to achieve shared objectives.",
+    "created_at": "2026-04-05T01:23:57.697032+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
+  },
+  {
+    "id": "racial_segregation",
+    "display_name": "Racial Segregation",
+    "construct_type": "quantifiable",
+    "definition": "Residential separation of racial groups within geographic areas, reflecting patterns of housing discrimination, socioeconomic sorting, and historical exclusion.",
+    "created_at": "2026-04-05T01:24:00.687454+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_construct_id": null,
+    "pax_origin": null,
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
+  },
+  {
     "id": "gini_coefficient_income",
     "display_name": "Gini Coefficient Income",
     "construct_type": "quantifiable",
@@ -9,7 +111,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "income_share_top_10_pct",
@@ -21,7 +128,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "poverty_headcount_215_ppp",
@@ -33,7 +145,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "intergenerational_earnings_elasticity",
@@ -45,7 +162,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "wealth_share_top_1_pct",
@@ -57,7 +179,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "labor_income_share_gdp",
@@ -69,6 +196,11 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 1
+    "canonical": 1,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   }
 ]

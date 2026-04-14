@@ -1,0 +1,35 @@
+description: Analyze income inequality patterns across countries and over time using
+  Gini coefficients and income share data
+id: quick_start
+name: 'Quick Start: Income Inequality Analysis'
+steps:
+- action: ingest_data
+  description: Load cross-national panel data with Gini coefficients (World Bank,
+    WIID), top income shares (WID.world), GDP per capita, education levels, trade
+    openness, and social spending as share of GDP
+  id: load_data
+- action: analyze
+  description: 'Map global inequality: compute Gini distributions by region and income
+    group. Identify trends over the past 40 years. Flag countries with rising vs falling
+    inequality'
+  engine: descriptive_statistics
+  id: descriptive
+- action: analyze
+  description: 'Test the Kuznets inverted-U hypothesis: regress Gini on log GDP per
+    capita and its square. Include country and year fixed effects. Assess whether
+    the turning point estimate is within a plausible GDP range'
+  engine: regression
+  id: kuznets_test
+- action: analyze
+  description: 'Estimate determinants of inequality: trade openness, technological
+    change (ICT capital share), education inequality, labor market institutions, social
+    spending, and financial development. Use panel fixed effects with clustered standard
+    errors'
+  engine: regression
+  id: determinants
+- action: analyze
+  description: 'Replicate the Great Gatsby Curve: plot cross-country relationship
+    between Gini coefficient and intergenerational earnings elasticity. Test whether
+    higher inequality predicts lower mobility'
+  engine: correlation
+  id: gatsby_curve
