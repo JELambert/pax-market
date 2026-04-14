@@ -9,7 +9,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "cognitive_performance",
@@ -21,7 +26,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "gdp_cost_of_sleep_loss",
@@ -33,7 +43,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "sleep_quality",
@@ -45,7 +60,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "workplace_accident_risk",
@@ -57,7 +77,12 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   },
   {
     "id": "nap_restoration_effect",
@@ -69,6 +94,11 @@
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
-    "canonical": 0
+    "canonical": 0,
+    "formal_definition": null,
+    "operational_definition": null,
+    "measurement_level": null,
+    "validity_notes": null,
+    "provenance_json": null
   }
 ]

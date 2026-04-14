@@ -1,0 +1,33 @@
+description: Analyze the relationship between sleep quality/duration and cognitive
+  performance and workplace productivity
+id: quick_start
+name: 'Quick Start: Sleep-Cognition-Productivity Analysis'
+steps:
+- action: ingest_data
+  description: Load individual-level data with sleep metrics (duration, quality, latency),
+    cognitive test scores (attention, working memory, executive function), and productivity
+    indicators (output, errors, absenteeism)
+  id: load_data
+- action: analyze
+  description: Compute distributions for sleep duration, sleep quality index, cognitive
+    performance measures, and productivity metrics. Flag prevalence of sleep deprivation
+    (<7 hours)
+  engine: descriptive_statistics
+  id: descriptive
+- action: analyze
+  description: Estimate dose-response relationship between sleep duration and cognitive
+    performance using polynomial regression. Test for non-linear effects (U-shaped
+    curve with optimal range 7-9 hours)
+  engine: regression
+  id: dose_response
+- action: analyze
+  description: Test whether cognitive performance mediates the sleep→productivity
+    pathway. Decompose total effect into direct (sleep→productivity) and indirect
+    (sleep→cognition→productivity) effects
+  engine: mediation_analysis
+  id: mediation
+- action: interpret
+  description: 'Estimate economic cost of sleep deprivation: combine prevalence rates
+    with productivity loss estimates. Contextualize with Hafner et al. (2016) finding
+    that insufficient sleep costs the US economy $411 billion annually'
+  id: economic_cost

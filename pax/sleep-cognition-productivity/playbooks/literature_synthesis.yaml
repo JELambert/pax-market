@@ -1,0 +1,17 @@
+description: Synthesize findings across the sleep-cognition-productivity literature
+id: literature_synthesis
+name: Sleep Research Synthesis
+steps:
+- action: explore
+  description: Map all constructs and their relationships. Identify the causal chain
+    from sleep duration/quality through cognitive domains to workplace outcomes
+  id: map_constructs
+- action: analyze
+  description: 'Build evidence matrix: for each construct pair, count supporting findings,
+    note effect sizes, and flag contradictory evidence'
+  id: evidence_matrix
+- action: interpret
+  description: 'Identify gaps: which links in the causal chain have weak or missing
+    evidence? Common gaps include longitudinal designs, objective sleep measurement,
+    and domain-specific cognitive impacts'
+  id: gap_analysis
