@@ -8,7 +8,7 @@ Git-based registry for PAX (Portable Analytical eXpertise) packages. This repo I
 ## Architecture (Two-Repo Split)
 ```
 This repo (pax-market) = REGISTRY
-  pax/<name>/                    ← Pack source directories (64+ packs)
+  pax/<name>/                    ← Pack source directories (66+ packs)
   scripts/generate-registry.py   ← Builds artifacts from pax/
   .github/workflows/
     validate-pack.yml            ← PR validation
@@ -39,7 +39,7 @@ pax-website repo = FRONTEND
 
 ## Project Structure
 ```
-pax/                         64+ pack directories (source of truth)
+pax/                         66+ pack directories (source of truth)
 scripts/
   generate-registry.py       Builds dist/ artifacts from pax/
   generate-from-git.py       LEGACY (monorepo generator, being removed)
