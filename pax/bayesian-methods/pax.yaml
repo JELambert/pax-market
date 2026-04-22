@@ -1,26 +1,69 @@
 author: Josh Lambert
 composes: []
-created: null
+created: '2026-04-22'
 data: null
 depends_on: []
-description: 'Bayesian linear regression with conjugate priors. The killer demo: use
-  KB findings as informative priors to formally incorporate prior literature into
-  new analysis.'
-domain_id: null
-license: null
+description: 'Bayesian methods engine pack covering core concepts (priors, posteriors,
+  credible intervals, conjugacy), inference algorithms (MCMC, HMC, NUTS, variational
+  inference, ABC), hierarchical/multilevel models, and model checking (posterior predictive
+  checks, Bayes factors, effective sample size). Bundles authoritative references
+  from Gelfand & Smith (1990) through Stan (Carpenter et al. 2017) and the modern
+  Bayesian workflow (van de Schoot et al. 2021). Includes a playbook for the killer
+  demo: using KB findings from other packs as informative priors in Bayesian regression.'
+domain_id: bayesian_methods
+license: CC-BY-4.0
 name: bayesian-methods
 notes: null
 pax_type: engine
 praxis_requires: null
 private: false
 provides:
-  constructs: []
-  engines: []
+  constructs:
+  - bayesian_linear_regression
+  - conjugate_prior
+  - informative_prior
+  - weakly_informative_prior
+  - posterior_distribution
+  - credible_interval
+  - markov_chain_monte_carlo
+  - hamiltonian_monte_carlo
+  - no_u_turn_sampler
+  - variational_inference
+  - hierarchical_model
+  - posterior_predictive_check
+  - bayes_factor
+  - effective_sample_size
+  engines:
+  - bayesian_linear_regression
   findings: []
-  playbooks: []
+  playbooks:
+  - kb_findings_as_priors
   propositions: []
-  sources: []
+  sources:
+  - gelfand_smith_1990_sampling_marginal
+  - kass_raftery_1995_bayes_factors
+  - gelman_meng_stern_1996_posterior_predictive
+  - gelman_2006_variance_priors
+  - gelman_hill_2006_multilevel
+  - beaumont_2010_abc
+  - brooks_gelman_2011_handbook_mcmc
+  - hoffman_gelman_2014_nuts
+  - kruschke_2015_dbda
+  - carpenter_2017_stan
+  - simpson_2017_pc_priors
+  - blei_2017_vi_review
+  - vandeschoot_2021_bayesian_primer
 refresh_policy: null
 schema_version: '1.0'
-tags: []
-version: 1.0.1
+tags:
+- bayesian
+- mcmc
+- hmc
+- nuts
+- variational-inference
+- hierarchical-models
+- priors
+- posterior-predictive-checks
+- probabilistic-programming
+- stan
+version: 1.1.0
