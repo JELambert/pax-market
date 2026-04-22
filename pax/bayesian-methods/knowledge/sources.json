@@ -1,1 +1,145 @@
-[]
+[
+  {
+    "id": "gelfand_smith_1990_sampling_marginal",
+    "source_type": "journal_article",
+    "title": "Sampling-Based Approaches to Calculating Marginal Densities",
+    "authors": "Gelfand, A.E., Smith, A.F.M.",
+    "year": 1990,
+    "doi": "10.1080/01621459.1990.10476213",
+    "abstract": "Stochastic substitution, the Gibbs sampler, and the sampler-importance-resampling algorithm can be viewed as three alternative sampling-based approaches to the calculation of numerical estimates of marginal probability distributions. This paper surveys the algorithmic foundations and unifies the three perspectives. Cited as the canonical introduction of MCMC methods to applied statistics.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "kass_raftery_1995_bayes_factors",
+    "source_type": "journal_article",
+    "title": "Bayes Factors",
+    "authors": "Kass, R.E., Raftery, A.E.",
+    "year": 1995,
+    "doi": "10.1080/01621459.1995.10476572",
+    "abstract": "Reviews methods for computing Bayes factors as a framework for Bayesian hypothesis evaluation and model comparison. Introduces conventional interpretive thresholds (BF > 3 substantial, > 10 strong, > 100 decisive) and discusses computation via Laplace approximation, importance sampling, and MCMC-based methods. One of the most cited papers in Bayesian model selection.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "gelman_meng_stern_1996_posterior_predictive",
+    "source_type": "journal_article",
+    "title": "Posterior Predictive Assessment of Model Fitness via Realized Discrepancies",
+    "authors": "Gelman, A., Meng, X.-L., Stern, H.",
+    "year": 1996,
+    "doi": null,
+    "abstract": "Develops the framework of posterior predictive checks with realized discrepancy measures — test quantities that can depend on both data and parameters. Provides the theoretical foundation for Bayesian p-values and the modern practice of posterior predictive model checking. Published in Statistica Sinica 6:733-807.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "gelman_2006_variance_priors",
+    "source_type": "journal_article",
+    "title": "Prior Distributions for Variance Parameters in Hierarchical Models",
+    "authors": "Gelman, A.",
+    "year": 2006,
+    "doi": "10.1214/06-ba117a",
+    "abstract": "Argues against the routine use of Inverse-Gamma(ε, ε) priors for variance parameters in hierarchical models, showing they can be strongly informative in ways that affect inference. Recommends half-Cauchy and half-Normal weakly informative priors on scale parameters as defaults. Foundational reference for modern weakly-informative prior recommendations.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "gelman_hill_2006_multilevel",
+    "source_type": "book",
+    "title": "Data Analysis Using Regression and Multilevel/Hierarchical Models",
+    "authors": "Gelman, A., Hill, J.",
+    "year": 2006,
+    "doi": "10.1017/cbo9780511790942",
+    "abstract": "Cambridge University Press textbook covering applied regression and multilevel modeling from a Bayesian-inflected perspective. Widely adopted reference for partial pooling, group-level predictors, cross-level interactions, and the varying-intercepts/varying-slopes family of models. One of the most cited texts in applied hierarchical modeling.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "beaumont_2010_abc",
+    "source_type": "journal_article",
+    "title": "Approximate Bayesian Computation in Evolution and Ecology",
+    "authors": "Beaumont, M.A.",
+    "year": 2010,
+    "doi": "10.1146/annurev-ecolsys-102209-144621",
+    "abstract": "Annual Review covering Approximate Bayesian Computation (ABC): simulation-based posterior inference for models with intractable likelihoods. Surveys rejection ABC, ABC-MCMC, ABC-SMC, and regression adjustment, with applications in population genetics, epidemiology, and agent-based modeling.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "brooks_gelman_2011_handbook_mcmc",
+    "source_type": "book",
+    "title": "Handbook of Markov Chain Monte Carlo",
+    "authors": "Brooks, S., Gelman, A., Jones, G.L., Meng, X.-L. (eds.)",
+    "year": 2011,
+    "doi": "10.1201/b10905",
+    "abstract": "Comprehensive edited handbook on MCMC theory and practice, including Neal's foundational chapter 'MCMC Using Hamiltonian Dynamics'. Covers convergence diagnostics, effective sample size estimation, adaptive MCMC, and reversible-jump methods. Standard reference for MCMC practitioners.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "hoffman_gelman_2014_nuts",
+    "source_type": "journal_article",
+    "title": "The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo",
+    "authors": "Hoffman, M.D., Gelman, A.",
+    "year": 2014,
+    "doi": null,
+    "abstract": "Introduces the No-U-Turn Sampler (NUTS), an extension to HMC that adaptively chooses the number of leapfrog steps by stopping the trajectory when it begins to turn back. Eliminates the single most error-prone hand-tuned parameter of HMC and is the default sampler in Stan. Published in Journal of Machine Learning Research 15:1593-1623.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "kruschke_2015_dbda",
+    "source_type": "book",
+    "title": "Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan (2nd ed.)",
+    "authors": "Kruschke, J.K.",
+    "year": 2015,
+    "doi": "10.1016/c2012-0-00477-2",
+    "abstract": "Applied Bayesian textbook targeting psychology and behavioral science audiences. Accessible introduction to priors, posteriors, credible intervals, MCMC, and Bayesian analogues of common frequentist tests. Widely used as an entry text for Bayesian methods.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "carpenter_2017_stan",
+    "source_type": "journal_article",
+    "title": "Stan: A Probabilistic Programming Language",
+    "authors": "Carpenter, B., Gelman, A., Hoffman, M.D., Lee, D., Goodrich, B., Betancourt, M., Brubaker, M., Guo, J., Li, P., Riddell, A.",
+    "year": 2017,
+    "doi": "10.18637/jss.v076.i01",
+    "abstract": "Describes Stan, a probabilistic programming language for full Bayesian inference using NUTS, as well as approximate inference via ADVI and penalized MLE. Defines the modern reference implementation of HMC-based Bayesian computation and specifies its language semantics, MCMC algorithms, and convergence diagnostics.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "simpson_2017_pc_priors",
+    "source_type": "journal_article",
+    "title": "Penalising Model Component Complexity: A Principled, Practical Approach to Constructing Priors",
+    "authors": "Simpson, D., Rue, H., Riebler, A., Martins, T.G., Sørbye, S.H.",
+    "year": 2017,
+    "doi": "10.1214/16-sts576",
+    "abstract": "Proposes the Penalised Complexity (PC) prior framework: priors constructed to shrink flexible model components toward simpler base models using KL-divergence-based penalties. Provides principled defaults for scale, correlation, and overdispersion parameters in hierarchical and spatial models.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "blei_2017_vi_review",
+    "source_type": "journal_article",
+    "title": "Variational Inference: A Review for Statisticians",
+    "authors": "Blei, D.M., Kucukelbir, A., McAuliffe, J.D.",
+    "year": 2017,
+    "doi": "10.1080/01621459.2017.1285773",
+    "abstract": "Comprehensive tutorial review of variational inference: mean-field VI, the ELBO, CAVI algorithm, and stochastic variational inference for large-scale problems. Standard reference for statisticians adopting VI as an alternative to MCMC when scale is prohibitive.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  },
+  {
+    "id": "vandeschoot_2021_bayesian_primer",
+    "source_type": "journal_article",
+    "title": "Bayesian Statistics and Modelling",
+    "authors": "van de Schoot, R., Depaoli, S., King, R., Kramer, B., Märtens, K., Tadesse, M.G., Vannucci, M., Gelman, A., Veen, D., Willemsen, J., Yau, C.",
+    "year": 2021,
+    "doi": "10.1038/s43586-020-00001-2",
+    "abstract": "Nature Reviews Methods Primers overview of modern Bayesian modelling: priors, likelihoods, posteriors, MCMC, HMC/NUTS, and variational methods, with an applied Bayesian workflow spanning model specification, computation, and posterior predictive assessment. Accessible entry point to current practice.",
+    "added_at": "2026-04-22T14:30:00+00:00",
+    "added_by": "seed_loader"
+  }
+]

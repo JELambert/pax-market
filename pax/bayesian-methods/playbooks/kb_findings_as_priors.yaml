@@ -1,0 +1,99 @@
+id: kb_findings_as_priors
+display_name: KB Findings as Informative Priors
+description: Formalize the "killer demo" of Bayesian + PAX — extract quantitative effect
+  sizes from a knowledge-base pack's findings.json, convert them into informative priors
+  on corresponding regression coefficients, and fit Bayesian linear regression on new
+  data. Produces a posterior that formally blends prior literature with current evidence,
+  with posterior predictive checks for model adequacy.
+steps:
+- id: load_kb_findings
+  step: 1
+  display_name: Load Findings from Source Pack
+  action: data_quality_gate
+  params:
+    required_fields:
+    - construct_ids
+    - effect_size_value
+    - effect_size_se
+    min_findings_with_effects: 3
+    confidence_min: moderate
+  on_failure: abort
+- id: map_findings_to_coefficients
+  step: 2
+  display_name: Map Findings to Regression Coefficients
+  depends_on:
+  - load_kb_findings
+  action: analyze
+  params:
+    match_on: construct_ids
+    coefficient_prior_mean: effect_size_value
+    coefficient_prior_sd: effect_size_se
+    scale_inflation: 1.5
+- id: specify_weakly_informative_defaults
+  step: 3
+  display_name: Specify Weakly Informative Priors for Unmapped Parameters
+  depends_on:
+  - map_findings_to_coefficients
+  action: analyze
+  params:
+    intercept_prior: normal(0, 10)
+    unmapped_coef_prior: normal(0, 2.5)
+    sigma_prior: half_cauchy(0, 2.5)
+    reference: gelman_2006_variance_priors
+- id: fit_bayesian_regression
+  step: 4
+  display_name: Fit Bayesian Linear Regression via NUTS
+  depends_on:
+  - specify_weakly_informative_defaults
+  engine: bayesian_linear_regression
+  params:
+    sampler: no_u_turn_sampler
+    chains: 4
+    iter_warmup: 1000
+    iter_sampling: 2000
+    adapt_delta: 0.95
+  expected_results:
+    min_effective_sample_size: 400
+    max_rhat: 1.01
+- id: posterior_predictive_check
+  step: 5
+  display_name: Posterior Predictive Check
+  depends_on:
+  - fit_bayesian_regression
+  action: analyze
+  params:
+    test_quantities:
+    - mean
+    - sd
+    - q05
+    - q95
+    n_replications: 1000
+    flag_bayesian_p_extreme: 0.05
+- id: prior_sensitivity_analysis
+  step: 6
+  display_name: Prior Sensitivity Analysis
+  depends_on:
+  - fit_bayesian_regression
+  action: analyze
+  params:
+    scale_multipliers:
+    - 0.5
+    - 1.0
+    - 2.0
+    - 5.0
+    report: posterior_summary_comparison
+- id: report_posterior_summary
+  step: 7
+  display_name: Posterior Summary with Credible Intervals
+  depends_on:
+  - posterior_predictive_check
+  - prior_sensitivity_analysis
+  action: report
+  params:
+    statistics:
+    - posterior_mean
+    - posterior_median
+    - credible_interval_95
+    - credible_interval_50
+    - probability_direction
+    include_prior_comparison: true
