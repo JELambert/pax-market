@@ -1,0 +1,159 @@
+id: reproduce_beigesage
+display_name: "Reproduce BeigeSage from Scratch (Train + Evaluate)"
+description: >
+  End-to-end reproduction of the BeigeSage model: pull the base RoBERTa weights
+  from HuggingFace, MLM-pretrain on the 1970-2023 Beige Book corpus, supervise-
+  fine-tune on the 800-chunk labelled training set, and evaluate on the 200-chunk
+  held-out test set. Recommended environment: Google Colab with a T4 or better GPU
+  (matches authors' setup).
+
+estimated_runtime: "~6 hours on Colab T4 (39 min MLM pre-training + 5h14m fine-tuning + 1.6 min inference)"
+requires_data: true
+
+prerequisites:
+  hardware:
+    recommended: "Google Colab GPU runtime (T4 or A100); local CPU also works but is much slower"
+  base_model:
+    name: "FacebookAI/roberta-large"
+    huggingface_url: "https://huggingface.co/FacebookAI/roberta-large"
+    parameters: 355_000_000
+    tokenizer: "FacebookAI/roberta-large"
+  data:
+    replication_archive: "https://osf.io/xq35t/"
+    inputs_required:
+      - "Beige Book corpus 1970-2023 (~6.8M words, plain text or CSV of 256-token chunks)"
+      - "Labelled chunk dataset (1000 rows: chunk_id, text, human_score in [-1,1] increments of 0.1)"
+  python_packages:
+    - "transformers>=4.30"
+    - "torch>=2.0"
+    - "datasets"
+    - "accelerate"
+    - "scikit-learn"
+    - "pandas"
+    - "numpy"
+
+steps:
+  - id: download_replication_archive
+    step: 1
+    display_name: "Pull replication data from OSF"
+    action: download
+    params:
+      url: "https://osf.io/xq35t/"
+      targets:
+        - "./data/beige_book_corpus_1970_2023.txt"
+        - "./data/labelled_chunks_1000.csv"
+
+  - id: prepare_corpus
+    step: 2
+    display_name: "Tokenize Beige Book corpus into 256-token chunks"
+    depends_on: [download_replication_archive]
+    params:
+      tokenizer: "FacebookAI/roberta-large"
+      max_length: 256
+      stride: 0
+      output: "./data/bb_chunks_256.arrow"
+
+  - id: mlm_continued_pretraining
+    step: 3
+    display_name: "MLM continued pre-training on Beige Book corpus"
+    action: train
+    depends_on: [prepare_corpus]
+    framework: huggingface_transformers
+    params:
+      base_model: "FacebookAI/roberta-large"
+      objective: "masked_language_modeling"
+      mlm_probability: 0.15
+      training_corpus: "./data/bb_chunks_256.arrow"
+      training_args:
+        output_dir: "./models/beigesage-mlm"
+        num_train_epochs: 1
+        per_device_train_batch_size: 8
+        learning_rate: 5e-5
+        save_strategy: "epoch"
+      expected_runtime_minutes: 39
+    output: "./models/beigesage-mlm"
+
+  - id: prepare_labelled_split
+    step: 4
+    display_name: "Bin scores and produce 80/20 train/test split"
+    depends_on: [download_replication_archive]
+    params:
+      input: "./data/labelled_chunks_1000.csv"
+      score_to_label_rule:
+        negative: "score < -0.2"
+        mixed: "-0.2 <= score <= 0.2"
+        positive: "score > 0.2"
+      train_test_split:
+        train_n: 800
+        test_n: 200
+        random_seed: 42
+        stratify_by: label
+      outputs:
+        train: "./data/train_800.csv"
+        test: "./data/test_200.csv"
+
+  - id: supervised_fine_tuning
+    step: 5
+    display_name: "Supervised fine-tuning on 800 labelled chunks"
+    action: train
+    depends_on: [mlm_continued_pretraining, prepare_labelled_split]
+    framework: huggingface_transformers
+    params:
+      base_model: "./models/beigesage-mlm"
+      task: "sequence_classification"
+      num_labels: 3
+      label_map: {negative: 0, mixed: 1, positive: 2}
+      training_data: "./data/train_800.csv"
+      training_args:
+        output_dir: "./models/beigesage"
+        num_train_epochs: 3
+        per_device_train_batch_size: 4
+        learning_rate: 2e-5
+        weight_decay: 0.01
+        evaluation_strategy: "epoch"
+        save_strategy: "epoch"
+        load_best_model_at_end: true
+        metric_for_best_model: "f1_macro"
+      expected_runtime_minutes: 314
+    output: "./models/beigesage"
+
+  - id: evaluate_test_set
+    step: 6
+    display_name: "Classify 200-chunk test set"
+    action: classify
+    depends_on: [supervised_fine_tuning]
+    params:
+      model: "./models/beigesage"
+      input: "./data/test_200.csv"
+      max_length: 256
+      output: "./outputs/beigesage_predictions.csv"
+      expected_runtime_seconds: 95
+
+  - id: report_metrics
+    step: 7
+    display_name: "Compute accuracy, macro F1, MCC and confusion matrix"
+    engine: classification_metrics
+    depends_on: [evaluate_test_set]
+    params:
+      gold_field: human_label
+      pred_field: beigesage_prediction
+      metrics: [accuracy, macro_f1, mcc, confusion_matrix, per_class_precision_recall_f1]
+    expected_results:
+      accuracy: 0.71
+      macro_f1: 0.71
+      mcc: 0.55
+      per_class_recall:
+        positive: 0.82
+        negative: 0.64
+        mixed: 0.65
+
+  - id: optional_publish_model
+    step: 8
+    display_name: "(Optional) Push trained model to HuggingFace Hub"
+    action: push_to_hub
+    depends_on: [report_metrics]
+    params:
+      repo_id: "<your-username>/beigesage"
+      private: false
+      include: ["model weights", "tokenizer", "label_map", "training README"]
+    requires_credentials: ["HF_TOKEN"]

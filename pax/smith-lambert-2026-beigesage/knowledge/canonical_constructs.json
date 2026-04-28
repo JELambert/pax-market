@@ -1,0 +1,29 @@
+[
+  {
+    "id": "concept:economic_text_sentiment",
+    "display_name": "Economic Text Sentiment",
+    "kind": "outcome",
+    "formal_definition": "The directional valence (negative, mixed/neutral, positive) of human or model interpretation of a passage of economic narrative, distinguishing whether the described economic conditions are deteriorating, ambiguous, or improving.",
+    "status": "provisional",
+    "unit_kind": "categorical_label_per_text_passage",
+    "owner": "smith-lambert-2026-beigesage"
+  },
+  {
+    "id": "concept:classifier_performance",
+    "display_name": "Multi-Class Classifier Performance",
+    "kind": "quantifiable",
+    "formal_definition": "Generic concept for the agreement between a classifier's predicted labels and a gold-standard label set on a held-out evaluation set, operationalized through metrics such as accuracy, macro F1, and Matthews correlation coefficient.",
+    "status": "provisional",
+    "unit_kind": "scalar_metric_per_model_eval",
+    "owner": "smith-lambert-2026-beigesage"
+  },
+  {
+    "id": "concept:domain_adaptation_treatment",
+    "display_name": "Domain Adaptation of Pre-Trained Language Model",
+    "kind": "concept",
+    "formal_definition": "The treatment of taking a generally pre-trained language model and adapting it to a target domain via further unsupervised pre-training on in-domain text and/or supervised fine-tuning on labelled in-domain data.",
+    "status": "provisional",
+    "unit_kind": "binary_treatment_per_model",
+    "owner": "smith-lambert-2026-beigesage"
+  }
+]
