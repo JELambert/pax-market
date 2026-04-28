@@ -29,7 +29,7 @@ jobs:
 
           REQUIRED_MANIFEST = ['name', 'version', 'description', 'pax_type', 'schema_version']
           VALID_TYPES = ['paper', 'topic', 'field', 'engine', 'enterprise']
-          VALID_SCHEMA_VERSIONS = ['1.0', '2.0']
+          VALID_SCHEMA_VERSIONS = ['1.0', '2.0', '3.0']
           errors = []
           warnings = []
 
