@@ -1,0 +1,106 @@
+[
+  {
+    "id": "concept:high_skilled_emigration_rate",
+    "display_name": "High-Skilled Emigration Rate",
+    "kind": "quantifiable",
+    "formal_definition": "Share of a country's tertiary-educated (or otherwise high-skilled) native population residing abroad, typically measured as stock of emigrants in OECD destinations divided by stock of educated natives at home plus abroad.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:human_capital_stock",
+    "display_name": "Human Capital Stock",
+    "kind": "quantifiable",
+    "formal_definition": "Aggregate stock of education, skills, and training resident in a country's population, typically operationalized via tertiary attainment counts, occupation-specific licensure, or skill-weighted labor force.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:remittances",
+    "display_name": "International Remittances",
+    "kind": "quantifiable",
+    "formal_definition": "Cross-border private transfers from migrants to households or institutions in origin countries.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:return_migration",
+    "display_name": "Return Migration",
+    "kind": "process",
+    "formal_definition": "Movement of emigrants back to their country of origin, with attendant transfer of human capital, financial capital, and norms acquired abroad.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:diaspora_network",
+    "display_name": "Diaspora Network",
+    "kind": "concept",
+    "formal_definition": "Population of co-nationals residing abroad who maintain economic, social, or informational ties with the origin country, mediating trade, FDI, and knowledge flows.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:innovation_output",
+    "display_name": "Innovation Output",
+    "kind": "outcome",
+    "formal_definition": "Country- or region-level production of new technical knowledge, typically measured by patent applications, scientific publications, or new product introductions.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:firm_dynamics",
+    "display_name": "Firm Creation and Productivity",
+    "kind": "outcome",
+    "formal_definition": "Net rate of new firm formation and labor productivity in the origin economy, sensitive to labor supply and capital reallocation following migration shocks.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:gender_norms",
+    "display_name": "Gender Norms and Female Decision-Making",
+    "kind": "concept",
+    "formal_definition": "Prevailing beliefs and practices regarding gender roles, female autonomy, and intra-household bargaining power.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:population_health",
+    "display_name": "Population Health",
+    "kind": "outcome",
+    "formal_definition": "Aggregate health outcomes of an origin-country population, typically measured by infant mortality, life expectancy, and disease prevalence.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:household_welfare",
+    "display_name": "Household Welfare (Income, Consumption, Health)",
+    "kind": "outcome",
+    "formal_definition": "Household-level welfare outcomes including real income, consumption expenditure, food security, and health-care access at origin.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:migration_policy",
+    "display_name": "Migration Policy (Destination Visa / Mobility Rules)",
+    "kind": "process",
+    "formal_definition": "Destination-country institutional rules — visa caps, eligibility criteria, freedom-of-movement agreements, refugee resettlement programs, lottery procedures — that determine whether and how citizens of an origin country may emigrate. Used as the source of identifying variation in causal studies of migration effects.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:child_labor",
+    "display_name": "Child Labor",
+    "kind": "outcome",
+    "formal_definition": "Share of children under working age engaged in economic labor, often used as an indicator of household financial distress.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  },
+  {
+    "id": "concept:democratic_quality",
+    "display_name": "Democratic Quality",
+    "kind": "outcome",
+    "formal_definition": "Quality of democratic institutions and political accountability in the origin country, measured by indices of electoral integrity, civil liberties, and political participation.",
+    "status": "provisional",
+    "owner": "batista-et-al-2025-brain-drain-gain"
+  }
+]

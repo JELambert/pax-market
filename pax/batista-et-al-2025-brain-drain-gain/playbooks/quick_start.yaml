@@ -1,0 +1,113 @@
+id: quick_start
+display_name: "Quick Start — Brain Drain vs. Brain Gain"
+description: >
+  Core analysis for any country-year panel exploring whether high-skilled
+  emigration on net raises or lowers the origin-country skilled human capital
+  stock. Based on the Batista et al. (2025) review framework.
+estimated_runtime: "2-5 minutes"
+requires_data: true
+
+steps:
+  - id: data_quality_check
+    step: 1
+    display_name: "Data Quality Gate"
+    action: data_quality_gate
+    params:
+      constructs:
+        - high_skilled_emigration_rate
+        - human_capital_stock_origin
+        - skill_acquisition_response
+        - remittances_inflow
+      min_observations: 50
+      max_missing_pct: 0.30
+      required_panel_dim: country-year
+    on_failure: abort
+
+  - id: descriptive_emigration
+    step: 2
+    display_name: "Descriptive — Emigration Rates by Skill"
+    engine: descriptive_summary
+    params:
+      variables:
+        - high_skilled_emigration_rate
+      group_by: [origin_country, skill_category]
+    expected_results:
+      high_skilled_emigration_rate:
+        range_check: [0, 1]
+
+  - id: predictor_correlations
+    step: 3
+    display_name: "Correlations — Key Channels"
+    engine: correlation_matrix
+    params:
+      variables:
+        - high_skilled_emigration_rate
+        - human_capital_stock_origin
+        - skill_acquisition_response
+        - remittances_inflow
+        - return_migration
+        - diaspora_network_size
+        - patent_output_origin
+    expected_results:
+      skill_acquisition_response↔human_capital_stock_origin:
+        direction: positive
+      remittances_inflow↔human_capital_stock_origin:
+        direction: positive
+
+  - id: net_human_capital_did
+    step: 4
+    display_name: "Net Human Capital — DID Around Visa Shock"
+    engine: difference_in_differences
+    depends_on: [predictor_correlations]
+    params:
+      outcome: human_capital_stock_origin
+      treatment: migration_visa_policy_shock
+      time_var: year
+      unit_var: origin_country
+      controls: [gdp_per_capita, population, training_supply_elasticity]
+    compare_to_kb: true
+    expected_results:
+      migration_visa_policy_shock:
+        direction: positive
+        rationale: "Replicates Filipino nurses (9:1) and Indian IT (5.8% rise) findings"
+
+  - id: remittance_welfare_iv
+    step: 5
+    display_name: "Remittance → Welfare (Shift-Share IV)"
+    engine: shift_share_iv
+    depends_on: [predictor_correlations]
+    params:
+      outcome: household_income_origin
+      endogenous: remittances_inflow
+      shares: historical_destination_country_shares
+      shifts: destination_exchange_rate_shocks
+      controls: [province_fixed_effects, year_fixed_effects]
+    expected_results:
+      remittances_inflow:
+        direction: positive
+
+  - id: health_robustness
+    step: 6
+    display_name: "Population Health — Null Test"
+    engine: instrumental_variables
+    params:
+      outcome: infant_mortality_origin
+      endogenous: high_skilled_emigration_rate
+      instruments: [destination_visa_policy]
+      controls: [gdp_per_capita, public_health_spending]
+    expected_results:
+      high_skilled_emigration_rate:
+        direction: null
+        rationale: "53-African-country IV evidence finds no effect on health"
+
+  - id: report
+    step: 7
+    display_name: "Synthesis Report"
+    engine: synthesis_report
+    depends_on: [net_human_capital_did, remittance_welfare_iv, health_robustness]
+    params:
+      sections:
+        - net_human_capital
+        - remittance_channel
+        - health_channel
+        - heterogeneity_by_skill_type

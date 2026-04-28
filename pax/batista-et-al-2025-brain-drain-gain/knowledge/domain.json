@@ -1,0 +1,15 @@
+{
+  "id": "high_skilled_migration",
+  "display_name": "High-Skilled International Migration & Origin-Country Effects",
+  "description": "Causal effects of high-skilled emigration from lower-income to higher-income countries on the human capital stock, innovation, entrepreneurship, trade/FDI, norms, political institutions, and welfare of origin (sending) countries. Synthesizes 'brain drain' vs. 'brain gain' mechanisms identified through randomized assignment, difference-in-differences, regression discontinuity, and shift-share IV designs.",
+  "temporal_scope": "1990-2024 (review covers studies primarily from 1990s through early 2020s)",
+  "population": "Lower- and middle-income migrant-sending countries (sub-Saharan Africa, Caribbean, Pacific, South Asia, Southeast Asia, Latin America, Eastern Europe), with high-skilled emigrants to OECD destinations. Featured cases: Philippines, India, China, Mexico, Cape Verde, Bangladesh, Malawi, Italy, Eastern European EU accession countries.",
+  "level_of_analysis": "macro",
+  "research_questions": [
+    "Does new high-skilled migration opportunity increase or decrease the human capital stock at origin?",
+    "Through which channels (remittances, return migration, diaspora networks, knowledge transfer) does emigration affect origin-country welfare?",
+    "Under what conditions (training supply elasticity, investment climate, skill type) do brain-gain effects dominate brain-drain effects?",
+    "Does emigration of medical workers reduce population health at origin?",
+    "Do migrant-transmitted political and gender norms change institutions and household behavior at origin?"
+  ]
+}

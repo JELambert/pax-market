@@ -1,0 +1,92 @@
+name: batista-et-al-2025-brain-drain-gain
+version: "1.0.0"
+description: >
+  Causal-inference review of the effects of high-skilled emigration on origin
+  countries. Synthesizes recent quasi-experimental evidence (DID, RD, SSIV, RA)
+  on brain drain vs. brain gain mechanisms across human capital, innovation,
+  trade/FDI, norms, political institutions, and population health.
+schema_version: "3.0"
+pax_type: paper
+author: "Batista, Catia; Han, Daniel; Haushofer, Johannes; Khanna, Gaurav; McKenzie, David; Mobarak, Ahmed Mushfiq; Theoharides, Caroline; Yang, Dean"
+created: "2026-04-28"
+license: CC-BY-4.0
+tags:
+  - high-skilled-migration
+  - brain-drain
+  - brain-gain
+  - development-economics
+  - remittances
+  - return-migration
+  - causal-inference
+provides:
+  constructs:
+    - high_skilled_emigration_rate
+    - human_capital_stock_origin
+    - skill_acquisition_response
+    - remittances_inflow
+    - return_migration
+    - diaspora_network_size
+    - foreign_direct_investment_origin
+    - bilateral_trade_volume
+    - patent_output_origin
+    - scientific_collaboration_intensity
+    - firm_creation_rate
+    - labor_productivity_origin
+    - political_accountability
+    - gender_norms_liberalization
+    - fertility_rate_origin
+    - infant_mortality_origin
+    - household_health_access
+    - household_income_origin
+    - child_labor_origin
+    - birth_weight_origin
+    - migration_visa_policy_shock
+    - training_supply_elasticity
+  sources:
+    - batista_et_al_2025
+  findings:
+    - finding_filipino_nurses_brain_gain
+    - finding_h1b_indian_it_skilling
+    - finding_top_achiever_income_gain
+    - finding_italy_recession_firm_creation
+    - finding_eu_enlargement_labor_costs
+    - finding_eu_enlargement_productivity
+    - finding_us_1990_reform_manufacturing
+    - finding_european_mobility_patents
+    - finding_fulbright_citation_impact
+    - finding_african_returnee_collab_spillover
+    - finding_chinese_scholar_collaborations
+    - finding_eu_enlargement_collab_decline
+    - finding_chinese_returnee_firm_value
+    - finding_india_returnee_manager_patents
+    - finding_cape_verde_gender_spillover
+    - finding_cape_verde_political_participation
+    - finding_bangladesh_lottery_female_head
+    - finding_bangladesh_lottery_decision_authority
+    - finding_philippines_entertainer_ban_income
+    - finding_philippines_entertainer_ban_child_labor
+    - finding_philippines_remittance_shock_income
+    - finding_africa_physician_emigration_null
+    - finding_africa_physician_emigration_health_null
+    - finding_mexico_remittance_health_mpc
+    - finding_mexico_return_migration_health_access
+    - finding_nigeria_doctor_assignment_mortality
+    - finding_philippines_norms_fertility_mortality
+    - finding_intl_students_democracy
+    - finding_malawi_long_run_education
+    - finding_mexico_birth_weight
+    - finding_vietnamese_refugee_trade
+    - finding_japanese_internment_trade
+    - finding_ancestry_network_fdi
+  propositions:
+    - prop_migration_opportunity_increases_skill_investment
+    - prop_remittances_fund_human_capital
+    - prop_diaspora_enables_trade_fdi
+    - prop_return_migration_transfers_knowledge
+    - prop_norms_transmission_via_migration
+    - prop_training_supply_moderates_brain_gain
+    - prop_skill_type_moderates_origin_effects
+  playbooks:
+    - quick_start
+    - replicate_filipino_nurses_brain_gain
+  engines: []

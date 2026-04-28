@@ -1,0 +1,433 @@
+[
+  {
+    "id": "high_skilled_emigration_rate",
+    "display_name": "High-Skilled Emigration Rate",
+    "construct_type": "quantifiable",
+    "definition": "Percentage of a country's high-skilled (tertiary-educated, professional, or top-academic) population currently residing abroad. Used by Batista et al. to characterize cross-country variation in skilled outflows; rates can exceed 50% for top academics and >90% for PhD holders in small/poor countries.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:high_skilled_emigration_rate",
+    "operationalization_id": "op:high_skilled_emigration_rate.batista_2025",
+    "coding_rule": "Stock of skilled emigrants in OECD destinations divided by total skilled native-born population (resident + emigrant). Skill defined alternately as tertiary education, occupation (doctors, nurses, scientists, inventors, engineers), or top performance on entrance exams.",
+    "formal_definition": "Emigration_rate_skilled_c = E_c^skilled / (E_c^skilled + R_c^skilled), where E is emigrants in OECD and R is resident skilled population.",
+    "operational_definition": "Computed from OECD DIOC database, country census tertiary stocks, and occupation-specific registries (medical councils, IIT entrance lists, etc.).",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "skilled emigration rate", "alias_type": "synonym"},
+      {"alias": "brain drain rate", "alias_type": "synonym"},
+      {"alias": "tertiary emigration share", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "OECD DIOC tertiary emigrant stock / native tertiary population",
+      "Occupation-specific emigrant share (e.g., doctors trained in country X working abroad)",
+      "Top-N entrance exam alumni located abroad (e.g., IIT 100)"
+    ]
+  },
+  {
+    "id": "human_capital_stock_origin",
+    "display_name": "Human Capital Stock at Origin",
+    "construct_type": "outcome",
+    "definition": "Aggregate stock of skilled labor (e.g., licensed nurses, engineers, tertiary graduates) resident in the origin country at a given time. The central outcome of interest in the brain drain/gain debate.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:human_capital_stock",
+    "operationalization_id": "op:human_capital_stock.batista_2025_origin",
+    "coding_rule": "Count of resident workers holding the relevant credential or skill in the origin country, measured before and after a migration policy shock.",
+    "formal_definition": "HC_origin_t = N_skilled_resident_t.",
+    "operational_definition": "Filipino licensed nurses (Philippine Commission on Higher Education), Indian computer-science workforce (NSS), tertiary-educated labor force (national LFS).",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "skilled labor stock", "alias_type": "synonym"},
+      {"alias": "domestic human capital", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "Number of newly licensed nurses per year (Philippines example: 86,940 net gain over 2000-2006)",
+      "Tertiary-educated labor force size (national LFS)",
+      "Patent inventor counts by country of residence"
+    ]
+  },
+  {
+    "id": "skill_acquisition_response",
+    "display_name": "Skill Acquisition Response to Migration Opportunity",
+    "construct_type": "process",
+    "definition": "Behavioral increase in education or training enrollment in the origin country in response to a new migration opportunity to a destination that demands that skill. The mechanism behind 'narrow' brain gain.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:human_capital_stock",
+    "operationalization_id": "op:skill_acquisition_response.batista_2025",
+    "coding_rule": "Change in enrollment counts in skill-relevant programs following an exogenous expansion in destination-country visa availability for that skill.",
+    "operational_definition": "Postsecondary nursing program enrollment in the Philippines tracked against US nursing-visa caps; computer-science enrollment in India tracked against H-1B caps.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "induced human capital investment", "alias_type": "synonym"},
+      {"alias": "narrow brain gain", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "Nursing-program enrollment counts (Philippine Commission on Higher Education)",
+      "Computer-science enrollment / IT workforce growth in India"
+    ]
+  },
+  {
+    "id": "remittances_inflow",
+    "display_name": "Remittances Inflow to Origin",
+    "construct_type": "quantifiable",
+    "definition": "Cross-border private transfers from migrants to households or institutions in the origin country. A major channel through which migration affects origin-country welfare.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:remittances",
+    "operationalization_id": "op:remittances_inflow.batista_2025",
+    "coding_rule": "Total remittances received by an origin country or province, measured in real local currency or USD.",
+    "operational_definition": "World Bank bilateral remittance data; province-level remittance receipts from national household surveys; exchange-rate-driven shocks to remittance values (Yang 2008).",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "migrant transfers", "alias_type": "synonym"},
+      {"alias": "remittances", "alias_type": "abbreviation"}
+    ],
+    "measures": [
+      "World Bank Migration & Remittances data",
+      "Household survey remittance receipts (e.g., Philippine FIES)",
+      "Exchange-rate-driven income shocks to migrants"
+    ]
+  },
+  {
+    "id": "return_migration",
+    "display_name": "Return Migration",
+    "construct_type": "process",
+    "definition": "Migrants returning to their country of birth after working or studying abroad. Carries human capital, capital, and norms acquired in the destination back to the origin.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:return_migration",
+    "operationalization_id": "op:return_migration.batista_2025",
+    "coding_rule": "Count or share of households containing at least one return migrant, or province-year flow of returnees.",
+    "operational_definition": "Census-coded returnee households, expired-H-1B returnees to India, Chinese provincial Thousand Talents return programs, US-trained African scientists returning home.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "migrant return", "alias_type": "synonym"},
+      {"alias": "circular migration", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "Census return-migrant flag",
+      "Chinese province talent-return program rollout dates",
+      "Expired H-1B return cohorts"
+    ]
+  },
+  {
+    "id": "diaspora_network_size",
+    "display_name": "Diaspora Network Size",
+    "construct_type": "quantifiable",
+    "definition": "Stock of co-nationals resident in a destination country (or globally), often weighted by skill. Mediates trade, FDI, and knowledge flows back to origin.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:diaspora_network",
+    "operationalization_id": "op:diaspora_network_size.batista_2025",
+    "coding_rule": "Stock of foreign-born residents from origin country c residing in destination county d at time t.",
+    "operational_definition": "US Census decennial / ACS foreign-born by country of birth at county level; ethnic enclave shares from WWII Japanese internment, Vietnamese refugee resettlement.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "migrant ethnic network", "alias_type": "synonym"},
+      {"alias": "diaspora stock", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "US Census foreign-born by country × county",
+      "Historical ethnic-enclave shares (WWII internment, refugee resettlement)"
+    ]
+  },
+  {
+    "id": "foreign_direct_investment_origin",
+    "display_name": "Foreign Direct Investment to Origin Country",
+    "construct_type": "outcome",
+    "definition": "Stock or flow of foreign direct investment from destination countries to the migrant's country of origin.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:firm_dynamics",
+    "operationalization_id": "op:fdi_origin.batista_2025",
+    "coding_rule": "BEA bilateral FDI flows from US counties to migrant-origin countries.",
+    "operational_definition": "BEA outward FDI by US county or state to country pairs.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "FDI inflows", "alias_type": "abbreviation"}
+    ],
+    "measures": [
+      "BEA outward FDI bilateral data"
+    ]
+  },
+  {
+    "id": "bilateral_trade_volume",
+    "display_name": "Bilateral Trade Volume",
+    "construct_type": "outcome",
+    "definition": "Total value of exports and imports between origin and destination countries, hypothesized to be amplified by migrant networks.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:firm_dynamics",
+    "operationalization_id": "op:bilateral_trade.batista_2025",
+    "coding_rule": "USD value of bilateral exports + imports between origin country c and destination country d.",
+    "operational_definition": "UN COMTRADE bilateral trade flows.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "UN COMTRADE bilateral exports and imports"
+    ]
+  },
+  {
+    "id": "patent_output_origin",
+    "display_name": "Patent Output at Origin",
+    "construct_type": "outcome",
+    "definition": "Number of patent applications or grants attributed to inventors resident in the origin country.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:innovation_output",
+    "operationalization_id": "op:patent_output.batista_2025",
+    "coding_rule": "Count of patent applications filed at USPTO/EPO/WIPO with at least one inventor located in origin country c at time t.",
+    "operational_definition": "USPTO PatentsView, EPO PATSTAT, WIPO PCT applications.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "USPTO patent applications by inventor country",
+      "EPO PATSTAT inventor country",
+      "Firm-level patent counts (Choudhury et al. 2024 India)"
+    ]
+  },
+  {
+    "id": "scientific_collaboration_intensity",
+    "display_name": "Scientific Collaboration Intensity",
+    "construct_type": "outcome",
+    "definition": "Number of distinct international co-authors or cross-border research collaborations per scholar.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:innovation_output",
+    "operationalization_id": "op:sci_collab.batista_2025",
+    "coding_rule": "Distinct co-authors of a scholar with affiliations outside the scholar's country, per year.",
+    "operational_definition": "Scopus/Microsoft Academic Graph co-authorship networks; bibliometric analyses for Chinese scholars and EU scientists.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "Scopus co-authorship distinct foreign affiliates",
+      "Citation impact relative to control group (Fulbright study)"
+    ]
+  },
+  {
+    "id": "firm_creation_rate",
+    "display_name": "Firm Creation Rate at Origin",
+    "construct_type": "outcome",
+    "definition": "Rate of new firm formation in the origin economy, hypothesized to be sensitive to skilled emigration.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:firm_dynamics",
+    "operationalization_id": "op:firm_creation.batista_2025",
+    "coding_rule": "Annual count of newly registered firms per region.",
+    "operational_definition": "Italian business registry; province-level new-firm counts.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "Italian Chamber of Commerce business registry"
+    ]
+  },
+  {
+    "id": "labor_productivity_origin",
+    "display_name": "Labor Productivity at Origin",
+    "construct_type": "outcome",
+    "definition": "Output per worker in the origin economy, sensitive to skill outflows and to firm capital-labor substitution responses.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:firm_dynamics",
+    "operationalization_id": "op:labor_productivity.batista_2025",
+    "coding_rule": "Real value added per worker by industry-country-year.",
+    "operational_definition": "Eastern European national accounts post-EU enlargement; Italian firm-level productivity.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "Eurostat productivity series",
+      "ORBIS firm-level value added per worker"
+    ]
+  },
+  {
+    "id": "political_accountability",
+    "display_name": "Political Accountability and Democratic Quality",
+    "construct_type": "outcome",
+    "definition": "Quality of democratic institutions, electoral participation, and demand for public accountability at origin, hypothesized to be influenced by emigrant exposure to destination-country institutions.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:democratic_quality",
+    "operationalization_id": "op:political_accountability.batista_2025",
+    "coding_rule": "Composite of V-Dem democracy indicators, voter turnout, and survey-measured demand for public services.",
+    "operational_definition": "V-Dem electoral democracy index (Spilimbergo 2009); Cape Verde survey on demand for public services; village-level voter turnout.",
+    "measurement_level": "interval",
+    "aliases": [
+      {"alias": "democratic quality", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "V-Dem electoral democracy index",
+      "Voter turnout by community",
+      "Survey demand for public services (Batista & Vicente 2011 Cape Verde)"
+    ]
+  },
+  {
+    "id": "gender_norms_liberalization",
+    "display_name": "Liberalization of Gender Norms",
+    "construct_type": "outcome",
+    "definition": "Shift toward more egalitarian household decision-making, female autonomy, and support for gender equity, hypothesized as a downstream effect of migration to liberal destinations.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:gender_norms",
+    "operationalization_id": "op:gender_norms.batista_2025",
+    "coding_rule": "Survey indices of household gender attitudes, female household-headship, and decision-making authority.",
+    "operational_definition": "Cape Verde RCT spillover survey on gender attitudes; Bangladesh visa-lottery follow-up on female household headship and decision authority.",
+    "measurement_level": "interval",
+    "aliases": [
+      {"alias": "female empowerment", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "Survey index of support for gender equity in household decisions",
+      "Share of households with female head",
+      "Share of women with exclusive decision authority"
+    ]
+  },
+  {
+    "id": "fertility_rate_origin",
+    "display_name": "Fertility Rate at Origin",
+    "construct_type": "outcome",
+    "definition": "Total fertility rate (children per woman) at origin, hypothesized to respond to migrant-transmitted reproductive-health norms.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:gender_norms",
+    "operationalization_id": "op:fertility_origin.batista_2025",
+    "coding_rule": "TFR or completed fertility per woman by origin community.",
+    "operational_definition": "DHS or census fertility by Filipino province linked to destination policy via SSIV.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "TFR", "alias_type": "abbreviation"}
+    ],
+    "measures": [
+      "DHS / census total fertility rate"
+    ]
+  },
+  {
+    "id": "infant_mortality_origin",
+    "display_name": "Infant Mortality at Origin",
+    "construct_type": "outcome",
+    "definition": "Deaths per 1,000 live births before age 1 in origin areas; key population-health outcome in brain-drain debates.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:population_health",
+    "operationalization_id": "op:infant_mortality.batista_2025",
+    "coding_rule": "Deaths < 12 months / 1,000 live births at province or country level.",
+    "operational_definition": "DHS infant mortality rates; African country panel (Bhargava et al.).",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "IMR", "alias_type": "abbreviation"}
+    ],
+    "measures": [
+      "DHS infant mortality",
+      "WDI infant mortality rate"
+    ]
+  },
+  {
+    "id": "household_health_access",
+    "display_name": "Household Access to Health Care",
+    "construct_type": "outcome",
+    "definition": "Share of households with effective access to health-care services, hypothesized to improve with remittance income.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:population_health",
+    "operationalization_id": "op:household_health_access.batista_2025",
+    "coding_rule": "Share of households reporting any health-service utilization or insurance coverage.",
+    "operational_definition": "Mexican ENIGH/MxFLS surveys; household-level health-care expenditure shares.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "Mexican ENIGH share of households without health-care access",
+      "Health-care expenditure as share of remittance income"
+    ]
+  },
+  {
+    "id": "household_income_origin",
+    "display_name": "Household Income at Origin",
+    "construct_type": "outcome",
+    "definition": "Real income or consumption per capita in households or provinces at origin, sensitive to remittance and migration shocks.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:household_welfare",
+    "operationalization_id": "op:household_income.batista_2025",
+    "coding_rule": "Real per-capita household income or consumption, in 2010 local currency or PPP USD.",
+    "operational_definition": "Philippine FIES per-capita income/expenditure, real 2010 pesos.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": [
+      "Philippine FIES per-capita income",
+      "Philippine FIES per-capita expenditure"
+    ]
+  },
+  {
+    "id": "child_labor_origin",
+    "display_name": "Child Labor Rate at Origin",
+    "construct_type": "outcome",
+    "definition": "Share of children below the working-age threshold engaged in economic labor in the origin community. Often rises when household income shocks (e.g., loss of a migration earnings opportunity) force adjustment.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:child_labor",
+    "operationalization_id": "op:child_labor.batista_2025",
+    "coding_rule": "Share of children aged 5-14 who report working in the past week, by Filipino province.",
+    "operational_definition": "Philippine FIES/LFS child-labor module by province.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": ["Philippine LFS child-labor rate"]
+  },
+  {
+    "id": "birth_weight_origin",
+    "display_name": "Birth Weight at Origin",
+    "construct_type": "outcome",
+    "definition": "Mean live-birth weight in origin households or communities, used as a proxy for prenatal nutrition and population health.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:population_health",
+    "operationalization_id": "op:birth_weight.batista_2025",
+    "coding_rule": "Mean grams at live birth, by household and migration-exposure status.",
+    "operational_definition": "Mexican vital statistics linked to migration exposure.",
+    "measurement_level": "ratio",
+    "aliases": [],
+    "measures": ["Mexican vital statistics birth weight"]
+  },
+  {
+    "id": "migration_visa_policy_shock",
+    "display_name": "Migration / Visa Policy Shock",
+    "construct_type": "process",
+    "definition": "Exogenous policy event in the destination country that changes the supply of visas or migration eligibility for citizens of an origin country. Provides identification variation in causal studies.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:migration_policy",
+    "operationalization_id": "op:visa_policy_shock.batista_2025",
+    "coding_rule": "Discrete change in destination-country visa caps, eligibility, or freedom-of-movement rules.",
+    "operational_definition": "US 2000-2006 expansion of nurse visas; H-1B cap changes; 2004/2007 EU enlargement; 1990 US Immigration Act; Vietnamese refugee resettlement; lottery randomization (Tonga, Bangladesh, NZ Pacific Access).",
+    "measurement_level": "nominal",
+    "aliases": [
+      {"alias": "visa shock", "alias_type": "synonym"},
+      {"alias": "migration policy reform", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "US H-1B visa cap (annual)",
+      "Filipino nurse visa volume (CFO)",
+      "EU enlargement timing by accession country",
+      "Visa-lottery assignment indicator"
+    ]
+  },
+  {
+    "id": "training_supply_elasticity",
+    "display_name": "Training Supply Elasticity",
+    "construct_type": "concept",
+    "definition": "Responsiveness of origin-country training infrastructure (universities, vocational programs) to changes in demand for a skill induced by destination-country migration opportunities. A key moderator determining whether brain gain occurs.",
+    "domain_ids": ["high_skilled_migration"],
+    "source_id": "batista_et_al_2025",
+    "canonical_id": "concept:human_capital_stock",
+    "operationalization_id": "op:training_supply_elasticity.batista_2025",
+    "coding_rule": "Percent change in seats / enrollment capacity in skill-relevant training programs per percent change in destination-country demand for the skill.",
+    "operational_definition": "Number of new private nursing schools in the Philippines per nurse-visa expansion shock; growth of computer-science programs in India.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "education supply response", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "New nursing-program count (private vs public)",
+      "Engineering / CS seat counts"
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "batista_et_al_2025",
+    "source_type": "journal_article",
+    "title": "Brain drain or brain gain? Effects of high-skilled international emigration on origin countries",
+    "authors": "Batista, Catia; Han, Daniel; Haushofer, Johannes; Khanna, Gaurav; McKenzie, David; Mobarak, Ahmed Mushfiq; Theoharides, Caroline; Yang, Dean",
+    "year": 2025,
+    "doi": "10.1126/science.adr8861",
+    "abstract": "How does emigration of highly educated citizens of low-income countries to high-income countries affect the economies of the origin countries? The direct effect is 'brain drain' — a decrease in the country's human capital stock. However, there may also be indirect 'brain gain' effects. This review summarizes evidence that uses causal inference methods to reveal mechanisms that may lead to brain drain, gain, or circulation. Collectively, the weight of the evidence suggests that migration opportunities often increase human capital stock in origin countries and produce downstream beneficial effects through remittances; foreign direct investment and trade linkages; transfers of knowledge, technology and norms; and return migration. We discuss conditions under which benefits from skilled migration may outweigh costs and also describe potential research paths to inform policy.",
+    "methodology_summary": "Narrative review of recent causal-inference literature on high-skilled emigration. The reviewed studies use four primary identification strategies (Box 1): random assignment (RA, e.g., visa lotteries), difference-in-differences (DID) exploiting policy reforms (US H-1B caps, EU enlargement, Filipino nurse visa expansions), regression discontinuity (RD), and shift-share instrumental variables (SSIV) using historical migrant network shares interacted with destination-country shocks. The review aggregates effect estimates across studies but does not perform formal meta-analysis.",
+    "sample_size": null,
+    "population_description": "Cross-country evidence covering sub-Saharan Africa (53 African countries in physician/nurse IV study), Philippines (multiple panel studies), India (H-1B reform analysis), China (returnee/scholar studies), Mexico, Cape Verde, Bangladesh (lottery RCT), Malawi, Italy, Eastern European EU accession countries, and small Pacific island states (Tonga, Micronesia, Papua New Guinea).",
+    "study_design": "review",
+    "key_limitations": "Five explicit limitations stated by authors: (1) cited studies vary in identification strength — some are still working papers; (2) most evidence pools all skilled emigrants together rather than by skill type; (3) emphasis on average effects obscures distributional/heterogeneity effects; (4) general-equilibrium effects across all labor markets remain underexplored; (5) emphasis is on documenting responses rather than identifying effective policies. The review is non-systematic and does not claim exhaustive coverage.",
+    "replication_status": "review_paper",
+    "data_availability": "public",
+    "journal": "Science",
+    "url": "https://doi.org/10.1126/science.adr8861"
+  }
+]

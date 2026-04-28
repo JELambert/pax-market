@@ -1,0 +1,44 @@
+[
+  {
+    "from_id": "concept:high_skilled_emigration_rate",
+    "to_id": "concept:human_capital_stock",
+    "relation_type": "refines",
+    "justification": "High-skilled emigration rate is a specific outflow component of the broader human-capital-stock dynamics; refines the human-capital concept by isolating the skilled-emigration channel.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "from_id": "concept:remittances",
+    "to_id": "concept:human_capital_stock",
+    "relation_type": "refines",
+    "justification": "Remittances are one financing mechanism that shifts the human-capital stock via household education investment.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "from_id": "concept:return_migration",
+    "to_id": "concept:diaspora_network",
+    "relation_type": "refines",
+    "justification": "Return migration is the subset of diaspora dynamics involving migrants moving back to origin; structurally distinct from outbound diaspora persistence.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "from_id": "concept:innovation_output",
+    "to_id": "concept:firm_dynamics",
+    "relation_type": "refines",
+    "justification": "Innovation output is a specific dimension of firm dynamics — patent and publication production refines the broader firm-creation/productivity concept.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "from_id": "concept:gender_norms",
+    "to_id": "concept:democratic_quality",
+    "relation_type": "refines",
+    "justification": "Gender norms (especially female political participation and decision-making) are one substantive component of broader democratic-quality measures.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "from_id": "concept:population_health",
+    "to_id": "concept:human_capital_stock",
+    "relation_type": "refines",
+    "justification": "Population health (especially infant mortality, child outcomes) feeds into long-run human-capital formation but is conceptually distinct from labor-market skill stocks.",
+    "source_id": "batista_et_al_2025"
+  }
+]
