@@ -9,14 +9,47 @@ on:
 permissions:
   pull-requests: write
   contents: write
+  actions: write
 
 jobs:
   enable-automerge:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'community') }}
+    timeout-minutes: 30
     steps:
       - name: Enable auto-merge
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # GitHub suppresses push-event workflow runs caused by a GITHUB_TOKEN merge
+      # (anti-recursion guard), so the post-merge push to `main` does NOT trigger
+      # publish-artifacts.yml on its own. workflow_dispatch is the documented
+      # exception — explicitly fire it once the PR is actually merged.
+      - name: Wait for merge and trigger publish
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 50); do
+            STATE=$(gh pr view "$PR_URL" --json state -q .state)
+            case "$STATE" in
+              MERGED)
+                echo "PR merged. Dispatching publish-artifacts.yml on main."
+                gh workflow run publish-artifacts.yml --repo "$GITHUB_REPOSITORY" --ref main
+                exit 0
+                ;;
+              CLOSED)
+                echo "PR was closed without merging — skipping publish dispatch."
+                exit 0
+                ;;
+              OPEN)
+                echo "PR still open (waiting on checks)... [$i/50]"
+                ;;
+            esac
+            sleep 30
+          done
+          echo "::warning::Timed out waiting for PR to merge. publish-artifacts NOT dispatched."
+          exit 1
