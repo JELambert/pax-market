@@ -1,0 +1,928 @@
+[
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A US visa expansion for Filipino nurses (2000-2006) caused 9 new nurses to be licensed in the Philippines for every 1 nurse who emigrated, increasing both the tertiary-educated nursing workforce and overall tertiary-educated labor stock. Net brain gain over 2000-2006: ~86,940 nurses (113,775 newly licensed minus 26,835 emigrants).",
+    "construct_ids": [
+      "migration_visa_policy_shock",
+      "skill_acquisition_response",
+      "human_capital_stock_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "ratio of 9 new licensed nurses per 1 emigrant nurse; 86,940 net new nurses over 7 years",
+    "method_used": "Difference-in-differences exploiting exogenous US visa-cap expansion (Abarcar & Theoharides 2024 / cited as ref 20)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 9.0,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "r_squared": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "effect_size_type": null,
+    "model_specification": "Difference-in-differences (province \u00d7 year \u00d7 program-type) using pre/post US nurse-visa expansion and cross-province exposure to nursing-program supply. Effect-size is a ratio (newly licensed / emigrants), not a regression coefficient \u2014 effect_size_type left null.",
+    "covariates_controlled": [
+      "province_fixed_effects",
+      "year_fixed_effects",
+      "preexisting_nursing_program_supply"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Philippines, 2000-2006; province \u00d7 program-type \u00d7 year panel; high training-supply elasticity from private nursing schools."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "When the US H-1B visa cap was relaxed (raising US wages of Indian IT workers by ~10%), IT employment in India rose by 5.8%, indicating induced computer-science skill acquisition exceeded the outflow.",
+    "construct_ids": [
+      "migration_visa_policy_shock",
+      "skill_acquisition_response",
+      "human_capital_stock_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "+10% Indian-IT US wages \u2192 +5.8% IT employment in India",
+    "method_used": "Quasi-experimental general-equilibrium analysis exploiting H-1B cap variation (Khanna & Morales 2021 / ref 21)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.58,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Structural / quasi-experimental general-equilibrium model linking US H-1B caps to US Indian wages and Indian IT employment. Reported magnitude is an elasticity (\u0394employment%/\u0394wage%); no PAX enum slot for elasticity, so effect_size_type left null.",
+    "covariates_controlled": [],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "India, 1990s-2000s; sector-year unit (IT sector specifically)."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Top academic achievers from five small/middle-income countries (Ghana, New Zealand, Tonga, Micronesia, Papua New Guinea) earn $35,000-$79,000 USD per year more after migrating, equivalent to a 53-600% income increase. The review reports a range across countries, not a point estimate.",
+    "construct_ids": [
+      "household_income_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "range +$35,000 to +$79,000/year; +53% to +600% income gain (across 5 countries)",
+    "method_used": "Survey-based comparison of academic high achievers who migrated vs nonmigrants (Gibson & McKenzie 2012, ref 8)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Cross-sectional comparison with selection adjustments using counterfactual home wages. Range is across 5 countries; no point estimate reported in review \u2014 effect_size_value left null to avoid hallucinated precision.",
+    "covariates_controlled": [
+      "country",
+      "academic_rank",
+      "field"
+    ],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Academic top achievers from 5 countries (Ghana, NZ, Tonga, Micronesia, Papua New Guinea)."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A one-standard-deviation increase in the post-2008-recession emigration rate of young, skilled Italians reduced new firm creation by 4.8%.",
+    "construct_ids": [
+      "high_skilled_emigration_rate",
+      "firm_creation_rate"
+    ],
+    "direction": "negative",
+    "effect_size": "-4.8% new firm creation per 1 SD increase in young skilled emigration",
+    "method_used": "Shift-share IV exploiting post-2008 recession emigration shocks (Anelli et al. 2023 / ref 18)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": -0.048,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "Shift-share IV with historical emigration shares \u00d7 post-2008 emigration shocks; controls for local economic conditions",
+    "covariates_controlled": [
+      "region_fixed_effects",
+      "year_fixed_effects",
+      "local_unemployment",
+      "industry_mix"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Italy, post-2008 recession; unit is local labor market \u00d7 year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Following EU enlargement (2004/2007), tertiary-educated emigration from Eastern European new-EU countries raised home-market labor costs by 7%. (From the origin-welfare perspective this is a cost-side adjustment, not a welfare gain.)",
+    "construct_ids": [
+      "high_skilled_emigration_rate",
+      "labor_productivity_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "+7% labor costs in origin countries",
+    "method_used": "Staggered DID across origin-country \u00d7 industry timing of EU labor-market access (Elsner et al. / ref 41)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.07,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "Staggered DID across countries-of-origin \u00d7 industries \u00d7 time of EU labor-market access",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "industry_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "Eastern European EU accession countries (post-2004); tertiary-educated emigrants only; short-run effects; unit is country \u00d7 industry \u00d7 year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Following EU enlargement, productivity in the home markets of Eastern European new-EU countries fell by 6% as tertiary-educated workers emigrated.",
+    "construct_ids": [
+      "high_skilled_emigration_rate",
+      "labor_productivity_origin"
+    ],
+    "direction": "negative",
+    "effect_size": "-6% productivity in origin countries",
+    "method_used": "Staggered DID across origin-country \u00d7 industry timing of EU labor-market access (Elsner et al. / ref 41)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": -0.06,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "Staggered DID across countries-of-origin \u00d7 industries \u00d7 time of EU labor-market access",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "industry_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "Eastern European EU accession countries; effects dissipate over time as firms adjust; unit is country \u00d7 industry \u00d7 year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A 10% increase in a country's high-skilled migrant ethnic network in the US (driven by 1990 US Immigration Act variation) raised manufacturing output in the sending country by 3% (elasticity ~0.30).",
+    "construct_ids": [
+      "diaspora_network_size",
+      "labor_productivity_origin",
+      "bilateral_trade_volume"
+    ],
+    "direction": "positive",
+    "effect_size": "elasticity 0.30 (manufacturing output w.r.t. ethnic network size)",
+    "method_used": "DID exploiting 1990 US immigration reform variation across origin countries (Hovhannisyan & Keller / ref 37)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.3,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "DID with country-level treatment from 1990 US Immigration Act changes for scientists/engineers; reported as elasticity, not standardized beta \u2014 effect_size_type left null.",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "Origin countries differentially affected by 1990 US scientist/engineer reform."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A 1% increase in emigration from European countries (driven by EU mobility-law changes) increased patent applications in those origin countries by 0.64% over the subsequent two years (elasticity 0.64).",
+    "construct_ids": [
+      "high_skilled_emigration_rate",
+      "patent_output_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "elasticity 0.64 (patents w.r.t. emigration), 2-year lag",
+    "method_used": "Quasi-experimental analysis exploiting European mobility-law changes (Prato 2024 / ref 46)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.64,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Distributed-lag panel regression with policy-change instrument; reported as elasticity.",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "year_fixed_effects",
+      "lagged_outcomes"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "European source countries with EU mobility-law variation."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Returning Fulbright Fellows are cited 90% more in their home countries than a matched control group of nonmigrant scholars.",
+    "construct_ids": [
+      "return_migration",
+      "scientific_collaboration_intensity",
+      "patent_output_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "+90% home-country citations vs control",
+    "method_used": "Matched comparison of Fulbright recipients vs comparable nonrecipients (Kahn & MacGarvie 2016 / ref 33)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.9,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Matched-comparison citation regression; effect is a percent difference vs control.",
+    "covariates_controlled": [
+      "field",
+      "career_stage",
+      "home_country"
+    ],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Fulbright Fellows required to return to home country."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Return migration of a US-trained African scientist increases the publication output of their nonmigrant scientist colleagues at home by 12% through improved knowledge access and networks.",
+    "construct_ids": [
+      "return_migration",
+      "scientific_collaboration_intensity"
+    ],
+    "direction": "positive",
+    "effect_size": "+12% colleague publication output per returning scientist",
+    "method_used": "Quasi-experimental scholar-level analysis (Mohnen / ref 48)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.12,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Scholar fixed-effects panel with returnee-arrival treatment; reported as percent change.",
+    "covariates_controlled": [
+      "scholar_fixed_effects",
+      "year_fixed_effects",
+      "field"
+    ],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "African nonmigrant scientists working alongside US-trained returnees."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Internationally mobile Chinese scholars had 7.3% more international collaborators than their nonmobile counterparts.",
+    "construct_ids": [
+      "scientific_collaboration_intensity",
+      "return_migration"
+    ],
+    "direction": "positive",
+    "effect_size": "+7.3% international collaborators",
+    "method_used": "DID comparing mobile vs nonmobile Chinese scholars (ref 54)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.073,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "DID with scholar fixed effects and mobility treatment; effect is a percent difference.",
+    "covariates_controlled": [
+      "scholar_fixed_effects",
+      "year_fixed_effects",
+      "field"
+    ],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Chinese academic scholars; bibliometric coverage."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Cross-border collaborations among researchers in new-EU countries fell after EU enlargement, as researchers with international linkages departed for other EU countries (qualitative DID, magnitude not numerically reported in review).",
+    "construct_ids": [
+      "scientific_collaboration_intensity",
+      "high_skilled_emigration_rate"
+    ],
+    "direction": "negative",
+    "effect_size": "qualitative decline (negative DID estimate)",
+    "method_used": "DID across new-EU vs comparison researchers (ref 55)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Researcher panel DID around EU enlargement",
+    "covariates_controlled": [
+      "researcher_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Researchers in new-EU accession countries."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Chinese provincial talent-return programs increased the valuation and productivity of resident firms whose corporate boards added returnee directors (staggered rollout DID; qualitative magnitudes in review).",
+    "construct_ids": [
+      "return_migration",
+      "labor_productivity_origin",
+      "firm_creation_rate"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative increase in firm valuation and productivity",
+    "method_used": "Staggered DID exploiting timing of provincial return-migration incentive programs (ref 43)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Staggered DID at firm level with provincial return-program treatment",
+    "covariates_controlled": [
+      "firm_fixed_effects",
+      "province_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "firm-quarter",
+    "scope_conditions": "Chinese listed firms in provinces with return-migration incentive rollouts."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Indian Fortune 500 employees randomly assigned (by HR rotation uncorrelated with their characteristics) to managers with US return-migrant experience filed more US patents than peers under non-returnee managers.",
+    "construct_ids": [
+      "return_migration",
+      "patent_output_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative positive effect on patent filings",
+    "method_used": "Quasi-random HR assignment of employees to returnee vs non-returnee managers (Choudhury 2016 / ref 45)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "OLS with HR-rotation as as-if-random assignment",
+    "covariates_controlled": [
+      "employee_baseline_characteristics"
+    ],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Large Fortune 500 employer in India; specific patent-relevant business units."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A randomized intervention to integrate Cape Verdean immigrants in Portugal had spillover effects on their closest contacts in Cape Verde, increasing support for gender equity in household decision-making by 4-6 percentage points.",
+    "construct_ids": [
+      "gender_norms_liberalization"
+    ],
+    "direction": "positive",
+    "effect_size": "+4 to +6 pp support for gender equity",
+    "method_used": "Randomized integration-intervention RCT with measured spillovers to nonmigrant contacts (ref 64)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Randomized RCT with intent-to-treat estimates on nonmigrant contacts; reported as a 4-6 pp range across outcome variants \u2014 value left null to avoid hallucinated precision.",
+    "covariates_controlled": [],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Cape Verdean migrants in Portugal and their closest home-country contacts."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "The same Cape Verde RCT increased electoral participation among migrants' closest home-country contacts by 12 percentage points relative to contacts of untreated migrants.",
+    "construct_ids": [
+      "political_accountability"
+    ],
+    "direction": "positive",
+    "effect_size": "+12 pp electoral participation",
+    "method_used": "Randomized integration-intervention RCT with measured spillovers (ref 64)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.12,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Randomized RCT with ITT estimates on nonmigrant contacts; effect is a percentage-point change.",
+    "covariates_controlled": [],
+    "unit_of_analysis": "individual",
+    "scope_conditions": "Cape Verdean migrants in Portugal and their closest home-country contacts."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Bangladeshi visa-lottery winners (won the right to work in Malaysia) had spouses 148% more likely to be identified as the household head than spouses of unsuccessful entrants.",
+    "construct_ids": [
+      "gender_norms_liberalization"
+    ],
+    "direction": "positive",
+    "effect_size": "+148% likelihood female household head",
+    "method_used": "Random-assignment visa lottery (Mobarak et al. / ref 65)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 1.48,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "ITT regression on lottery indicator with no controls (random assignment); effect is a relative-risk-style percent change.",
+    "covariates_controlled": [],
+    "unit_of_analysis": "household",
+    "scope_conditions": "Bangladeshi households entering lottery for Malaysian work visas."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Bangladeshi visa-lottery winners' households showed a 75% increase in females holding exclusive household decision-making authority, vs unsuccessful-entrant households.",
+    "construct_ids": [
+      "gender_norms_liberalization"
+    ],
+    "direction": "positive",
+    "effect_size": "+75% exclusive female decision-making authority",
+    "method_used": "Random-assignment visa lottery (Mobarak et al. / ref 65)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.75,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "ITT regression on lottery indicator (random assignment); effect is a relative-risk-style percent change.",
+    "covariates_controlled": [],
+    "unit_of_analysis": "household",
+    "scope_conditions": "Bangladeshi households entering lottery for Malaysian work visas."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Eliminating Filipina women's ability to work as entertainers in Japan reduced mean household income by 0.5% in Filipino provinces (moving from 25th to 75th percentile in pre-policy province dependence).",
+    "construct_ids": [
+      "migration_visa_policy_shock",
+      "household_income_origin"
+    ],
+    "direction": "negative",
+    "effect_size": "-0.5% household income (25th\u219275th percentile dependence)",
+    "method_used": "DID across Filipino provinces with differential pre-policy entertainer-employment dependence (ref 83)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": -0.005,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "DID with province \u00d7 year fixed effects, treatment intensity = pre-policy entertainer-employment dependence",
+    "covariates_controlled": [
+      "province_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Philippines, post-2004 Japan entertainer-visa restrictions; unit is province-year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Eliminating Filipina entertainer migration to Japan raised the rate of child labor by 2.8 percentage points (25th\u219275th percentile dependence).",
+    "construct_ids": [
+      "migration_visa_policy_shock",
+      "child_labor_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "+2.8 pp child labor rate (25th\u219275th percentile dependence)",
+    "method_used": "DID across Filipino provinces with differential pre-policy entertainer-employment dependence (ref 83)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.028,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "DID with province \u00d7 year fixed effects",
+    "covariates_controlled": [
+      "province_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Philippines, post-2004 Japan entertainer-visa restrictions; unit is province-year. Direction 'positive' refers to child_labor_origin (i.e., emigration loss increases child labor)."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A one-standard-deviation positive remittance shock (driven by exchange-rate movements in migrant destinations) increased Philippine origin-province income per capita by 1,349 PHP (real 2010 pesos) and expenditure per capita by 1,224 PHP \u2014 each 0.12 SD increases.",
+    "construct_ids": [
+      "remittances_inflow",
+      "household_income_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "+1,349 PHP income/capita (~+0.12 SD); +1,224 PHP expenditure/capita (~+0.12 SD)",
+    "method_used": "Shift-share IV using exchange-rate shocks at migrant destinations (Yang 2008 / ref 30)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 1349,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "Shift-share IV with province-share \u00d7 destination-exchange-rate shock",
+    "covariates_controlled": [
+      "province_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Philippine provinces; period covered by FIES province-level data; unit is province-year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Across 53 African countries, IV-identified physician and nurse emigration rates do NOT lead to substantial reductions in domestic physician and nurse stocks (null finding).",
+    "construct_ids": [
+      "high_skilled_emigration_rate",
+      "human_capital_stock_origin"
+    ],
+    "direction": "null",
+    "effect_size": "no significant effect on home physician/nurse stocks",
+    "method_used": "Instrumental variables panel regression across 53 African countries (Bhargava et al. / ref 86)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": 53,
+    "effect_size_type": null,
+    "model_specification": "IV panel regression with destination-policy instruments for physician/nurse emigration",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "year_fixed_effects",
+      "GDP_per_capita"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "53 African countries; medical workforce only."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "The same 53-African-country IV study cannot detect any worsening of population health (infant mortality or disease prevalence) attributable to physician and nurse emigration (null finding).",
+    "construct_ids": [
+      "high_skilled_emigration_rate",
+      "infant_mortality_origin"
+    ],
+    "direction": "null",
+    "effect_size": "no significant effect on infant mortality or disease prevalence",
+    "method_used": "IV panel regression across 53 African countries (Bhargava et al. / ref 86)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": 53,
+    "effect_size_type": null,
+    "model_specification": "IV panel regression with country and year fixed effects",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "year_fixed_effects",
+      "GDP_per_capita"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "53 African countries; aggregate population-health indicators."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Mexican households' marginal propensity to spend remittance income on health care is approximately 6%.",
+    "construct_ids": [
+      "remittances_inflow",
+      "household_health_access"
+    ],
+    "direction": "positive",
+    "effect_size": "MPC = 0.06 on health care from remittance income",
+    "method_used": "Mexican household-level analysis (Ambler et al. / ref 88)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": 0.06,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Household expenditure regression with instrumented remittance income; reported as marginal propensity to consume.",
+    "covariates_controlled": [
+      "household_size",
+      "household_income",
+      "region"
+    ],
+    "unit_of_analysis": "household",
+    "scope_conditions": "Mexican migrant-sending households."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "A 1-percentage-point increase in the share of Mexican households containing a return migrant from the US led to a 13% decrease in the share of households without health-care access (SSIV using interior US enforcement variation as the instrument).",
+    "construct_ids": [
+      "return_migration",
+      "household_health_access"
+    ],
+    "direction": "positive",
+    "effect_size": "+1 pp return-migrant share \u2192 -13% households without health-care access",
+    "method_used": "Shift-share IV using cross-state variation in US interior immigration enforcement (ref 89)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": -0.13,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": "beta",
+    "model_specification": "Shift-share IV with state interior-enforcement shocks \u00d7 historical migration shares",
+    "covariates_controlled": [
+      "municipality_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Mexican municipalities; period of US interior-enforcement variation; unit is municipality-year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "The Nigerian government's random assignment of new doctors to rural communities (NYSC program) substantially reduced infant mortality and eliminated the rural-urban gap, indicating that within-country distribution of medical workers \u2014 not international emigration \u2014 is the binding constraint on rural population health.",
+    "construct_ids": [
+      "infant_mortality_origin",
+      "human_capital_stock_origin"
+    ],
+    "direction": "negative",
+    "effect_size": "rural-urban infant mortality gap eliminated",
+    "method_used": "Random assignment of doctors via NYSC program (Okeke / ref 87)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "ITT regression on random NYSC rural assignment",
+    "covariates_controlled": [],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Nigerian rural communities receiving NYSC doctor placements; unit is rural community."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Migration-induced changes in social norms around reproductive health in the Philippines led to reduced origin-community fertility and lower infant mortality in shift-share IV analysis using destination reproductive-health policy variation.",
+    "construct_ids": [
+      "fertility_rate_origin",
+      "infant_mortality_origin",
+      "gender_norms_liberalization"
+    ],
+    "direction": "negative",
+    "effect_size": "qualitative reduction in fertility and infant mortality",
+    "method_used": "Shift-share IV using destination-country reproductive-health policy liberalization (ref 67)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "SSIV with province-share \u00d7 destination-policy-shock",
+    "covariates_controlled": [
+      "province_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Philippine provinces; reproductive-health norm transmission; unit is province-year."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Sending international college students to study in high-quality democracies is associated with subsequent improvements in democratic quality in origin countries (cross-country panel association; suggestive but not causally identified).",
+    "construct_ids": [
+      "return_migration",
+      "political_accountability"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative positive association",
+    "method_used": "Cross-country panel analysis (Spilimbergo 2009 / ref 57)",
+    "confidence": "weak",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Cross-country panel regression with destination-democracy weights; suggestive non-experimental evidence.",
+    "covariates_controlled": [
+      "country_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "country-year",
+    "scope_conditions": "Cross-country; flows of students to high-quality democracies."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Low-skilled migration of Malawians to South Africa benefited origin-area education and structural development in the long run, with returnee capital financing nonfarm investments and shifting rural workers from farming to nonfarm work.",
+    "construct_ids": [
+      "return_migration",
+      "human_capital_stock_origin",
+      "household_income_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative long-run positive education and structural-change effect",
+    "method_used": "Causal panel evidence on Malawi-South Africa migration (Dinkelman & Mariotti / refs 29, 53)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Panel regressions with cohort and area fixed effects; long-run outcomes 30+ years post-mine-employment-shock",
+    "covariates_controlled": [
+      "area_fixed_effects",
+      "cohort_fixed_effects"
+    ],
+    "unit_of_analysis": "site",
+    "scope_conditions": "Malawian regions historically supplying mine labor to South Africa; long-run effects."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Migration from Mexico to the US increased birth weights and reduced infant mortality in origin households, partly due to improved medical knowledge transmitted from migrants.",
+    "construct_ids": [
+      "return_migration",
+      "birth_weight_origin",
+      "infant_mortality_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative increase in birth weights; qualitative reduction in infant mortality",
+    "method_used": "Causal analysis of Mexico-US migration and health knowledge spillovers (ref 90)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "IV / panel design exploiting migration-network variation",
+    "covariates_controlled": [
+      "municipality_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "household",
+    "scope_conditions": "Mexican origin households with US migration exposure."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Vietnamese refugee resettlement in the US created exogenous diaspora variation that increased bilateral US-Vietnam trade flows decades later \u2014 natural-experiment evidence that ethnic networks lower trade frictions.",
+    "construct_ids": [
+      "diaspora_network_size",
+      "bilateral_trade_volume"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative positive elasticity of bilateral trade w.r.t. refugee-driven diaspora",
+    "method_used": "Natural experiment using Vietnamese refugee resettlement in US counties (Parsons & Vezina / ref 38)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "OLS with county-level refugee allocation as exogenous variation in diaspora stocks",
+    "covariates_controlled": [
+      "county_characteristics",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "dyad-year",
+    "scope_conditions": "US counties \u00d7 Vietnam pair; post-resettlement decades; unit is county-year-pair."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "Japanese ethnic networks formed during WWII internment causally increased post-war trade between US counties and Japan, providing further natural-experimental evidence on the migrant-network \u2192 trade channel.",
+    "construct_ids": [
+      "diaspora_network_size",
+      "bilateral_trade_volume"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative positive trade impact of historical network size",
+    "method_used": "Natural experiment using WWII Japanese internment locations (ref 39)",
+    "confidence": "moderate",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "DID/IV with internment-camp locations as historical-network instrument",
+    "covariates_controlled": [
+      "county_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "dyad-year",
+    "scope_conditions": "US counties; post-WWII period; unit is county-year-pair."
+  },
+  {
+    "source_id": "batista_et_al_2025",
+    "domain_id": "high_skilled_migration",
+    "finding_text": "US counties with larger ancestry-based migrant networks send more foreign direct investment to migrants' origin countries (shift-share IV evidence on the diaspora\u2192FDI channel).",
+    "construct_ids": [
+      "diaspora_network_size",
+      "foreign_direct_investment_origin"
+    ],
+    "direction": "positive",
+    "effect_size": "qualitative positive elasticity of FDI w.r.t. ancestry-network size",
+    "method_used": "Shift-share IV on US-county ancestry data (Burchardi, Chaney, Hassan / ref 35)",
+    "confidence": "strong",
+    "finding_type": "empirical",
+    "evidence_type": "quantitative",
+    "state": "provisional",
+    "effect_size_value": null,
+    "effect_size_se": null,
+    "p_value": null,
+    "sample_size": null,
+    "effect_size_type": null,
+    "model_specification": "Shift-share IV using ancestry shares \u00d7 push-factor shocks",
+    "covariates_controlled": [
+      "county_fixed_effects",
+      "country_fixed_effects",
+      "year_fixed_effects"
+    ],
+    "unit_of_analysis": "dyad-year",
+    "scope_conditions": "US counties \u00d7 origin-country pair-year; ancestry-network IV variation."
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "pax_name": "batista-et-al-2025-brain-drain-gain",
+  "version": "1.0.0",
+  "exported_at": "2026-04-28T22:58:23Z",
+  "exported_by": "claude-code-manual",
+  "files": {
+    "knowledge/canonical_constructs.json": {
+      "sha256": "de385fb27f42f13d827534f6e076bb5357d30afb48de02191d43f07a8d879994",
+      "size": 5136
+    },
+    "knowledge/construct_relations.json": {
+      "sha256": "c9fef72590981bbb103734bf3b38a3d01e1c7d840963134801f262cba2d6c07a",
+      "size": 2056
+    },
+    "knowledge/construct_relationships.json": {
+      "sha256": "d2604fca14f566089551931edb0e9284de8f4cb0eeb1b5aee5a959639f63ad0d",
+      "size": 6839
+    },
+    "knowledge/constructs.json": {
+      "sha256": "ac2a76b19f9aeb0de4d36b2d894cbeeafbe52723ef1d9a30d1f689838694c279",
+      "size": 22954
+    },
+    "knowledge/domain.json": {
+      "sha256": "67b88f1a7e1c6613fbdf606c8f74871c199c0a4e02a92dbed159f2ba5b2e4b58",
+      "size": 1645
+    },
+    "knowledge/findings.json": {
+      "sha256": "c4dc7fd7fbfdbefe558b22a06f59fa1ae3f983926722750f6144a0e63eceac48",
+      "size": 41829
+    },
+    "knowledge/propositions.json": {
+      "sha256": "481cd51aec0d9e33c98b94e821fd997b0a549acc1fdea018533602ed725d1244",
+      "size": 5882
+    },
+    "knowledge/sources.json": {
+      "sha256": "5f101ecc9048e38f99e93c5954aff60c5c59cec14fdbd07794a250367437e689",
+      "size": 3098
+    },
+    "pax.yaml": {
+      "sha256": "e413f90bffded951935aed14137e00342c2c292337d49d7a29132b3177fc9e1d",
+      "size": 3384
+    },
+    "playbooks/quick_start.yaml": {
+      "sha256": "8102066d8a74772bf950c48bda7fdb7fe5450c87e086feb6a4de02367a8595c5",
+      "size": 3596
+    },
+    "playbooks/replicate_filipino_nurses_brain_gain.yaml": {
+      "sha256": "cb7e7ce8d0b06b184308332c14ae16da8692f3d093b31dd96d075e6c32c41f8e",
+      "size": 5993
+    }
+  }
+}

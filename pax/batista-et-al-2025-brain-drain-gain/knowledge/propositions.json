@@ -1,0 +1,79 @@
+[
+  {
+    "id": "prop_migration_opportunity_increases_skill_investment",
+    "proposition_text": "When a destination country opens new high-skilled migration opportunities for citizens of an origin country, prospective migrants invest more in the relevant skills than ultimately emigrate, raising the origin country's stock of that skill (narrow brain gain).",
+    "construct_from": "migration_visa_policy_shock",
+    "construct_to": "human_capital_stock_origin",
+    "direction": "positive",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Mountford (1997) brain-gain theory; option-value of migration as incentive to acquire human capital.",
+    "scope_conditions": "Conditional on (a) destination demand for the specific skill, (b) sufficiently elastic origin-country training supply, and (c) supply elasticity > emigration rate."
+  },
+  {
+    "id": "prop_remittances_fund_human_capital",
+    "proposition_text": "Remittances from migrants relax credit constraints and shift household perceived returns to education, increasing investment in schooling and skill acquisition at origin.",
+    "construct_from": "remittances_inflow",
+    "construct_to": "human_capital_stock_origin",
+    "direction": "positive",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Migration as a household income-smoothing and investment instrument; new economics of labor migration (Stark).",
+    "scope_conditions": "Effects strongest where credit constraints bind and where local education infrastructure is available; weaker if remittances are predominantly consumed or invested in real estate."
+  },
+  {
+    "id": "prop_diaspora_enables_trade_fdi",
+    "proposition_text": "A larger high-skilled diaspora abroad lowers information and trust frictions across borders, increasing bilateral FDI and trade flows back to the origin country.",
+    "construct_from": "diaspora_network_size",
+    "construct_to": "foreign_direct_investment_origin",
+    "direction": "positive",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Network economics of trade and FDI (Rauch 2001); migrant-mediated information transmission.",
+    "scope_conditions": "Effects amplified for skilled diaspora and for goods/sectors with high information frictions."
+  },
+  {
+    "id": "prop_return_migration_transfers_knowledge",
+    "proposition_text": "Return migrants bring back tacit knowledge, technical skills, and managerial practices acquired abroad that diffuse to their origin colleagues, firms, and research peers.",
+    "construct_from": "return_migration",
+    "construct_to": "patent_output_origin",
+    "direction": "positive",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Tacit knowledge transfer requires colocation; return migrants embody and diffuse frontier knowledge.",
+    "scope_conditions": "Effects depend on receiving institutions' absorptive capacity and on returnees' position (e.g., manager, board director, research lead)."
+  },
+  {
+    "id": "prop_norms_transmission_via_migration",
+    "proposition_text": "Migrants and their networks transmit destination-country social, gender, and political norms back to the origin country, shifting attitudes and behaviors of households and communities they remain connected to.",
+    "construct_from": "return_migration",
+    "construct_to": "gender_norms_liberalization",
+    "direction": "positive",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Social-remittances theory (Levitt 1998); diffusion of norms through migrant ties.",
+    "scope_conditions": "Direction of norm change tracks destination country: more liberal destinations → more liberal norm transfer (Cape Verde→Portugal, Bangladesh→Malaysia); conservative destinations transmit conservative norms (Jordanian returnees from Gulf states)."
+  },
+  {
+    "id": "prop_training_supply_moderates_brain_gain",
+    "proposition_text": "Whether a migration opportunity yields net brain gain or brain drain at origin depends critically on the elasticity of the origin country's skill-training supply: brain gain dominates when training capacity can scale fast enough to outpace emigration.",
+    "construct_from": "training_supply_elasticity",
+    "construct_to": "human_capital_stock_origin",
+    "direction": "conditional",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Net human capital effect = induced training response − emigration outflow; both endogenous to destination demand and origin training infrastructure.",
+    "scope_conditions": "Empirically validated in Philippine nursing (high private-sector responsiveness) and Indian IT (mass tertiary expansion); fails in countries with rigid public-sector training monopolies."
+  },
+  {
+    "id": "prop_skill_type_moderates_origin_effects",
+    "proposition_text": "The origin-country welfare effect of high-skilled emigration varies systematically by skill type: inventors, IT workers, and entrepreneurs generate large positive trade/FDI/innovation spillovers, while academic high achievers and humanities professionals do not.",
+    "construct_from": "high_skilled_emigration_rate",
+    "construct_to": "labor_productivity_origin",
+    "direction": "conditional",
+    "domain_id": "high_skilled_migration",
+    "source_id": "batista_et_al_2025",
+    "theoretical_basis": "Different skill categories have heterogeneous spillover-generating potential; productive externalities concentrated in technical/entrepreneurial skill categories.",
+    "scope_conditions": "Holds across reviewed studies but pooling all 'tertiary-educated' migrants masks this heterogeneity."
+  }
+]

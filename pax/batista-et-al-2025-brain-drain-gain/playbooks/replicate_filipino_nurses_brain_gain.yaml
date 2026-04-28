@@ -1,0 +1,184 @@
+id: replicate_filipino_nurses_brain_gain
+display_name: "Replicate — Filipino Nurses Brain Gain (Abarcar & Theoharides 2024)"
+description: >
+  Reproducible analysis playbook for the headline brain-gain result in Batista
+  et al. (2025): the 2000-2006 US nurse-visa expansion caused 9 new Filipino
+  nurses to be licensed for every 1 nurse who emigrated. Step-by-step DID with
+  data sources, units, and validation gates.
+estimated_runtime: "10-20 minutes"
+requires_data: true
+
+data_sources:
+  - id: cfo_emigration
+    description: "Annual Filipino nurse migrants to the US, 1990-2010"
+    provider: "Commission on Filipinos Overseas (CFO)"
+    url: "https://cfo.gov.ph/statistics-2"
+    units: "Number of nurse emigrants per year"
+    granularity: country-year
+  - id: ched_enrollment
+    description: "Postsecondary nursing program enrollment in the Philippines"
+    provider: "Philippine Commission on Higher Education (CHED)"
+    url: "https://ched.gov.ph/statistics"
+    units: "Number of enrolled nursing students per academic year"
+    granularity: country-year
+  - id: prc_licensure
+    description: "Newly licensed nurses passing the Philippine Nurse Licensure Examination"
+    provider: "Philippine Professional Regulation Commission (PRC)"
+    url: "https://www.prc.gov.ph"
+    units: "Number of new licensees per year"
+    granularity: country-year
+  - id: us_h1c_visas
+    description: "US visa caps and issuances for foreign nurses (H-1A/H-1C/EB-3 schedule A)"
+    provider: "US Department of State Bureau of Consular Affairs"
+    url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-statistics.html"
+    units: "Visas issued per fiscal year"
+    granularity: year
+  - id: psa_lfs
+    description: "Philippine Labor Force Survey — tertiary-educated employment by occupation"
+    provider: "Philippine Statistics Authority"
+    url: "https://psa.gov.ph/statistics/survey/labor-and-employment/labor-force-survey"
+    units: "Worker counts by occupation and education"
+    granularity: country-year
+
+steps:
+  - id: ingest_data
+    step: 1
+    display_name: "Ingest All Data Sources"
+    action: ingest_dataset
+    params:
+      sources:
+        - cfo_emigration
+        - ched_enrollment
+        - prc_licensure
+        - us_h1c_visas
+        - psa_lfs
+    on_failure: abort
+
+  - id: build_panel
+    step: 2
+    display_name: "Build Country-Year Panel (1990-2010)"
+    action: build_panel
+    depends_on: [ingest_data]
+    params:
+      time_range: [1990, 2010]
+      key_columns:
+        - year
+        - emigrants_to_us
+        - new_nursing_enrollment
+        - new_licensed_nurses
+        - us_visa_cap
+        - tertiary_employment
+
+  - id: data_quality_gate
+    step: 3
+    display_name: "Data Quality Gate"
+    action: data_quality_gate
+    depends_on: [build_panel]
+    params:
+      min_observations: 18
+      max_missing_pct: 0.10
+      required_columns:
+        - emigrants_to_us
+        - new_nursing_enrollment
+        - new_licensed_nurses
+        - us_visa_cap
+    on_failure: abort
+
+  - id: descriptive_plot
+    step: 4
+    display_name: "Reproduce Figure 3 — Enrollment vs Visas"
+    engine: time_series_plot
+    depends_on: [build_panel]
+    params:
+      x: year
+      y_left: emigrants_to_us
+      y_right: new_nursing_enrollment
+      annotations:
+        - 2000: "US H-1A nurse-visa expansion begins"
+        - 2006: "Visa expansion ends"
+    expected_results:
+      visual_pattern: "Enrollment closely tracks visa availability"
+
+  - id: pre_trend_check
+    step: 5
+    display_name: "Parallel Trends Pre-Test"
+    engine: pretrend_test
+    depends_on: [build_panel]
+    params:
+      outcome: new_nursing_enrollment
+      treatment_year: 2000
+      pre_period: [1990, 1999]
+      placebo_treatments: [1995, 1997]
+    expected_results:
+      placebo_effects: not_significant
+
+  - id: did_main_estimate
+    step: 6
+    display_name: "Main DID — New Licensed Nurses per Emigrant"
+    engine: difference_in_differences
+    depends_on: [pre_trend_check]
+    params:
+      outcome: new_licensed_nurses
+      treatment: us_visa_cap_expansion
+      time_var: year
+      unit_var: nursing_program_type
+      controls: [gdp_per_capita_phl, total_tertiary_enrollment]
+    expected_results:
+      treatment_effect:
+        direction: positive
+        magnitude_per_emigrant: 9.0
+        rationale: "Per Abarcar & Theoharides (2024): 9 new licensees per 1 emigrant"
+
+  - id: heterogeneity_private_vs_public
+    step: 7
+    display_name: "Heterogeneity — Private vs Public Nursing Programs"
+    engine: subgroup_did
+    depends_on: [did_main_estimate]
+    params:
+      outcome: new_nursing_enrollment
+      moderator: program_ownership_type
+      groups: [private, public]
+    expected_results:
+      private:
+        direction: positive
+        magnitude: larger
+      public:
+        direction: positive
+        magnitude: smaller
+
+  - id: net_stock_calculation
+    step: 8
+    display_name: "Net Stock Calculation (2000-2006)"
+    engine: stock_accounting
+    depends_on: [did_main_estimate]
+    params:
+      inflows: new_licensed_nurses
+      outflows: emigrants_to_us
+      window: [2000, 2006]
+    expected_results:
+      net_change_in_stock:
+        direction: positive
+        target_value: 86940
+        tolerance: 0.10
+        rationale: "Review reports +86,940 net nurses (113,775 licensed - 26,835 emigrated) over 2000-2006"
+
+  - id: robustness_battery
+    step: 9
+    display_name: "Robustness Checks"
+    engine: robustness_battery
+    depends_on: [did_main_estimate]
+    params:
+      checks:
+        - alternative_treatment_year: 2001
+        - placebo_outcome: engineering_enrollment
+        - leave_one_out_provinces: true
+        - weighted_by_pre_period_enrollment: true
+
+  - id: report
+    step: 10
+    display_name: "Replication Report"
+    engine: synthesis_report
+    depends_on: [net_stock_calculation, robustness_battery]
+    params:
+      compare_to_kb: true
+      target_finding_id: finding_filipino_nurses_brain_gain

@@ -1,0 +1,164 @@
+[
+  {
+    "construct_from": "migration_visa_policy_shock",
+    "construct_to": "skill_acquisition_response",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "mechanism": "Destination-country visa expansion raises the expected return to the destination-relevant skill, inducing prospective migrants to enroll in training programs at origin.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "skill_acquisition_response",
+    "construct_to": "human_capital_stock_origin",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "mechanism": "Not all newly trained individuals migrate; those remaining add to the origin's resident skilled workforce.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "high_skilled_emigration_rate",
+    "construct_to": "human_capital_stock_origin",
+    "relationship_type": "causal",
+    "direction": "negative",
+    "strength": "moderate",
+    "mechanism": "Direct outflow of skilled workers reduces the resident skilled population (the brain drain channel). Often offset by skill_acquisition_response in the same study.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "training_supply_elasticity",
+    "construct_to": "skill_acquisition_response",
+    "relationship_type": "moderating",
+    "direction": "positive",
+    "strength": "strong",
+    "mechanism": "Training-supply elasticity caps how fast the skill_acquisition_response can scale; when private and flexible (Philippines, India), the response can dominate emigration outflows.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "remittances_inflow",
+    "construct_to": "household_income_origin",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "mechanism": "Remittances directly augment household disposable income and consumption.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "remittances_inflow",
+    "construct_to": "human_capital_stock_origin",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Remittances relax credit constraints on schooling expenditures and shift household perceived returns to education.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "remittances_inflow",
+    "construct_to": "household_health_access",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Households allocate ~6% MPC of remittance income to health-care expenditures (Mexico evidence).",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "diaspora_network_size",
+    "construct_to": "foreign_direct_investment_origin",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Diaspora reduces information/trust frictions; co-ethnic networks channel investment to origin.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "diaspora_network_size",
+    "construct_to": "bilateral_trade_volume",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Migrants connect exporters and importers across borders; ethnic networks enforce contracts and broker deals.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "diaspora_network_size",
+    "construct_to": "patent_output_origin",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Migrant networks transmit ideas and codified knowledge from frontier destinations back to origin inventors.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "return_migration",
+    "construct_to": "scientific_collaboration_intensity",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "mechanism": "Returnees bring foreign collaboration networks, raising co-authorship and citation impact for nonmigrant peers.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "return_migration",
+    "construct_to": "labor_productivity_origin",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Return migrants improve management practices, governance, and technology adoption in firms they join.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "return_migration",
+    "construct_to": "gender_norms_liberalization",
+    "relationship_type": "causal",
+    "direction": "conditional",
+    "strength": "moderate",
+    "mechanism": "Returnees transmit destination-country gender norms; liberal destinations transmit liberal norms, conservative destinations transmit conservative norms.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "return_migration",
+    "construct_to": "political_accountability",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Returnees from democracies model and transmit democratic norms; diaspora resources support accountability demand.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "high_skilled_emigration_rate",
+    "construct_to": "firm_creation_rate",
+    "relationship_type": "causal",
+    "direction": "negative",
+    "strength": "moderate",
+    "mechanism": "Skilled outflows during recessions remove potential entrepreneurs and reduce new firm creation in the short run.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "high_skilled_emigration_rate",
+    "construct_to": "labor_productivity_origin",
+    "relationship_type": "causal",
+    "direction": "conditional",
+    "strength": "moderate",
+    "mechanism": "Short run: outflows raise labor costs and reduce productivity (EU enlargement evidence). Long run: firms adjust via capital substitution and technology adoption.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "high_skilled_emigration_rate",
+    "construct_to": "infant_mortality_origin",
+    "relationship_type": "causal",
+    "direction": "null",
+    "strength": "weak",
+    "mechanism": "53-African-country IV evidence shows physician/nurse emigration does NOT increase infant mortality on net; within-country medical-worker distribution is the binding constraint.",
+    "source_id": "batista_et_al_2025"
+  },
+  {
+    "construct_from": "gender_norms_liberalization",
+    "construct_to": "fertility_rate_origin",
+    "relationship_type": "causal",
+    "direction": "negative",
+    "strength": "moderate",
+    "mechanism": "Liberalized gender norms (delayed marriage, female autonomy) reduce fertility at origin.",
+    "source_id": "batista_et_al_2025"
+  }
+]
