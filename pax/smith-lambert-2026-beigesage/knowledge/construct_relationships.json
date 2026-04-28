@@ -1,0 +1,65 @@
+[
+  {
+    "construct_from": "fine_tuning_treatment",
+    "construct_to": "sentiment_classification_accuracy",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "strong",
+    "mechanism": "Domain-specific further pre-training on the Beige Book corpus and supervised fine-tuning on 800 human-labelled chunks produces a representation and decision boundary tuned to the target task, raising accuracy above zero-shot LLM performance.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "construct_from": "fine_tuning_treatment",
+    "construct_to": "mixed_sentiment_overprediction",
+    "relationship_type": "causal",
+    "direction": "negative",
+    "strength": "strong",
+    "mechanism": "Fine-tuning on labelled three-class data calibrates the predicted class distribution to the human label distribution, eliminating the hedging bias of zero-shot prompting that pushes ambiguous passages toward the mixed class.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "construct_from": "model_architecture_type",
+    "construct_to": "sentiment_classification_f1",
+    "relationship_type": "correlational",
+    "direction": "conditional",
+    "strength": "moderate",
+    "mechanism": "Architecture family alone (lexical vs. pre-trained LLM vs. fine-tuned BERT) is associated with F1 ranges, but within the pre-trained LLM family there is large variance unrelated to architecture (e.g., Llama 8B > GPT-4o on this task), implying training data and prompt sensitivity matter more than architecture per se.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "construct_from": "beige_book_sentiment",
+    "construct_to": "gdp_growth_rate",
+    "relationship_type": "correlational",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Beige Book narratives aggregate qualitative reports from business contacts across 12 Federal Reserve districts; positive sentiment co-occurs with stronger contemporaneous real-economy activity. The signal carries forward 2-3 Beige-Book periods because anecdotal turning points often lead published macro statistics.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "construct_from": "beige_book_sentiment",
+    "construct_to": "unemployment_rate",
+    "relationship_type": "correlational",
+    "direction": "negative",
+    "strength": "moderate",
+    "mechanism": "Negative Beige Book sentiment is generated primarily by reports of weak hiring, layoffs, and slack labour markets, which align mechanically with rising unemployment.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "construct_from": "beige_book_sentiment",
+    "construct_to": "consumer_price_index",
+    "relationship_type": "correlational",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Strong-demand environments produce both optimistic Beige Book commentary and upward price pressure; the positive correlation reflects this co-movement rather than sentiment causing inflation.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "construct_from": "fine_tuning_treatment",
+    "construct_to": "model_execution_speed",
+    "relationship_type": "compositional",
+    "direction": "conditional",
+    "strength": "moderate",
+    "mechanism": "Fine-tuning shifts compute cost from inference to a one-time training phase. BeigeSage required ~39 minutes of further pre-training and ~5 hours 14 minutes of fine-tuning, but then classified 200 chunks in 1 minute 35 seconds, comparable to GPT-4o (remote) and faster than locally-run Llama (~9 min) and Gemma (~16 min).",
+    "source_id": "smith_lambert_2026"
+  }
+]

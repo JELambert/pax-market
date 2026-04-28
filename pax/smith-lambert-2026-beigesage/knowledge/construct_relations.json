@@ -1,0 +1,16 @@
+[
+  {
+    "from_id": "concept:classifier_performance",
+    "to_id": "concept:economic_text_sentiment",
+    "relation_type": "refines",
+    "justification": "Classifier performance for economic text sentiment is a domain-specific refinement of the general concept of multi-class classifier performance.",
+    "source_id": "smith_lambert_2026"
+  },
+  {
+    "from_id": "concept:domain_adaptation_treatment",
+    "to_id": "concept:classifier_performance",
+    "relation_type": "subsumes",
+    "justification": "Domain adaptation is a class of treatments hypothesized to causally improve classifier performance on the target domain; it subsumes (encompasses) specific operationalizations such as MLM continued pre-training, supervised fine-tuning, or both.",
+    "source_id": "smith_lambert_2026"
+  }
+]

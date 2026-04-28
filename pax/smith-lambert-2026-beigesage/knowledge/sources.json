@@ -1,0 +1,20 @@
+[
+  {
+    "id": "smith_lambert_2026",
+    "source_type": "journal_article",
+    "title": "BeigeSage: sentiment classification in economic texts utilizing LLMs and fine-tuned BERT models",
+    "authors": "Smith, Charlie; Lambert, Joshua",
+    "year": 2026,
+    "doi": "10.1080/00036846.2026.2647124",
+    "abstract": "Large language models (LLMs) possess the contextual awareness and scale of pre-training needed to perform sentiment analysis on complex economic texts with human-like accuracy and computer-like speed. This study compares the ability of five LLMs (ChatGPT, Llama, Phi, Gemma, and a fine-tuned BERT model named BeigeSage) alongside a traditional rule-based method (VADER) to classify sentiment in the Federal Reserve's Beige Book reports. Human annotators created a labelled dataset of 1000 Beige Book text chunks, and each model was evaluated using accuracy, macro F1 score, and Matthews correlation coefficient across three sentiment classes: positive, negative, and mixed. While all LLMs substantially outperformed the traditional method, BeigeSage achieved the highest overall performance, demonstrating both strong general accuracy and balance across all sentiment categories, especially for difficult passages containing mixed sentiment. Results also show that smaller open-source models like Phi and Llama can match or exceed ChatGPT's accuracy while offering faster or lower-cost deployment. These findings suggest that fine-tuning LLMs with domain-specific labelled data significantly enhances classification quality.",
+    "methodology_summary": "Comparative evaluation of six sentiment classifiers (BeigeSage fine-tuned RoBERTa, GPT-4o, Llama 3.1 8B, Phi3 3.8B, Gemma2 9B, VADER lexical) on 200 held-out human-labelled Beige Book chunks (256 tokens each). BeigeSage uses FacebookAI/roberta-large (355M params) as its base, with MLM continued pre-training on the 1970-2023 Beige Book corpus (~6.8M words), then supervised fine-tuning on 800 labelled chunks (3 epochs, batch size 4, default RoBERTa hyperparameters); both stages performed on Google Colab. Three undergraduate/principal raters scored 1000 chunks on a -1 to 1 scale, binned into negative (<-0.2), mixed (-0.2 to 0.2), positive (>0.2). Models evaluated by accuracy, macro F1, and Matthews correlation coefficient. Macroeconomic relevance assessed by Pearson correlation and autoregressive forecasting models (GDP growth via Brave-Butters-Kelley monthly estimate, unemployment, CPI) with three Beige-Book-period lags. Replication archive (data + code) available at https://osf.io/xq35t/.",
+    "sample_size": 200,
+    "population_description": "Held-out test set of 200 Beige Book 256-token chunks drawn from 1970-2023 Beige Book corpus; macro analysis on 470 Beige-Book-period observations.",
+    "study_design": "quasi_experimental",
+    "key_limitations": "Only one of six models is fine-tuned, conflating model family with fine-tuning treatment. Single-rater scoring per chunk (Kruskal-Wallis indicated rater differences attributable to time-period assignment). Open-source LLMs run at smaller parameter counts (3.8B-9B) versus undisclosed but presumed much larger GPT-4o. Speed comparison conflates local vs. remote-server deployment. Three sentiment classes only; no intensity gradient retained.",
+    "replication_status": "public_replication_package",
+    "data_availability": "public — data and code at https://osf.io/xq35t/",
+    "journal": "Applied Economics",
+    "url": "https://doi.org/10.1080/00036846.2026.2647124"
+  }
+]

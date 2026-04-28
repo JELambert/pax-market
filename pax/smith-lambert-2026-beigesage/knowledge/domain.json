@@ -1,0 +1,14 @@
+{
+  "id": "beige_book_sentiment_classification",
+  "display_name": "Beige Book Sentiment Classification",
+  "description": "Application of large language models, fine-tuned BERT-family models, and lexical methods to classify sentiment (positive, negative, mixed) in the Federal Reserve's Beige Book reports, and evaluation of the resulting sentiment series against macroeconomic indicators.",
+  "temporal_scope": "1970-2023 (Beige Book corpus); evaluation 2007-2023 sample",
+  "population": "Federal Reserve Beige Book report chunks (256-token segments)",
+  "level_of_analysis": "macro",
+  "research_questions": [
+    "How do open-source vs. closed-source LLMs compare on economic-text sentiment classification?",
+    "Does domain-specific fine-tuning of a BERT-family model outperform general-purpose pre-trained LLMs on Beige Book sentiment?",
+    "How do LLMs handle mixed-sentiment passages typical of central-bank communication?",
+    "Does Beige Book sentiment capture meaningful signal about macroeconomic outcomes (GDP, unemployment, CPI)?"
+  ]
+}

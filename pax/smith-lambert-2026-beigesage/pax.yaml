@@ -1,0 +1,64 @@
+name: smith-lambert-2026-beigesage
+version: "1.0.0"
+description: >
+  Comparative evaluation of LLMs (GPT-4o, Llama 3.1, Phi3, Gemma2), a fine-tuned
+  RoBERTa model (BeigeSage), and a lexical baseline (VADER) for sentiment
+  classification of Federal Reserve Beige Book reports across positive, negative,
+  and mixed classes. Demonstrates that domain-specific fine-tuning yields the
+  best classification performance and that BeigeSage sentiment correlates with
+  macroeconomic indicators (GDP growth, unemployment, CPI).
+schema_version: "3.0"
+pax_type: paper
+author: "Smith, Charlie; Lambert, Joshua"
+created: "2026-04-28"
+license: CC-BY-4.0
+tags:
+  - sentiment-analysis
+  - llm
+  - bert
+  - roberta
+  - beige-book
+  - federal-reserve
+  - text-classification
+  - economic-forecasting
+  - fine-tuning
+provides:
+  constructs:
+    - beige_book_sentiment
+    - sentiment_classification_accuracy
+    - sentiment_classification_f1
+    - sentiment_classification_mcc
+    - model_execution_speed
+    - model_architecture_type
+    - fine_tuning_treatment
+    - gdp_growth_rate
+    - unemployment_rate
+    - consumer_price_index
+    - mixed_sentiment_overprediction
+  sources:
+    - smith_lambert_2026
+  findings:
+    - smith_lambert_2026_finding_0
+    - smith_lambert_2026_finding_1
+    - smith_lambert_2026_finding_2
+    - smith_lambert_2026_finding_3
+    - smith_lambert_2026_finding_4
+    - smith_lambert_2026_finding_5
+    - smith_lambert_2026_finding_6
+    - smith_lambert_2026_finding_7
+    - smith_lambert_2026_finding_8
+    - smith_lambert_2026_finding_9
+    - smith_lambert_2026_finding_10
+    - smith_lambert_2026_finding_11
+  propositions:
+    - fine_tuning_improves_domain_classification
+    - llms_overpredict_mixed_in_economic_text
+    - beige_book_sentiment_tracks_macro_indicators
+  canonical_constructs:
+    - "concept:economic_text_sentiment"
+    - "concept:classifier_performance"
+    - "concept:domain_adaptation_treatment"
+  playbooks:
+    - quick_start
+    - reproduce_beigesage
+  engines: []

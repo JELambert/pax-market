@@ -1,0 +1,230 @@
+id: quick_start
+display_name: "Quick Start — Evaluate Sentiment Classifiers on Beige Books"
+description: >
+  Reproduce the headline comparison from Smith & Lambert (2026): score the
+  200-chunk human-labelled test set with each model, compute accuracy / macro F1
+  / MCC, then check correlations against GDP growth, unemployment, and CPI.
+  Assumes you have already trained or downloaded BeigeSage and have API access
+  / local weights for the comparison LLMs. For end-to-end training-from-scratch,
+  see the `reproduce_beigesage` playbook.
+
+estimated_runtime: "5-30 minutes (depending on hardware and remote API latency)"
+requires_data: true
+
+prerequisites:
+  data:
+    - source: "https://osf.io/xq35t/"
+      description: "Authors' replication archive: labelled Beige Book chunks (1000), Beige Book corpus (1970-2023), trained BeigeSage weights, and analysis scripts."
+      action: "Download the labelled chunks CSV and the 200-chunk test split."
+  models:
+    - name: "BeigeSage"
+      source: "OSF replication archive (or train via reproduce_beigesage playbook)"
+      base: "FacebookAI/roberta-large (HuggingFace, 355M params)"
+    - name: "GPT-4o"
+      source: "OpenAI API"
+      env_vars: ["OPENAI_API_KEY"]
+      model_id: "gpt-4o"
+    - name: "Llama 3.1 8B"
+      source: "HuggingFace meta-llama/Llama-3.1-8B-Instruct, run locally (e.g., via Ollama: `ollama pull llama3.1:8b`)"
+    - name: "Phi3 3.8B"
+      source: "HuggingFace microsoft/Phi-3-mini-4k-instruct, run locally (e.g., `ollama pull phi3`)"
+    - name: "Gemma2 9B"
+      source: "HuggingFace google/gemma-2-9b-it, run locally (e.g., `ollama pull gemma2:9b`)"
+    - name: "VADER"
+      source: "Python package: `pip install vaderSentiment`"
+  python_packages:
+    - transformers
+    - torch
+    - scikit-learn
+    - vaderSentiment
+    - openai
+    - ollama
+    - pandas
+    - numpy
+    - statsmodels
+
+zero_shot_prompt: |
+  Label the overall economic sentiment in the following Beige Book text as
+  negative, mixed, or positive. Return the label as a JSON value with a key
+  of "label" and nothing else.
+
+  TEXT:
+  {chunk}
+
+steps:
+  - id: fetch_test_set
+    step: 1
+    display_name: "Fetch labelled test set from OSF"
+    action: download
+    params:
+      url: "https://osf.io/xq35t/"
+      target: "./data/beige_book_test_200.csv"
+      expected_columns: ["chunk_id", "text", "human_label", "human_score"]
+
+  - id: data_quality_check
+    step: 2
+    display_name: "Data Quality Gate"
+    action: data_quality_gate
+    depends_on: [fetch_test_set]
+    params:
+      constructs:
+        - beige_book_sentiment
+      min_observations: 200
+      max_missing_pct: 0.0
+      class_distribution_check:
+        positive: 0.39
+        mixed: 0.415
+        negative: 0.195
+        tolerance: 0.05
+    on_failure: abort
+
+  - id: score_beigesage
+    step: 3
+    display_name: "Score test set with BeigeSage"
+    action: classify
+    depends_on: [data_quality_check]
+    params:
+      model: beigesage
+      framework: huggingface_transformers
+      max_length: 256
+      batch_size: 16
+    output: beigesage_predictions.csv
+
+  - id: score_llms_zero_shot
+    step: 4
+    display_name: "Score test set with zero-shot LLMs"
+    action: classify_zero_shot
+    depends_on: [data_quality_check]
+    params:
+      models: [gpt-4o, llama-3.1-8b, phi3-3.8b, gemma2-9b]
+      prompt_template_ref: zero_shot_prompt
+      output_format: json
+      parse_key: label
+      retry_on_invalid_json: 3
+    output: llm_predictions.csv
+
+  - id: score_vader
+    step: 5
+    display_name: "Score test set with VADER baseline"
+    action: classify_lexical
+    depends_on: [data_quality_check]
+    params:
+      method: vader_compound
+      bin_thresholds:
+        negative_below: -0.2
+        positive_above: 0.2
+    output: vader_predictions.csv
+
+  - id: classification_metrics
+    step: 6
+    display_name: "Per-Model Classification Metrics"
+    engine: classification_metrics
+    depends_on: [score_beigesage, score_llms_zero_shot, score_vader]
+    params:
+      gold: human_label
+      predictions:
+        - beigesage_prediction
+        - gpt4o_prediction
+        - llama_prediction
+        - phi3_prediction
+        - gemma2_prediction
+        - vader_prediction
+      metrics: [accuracy, macro_f1, mcc, per_class_precision, per_class_recall]
+    expected_results:
+      beigesage:
+        accuracy: 0.71
+        macro_f1: 0.71
+        mcc: 0.55
+      llama_3_1_8b:
+        accuracy: 0.68
+        macro_f1: 0.67
+        mcc: 0.52
+      gpt_4o:
+        accuracy: 0.63
+        macro_f1: 0.62
+        mcc: 0.48
+      phi3:
+        accuracy: 0.62
+        macro_f1: 0.60
+        mcc: 0.45
+      gemma2:
+        accuracy: 0.59
+        macro_f1: 0.55
+        mcc: 0.41
+      vader:
+        accuracy: 0.49
+        macro_f1: 0.43
+        mcc: 0.27
+
+  - id: class_distribution_comparison
+    step: 7
+    display_name: "Predicted vs. Human Class Distribution"
+    engine: confusion_distribution
+    depends_on: [classification_metrics]
+    params:
+      gold: human_label
+      predictions:
+        - beigesage_prediction
+        - gpt4o_prediction
+        - llama_prediction
+        - phi3_prediction
+        - gemma2_prediction
+        - vader_prediction
+    expected_results:
+      mixed_share_human: 0.415
+      mixed_share_beigesage: 0.405
+      mixed_share_non_finetuned_range: [0.655, 0.785]
+
+  - id: score_full_corpus
+    step: 8
+    display_name: "Score full 1970-2023 Beige Book corpus with BeigeSage"
+    action: classify_corpus
+    depends_on: [classification_metrics]
+    params:
+      model: beigesage
+      input: "./data/beige_books_1970_2023_chunks.csv"
+      output: "./data/beigesage_full_corpus.csv"
+      aggregate_to_period: true
+      score_normalization: "categorical_to_signed_continuous"
+
+  - id: macro_correlations
+    step: 9
+    display_name: "BeigeSage Sentiment vs. Macro Indicators"
+    engine: correlation_matrix
+    depends_on: [score_full_corpus]
+    params:
+      variables:
+        - beige_book_sentiment
+        - gdp_growth_rate
+        - unemployment_rate
+        - consumer_price_index
+      data_sources:
+        gdp_growth_rate: "Brave-Butters-Kelley monthly real GDP growth (Chicago Fed)"
+        unemployment_rate: "FRED UNRATE"
+        consumer_price_index: "FRED CPIAUCSL"
+    compare_to_kb: true
+    expected_results:
+      beige_book_sentiment↔gdp_growth_rate: {direction: positive, r: 0.29, p: 0.001, n: 470}
+      beige_book_sentiment↔unemployment_rate: {direction: negative, r: -0.24, p: 0.001, n: 470}
+      beige_book_sentiment↔consumer_price_index: {direction: positive, r: 0.42, p: 0.001, n: 470}
+
+  - id: ar_forecast_increment
+    step: 10
+    display_name: "AR(3) + Sentiment Incremental Forecast"
+    engine: autoregression_with_predictor
+    depends_on: [macro_correlations]
+    params:
+      dependents: [gdp_growth_rate, unemployment_rate, consumer_price_index]
+      lags: 3
+      predictor: beige_book_sentiment
+      horizons: [1, 2, 3]
+    expected_results:
+      gdp_growth_rate:
+        baseline_r2_h1: 0.451
+        delta_r2_h1: 0.003
+        delta_r2_h2: 0.022
+        delta_r2_h3: 0.032
+      unemployment_rate:
+        delta_r2_h3: 0.035
+      consumer_price_index:
+        delta_r2_h3: 0.003

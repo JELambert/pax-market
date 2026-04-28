@@ -1,0 +1,189 @@
+[
+  {
+    "id": "beige_book_sentiment",
+    "display_name": "Beige Book Sentiment (Three-Class)",
+    "construct_type": "outcome",
+    "definition": "Categorical sentiment label assigned to a 256-token chunk of a Federal Reserve Beige Book report, taking values in {negative, mixed, positive}. Derived from human annotations on a -1 to 1 scale, with [-1, -0.2) = negative, [-0.2, 0.2] = mixed, (0.2, 1] = positive.",
+    "canonical_id": "concept:economic_text_sentiment",
+    "operationalization_id": "op:economic_text_sentiment.beige_book_3class_smith_lambert_2026",
+    "coding_rule": "Human raters assign continuous score in [-1, 1] in 0.1 increments to a 256-token Beige Book chunk; bin to {negative if <-0.2, mixed if [-0.2, 0.2], positive if >0.2}.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "formal_definition": "S ∈ {negative, mixed, positive} where S = negative if score < -0.2, mixed if -0.2 <= score <= 0.2, positive if score > 0.2.",
+    "operational_definition": "Human raters scored each chunk on a -1 to 1 scale in 0.1 increments (matching VADER scale); scores were then binned into three classes. Test set distribution: 39% positive, 41.5% mixed, 19.5% negative.",
+    "measurement_level": "nominal",
+    "aliases": [
+      {"alias": "BB sentiment", "alias_type": "abbreviation"},
+      {"alias": "Beige Book tone", "alias_type": "synonym"}
+    ],
+    "measures": [
+      "Human-labelled three-class sentiment (gold standard)",
+      "BeigeSage model prediction",
+      "GPT-4o zero-shot prediction",
+      "Llama 3.1 8B zero-shot prediction",
+      "Phi3 3.8B zero-shot prediction",
+      "Gemma2 9B zero-shot prediction",
+      "VADER lexical compound score binned"
+    ]
+  },
+  {
+    "id": "sentiment_classification_accuracy",
+    "display_name": "Classification Accuracy",
+    "construct_type": "quantifiable",
+    "definition": "Proportion of test-set observations whose predicted sentiment label matches the human-labelled ground truth.",
+    "canonical_id": "concept:classifier_performance",
+    "operationalization_id": "op:classifier_performance.accuracy_3class",
+    "coding_rule": "Compute (correct_predictions / total_predictions) on the 200-chunk held-out test set across all three sentiment classes simultaneously.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "formal_definition": "accuracy = (TP + TN) / N, computed across all three classes simultaneously.",
+    "operational_definition": "Computed on 200-chunk held-out test set against human gold-standard labels.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "acc", "alias_type": "abbreviation"}
+    ],
+    "measures": ["Per-model accuracy on 200-chunk test set"]
+  },
+  {
+    "id": "sentiment_classification_f1",
+    "display_name": "Macro F1 Score",
+    "construct_type": "quantifiable",
+    "definition": "Macro-averaged F1 score across the three sentiment classes, weighting each class equally regardless of base-rate prevalence.",
+    "canonical_id": "concept:classifier_performance",
+    "operationalization_id": "op:classifier_performance.macro_f1_3class",
+    "coding_rule": "Compute per-class F1 = 2*P*R/(P+R), then take unweighted mean across {negative, mixed, positive}.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "formal_definition": "F1_macro = (1/K) * sum_k F1_k, where F1_k = 2*precision_k*recall_k/(precision_k+recall_k) for class k in {negative, mixed, positive}.",
+    "operational_definition": "Computed via standard scikit-learn macro averaging on 200-chunk test set.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "F1", "alias_type": "abbreviation"},
+      {"alias": "macro-F1", "alias_type": "synonym"}
+    ],
+    "measures": ["Per-model macro F1 on 200-chunk test set"]
+  },
+  {
+    "id": "sentiment_classification_mcc",
+    "display_name": "Matthews Correlation Coefficient",
+    "construct_type": "quantifiable",
+    "definition": "Correlation-style classification metric incorporating all four cells of the confusion matrix; robust to class imbalance.",
+    "canonical_id": "concept:classifier_performance",
+    "operationalization_id": "op:classifier_performance.mcc_3class",
+    "coding_rule": "Compute multi-class generalization of the Matthews correlation coefficient over the 3x3 confusion matrix.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "formal_definition": "MCC ranges from -1 (total disagreement) through 0 (random) to 1 (perfect agreement). Multi-class generalization used here.",
+    "operational_definition": "Computed on 200-chunk test set against human gold-standard labels.",
+    "measurement_level": "interval",
+    "aliases": [
+      {"alias": "MCC", "alias_type": "abbreviation"}
+    ],
+    "measures": ["Per-model MCC on 200-chunk test set"]
+  },
+  {
+    "id": "model_execution_speed",
+    "display_name": "Model Execution Speed",
+    "construct_type": "quantifiable",
+    "definition": "Wall-clock time required for a model to classify the 200-chunk test set, on a Windows 11 laptop with 32 GB RAM and 3.3 GHz CPU (no GPU), or remote server in the case of GPT-4o.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "Minutes elapsed for inference over 200 chunks; pre-training and fine-tuning time are reported separately for BeigeSage.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "inference time", "alias_type": "synonym"}
+    ],
+    "measures": ["Wall-clock minutes for 200-chunk classification"]
+  },
+  {
+    "id": "model_architecture_type",
+    "display_name": "Model Architecture Type",
+    "construct_type": "concept",
+    "definition": "Categorical label distinguishing the architectural family of a sentiment classifier: lexical/dictionary-based, pre-trained transformer LLM, or fine-tuned BERT-family transformer.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "{lexical, pre_trained_llm, fine_tuned_llm}. VADER = lexical; GPT-4o, Llama 3.1, Phi3, Gemma2 = pre_trained_llm; BeigeSage = fine_tuned_llm.",
+    "measurement_level": "nominal",
+    "aliases": [
+      {"alias": "model class", "alias_type": "synonym"}
+    ],
+    "measures": ["Architecture taxonomy"]
+  },
+  {
+    "id": "fine_tuning_treatment",
+    "display_name": "Domain-Specific Fine-Tuning",
+    "construct_type": "concept",
+    "definition": "Binary indicator of whether a model received additional pre-training and supervised fine-tuning on domain-specific (Beige Book) text and labels, beyond general pre-training.",
+    "canonical_id": "concept:domain_adaptation_treatment",
+    "operationalization_id": "op:domain_adaptation_treatment.beige_book_mlm_plus_supervised",
+    "coding_rule": "1 if model received MLM continued pre-training on the 1970-2023 Beige Book corpus (~6.8M words) AND supervised fine-tuning on 800 labelled three-class chunks (3 epochs, batch=4); 0 otherwise.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "1 = further-pretrained on 1970-2023 Beige Book corpus (6.8M words) AND fine-tuned on 800 labelled Beige Book chunks (3 epochs, batch size 4). 0 = only general pre-training (zero-shot prompting).",
+    "measurement_level": "nominal",
+    "aliases": [
+      {"alias": "fine-tuning", "alias_type": "synonym"},
+      {"alias": "FT", "alias_type": "abbreviation"}
+    ],
+    "measures": ["Binary fine-tuning indicator"]
+  },
+  {
+    "id": "mixed_sentiment_overprediction",
+    "display_name": "Mixed-Class Overprediction Rate",
+    "construct_type": "quantifiable",
+    "definition": "Proportion of test-set chunks a model predicts as mixed minus the human-labelled base rate of mixed (41.5%). Positive values indicate overprediction of the mixed class.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "(predicted_mixed_count / 200) - 0.415.",
+    "measurement_level": "interval",
+    "aliases": [
+      {"alias": "mixed bias", "alias_type": "synonym"}
+    ],
+    "measures": ["Predicted mixed share minus human base rate"]
+  },
+  {
+    "id": "gdp_growth_rate",
+    "display_name": "Real GDP Growth Rate (Monthly)",
+    "construct_type": "quantifiable",
+    "definition": "Monthly estimate of the real GDP growth rate from the Brave-Butters-Kelley index, used because official GDP is published only quarterly.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "Brave-Butters-Kelley monthly real GDP growth-rate estimate (Brave & Cole 2019).",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "GDP growth", "alias_type": "synonym"},
+      {"alias": "BBK GDP", "alias_type": "abbreviation"}
+    ],
+    "measures": ["Brave-Butters-Kelley monthly real GDP growth rate"]
+  },
+  {
+    "id": "unemployment_rate",
+    "display_name": "U.S. Unemployment Rate",
+    "construct_type": "quantifiable",
+    "definition": "Standard U.S. headline unemployment rate (BLS U-3) over the Beige Book sample period, used as a macroeconomic outcome variable.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "BLS unemployment rate aligned to Beige Book release dates.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "U-3", "alias_type": "abbreviation"},
+      {"alias": "unemployment", "alias_type": "synonym"}
+    ],
+    "measures": ["BLS U-3 unemployment rate"]
+  },
+  {
+    "id": "consumer_price_index",
+    "display_name": "Consumer Price Index",
+    "construct_type": "quantifiable",
+    "definition": "U.S. Consumer Price Index measuring aggregate price-level changes; used as an inflation outcome variable.",
+    "domain_ids": ["beige_book_sentiment_classification"],
+    "source_id": "smith_lambert_2026",
+    "operational_definition": "BLS CPI aligned to Beige Book release dates.",
+    "measurement_level": "ratio",
+    "aliases": [
+      {"alias": "CPI", "alias_type": "abbreviation"},
+      {"alias": "inflation", "alias_type": "synonym"}
+    ],
+    "measures": ["BLS Consumer Price Index"]
+  }
+]

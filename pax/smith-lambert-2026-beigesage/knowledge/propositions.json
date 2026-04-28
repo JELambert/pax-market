@@ -1,0 +1,35 @@
+[
+  {
+    "id": "fine_tuning_improves_domain_classification",
+    "proposition_text": "Domain-specific fine-tuning of a BERT-family transformer on labelled in-domain text outperforms zero-shot prompting of larger general-purpose LLMs on three-class sentiment classification of central-bank economic narratives.",
+    "construct_from": "fine_tuning_treatment",
+    "construct_to": "sentiment_classification_f1",
+    "direction": "positive",
+    "domain_id": "beige_book_sentiment_classification",
+    "source_id": "smith_lambert_2026",
+    "theoretical_basis": "Domain adaptation theory: in-domain pre-training shifts the representation distribution toward task-relevant features, and supervised fine-tuning with domain labels resolves the mapping from those features to class boundaries that zero-shot prompting only approximates from general priors.",
+    "scope_conditions": "Tested on Beige Book chunks (256 tokens). Effect should generalize to other low-resource, mixed-tone economic communications, but the specific magnitude depends on availability of high-quality human labels and the gap between general pre-training corpora and the target domain."
+  },
+  {
+    "id": "llms_overpredict_mixed_in_economic_text",
+    "proposition_text": "General-purpose pre-trained LLMs systematically over-predict the mixed/neutral sentiment class when classifying multi-topic economic narratives, because zero-shot prompting biases the model toward hedging in the presence of any conflicting cues, regardless of which signals are dominant.",
+    "construct_from": "model_architecture_type",
+    "construct_to": "mixed_sentiment_overprediction",
+    "direction": "positive",
+    "domain_id": "beige_book_sentiment_classification",
+    "source_id": "smith_lambert_2026",
+    "theoretical_basis": "RLHF-trained LLMs are tuned toward calibrated, hedged responses; in the absence of domain priors about which topics carry more weight, they default to mixed when any divergent signals appear in a passage.",
+    "scope_conditions": "Multi-topic narrative passages with co-occurring positive and negative signals. May not hold for short, single-topic texts where one sentiment dominates."
+  },
+  {
+    "id": "beige_book_sentiment_tracks_macro_indicators",
+    "proposition_text": "Sentiment extracted from Beige Book reports by a domain-fine-tuned classifier correlates with contemporaneous and short-horizon-future U.S. macroeconomic conditions (positively with GDP growth and CPI, negatively with unemployment), and contains incremental forecasting information beyond autoregressive lags of those indicators.",
+    "construct_from": "beige_book_sentiment",
+    "construct_to": "gdp_growth_rate",
+    "direction": "positive",
+    "domain_id": "beige_book_sentiment_classification",
+    "source_id": "smith_lambert_2026",
+    "theoretical_basis": "Beige Books aggregate qualitative business-contact reports across 12 Federal Reserve districts; this anecdotal signal contains real-economy information not yet reflected in published macro statistics, especially at 2-3 Beige-Book-period horizons.",
+    "scope_conditions": "U.S. economy, 1970-2023 Beige Book corpus, eight publications per year. Strongest at 2-3 period horizons for GDP; weaker for variables (CPI, unemployment) whose own AR processes already explain >87% of variance."
+  }
+]
