@@ -45,7 +45,9 @@ jobs:
         run: |
           # Delete existing 'latest' release if it exists
           gh release delete latest --yes 2>/dev/null || true
-          # Create new release
+          # Create new release. The homelab (CT 105 pax-autodeploy.timer) polls
+          # this release's `updated_at` timestamp every 5 min and rebuilds
+          # pax-market.com when it changes — no GitHub-side dispatch needed.
           gh release create latest \
             --title "Latest Registry Artifacts" \
             --notes "Auto-generated registry artifacts from commit ${{ github.sha }}" \
@@ -53,19 +55,4 @@ jobs:
             dist/constructs.json \
             dist/full-catalog.json \
             dist/pax-archives.tar
-
-      - name: Trigger website deploy
-        env:
-          PAX_WEBSITE_DISPATCH_TOKEN: ${{ secrets.PAX_WEBSITE_DISPATCH_TOKEN }}
-        run: |
-          if [ -z "$PAX_WEBSITE_DISPATCH_TOKEN" ]; then
-            echo "WARNING: PAX_WEBSITE_DISPATCH_TOKEN not set — skipping website dispatch"
-            exit 0
-          fi
-          curl -fsS -X POST \
-            -H "Authorization: token $PAX_WEBSITE_DISPATCH_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/JELambert/pax-website/dispatches \
-            -d '{"event_type":"registry-updated"}'
-          echo "Website deploy triggered."
 
