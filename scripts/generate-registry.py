@@ -374,7 +374,7 @@ def process_pack(pack_dir: Path) -> dict | None:
         "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.pax.tar.gz",
         "download_sha256": sha256,
         "download_size": archive_size,
-        "published_by": "Praxis Agent",
+        "published_by": manifest.get("published_by") or "Praxis Agent",
     }
 
 

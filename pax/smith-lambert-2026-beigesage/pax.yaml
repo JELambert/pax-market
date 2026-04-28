@@ -10,6 +10,7 @@ description: >
 schema_version: "3.0"
 pax_type: paper
 author: "Smith, Charlie; Lambert, Joshua"
+published_by: "Smith, Charlie; Lambert, Joshua"
 created: "2026-04-28"
 license: CC-BY-4.0
 tags:
