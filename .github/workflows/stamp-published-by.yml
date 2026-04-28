@@ -1,0 +1,68 @@
+name: Stamp published_by
+
+on:
+  pull_request_target:
+    branches: [main]
+    paths: ['pax/**/pax.yaml']
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  stamp:
+    runs-on: ubuntu-latest
+    # Only run on PRs from the same repo — pull_request_target on forks would
+    # let a fork edit its own manifest, but pushing back requires same-repo write.
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stamp missing published_by on changed pax.yaml files
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          # Find pax.yaml files touched in this PR
+          mapfile -t CHANGED < <(git diff --name-only "$BASE_SHA..$HEAD_SHA" -- 'pax/**/pax.yaml')
+          if [ ${#CHANGED[@]} -eq 0 ]; then
+            echo "No pax.yaml changes in this PR."
+            exit 0
+          fi
+          MODIFIED=0
+          for f in "${CHANGED[@]}"; do
+            [ -f "$f" ] || continue
+            if grep -qE '^[[:space:]]*published_by:' "$f"; then
+              echo "  $f already has published_by — skipping"
+              continue
+            fi
+            # Insert after the `author:` line if present, else after the first line
+            if grep -qE '^[[:space:]]*author:' "$f"; then
+              awk -v who="$PR_AUTHOR" '
+                {print}
+                /^[[:space:]]*author:/ && !done { print "published_by: \"" who "\""; done=1 }
+              ' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+            else
+              awk -v who="$PR_AUTHOR" '
+                NR==1 { print; print "published_by: \"" who "\""; next }
+                {print}
+              ' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+            fi
+            echo "  $f stamped published_by: $PR_AUTHOR"
+            MODIFIED=$((MODIFIED+1))
+          done
+          if [ "$MODIFIED" -eq 0 ]; then
+            echo "Nothing to stamp."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pax/
+          git commit -m "chore: auto-stamp published_by: $PR_AUTHOR"
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
