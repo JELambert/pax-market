@@ -136,6 +136,9 @@ def process_pack(pack_dir: Path) -> dict | None:
     sources = load_json(knowledge_dir / "sources.json")
     domain_data = load_json(knowledge_dir / "domain.json")
     construct_relationships = load_json(knowledge_dir / "construct_relationships.json")
+    # v3: optional canonical-construct backbone files
+    canonical_constructs = load_json(knowledge_dir / "canonical_constructs.json")
+    construct_relations = load_json(knowledge_dir / "construct_relations.json")
 
     # Construct details
     constructs_detail = []
@@ -148,6 +151,10 @@ def process_pack(pack_dir: Path) -> dict | None:
             "definition": c.get("definition", ""),
             "aliases": aliases,
             "construct_type": c.get("construct_type", ""),
+            # v3: canonical-construct backbone
+            "canonical_id": c.get("canonical_id"),
+            "operationalization_id": c.get("operationalization_id"),
+            "coding_rule": c.get("coding_rule"),
         })
 
     # Finding details
@@ -174,6 +181,10 @@ def process_pack(pack_dir: Path) -> dict | None:
             "ci_upper": f.get("ci_upper"),
             "model_specification": f.get("model_specification"),
             "covariates_controlled": f.get("covariates_controlled"),
+            # v3: scope/unit metadata for cross-PAX comparison & meta-analysis pooling
+            "unit_of_analysis": f.get("unit_of_analysis"),
+            "scope_conditions": f.get("scope_conditions"),
+            "sample_n": f.get("sample_n"),
         })
 
     # Proposition details
@@ -355,6 +366,9 @@ def process_pack(pack_dir: Path) -> dict | None:
         "sources_detail": sources_detail,
         "playbooks_detail": playbooks_detail,
         "relationships_detail": relationships_detail,
+        # v3: pass-through of canonical-construct backbone (empty list if pack lacks them)
+        "canonical_constructs": canonical_constructs,
+        "construct_relations": construct_relations,
         "quality": quality,
         "pax_schema_version": manifest.get("schema_version", "1.0"),
         "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.pax.tar.gz",
