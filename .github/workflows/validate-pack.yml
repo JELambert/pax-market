@@ -103,6 +103,67 @@ jobs:
                   except Exception:
                       pass
 
+              # Cross-reference integrity: findings must reference IDs that
+              # actually exist. Catches the JELambert/pax-market#81 class of
+              # bug (pmsc-market-for-force shipped with 5 undefined sub-domains
+              # and 3 undefined constructs, breaking praxis_install_pax).
+              if knowledge_dir.is_dir():
+                  def _safe_load(p):
+                      try:
+                          with open(p) as f:
+                              return json.load(f)
+                      except Exception:
+                          return None
+
+                  findings = _safe_load(knowledge_dir / 'findings.json') or []
+                  if not isinstance(findings, list):
+                      findings = []
+
+                  if findings:
+                      # Collect known IDs from each entity file. domain.json may
+                      # be a single object OR a list — handle both.
+                      def _ids(data, key='id'):
+                          if data is None: return set()
+                          if isinstance(data, dict): data = [data]
+                          return {x.get(key) for x in data if isinstance(x, dict) and x.get(key)}
+
+                      known_constructs = _ids(_safe_load(knowledge_dir / 'constructs.json'))
+                      known_domains    = _ids(_safe_load(knowledge_dir / 'domain.json')) | _ids(_safe_load(knowledge_dir / 'domains.json'))
+                      known_sources    = _ids(_safe_load(knowledge_dir / 'sources.json'))
+
+                      missing_constructs = set()
+                      missing_domains    = set()
+                      missing_sources    = set()
+
+                      for fnd in findings:
+                          if not isinstance(fnd, dict):
+                              continue
+                          # construct_ids may be list or comma-separated string
+                          cs = fnd.get('construct_ids', [])
+                          if isinstance(cs, str):
+                              cs = [s.strip() for s in cs.split(',') if s.strip()]
+                          for cid in cs:
+                              if cid and cid not in known_constructs:
+                                  missing_constructs.add(cid)
+                          # domain references
+                          d = fnd.get('domain_id')
+                          if d and d not in known_domains:
+                              missing_domains.add(d)
+                          for sd in (fnd.get('sub_domain_ids') or []):
+                              if sd and sd not in known_domains:
+                                  missing_domains.add(sd)
+                          # source — either source_id or embedded {id: ...}
+                          src = fnd.get('source_id') or (fnd.get('source') or {}).get('id') if isinstance(fnd.get('source'), dict) else fnd.get('source_id')
+                          if src and known_sources and src not in known_sources:
+                              missing_sources.add(src)
+
+                      if missing_constructs:
+                          errors.append(f'{pack_dir.name}: findings reference {len(missing_constructs)} undefined construct_id(s): {sorted(missing_constructs)}')
+                      if missing_domains:
+                          errors.append(f'{pack_dir.name}: findings reference {len(missing_domains)} undefined domain/sub_domain id(s) — add them to domain.json or remove the references: {sorted(missing_domains)}')
+                      if missing_sources:
+                          errors.append(f'{pack_dir.name}: findings reference {len(missing_sources)} undefined source_id(s): {sorted(missing_sources)}')
+
           # Report
           if warnings:
               print('Warnings:')
