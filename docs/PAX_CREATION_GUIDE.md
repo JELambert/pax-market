@@ -1,4 +1,3 @@
-<!-- smoke-test:guide-migration-loop:2026-04-29T0048Z -->
 # PAX v3 Specification & Creation Guide
 
 > **Schema version:** 3.0 — Last updated: 2026-04-28
