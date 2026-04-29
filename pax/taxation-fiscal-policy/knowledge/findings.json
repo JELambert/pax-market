@@ -4,7 +4,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "income_inequality",
     "finding_text": "Top 1% income share in the United States roughly doubled from approximately 8% in 1970 to approximately 17% by 2000, representing a dramatic U-shaped pattern over the 20th century with high concentration pre-WWII, compression mid-century, and reconcentration since the 1980s.",
-    "construct_ids": "top_income_share,income_inequality_gini",
+    "construct_ids": [
+      "top_income_share",
+      "income_inequality_gini"
+    ],
     "direction": "positive",
     "effect_size": "Top 1% share: ~8% (1970) to ~17% (2000); top 10% share: ~33% to ~45%",
     "method_used": "Tax data analysis using IRS individual income tax returns, 1913-1998",
@@ -34,7 +37,9 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "income_inequality",
     "finding_text": "Capital income (dividends, interest, capital gains) is the primary driver of top income concentration. The composition of top incomes shifted from predominantly capital income before WWII to a mix of wages and capital income in the modern era, with executive compensation playing an increasing role.",
-    "construct_ids": "top_income_share",
+    "construct_ids": [
+      "top_income_share"
+    ],
     "direction": "positive",
     "effect_size": "Capital income accounts for majority of top 0.1% income; wage share rising since 1970s",
     "method_used": "Decomposition of income sources from tax data",
@@ -64,7 +69,9 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "income_inequality",
     "finding_text": "The dramatic compression of top income shares during 1914-1945 was driven by capital shocks (wars, Great Depression destroying capital income) rather than natural economic forces, suggesting that high inequality is the default absent major disruptions.",
-    "construct_ids": "top_income_share",
+    "construct_ids": [
+      "top_income_share"
+    ],
     "direction": "negative",
     "effect_size": "Top 1% share fell from ~18% (1913) to ~8% (1945-1970)",
     "method_used": "Historical tax data analysis",
@@ -94,7 +101,9 @@
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax revenue mobilization is positively associated with public goods quality and state capacity, with countries collecting more tax revenue providing better infrastructure, education, and health services",
-    "construct_ids": "tax_revenue_gdp_pct",
+    "construct_ids": [
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "ols_regression",
@@ -124,7 +133,9 @@
     "source_id": "piketty_saez_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Progressive taxation reduces income inequality with moderate efficiency costs, though the optimal top marginal rate depends on behavioral elasticities that vary across contexts",
-    "construct_ids": "income_tax_share",
+    "construct_ids": [
+      "income_tax_share"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "ols_regression",
@@ -154,7 +165,10 @@
     "source_id": "mertens_ravn_2013",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax cuts have asymmetric effects across the income distribution, with cuts for lower-income households generating higher fiscal multipliers than cuts for higher-income households",
-    "construct_ids": "income_tax_share,tax_revenue_gdp_pct",
+    "construct_ids": [
+      "income_tax_share",
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "difference_in_differences",
@@ -184,7 +198,10 @@
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Weak fiscal states characterized by high public debt burdens relative to GDP are more likely to experience debt distress and rely on inflationary financing, creating a fiscal trap where high debt leads to further revenue mobilization failures",
-    "construct_ids": "public_debt_gdp_pct,tax_revenue_gdp_pct",
+    "construct_ids": [
+      "public_debt_gdp_pct",
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -214,7 +231,10 @@
     "source_id": "saez_slemrod_giertz_2012",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax compliance responses are heterogeneous by income source: avoidance (legal tax base shifting) dominates real supply-side responses among high-income taxpayers, while lower-income taxpayers face enforcement-driven compliance. This heterogeneity means aggregate ETI conflates real efficiency costs with income-shifting that has no social welfare cost",
-    "construct_ids": "tax_compliance_rate,income_tax_share",
+    "construct_ids": [
+      "tax_compliance_rate",
+      "income_tax_share"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -244,7 +264,9 @@
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Government expenditure on public goods provision is 3-4 percentage points of GDP lower in countries with weak fiscal institutions and limited tax collection capacity, establishing a direct link between revenue mobilization and the ability to finance productive public spending",
-    "construct_ids": "government_expenditure_gdp_pct",
+    "construct_ids": [
+      "government_expenditure_gdp_pct"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -274,7 +296,9 @@
     "source_id": "piketty_saez_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Fiscal consolidation via expenditure cuts reduces government consumption and transfers, with the composition of cuts determining distributional consequences: cuts to social transfers are regressive while cuts to public sector wages are roughly proportional",
-    "construct_ids": "government_expenditure_gdp_pct",
+    "construct_ids": [
+      "government_expenditure_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -304,7 +328,9 @@
     "source_id": "diamond_mirrlees_1971",
     "domain_id": "taxation_fiscal",
     "finding_text": "A government running a structural fiscal deficit while pursuing optimal taxation must eventually raise distortionary taxes or cut public goods provision, since lump-sum financing is unavailable. The optimal fiscal balance depends on the trade-off between current distortionary costs and future debt service obligations.",
-    "construct_ids": "fiscal_balance_gdp_pct",
+    "construct_ids": [
+      "fiscal_balance_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -334,7 +360,9 @@
     "source_id": "mankiw_weinzierl_yagan_2009",
     "domain_id": "taxation_fiscal",
     "finding_text": "Optimal tax theory recommends against taxing capital income at the margin, but actual tax systems impose substantial capital income taxes. This divergence between theory and practice is explained by political economy constraints, information asymmetries about capital income, and distributional objectives not captured in standard Ramsey-Mirrlees models.",
-    "construct_ids": "income_tax_share",
+    "construct_ids": [
+      "income_tax_share"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -364,7 +392,9 @@
     "source_id": "mankiw_weinzierl_yagan_2009",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax systems that rely more heavily on consumption taxation (VAT, sales taxes) relative to income taxation achieve higher revenue for a given efficiency cost, but trade off vertical equity: consumption taxes are regressive while income taxes can be made progressive.",
-    "construct_ids": "tax_revenue_gdp_pct",
+    "construct_ids": [
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -394,7 +424,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "The share of income going to the top 1% in the US declined from ~18% in 1929 to ~8% by 1970 as top marginal rates rose to 91%, then rebounded to ~17% by 2000 as top rates fell to 28-35%, tracking tax policy more closely than macroeconomic conditions",
-    "construct_ids": "top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -424,7 +457,11 @@
     "source_id": "saez_slemrod_giertz_2012",
     "domain_id": "taxation_fiscal",
     "finding_text": "Taxable income elasticities are higher at the top of the income distribution due to greater avoidance access, implying top income share responses to tax changes partly reflect tax base shifting rather than real supply-side responses",
-    "construct_ids": "elasticity_of_taxable_income,income_tax_share,tax_progressivity_index",
+    "construct_ids": [
+      "elasticity_of_taxable_income",
+      "income_tax_share",
+      "tax_progressivity_index"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -454,7 +491,9 @@
     "source_id": "romer_romer_2010",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax-based fiscal consolidations produce larger short-run output contractions than expenditure-based consolidations, but are associated with more persistent fiscal balance improvements in countries with initially high deficits",
-    "construct_ids": "fiscal_balance_gdp_pct",
+    "construct_ids": [
+      "fiscal_balance_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -484,7 +523,10 @@
     "source_id": "romer_romer_2010",
     "domain_id": "taxation_fiscal",
     "finding_text": "Deficit-motivated tax increases cause significantly larger output contractions than long-run growth motivated tax changes, with the cumulative 3-year multiplier approximately 1.5x larger for deficit-reduction episodes",
-    "construct_ids": "tax_revenue_gdp_pct,fiscal_balance_gdp_pct",
+    "construct_ids": [
+      "tax_revenue_gdp_pct",
+      "fiscal_balance_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -514,7 +556,9 @@
     "source_id": "romer_romer_2010",
     "domain_id": "taxation_fiscal",
     "finding_text": "Exogenous tax increases reduce output by approximately 3 percent over 3 years per 1 percentage point increase in taxes as a share of GDP, with effect peaking around 10 quarters",
-    "construct_ids": "tax_revenue_gdp_pct",
+    "construct_ids": [
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -544,7 +588,10 @@
     "source_id": "mirrlees_1971",
     "domain_id": "taxation_fiscal",
     "finding_text": "The optimal marginal income tax rate for the highest income earners is surprisingly low (potentially near zero at the top) in the basic Mirrlees framework with a fixed distribution of skills, but rises substantially when social welfare weights place value on redistribution and skill distributions have heavy tails",
-    "construct_ids": "top_marginal_income_tax_rate,tax_progressivity_index",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "tax_progressivity_index"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -574,7 +621,11 @@
     "source_id": "saez_slemrod_giertz_2012",
     "domain_id": "taxation_fiscal",
     "finding_text": "Taxable income elasticities are higher at the top of the income distribution due to greater access to avoidance mechanisms, implying that top income share responses to tax changes partly reflect shifting between tax bases rather than real productive activity",
-    "construct_ids": "elasticity_of_taxable_income,income_tax_share,tax_progressivity_index",
+    "construct_ids": [
+      "elasticity_of_taxable_income",
+      "income_tax_share",
+      "tax_progressivity_index"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -604,7 +655,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "The compression of top incomes from 1940\u20131970 is largely explained by high marginal tax rates reducing rent extraction and the returns to top-coded compensation, with little evidence of reduced real effort among top earners",
-    "construct_ids": "top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -634,7 +688,10 @@
     "source_id": "diamond_mirrlees_1971",
     "domain_id": "taxation_fiscal",
     "finding_text": "Production efficiency should be maintained in an optimal tax system: taxes on intermediate goods and producer prices should not distort production decisions, even when lump-sum redistribution is infeasible. Optimal distortions belong only on final consumption goods (Diamond-Mirrlees production efficiency theorem).",
-    "construct_ids": "effective_corporate_tax_rate,vat_standard_rate",
+    "construct_ids": [
+      "effective_corporate_tax_rate",
+      "vat_standard_rate"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -664,7 +721,11 @@
     "source_id": "kleven_et_al_2011",
     "domain_id": "taxation_fiscal",
     "finding_text": "Third-party reported income has near-zero underreporting rates of 1-2%, while purely self-reported income shows evasion rates of 40-50%, establishing a two-regime compliance model driven by information availability rather than deterrence alone",
-    "construct_ids": "audit_detection_rate,voluntary_compliance_rate,tax_gap_estimate",
+    "construct_ids": [
+      "audit_detection_rate",
+      "voluntary_compliance_rate",
+      "tax_gap_estimate"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -694,7 +755,10 @@
     "source_id": "kleven_et_al_2011",
     "domain_id": "taxation_fiscal",
     "finding_text": "Audit threat letters generate compliance increases equivalent to roughly 15% increase in reported self-employment income among non-compliant filers, confirming audit probability as a key enforcement lever even without actual audit",
-    "construct_ids": "audit_detection_rate,tax_compliance_rate",
+    "construct_ids": [
+      "audit_detection_rate",
+      "tax_compliance_rate"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -724,7 +788,10 @@
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax revenue as % of GDP is positively associated with per capita income and trade openness, and negatively with agricultural sector share and high inflation, with long-run income elasticity of approximately 0.8-1.2",
-    "construct_ids": "tax_revenue_gdp_pct,tax_effort_index",
+    "construct_ids": [
+      "tax_revenue_gdp_pct",
+      "tax_effort_index"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -754,7 +821,10 @@
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Countries with aid dependency above 5% of GDP show significantly lower tax effort than comparable non-aid-dependent countries, consistent with external financing substituting for domestic revenue mobilization",
-    "construct_ids": "tax_effort_index,non_tax_revenue_share",
+    "construct_ids": [
+      "tax_effort_index",
+      "non_tax_revenue_share"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -784,7 +854,11 @@
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Resource revenue dependence reduces tax effort: countries where natural resource revenues exceed 20% of fiscal revenue collect on average 3-5 GDP percentage points less in tax revenue than structurally comparable non-resource economies",
-    "construct_ids": "resource_revenue_dependence,tax_effort_index,tax_revenue_gdp_pct",
+    "construct_ids": [
+      "resource_revenue_dependence",
+      "tax_effort_index",
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -814,7 +888,11 @@
     "source_id": "pomeranz_2015",
     "domain_id": "taxation_fiscal",
     "finding_text": "VAT audit threats on upstream suppliers cause significant compliance improvements among downstream buyers without direct tax authority contact, demonstrating VAT paper trails create self-enforcement externalities through invoice chains",
-    "construct_ids": "voluntary_compliance_rate,vat_standard_rate,tax_gap_estimate",
+    "construct_ids": [
+      "voluntary_compliance_rate",
+      "vat_standard_rate",
+      "tax_gap_estimate"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -844,7 +922,10 @@
     "source_id": "pomeranz_2015",
     "domain_id": "taxation_fiscal",
     "finding_text": "Firms without upstream suppliers (direct-to-consumer sellers) show higher evasion rates and less responsiveness to audit threats than supply-chain-embedded firms, confirming VAT self-enforcement depends on invoice trails not tax authority capacity",
-    "construct_ids": "voluntary_compliance_rate,audit_detection_rate",
+    "construct_ids": [
+      "voluntary_compliance_rate",
+      "audit_detection_rate"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -874,7 +955,10 @@
     "source_id": "saez_2010_bunching",
     "domain_id": "taxation_fiscal",
     "finding_text": "Self-employed individuals show substantial bunching at EITC kink points with implied ETI of 0.5-1.0, compared to near-zero bunching for wage earners, confirming ability to manipulate reported income is a key moderator of behavioral tax response",
-    "construct_ids": "elasticity_of_taxable_income,top_marginal_income_tax_rate",
+    "construct_ids": [
+      "elasticity_of_taxable_income",
+      "top_marginal_income_tax_rate"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -904,7 +988,9 @@
     "source_id": "saez_2010_bunching",
     "domain_id": "taxation_fiscal",
     "finding_text": "Wage earners show sharp bunching at the first EITC kink with implied ETI of approximately 0.25, while showing negligible bunching at higher income tax bracket kinks, suggesting EITC design generates stronger behavioral responses than marginal rate changes at higher incomes",
-    "construct_ids": "elasticity_of_taxable_income",
+    "construct_ids": [
+      "elasticity_of_taxable_income"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -934,7 +1020,11 @@
     "source_id": "torslov_wier_zucman_2022",
     "domain_id": "taxation_fiscal",
     "finding_text": "Approximately 40% of global multinational profits are shifted to tax havens annually, with tax havens collecting ~10% of global CIT revenues while hosting only 1% of world GDP. Largest shifting jurisdictions: Ireland, Luxembourg, Netherlands, Singapore",
-    "construct_ids": "profit_shifting_magnitude,cit_revenue_loss_beps,statutory_corporate_tax_rate",
+    "construct_ids": [
+      "profit_shifting_magnitude",
+      "cit_revenue_loss_beps",
+      "statutory_corporate_tax_rate"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -964,7 +1054,10 @@
     "source_id": "torslov_wier_zucman_2022",
     "domain_id": "taxation_fiscal",
     "finding_text": "Developing countries lose a larger share of CIT revenues to profit shifting than high-income countries, with estimated losses of 7-10% of CIT collections in lower-middle-income countries vs. 3-5% in high-income OECD countries",
-    "construct_ids": "cit_revenue_loss_beps,tax_effort_index",
+    "construct_ids": [
+      "cit_revenue_loss_beps",
+      "tax_effort_index"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -994,7 +1087,10 @@
     "source_id": "zucman_2014_jep",
     "domain_id": "taxation_fiscal",
     "finding_text": "Approximately 8% of global household financial wealth is held in offshore tax havens, generating roughly $200 billion in annual government revenue losses from personal income tax evasion",
-    "construct_ids": "tax_haven_asset_share,tax_gap_estimate",
+    "construct_ids": [
+      "tax_haven_asset_share",
+      "tax_gap_estimate"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1024,7 +1120,11 @@
     "source_id": "zucman_2014_jep",
     "domain_id": "taxation_fiscal",
     "finding_text": "US corporations booked ~20% of profits in tax havens by 2013, a tenfold increase since the 1980s. Their effective CIT rate declined from 30% to 20% over 15 years, with two-thirds of this decline attributable to international tax avoidance",
-    "construct_ids": "effective_corporate_tax_rate,statutory_corporate_tax_rate,profit_shifting_magnitude",
+    "construct_ids": [
+      "effective_corporate_tax_rate",
+      "statutory_corporate_tax_rate",
+      "profit_shifting_magnitude"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1054,7 +1154,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "The top 1% income share in the US declined from ~18% in 1929 to ~8% by 1970 as top marginal rates rose to 91%, then rebounded to ~17% by 2000 as top rates fell to 28-35%, tracking tax policy more closely than macroeconomic conditions",
-    "construct_ids": "top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1084,7 +1187,11 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "High capital income and capital gains tax rates in the post-WWII era corresponded with compressed top income shares; as capital gains tax rates fell after 1980, top income shares rose substantially in the US, suggesting capital taxation is a primary lever of income concentration.",
-    "construct_ids": "capital_gains_tax_rate,top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "capital_gains_tax_rate",
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1107,14 +1214,20 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Historical time-series OLS with tax rate and income share variables, US 1913-2002",
-    "covariates_controlled": "[\"macroeconomic controls\", \"war dummies\"]"
+    "covariates_controlled": [
+      "[\"macroeconomic controls\"",
+      "\"war dummies\"]"
+    ]
   },
   {
     "id": 1711,
     "source_id": "saez_slemrod_giertz_2012",
     "domain_id": "taxation_fiscal",
     "finding_text": "The elasticity of reported capital gains to tax rates is large (0.5-1.5) but primarily reflects timing and realization effects rather than real economic responses; the long-run behavioral elasticity for capital gains is substantially smaller and unlikely to exceed 0.5.",
-    "construct_ids": "capital_gains_tax_rate,elasticity_of_taxable_income",
+    "construct_ids": [
+      "capital_gains_tax_rate",
+      "elasticity_of_taxable_income"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1137,14 +1250,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Survey of ETI literature distinguishing short-run realization timing from long-run behavioral responses",
-    "covariates_controlled": "[\"income level\", \"realization timing\", \"lock-in effects\"]"
+    "covariates_controlled": [
+      "[\"income level\"",
+      "\"realization timing\"",
+      "\"lock-in effects\"]"
+    ]
   },
   {
     "id": 1712,
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Countries with larger informal sectors tend to levy higher payroll tax rates, suggesting a reinforcing cycle: high payroll taxes drive formality costs up, expanding informality which further erodes the tax base and pressures statutory rates upward.",
-    "construct_ids": "payroll_tax_rate,shadow_economy_share,tax_compliance_rate",
+    "construct_ids": [
+      "payroll_tax_rate",
+      "shadow_economy_share",
+      "tax_compliance_rate"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1167,14 +1288,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Cross-country panel regression of informality on payroll tax burden, Besley-Persson fiscal capacity framework",
-    "covariates_controlled": "[\"GDP per capita\", \"institutional quality\", \"trade openness\"]"
+    "covariates_controlled": [
+      "[\"GDP per capita\"",
+      "\"institutional quality\"",
+      "\"trade openness\"]"
+    ]
   },
   {
     "id": 1714,
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Shadow economy size is inversely related to state fiscal capacity: countries with stronger legal institutions and enforcement capability have informal sectors 15-20pp smaller as a share of GDP, with causality running primarily from institutions to informality.",
-    "construct_ids": "shadow_economy_share,tax_effort_index,tax_compliance_rate",
+    "construct_ids": [
+      "shadow_economy_share",
+      "tax_effort_index",
+      "tax_compliance_rate"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1197,14 +1326,21 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Cross-country OLS and IV with institutional quality instruments",
-    "covariates_controlled": "[\"GDP per capita\", \"colonial history\", \"legal origin\"]"
+    "covariates_controlled": [
+      "[\"GDP per capita\"",
+      "\"colonial history\"",
+      "\"legal origin\"]"
+    ]
   },
   {
     "id": 1716,
     "source_id": "diamond_mirrlees_1971",
     "domain_id": "taxation_fiscal",
     "finding_text": "Optimal indirect tax rates (including VAT/excise rates) should vary inversely with compensated price elasticity of demand (Ramsey rule) when distributional weights are uniform; but when distributional concerns are incorporated, roughly uniform VAT combined with income-based redistribution dominates differentiated commodity taxation.",
-    "construct_ids": "vat_standard_rate,tax_progressivity_index",
+    "construct_ids": [
+      "vat_standard_rate",
+      "tax_progressivity_index"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -1227,14 +1363,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Theoretical optimal tax model with production efficiency theorem; separability conditions",
-    "covariates_controlled": "[\"production efficiency\", \"distributional weights\", \"elasticity heterogeneity\"]"
+    "covariates_controlled": [
+      "[\"production efficiency\"",
+      "\"distributional weights\"",
+      "\"elasticity heterogeneity\"]"
+    ]
   },
   {
     "id": 1718,
     "source_id": "torslov_wier_zucman_2022",
     "domain_id": "taxation_fiscal",
     "finding_text": "Countries with higher statutory corporate tax rates experience larger profit outflows to low-tax jurisdictions; a 10pp higher CIT rate is associated with approximately 30% more reported profits in connected tax havens, confirming tax rate differentials as the primary driver of profit shifting.",
-    "construct_ids": "statutory_corporate_tax_rate,profit_shifting_magnitude,cit_revenue_loss_beps",
+    "construct_ids": [
+      "statutory_corporate_tax_rate",
+      "profit_shifting_magnitude",
+      "cit_revenue_loss_beps"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1257,14 +1401,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Cross-country panel with national accounts anomaly detection method, 79 countries 2015-2019",
-    "covariates_controlled": "[\"FDI stocks\", \"trade intensity\", \"bilateral tax treaties\"]"
+    "covariates_controlled": [
+      "[\"FDI stocks\"",
+      "\"trade intensity\"",
+      "\"bilateral tax treaties\"]"
+    ]
   },
   {
     "id": 1720,
     "source_id": "torslov_wier_zucman_2022",
     "domain_id": "taxation_fiscal",
     "finding_text": "An estimated $616 billion (approximately 36-40% of all reported multinational profits) are shifted to tax havens annually; Ireland, Luxembourg, Singapore, and the Netherlands absorb the largest absolute shares, while small Caribbean jurisdictions have the highest shifted profit intensity per capita.",
-    "construct_ids": "profit_shifting_magnitude,cit_revenue_loss_beps,tax_haven_asset_share",
+    "construct_ids": [
+      "profit_shifting_magnitude",
+      "cit_revenue_loss_beps",
+      "tax_haven_asset_share"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1287,14 +1439,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Missing profits method using national accounts discrepancies, validated against BEA foreign affiliate data",
-    "covariates_controlled": "[\"bilateral FDI positions\", \"trade in services\", \"intra-company transfers\"]"
+    "covariates_controlled": [
+      "[\"bilateral FDI positions\"",
+      "\"trade in services\"",
+      "\"intra-company transfers\"]"
+    ]
   },
   {
     "id": 1722,
     "source_id": "zucman_2014_jep",
     "domain_id": "taxation_fiscal",
     "finding_text": "Approximately 8% of household financial wealth globally is held in offshore tax havens ($7.6 trillion in 2014), with extreme concentration among top 0.01% of the wealth distribution; evasion is highest in Russia, Gulf states, and Latin America where 50-80% of top wealth may be held offshore.",
-    "construct_ids": "tax_haven_asset_share,tax_gap_estimate,redistributive_effect_taxes",
+    "construct_ids": [
+      "tax_haven_asset_share",
+      "tax_gap_estimate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -1317,14 +1477,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "BIS banking statistics combined with securities holdings data; portfolio investment residual method",
-    "covariates_controlled": "[\"bilateral financial flows\", \"BIS reporting bank positions\", \"IMF CPIS data\"]"
+    "covariates_controlled": [
+      "[\"bilateral financial flows\"",
+      "\"BIS reporting bank positions\"",
+      "\"IMF CPIS data\"]"
+    ]
   },
   {
     "id": 1724,
     "source_id": "pomeranz_2015",
     "domain_id": "taxation_fiscal",
     "finding_text": "VAT's self-enforcing invoice trail mechanism substantially increases voluntary compliance among business-to-business transactions; a 10pp increase in audit probability in the VAT chain increases reported sales by 7pp, with spillover effects on upstream suppliers not directly audited.",
-    "construct_ids": "voluntary_compliance_rate,tax_compliance_rate,vat_standard_rate",
+    "construct_ids": [
+      "voluntary_compliance_rate",
+      "tax_compliance_rate",
+      "vat_standard_rate"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1347,14 +1515,23 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Randomized audit experiment with 38,000 Chilean firms; cross-firm spillover analysis via supply chain linkages",
-    "covariates_controlled": "[\"firm size\", \"industry\", \"prior compliance history\", \"VAT chain position\"]"
+    "covariates_controlled": [
+      "[\"firm size\"",
+      "\"industry\"",
+      "\"prior compliance history\"",
+      "\"VAT chain position\"]"
+    ]
   },
   {
     "id": 1726,
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "Declining effective tax rates on top income earners since 1980 are strongly correlated with rising top income shares; the US top 1% income share doubled from 10% to 20% as their effective tax rates fell by roughly 20pp, driven by both tax cuts and the increasing importance of capital income.",
-    "construct_ids": "effective_tax_rate_by_quintile,top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "effective_tax_rate_by_quintile",
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1377,14 +1554,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Historical top income shares constructed from IRS Statistics of Income, 1913-2002",
-    "covariates_controlled": "[\"capital gains realizations\", \"wage growth\", \"macroeconomic cycle\"]"
+    "covariates_controlled": [
+      "[\"capital gains realizations\"",
+      "\"wage growth\"",
+      "\"macroeconomic cycle\"]"
+    ]
   },
   {
     "id": 1728,
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Countries with higher tax capacity (lower tax gap relative to potential) exhibit lower debt-to-GDP ratios in the medium run; improved fiscal capacity reduces reliance on deficit financing and allows governments to smooth shocks without debt accumulation.",
-    "construct_ids": "public_debt_gdp_pct,tax_effort_index,fiscal_balance_gdp_pct",
+    "construct_ids": [
+      "public_debt_gdp_pct",
+      "tax_effort_index",
+      "fiscal_balance_gdp_pct"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1407,14 +1592,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Cross-country panel with fiscal capacity index instrumented by legal origin and colonial institutions",
-    "covariates_controlled": "[\"per capita income\", \"trade openness\", \"political stability\"]"
+    "covariates_controlled": [
+      "[\"per capita income\"",
+      "\"trade openness\"",
+      "\"political stability\"]"
+    ]
   },
   {
     "id": 1730,
     "source_id": "besley_persson_2014",
     "domain_id": "taxation_fiscal",
     "finding_text": "Resource-dependent states exhibit systematically lower tax capacity development; a 10pp increase in resource revenue share is associated with approximately 3-5pp lower non-resource tax-to-GDP, with the effect strongest in countries with weak pre-existing institutions.",
-    "construct_ids": "resource_revenue_dependence,tax_revenue_gdp_pct,tax_effort_index",
+    "construct_ids": [
+      "resource_revenue_dependence",
+      "tax_revenue_gdp_pct",
+      "tax_effort_index"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1437,14 +1630,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Cross-country panel with commodity price instruments for resource revenue exogeneity",
-    "covariates_controlled": "[\"institutional quality\", \"rule of law\", \"political regime type\"]"
+    "covariates_controlled": [
+      "[\"institutional quality\"",
+      "\"rule of law\"",
+      "\"political regime type\"]"
+    ]
   },
   {
     "id": 1713,
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Higher payroll taxes are associated with lower overall tax compliance rates and an expanded shadow economy in developing countries; each 10pp increase in payroll tax burden reduces formal sector employment share by approximately 3-5pp across 105 developing countries.",
-    "construct_ids": "payroll_tax_rate,tax_compliance_rate,shadow_economy_share",
+    "construct_ids": [
+      "payroll_tax_rate",
+      "tax_compliance_rate",
+      "shadow_economy_share"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1467,14 +1668,23 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Panel regression, 105 developing countries, 1980-2004, fixed effects",
-    "covariates_controlled": "[\"income level\", \"agriculture share\", \"trade openness\", \"institutional quality\"]"
+    "covariates_controlled": [
+      "[\"income level\"",
+      "\"agriculture share\"",
+      "\"trade openness\"",
+      "\"institutional quality\"]"
+    ]
   },
   {
     "id": 1715,
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Shadow economy share of GDP is negatively and robustly associated with tax revenue as a percent of GDP across developing countries; a 10pp larger informal sector reduces tax/GDP by approximately 2-3pp, representing a key structural constraint on revenue mobilization.",
-    "construct_ids": "shadow_economy_share,tax_revenue_gdp_pct,tax_effort_index",
+    "construct_ids": [
+      "shadow_economy_share",
+      "tax_revenue_gdp_pct",
+      "tax_effort_index"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1497,14 +1707,23 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Panel regression, 105 developing countries, fixed effects with Medina-Schneider informality estimates",
-    "covariates_controlled": "[\"per capita income\", \"trade openness\", \"agriculture share\", \"corruption\"]"
+    "covariates_controlled": [
+      "[\"per capita income\"",
+      "\"trade openness\"",
+      "\"agriculture share\"",
+      "\"corruption\"]"
+    ]
   },
   {
     "id": 1717,
     "source_id": "mankiw_weinzierl_yagan_2009",
     "domain_id": "taxation_fiscal",
     "finding_text": "A uniform VAT combined with a nonlinear income tax is near-optimal and dominates differentiated commodity tax rates in simulations; income taxation handles distributional objectives more efficiently than varying VAT rates across consumption categories.",
-    "construct_ids": "vat_standard_rate,tax_progressivity_index,income_tax_share",
+    "construct_ids": [
+      "vat_standard_rate",
+      "tax_progressivity_index",
+      "income_tax_share"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -1527,14 +1746,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Quantitative optimal tax simulations based on Mirrlees framework with heterogeneous agents",
-    "covariates_controlled": "[\"income elasticities\", \"productivity distribution\", \"social welfare weights\"]"
+    "covariates_controlled": [
+      "[\"income elasticities\"",
+      "\"productivity distribution\"",
+      "\"social welfare weights\"]"
+    ]
   },
   {
     "id": 1719,
     "source_id": "torslov_wier_zucman_2022",
     "domain_id": "taxation_fiscal",
     "finding_text": "Effective corporate tax rates have fallen dramatically relative to statutory rates since 1980, with multinationals paying effective rates 5-15pp below domestic firms due to profit shifting strategies; the gap is largest in high-tax OECD countries.",
-    "construct_ids": "effective_corporate_tax_rate,statutory_corporate_tax_rate,profit_shifting_magnitude",
+    "construct_ids": [
+      "effective_corporate_tax_rate",
+      "statutory_corporate_tax_rate",
+      "profit_shifting_magnitude"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1557,14 +1784,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "National accounts-based analysis comparing effective rates of foreign affiliates vs. domestic firms",
-    "covariates_controlled": "[\"industry composition\", \"firm size\", \"intangible asset intensity\"]"
+    "covariates_controlled": [
+      "[\"industry composition\"",
+      "\"firm size\"",
+      "\"intangible asset intensity\"]"
+    ]
   },
   {
     "id": 1721,
     "source_id": "torslov_wier_zucman_2022",
     "domain_id": "taxation_fiscal",
     "finding_text": "Global corporate tax revenue losses from profit shifting amount to approximately $200 billion per year, representing about 10% of global CIT revenues; developing countries bear disproportionate losses at 1.3% of GDP versus 0.5% for OECD members.",
-    "construct_ids": "cit_revenue_loss_beps,tax_revenue_gdp_pct,statutory_corporate_tax_rate",
+    "construct_ids": [
+      "cit_revenue_loss_beps",
+      "tax_revenue_gdp_pct",
+      "statutory_corporate_tax_rate"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1587,14 +1822,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Revenue impact calculation based on missing profits method with country-specific tax rate application",
-    "covariates_controlled": "[\"statutory CIT rates\", \"anti-avoidance rules\", \"treaty network\"]"
+    "covariates_controlled": [
+      "[\"statutory CIT rates\"",
+      "\"anti-avoidance rules\"",
+      "\"treaty network\"]"
+    ]
   },
   {
     "id": 1723,
     "source_id": "kleven_et_al_2011",
     "domain_id": "taxation_fiscal",
     "finding_text": "Voluntary compliance rates for self-reported income are extremely low (approximately 45%) compared to near-perfect compliance (>95%) for third-party reported income; random audit treatment increases compliance for self-reported income by 17pp but has negligible effect on third-party income.",
-    "construct_ids": "voluntary_compliance_rate,audit_detection_rate,tax_compliance_rate",
+    "construct_ids": [
+      "voluntary_compliance_rate",
+      "audit_detection_rate",
+      "tax_compliance_rate"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1617,14 +1860,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Randomized audit experiment, Danish Tax Authority, 42,827 taxpayer sample, pre-registered",
-    "covariates_controlled": "[\"income level\", \"income source mix\", \"prior audit history\"]"
+    "covariates_controlled": [
+      "[\"income level\"",
+      "\"income source mix\"",
+      "\"prior audit history\"]"
+    ]
   },
   {
     "id": 1725,
     "source_id": "piketty_saez_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "US effective tax rates by income quintile show a pronounced U-shaped pattern when including payroll taxes and state/local taxes: the bottom and middle quintiles face effective total tax rates similar to or above the top 1%, undermining the progressive character of the nominal income tax schedule.",
-    "construct_ids": "effective_tax_rate_by_quintile,tax_progressivity_index,payroll_tax_rate",
+    "construct_ids": [
+      "effective_tax_rate_by_quintile",
+      "tax_progressivity_index",
+      "payroll_tax_rate"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -1647,14 +1898,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Distributional tax incidence analysis using IRS SOI and NIPA data, US 1960-2004",
-    "covariates_controlled": "[\"transfer income\", \"capital gains realization\", \"state and local taxes\"]"
+    "covariates_controlled": [
+      "[\"transfer income\"",
+      "\"capital gains realization\"",
+      "\"state and local taxes\"]"
+    ]
   },
   {
     "id": 1727,
     "source_id": "romer_romer_2010",
     "domain_id": "taxation_fiscal",
     "finding_text": "Tax-based fiscal consolidations produce smaller short-run output losses than spending-based adjustment but are not costless; the composition of government expenditure matters \u2014 cuts to public investment have larger negative multipliers than cuts to transfers in the medium term.",
-    "construct_ids": "government_expenditure_gdp_pct,fiscal_balance_gdp_pct,tax_revenue_gdp_pct",
+    "construct_ids": [
+      "government_expenditure_gdp_pct",
+      "fiscal_balance_gdp_pct",
+      "tax_revenue_gdp_pct"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -1677,14 +1936,22 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Narrative identification of tax changes in postwar US, 1947-2007, distributed lag regression",
-    "covariates_controlled": "[\"monetary policy stance\", \"output gap\", \"spending changes\"]"
+    "covariates_controlled": [
+      "[\"monetary policy stance\"",
+      "\"output gap\"",
+      "\"spending changes\"]"
+    ]
   },
   {
     "id": 1729,
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
     "finding_text": "Non-tax revenue share is negatively associated with tax effort across developing countries; aid flows and natural resource rents crowd out domestic tax mobilization \u2014 a 10pp increase in non-tax revenue share reduces the tax/GDP ratio by approximately 1.5-2pp.",
-    "construct_ids": "non_tax_revenue_share,tax_effort_index,resource_revenue_dependence",
+    "construct_ids": [
+      "non_tax_revenue_share",
+      "tax_effort_index",
+      "resource_revenue_dependence"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1707,6 +1974,11 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Panel regression, 105 developing countries, 1980-2004, Tobit specification for tax effort",
-    "covariates_controlled": "[\"income level\", \"agriculture share\", \"trade openness\", \"corruption index\"]"
+    "covariates_controlled": [
+      "[\"income level\"",
+      "\"agriculture share\"",
+      "\"trade openness\"",
+      "\"corruption index\"]"
+    ]
   }
 ]

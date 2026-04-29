@@ -4,7 +4,11 @@
     "source_id": "fama_french_1993",
     "domain_id": "stock_market_returns",
     "finding_text": "The three-factor model (market beta, size, value) explains over 90% of the cross-sectional variation in portfolio returns, vastly outperforming the single-factor CAPM.",
-    "construct_ids": "equity_risk_premium,small_cap_premium,value_premium",
+    "construct_ids": [
+      "equity_risk_premium",
+      "small_cap_premium",
+      "value_premium"
+    ],
     "direction": "positive",
     "effect_size": "R-squared > 90% for portfolio returns",
     "method_used": null,
@@ -34,7 +38,9 @@
     "source_id": "fama_french_1993",
     "domain_id": "stock_market_returns",
     "finding_text": "The value premium (HML factor) averages approximately 4.4% per year historically, but has been shrinking since publication, raising questions about whether it was a genuine risk premium or a statistical artifact that was arbitraged away.",
-    "construct_ids": "value_premium",
+    "construct_ids": [
+      "value_premium"
+    ],
     "direction": "positive",
     "effect_size": "4.4% annual average, declining post-publication",
     "method_used": null,
@@ -64,7 +70,10 @@
     "source_id": "jegadeesh_titman_1993",
     "domain_id": "equity_trading_markets",
     "finding_text": "A strategy of buying past 6-month winners and selling past 6-month losers earns approximately 1% per month over the subsequent 6-12 months on US stocks 1965-1989, after controlling for systematic risk. This momentum effect persists across size quintiles and is not explained by the Fama-French three-factor model.",
-    "construct_ids": "price_momentum_etm,market_efficiency_etm",
+    "construct_ids": [
+      "price_momentum_etm",
+      "market_efficiency_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Portfolio sorts, calendar-time returns",
@@ -87,14 +96,20 @@
     "ci_upper": 0.015,
     "effect_size_type": "beta",
     "model_specification": "Zero-cost winner-minus-loser portfolio, monthly return, 1965-1989",
-    "covariates_controlled": "[\"market_return\"]"
+    "covariates_controlled": [
+      "[\"market_return\"]"
+    ]
   },
   {
     "id": 1611,
     "source_id": "debondt_thaler_1985",
     "domain_id": "equity_trading_markets",
     "finding_text": "Stocks with the worst 3-year prior returns (losers) outperform stocks with the best 3-year prior returns (winners) by approximately 25 percentage points over the subsequent 5 years, consistent with investor overreaction. Prior losers earn about 19.6% more per year than prior winners.",
-    "construct_ids": "mean_reversion_etm,investor_sentiment_etm,market_efficiency_etm",
+    "construct_ids": [
+      "mean_reversion_etm",
+      "investor_sentiment_etm",
+      "market_efficiency_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Portfolio sorts on 3-year prior returns, cumulative abnormal returns",
@@ -117,14 +132,20 @@
     "ci_upper": 0.32,
     "effect_size_type": "beta",
     "model_specification": "Calendar-time portfolio of extreme prior-3-year return deciles, CRSP 1926-1982",
-    "covariates_controlled": "[\"market_return\"]"
+    "covariates_controlled": [
+      "[\"market_return\"]"
+    ]
   },
   {
     "id": 1612,
     "source_id": "fama_french_1993",
     "domain_id": "equity_trading_markets",
     "finding_text": "A three-factor model including market return, size (SMB), and book-to-market (HML) factors captures most cross-sectional variation in US stock returns, with HML loading capturing value premium of approximately 4-5% per year. The model explains 90%+ of variance in diversified portfolio returns.",
-    "construct_ids": "factor_exposure_etm,value_premium_etm,beta_systematic_risk_etm",
+    "construct_ids": [
+      "factor_exposure_etm",
+      "value_premium_etm",
+      "beta_systematic_risk_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Time-series OLS regression of portfolio excess returns on factor portfolios",
@@ -147,14 +168,22 @@
     "ci_upper": null,
     "effect_size_type": "correlation_r",
     "model_specification": "Time-series OLS of portfolio excess returns on Mkt-RF, SMB, HML factors",
-    "covariates_controlled": "[\"market_return\", \"smb_factor\", \"hml_factor\"]"
+    "covariates_controlled": [
+      "[\"market_return\"",
+      "\"smb_factor\"",
+      "\"hml_factor\"]"
+    ]
   },
   {
     "id": 1613,
     "source_id": "baker_wurgler_2006",
     "domain_id": "equity_trading_markets",
     "finding_text": "High investor sentiment predicts lower subsequent returns for difficult-to-arbitrage stocks (small, young, unprofitable, distressed) and higher returns for the same stocks when sentiment is low. A one-standard-deviation increase in beginning-of-year sentiment predicts a 2.4% lower annual return for speculative stocks.",
-    "construct_ids": "investor_sentiment_etm,market_efficiency_etm,mean_reversion_etm",
+    "construct_ids": [
+      "investor_sentiment_etm",
+      "market_efficiency_etm",
+      "mean_reversion_etm"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Cross-sectional return predictability regressions with sentiment index",
@@ -177,14 +206,23 @@
     "ci_upper": -0.045,
     "effect_size_type": "beta",
     "model_specification": "Fama-MacBeth cross-sectional regressions of annual stock returns on lagged sentiment index",
-    "covariates_controlled": "[\"size\", \"book_to_market\", \"prior_return\", \"profitability\"]"
+    "covariates_controlled": [
+      "[\"size\"",
+      "\"book_to_market\"",
+      "\"prior_return\"",
+      "\"profitability\"]"
+    ]
   },
   {
     "id": 1614,
     "source_id": "lo_mamaysky_wang_2000",
     "domain_id": "equity_trading_markets",
     "finding_text": "Several technical patterns (head-and-shoulders, double tops/bottoms, broadening patterns) exhibit statistically significant conditional return distributions different from the unconditional distribution, suggesting informational content in technical analysis. However, after accounting for data snooping, results are weaker.",
-    "construct_ids": "moving_average_signal_etm,support_resistance_etm,market_efficiency_etm",
+    "construct_ids": [
+      "moving_average_signal_etm",
+      "support_resistance_etm",
+      "market_efficiency_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Nonparametric kernel regression, bootstrap tests of conditional return distributions",
@@ -207,14 +245,21 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Nonparametric kernel regression for pattern detection, bootstrap hypothesis tests, 31 US stocks 1962-1996",
-    "covariates_controlled": "[\"market_return\", \"volume\"]"
+    "covariates_controlled": [
+      "[\"market_return\"",
+      "\"volume\"]"
+    ]
   },
   {
     "id": 1615,
     "source_id": "shleifer_vishny_1997",
     "domain_id": "equity_trading_markets",
     "finding_text": "When arbitrageurs face capital constraints and performance-based investor withdrawals, they may reduce positions when prices move against them, allowing anomalies (momentum, value) to persist even with sophisticated investors present. Arbitrage is thus limited and anomalies can be self-reinforcing in the short run.",
-    "construct_ids": "market_efficiency_etm,price_momentum_etm,value_premium_etm",
+    "construct_ids": [
+      "market_efficiency_etm",
+      "price_momentum_etm",
+      "value_premium_etm"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Theoretical model with risk-averse arbitrageurs facing capital withdrawal risk",
@@ -237,14 +282,20 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Theoretical model with noise traders and performance-based arbitrageurs",
-    "covariates_controlled": "[]"
+    "covariates_controlled": [
+      "[]"
+    ]
   },
   {
     "id": 1616,
     "source_id": "kyle_1985",
     "domain_id": "equity_trading_markets",
     "finding_text": "In a competitive market with one informed insider and a market maker, the informed trader's private information is incorporated gradually into prices through trading. Market depth (lambda) is constant and inversely related to the amount of private information, meaning more informed trading leads to less liquid markets.",
-    "construct_ids": "market_microstructure_etm,price_discovery_etm,market_liquidity_etm",
+    "construct_ids": [
+      "market_microstructure_etm",
+      "price_discovery_etm",
+      "market_liquidity_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Sequential equilibrium game theory model",
@@ -267,14 +318,20 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Theoretical sequential trade model with one informed trader and competitive market maker",
-    "covariates_controlled": "[]"
+    "covariates_controlled": [
+      "[]"
+    ]
   },
   {
     "id": 1617,
     "source_id": "whaley_2000_vix",
     "domain_id": "equity_trading_markets",
     "finding_text": "VIX spikes correspond to sharp market declines (average VIX increase of 6.6 points on days S&P 500 falls more than 3%) and mean-reverts quickly after spikes. High VIX readings historically precede above-average subsequent market returns, supporting its use as a contrarian sentiment indicator.",
-    "construct_ids": "implied_volatility_etm,investor_sentiment_etm,mean_reversion_etm",
+    "construct_ids": [
+      "implied_volatility_etm",
+      "investor_sentiment_etm",
+      "mean_reversion_etm"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Empirical analysis of VIX and S&P 500 returns 1986-1999",
@@ -297,14 +354,20 @@
     "ci_upper": -0.045,
     "effect_size_type": "beta",
     "model_specification": "Event study of VIX changes conditional on large S&P 500 daily moves, 1986-2000",
-    "covariates_controlled": "[\"market_return\"]"
+    "covariates_controlled": [
+      "[\"market_return\"]"
+    ]
   },
   {
     "id": 1618,
     "source_id": "fama_1970_emh",
     "domain_id": "equity_trading_markets",
     "finding_text": "Evidence from event studies supports semi-strong form efficiency \u2014 prices adjust rapidly to public information such as stock splits and earnings announcements. Weak-form efficiency is broadly supported by the absence of profitable filter rules. Strong-form efficiency fails: corporate insiders earn abnormal returns.",
-    "construct_ids": "market_efficiency_etm,price_discovery_etm,earnings_surprise_etm",
+    "construct_ids": [
+      "market_efficiency_etm",
+      "price_discovery_etm",
+      "earnings_surprise_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Review of event studies, trading rule tests, and insider trading studies",
@@ -327,14 +390,19 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Review of event studies: abnormal return = 0 post-announcement if semi-strong EMH holds",
-    "covariates_controlled": "[]"
+    "covariates_controlled": [
+      "[]"
+    ]
   },
   {
     "id": 1676,
     "source_id": "markowitz_1952",
     "domain_id": "equity_trading_markets",
     "finding_text": "The efficient frontier of risky assets traces the minimum-variance portfolio for each level of expected return. Diversification reduces portfolio variance whenever assets are less than perfectly correlated. The optimal portfolio for any investor lies on the efficient frontier, with the specific point determined by risk tolerance.",
-    "construct_ids": "portfolio_volatility_etm,sharpe_ratio_etm",
+    "construct_ids": [
+      "portfolio_volatility_etm",
+      "sharpe_ratio_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Quadratic programming for mean-variance optimization",
@@ -357,14 +425,20 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Quadratic programming: min w'\u03a3w subject to w'\u03bc = target_return, sum(w) = 1, w \u2265 0",
-    "covariates_controlled": "[]"
+    "covariates_controlled": [
+      "[]"
+    ]
   },
   {
     "id": 1677,
     "source_id": "sharpe_1964_capm",
     "domain_id": "equity_trading_markets",
     "finding_text": "In equilibrium, expected asset returns are linearly related to systematic risk (beta relative to the market portfolio). Only systematic risk is priced; idiosyncratic risk is not because it can be diversified away. This provides the theoretical foundation for the Sharpe ratio as the appropriate measure of risk-adjusted performance.",
-    "construct_ids": "beta_systematic_risk_etm,sharpe_ratio_etm,factor_exposure_etm",
+    "construct_ids": [
+      "beta_systematic_risk_etm",
+      "sharpe_ratio_etm",
+      "factor_exposure_etm"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Equilibrium derivation from mean-variance optimization under homogeneous expectations",
@@ -387,14 +461,19 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Equilibrium pricing from mean-variance optimization: E[Ri] = Rf + \u03b2i(E[Rm] - Rf)",
-    "covariates_controlled": "[]"
+    "covariates_controlled": [
+      "[]"
+    ]
   },
   {
     "id": 1678,
     "source_id": "baker_wurgler_2006",
     "domain_id": "equity_trading_markets",
     "finding_text": "The put-call ratio is one of six indicators (along with closed-end fund discount, NYSE share turnover, IPO volume/returns, dividend premium) that form a composite investor sentiment index. High sentiment predicts lower subsequent returns for difficult-to-arbitrage stocks (small, young, volatile, unprofitable). The sentiment effect is most pronounced in the cross-section, not just the aggregate market.",
-    "construct_ids": "put_call_ratio_etm,investor_sentiment_etm",
+    "construct_ids": [
+      "put_call_ratio_etm",
+      "investor_sentiment_etm"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Principal component analysis of sentiment indicators, portfolio sorts on sentiment quintiles",
@@ -417,14 +496,24 @@
     "ci_upper": -0.031,
     "effect_size_type": "beta",
     "model_specification": "PCA-based composite sentiment index; principal component loadings on 6 proxies including put-call ratio",
-    "covariates_controlled": "[\"size\", \"age\", \"volatility\", \"profitability\", \"dividends\", \"tangibility\"]"
+    "covariates_controlled": [
+      "[\"size\"",
+      "\"age\"",
+      "\"volatility\"",
+      "\"profitability\"",
+      "\"dividends\"",
+      "\"tangibility\"]"
+    ]
   },
   {
     "id": 1679,
     "source_id": "whaley_2000_vix",
     "domain_id": "equity_trading_markets",
     "finding_text": "The CBOE VIX (computed from S&P 100 implied volatilities) serves as a forward-looking fear gauge: spikes in VIX reliably precede periods of equity market turbulence. The put-call ratio and VIX are complementary sentiment measures \u2014 put-call ratio captures directional investor positioning while VIX captures expected market volatility.",
-    "construct_ids": "put_call_ratio_etm,implied_volatility_etm",
+    "construct_ids": [
+      "put_call_ratio_etm",
+      "implied_volatility_etm"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Event study of VIX spikes vs subsequent market returns",
@@ -447,6 +536,9 @@
     "ci_upper": -0.25,
     "effect_size_type": "correlation_r",
     "model_specification": "Regression of daily S&P 500 return on contemporaneous VIX change; OLS 1986-2000",
-    "covariates_controlled": "[\"lagged_return\", \"volume\"]"
+    "covariates_controlled": [
+      "[\"lagged_return\"",
+      "\"volume\"]"
+    ]
   }
 ]

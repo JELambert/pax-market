@@ -4,7 +4,11 @@
     "source_id": "goldstone_et_al_2010",
     "domain_id": "state_fragility",
     "finding_text": "The PITF global instability model achieves ~80% accuracy in forecasting state instability onset 2 years ahead using only 4 variables: regime type (partial autocracy with factionalism), infant mortality rate, armed conflict in 4+ neighboring states, and state-led discrimination. Partial democracies with factionalism are the single strongest predictor.",
-    "construct_ids": "state_fragility_index,factionalized_elites,demographic_pressure",
+    "construct_ids": [
+      "state_fragility_index",
+      "factionalized_elites",
+      "demographic_pressure"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Logistic regression, global country-year panel 1955-2003",
@@ -26,7 +30,10 @@
     "source_id": "urdal_2006",
     "domain_id": "state_fragility",
     "finding_text": "Youth bulges (ages 15-24 exceeding 35% of adult population) significantly increase the risk of armed conflict onset, low-intensity conflict, and terrorism. A 1 percentage point increase in youth share raises conflict risk by ~7%. Effect is strongest in low-income countries with limited economic opportunities.",
-    "construct_ids": "demographic_pressure,state_fragility_index",
+    "construct_ids": [
+      "demographic_pressure",
+      "state_fragility_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Negative binomial regression, country-year panel 1950-2000",
@@ -48,7 +55,11 @@
     "source_id": "goldstone_et_al_2010",
     "domain_id": "",
     "finding_text": "Infant mortality rate (a proxy for state capacity and development) is the second strongest predictor in the PITF model after regime type. Countries with infant mortality above the global median face ~2.5x higher instability risk, reflecting the deep link between public health capacity and state resilience.",
-    "construct_ids": "state_fragility_index,public_services_decline,demographic_pressure",
+    "construct_ids": [
+      "state_fragility_index",
+      "public_services_decline",
+      "demographic_pressure"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Logistic regression, global country-year panel 1955-2003",
@@ -70,7 +81,10 @@
     "source_id": "call_2011",
     "domain_id": "",
     "finding_text": "The concept of 'failed states' is analytically misleading \u2014 states rarely fail across all dimensions simultaneously. Call proposes distinguishing between 'collapsed states' (no central authority), 'weak states' (low capacity but functional), and 'war-torn states' (conflict-degraded). Most so-called failed states retain significant institutional capacity in some domains.",
-    "construct_ids": "state_fragility_index,institutional_capacity",
+    "construct_ids": [
+      "state_fragility_index",
+      "institutional_capacity"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Conceptual analysis, comparative case studies",
@@ -92,7 +106,9 @@
     "source_id": "fund_for_peace_fsi_2024",
     "domain_id": "",
     "finding_text": "State fragility shows strong path dependence: countries in the 'Alert' category (FSI > 90) have a >80% probability of remaining in that category the following year. Escape from deep fragility requires sustained multi-dimensional improvement. The average time to move from Alert to Warning category is ~15 years.",
-    "construct_ids": "state_fragility_index",
+    "construct_ids": [
+      "state_fragility_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Longitudinal tracking of FSI scores 2006-2024",

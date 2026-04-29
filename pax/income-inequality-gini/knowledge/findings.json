@@ -4,7 +4,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "income_inequality",
     "finding_text": "Top 1% income share in the United States roughly doubled from approximately 8% in 1970 to approximately 17% by 2000, representing a dramatic U-shaped pattern over the 20th century with high concentration pre-WWII, compression mid-century, and reconcentration since the 1980s.",
-    "construct_ids": "top_income_share,income_inequality_gini",
+    "construct_ids": [
+      "top_income_share",
+      "income_inequality_gini"
+    ],
     "direction": "positive",
     "effect_size": "Top 1% share: ~8% (1970) to ~17% (2000); top 10% share: ~33% to ~45%",
     "method_used": "Tax data analysis using IRS individual income tax returns, 1913-1998",
@@ -34,7 +37,9 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "income_inequality",
     "finding_text": "Capital income (dividends, interest, capital gains) is the primary driver of top income concentration. The composition of top incomes shifted from predominantly capital income before WWII to a mix of wages and capital income in the modern era, with executive compensation playing an increasing role.",
-    "construct_ids": "top_income_share",
+    "construct_ids": [
+      "top_income_share"
+    ],
     "direction": "positive",
     "effect_size": "Capital income accounts for majority of top 0.1% income; wage share rising since 1970s",
     "method_used": "Decomposition of income sources from tax data",
@@ -64,7 +69,9 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "income_inequality",
     "finding_text": "The dramatic compression of top income shares during 1914-1945 was driven by capital shocks (wars, Great Depression destroying capital income) rather than natural economic forces, suggesting that high inequality is the default absent major disruptions.",
-    "construct_ids": "top_income_share",
+    "construct_ids": [
+      "top_income_share"
+    ],
     "direction": "negative",
     "effect_size": "Top 1% share fell from ~18% (1913) to ~8% (1945-1970)",
     "method_used": "Historical tax data analysis",
@@ -94,7 +101,9 @@
     "source_id": "milanovic_2016",
     "domain_id": "income_inequality",
     "finding_text": "Global inequality is driven by two forces moving in opposite directions: between-country inequality is declining (primarily due to China and India's growth) while within-country inequality is rising in most nations, producing complex distributional patterns.",
-    "construct_ids": "income_inequality_gini",
+    "construct_ids": [
+      "income_inequality_gini"
+    ],
     "direction": "conditional",
     "effect_size": "Global Gini ~0.70; between-country component declining, within-country component rising",
     "method_used": "Descriptive analysis of household survey data across countries",
@@ -124,7 +133,10 @@
     "source_id": "milanovic_2016",
     "domain_id": "income_inequality",
     "finding_text": "The 'elephant curve' of global income growth (1988-2008) shows strong gains for the global middle class (percentiles 30-60, mainly Asian) and the global top 1%, but stagnation for the lower-middle class of rich countries (percentiles 75-90), explaining populist discontent in developed nations.",
-    "construct_ids": "income_inequality_gini,economic_growth_rate",
+    "construct_ids": [
+      "income_inequality_gini",
+      "economic_growth_rate"
+    ],
     "direction": "conditional",
     "effect_size": "~60-70% real income growth for global median vs near-zero for 80th percentile (rich-country lower middle)",
     "method_used": "Global household survey analysis, income growth by percentile",
@@ -154,7 +166,10 @@
     "source_id": "milanovic_2016",
     "domain_id": "income_inequality",
     "finding_text": "Inequality follows 'Kuznets waves' \u2014 cyclical patterns of rising and falling inequality driven by technological change, globalization, and policy responses, rather than the single inverted-U curve originally proposed by Kuznets.",
-    "construct_ids": "income_inequality_gini,economic_growth_rate",
+    "construct_ids": [
+      "income_inequality_gini",
+      "economic_growth_rate"
+    ],
     "direction": "conditional",
     "effect_size": "Cyclical pattern rather than monotonic relationship",
     "method_used": "Historical comparative analysis",
@@ -184,7 +199,9 @@
     "source_id": "chetty_hendren_kline_saez_2014",
     "domain_id": "income_inequality",
     "finding_text": "Intergenerational mobility varies enormously across US commuting zones. Absolute upward mobility (expected income rank for children from bottom-quintile families) ranges from 35th percentile in Salt Lake City to 26th percentile in Charlotte, with the South and Rust Belt showing lowest mobility.",
-    "construct_ids": "intergenerational_mobility",
+    "construct_ids": [
+      "intergenerational_mobility"
+    ],
     "direction": "conditional",
     "effect_size": "Absolute upward mobility ranges from 26th to 35th percentile across CZs",
     "method_used": "OLS regression on IRS tax records, N~millions of parent-child pairs",
@@ -214,7 +231,12 @@
     "source_id": "chetty_hendren_kline_saez_2014",
     "domain_id": "income_inequality",
     "finding_text": "Areas with less residential segregation, less income inequality, better schools, stronger social capital, and more stable families have significantly higher intergenerational mobility. These five factors are the strongest correlates of upward mobility across US commuting zones.",
-    "construct_ids": "intergenerational_mobility,racial_segregation,income_inequality_gini,social_capital",
+    "construct_ids": [
+      "intergenerational_mobility",
+      "racial_segregation",
+      "income_inequality_gini",
+      "social_capital"
+    ],
     "direction": "negative",
     "effect_size": "Segregation, inequality, school quality, social capital, family structure are top 5 correlates",
     "method_used": "OLS, correlational analysis across 741 commuting zones",
@@ -244,7 +266,10 @@
     "source_id": "chetty_hendren_kline_saez_2014",
     "domain_id": "income_inequality",
     "finding_text": "Racial segregation is one of the strongest negative correlates of upward mobility: commuting zones with higher dissimilarity indices have significantly lower rates of upward mobility for children from low-income families, regardless of race.",
-    "construct_ids": "racial_segregation,intergenerational_mobility",
+    "construct_ids": [
+      "racial_segregation",
+      "intergenerational_mobility"
+    ],
     "direction": "negative",
     "effect_size": "Strong negative correlation between segregation and mobility, affects all races",
     "method_used": "OLS, commuting zone analysis",
@@ -274,7 +299,10 @@
     "source_id": "piketty2014",
     "domain_id": "income_inequality",
     "finding_text": "The share of national income going to the top decile in the United States increased from about 35% in 1980 to over 47% by 2010, driven primarily by rising labor income inequality at the top (supermanagers) and capital income concentration.",
-    "construct_ids": "income_share_top_10pct,gini_coefficient",
+    "construct_ids": [
+      "income_share_top_10pct",
+      "gini_coefficient"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -304,7 +332,9 @@
     "source_id": "chetty2014",
     "domain_id": "income_inequality",
     "finding_text": "Racial segregation, income inequality, school quality, social capital, and family structure explain most of the geographic variation in intergenerational mobility. Of these, segregation and inequality are the strongest predictors.",
-    "construct_ids": "gini_coefficient",
+    "construct_ids": [
+      "gini_coefficient"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -334,7 +364,10 @@
     "source_id": "piketty2014",
     "domain_id": "income_inequality",
     "finding_text": "When the rate of return on capital (r) exceeds the rate of economic growth (g), wealth concentrates and inequality rises. This r>g dynamic has been the historical norm except during the mid-20th century wars and policy interventions.",
-    "construct_ids": "gini_coefficient,income_share_top_10pct",
+    "construct_ids": [
+      "gini_coefficient",
+      "income_share_top_10pct"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -364,7 +397,9 @@
     "source_id": "piketty_2014",
     "domain_id": "income_inequality",
     "finding_text": "High inequality with Gini above 0.45 is negatively associated with the duration of economic growth spells",
-    "construct_ids": "gini_coefficient_income",
+    "construct_ids": [
+      "gini_coefficient_income"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "growth spell duration analysis",
@@ -394,7 +429,10 @@
     "source_id": "chetty_2014",
     "domain_id": "income_inequality",
     "finding_text": "Intergenerational mobility is negatively correlated with inequality known as the Great Gatsby Curve showing that more unequal societies have less mobility",
-    "construct_ids": "intergenerational_earnings_elasticity,gini_coefficient_income",
+    "construct_ids": [
+      "intergenerational_earnings_elasticity",
+      "gini_coefficient_income"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "cross-country correlation analysis",
@@ -424,7 +462,10 @@
     "source_id": "ostry_2014",
     "domain_id": "income_inequality",
     "finding_text": "Top income shares have risen in most OECD countries since 1980 driven by capital income growth and executive compensation increases",
-    "construct_ids": "income_share_top_10_pct,wealth_share_top_1_pct",
+    "construct_ids": [
+      "income_share_top_10_pct",
+      "wealth_share_top_1_pct"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "historical tax record analysis",
@@ -454,7 +495,9 @@
     "source_id": "chetty2014",
     "domain_id": "income_inequality",
     "finding_text": "Intergenerational income mobility varies dramatically across US regions. Areas with higher Gini coefficients have significantly lower rates of upward mobility (Great Gatsby curve at the local level), with a correlation of approximately -0.6 between inequality and mobility.",
-    "construct_ids": "gini_coefficient",
+    "construct_ids": [
+      "gini_coefficient"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -484,7 +527,10 @@
     "source_id": "milanovic2016",
     "domain_id": "income_inequality",
     "finding_text": "Global inequality between 1988-2008 shows an 'elephant curve': real income gains of 60-70% for the global middle class (percentiles 30-60, mainly China/India), near-zero gains for percentiles 75-90 (lower-middle class in rich countries), and 60%+ gains for the global top 1%.",
-    "construct_ids": "gini_coefficient,income_share_top_10pct",
+    "construct_ids": [
+      "gini_coefficient",
+      "income_share_top_10pct"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -514,7 +560,9 @@
     "source_id": "kuznets1955",
     "domain_id": "income_inequality",
     "finding_text": "Income inequality follows an inverted-U pattern with economic development: inequality rises in early industrialization as labor moves from low-inequality agriculture to high-inequality industry, then falls as the industrial sector matures and social transfers increase.",
-    "construct_ids": "gini_coefficient",
+    "construct_ids": [
+      "gini_coefficient"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -544,7 +592,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "The share of income going to the top 1% in the US declined from ~18% in 1929 to ~8% by 1970 as top marginal rates rose to 91%, then rebounded to ~17% by 2000 as top rates fell to 28-35%, tracking tax policy more closely than macroeconomic conditions",
-    "construct_ids": "top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -574,7 +625,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "The compression of top incomes from 1940\u20131970 is largely explained by high marginal tax rates reducing rent extraction and the returns to top-coded compensation, with little evidence of reduced real effort among top earners",
-    "construct_ids": "top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -604,7 +658,10 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "The top 1% income share in the US declined from ~18% in 1929 to ~8% by 1970 as top marginal rates rose to 91%, then rebounded to ~17% by 2000 as top rates fell to 28-35%, tracking tax policy more closely than macroeconomic conditions",
-    "construct_ids": "top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -634,7 +691,11 @@
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "High capital income and capital gains tax rates in the post-WWII era corresponded with compressed top income shares; as capital gains tax rates fell after 1980, top income shares rose substantially in the US, suggesting capital taxation is a primary lever of income concentration.",
-    "construct_ids": "capital_gains_tax_rate,top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "capital_gains_tax_rate",
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -657,14 +718,21 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Historical time-series OLS with tax rate and income share variables, US 1913-2002",
-    "covariates_controlled": "[\"macroeconomic controls\", \"war dummies\"]"
+    "covariates_controlled": [
+      "[\"macroeconomic controls\"",
+      "\"war dummies\"]"
+    ]
   },
   {
     "id": 1726,
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
     "finding_text": "Declining effective tax rates on top income earners since 1980 are strongly correlated with rising top income shares; the US top 1% income share doubled from 10% to 20% as their effective tax rates fell by roughly 20pp, driven by both tax cuts and the increasing importance of capital income.",
-    "construct_ids": "effective_tax_rate_by_quintile,top_marginal_income_tax_rate,redistributive_effect_taxes",
+    "construct_ids": [
+      "effective_tax_rate_by_quintile",
+      "top_marginal_income_tax_rate",
+      "redistributive_effect_taxes"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -687,6 +755,10 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Historical top income shares constructed from IRS Statistics of Income, 1913-2002",
-    "covariates_controlled": "[\"capital gains realizations\", \"wage growth\", \"macroeconomic cycle\"]"
+    "covariates_controlled": [
+      "[\"capital gains realizations\"",
+      "\"wage growth\"",
+      "\"macroeconomic cycle\"]"
+    ]
   }
 ]
