@@ -61,6 +61,16 @@ jobs:
             [ -d "$dir" ] || continue
             python3 scripts/validate_pax.py "$dir" || true
           done
+          # "Installs cleanly" smoke test — issue #86. Builds the archive
+          # and verifies the integrity envelope matches what praxis import_pax
+          # expects (manifest.json shape, digest match, path safety, schema).
+          for pack in $changed_packs; do
+            dir="pax/$pack"
+            [ -d "$dir" ] || continue
+            if ! python3 scripts/smoke_install_pack.py "$dir"; then
+              fail=1
+            fi
+          done
           if [ "$fail" -ne 0 ]; then
             echo "fail=1" >> "$GITHUB_OUTPUT"
             exit 1

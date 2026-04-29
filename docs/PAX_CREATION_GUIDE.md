@@ -1,8 +1,10 @@
 # PAX v3 Specification & Creation Guide
 
-> **Schema version:** 3.0 — Last updated: 2026-04-28
+> **Schema version:** 3.0 — Last updated: 2026-04-29
 >
 > This document is the canonical specification for PAX v3. All future PAX schema changes are documented here. For v1→v2 migration context, see `docs/adr/ADR-007-pax-v2-schema-evolution.md`. PAX v3 builds on v2 by adding the canonical-construct backbone, structured statistics, and minting governance (Sprints 7–9).
+>
+> **Source of truth.** This file (and its release-asset copy at [pax-market.com/PAX_CREATION_GUIDE.md](https://pax-market.com/PAX_CREATION_GUIDE.md)) is the canonical PAX spec. The friendlier walkthrough at [pax-market.com/guide/](https://pax-market.com/guide/) may lag the spec on field names, enums, or packaging details. **When the two disagree, this document wins.** If you find a contradiction, please open an issue on the [pax-market repo](https://github.com/JELambert/pax-market/issues) and the friendlier guide will be updated to match.
 
 ## What Is This Document?
 
@@ -143,6 +145,17 @@ provides:
 - `field` — entire research field
 - `enterprise` — business/industry domain
 - `engine` — analytical method package
+
+### `author` semantics
+
+The manifest's `author` field has different meanings depending on `pax_type`. **Do not confuse it with the authors of the underlying source papers** — those live in `knowledge/sources.json` (each source has its own `authors` field).
+
+| `pax_type` | What `author` means | Example |
+|---|---|---|
+| `paper` | The author(s) of the paper this PAX represents (carried into manifest as a convenience for display/title derivation; the authoritative copy still lives in `sources.json`). | `"Fearon, James D.; Laitin, David D."` |
+| `topic`, `field`, `enterprise`, `engine` | The pack maintainer or curator — the human or org who assembled the PAX, not the authors of the underlying sources. | `"Praxis Agent"`, `"Bartel Lab"`, `"Anthropic"` |
+
+For paper PAX, treat the manifest `author` as a denormalized cache of the source authors — it's used for title derivation (`shorten_authors()` in the registry script) and display. Keep it consistent with the corresponding entry in `sources.json`.
 
 **Optional manifest fields:**
 - `published_by` *(string)* — Display name shown as the publisher on [pax-market.com](https://pax-market.com). If unset, the marketplace registry workflow auto-stamps the GitHub username of the PR submitter at submission time. Set this explicitly only if you want a custom value (an organization name, a multi-author credit, or "Praxis Agent" for automated PAX generation). **Do not set it speculatively** — leaving it unset gives the right default for community submissions.
@@ -807,14 +820,23 @@ description: "Customer churn prediction and retention drivers for B2B SaaS."
 
 ## Packaging & Distribution Format
 
-For sharing, archival, marketplace submission, or cross-machine transfer, a PAX is distributed as a single gzip-compressed tarball with the extension `.pax.tar.gz`.
+For sharing, archival, marketplace submission, or cross-machine transfer, a PAX is distributed as a single archive containing the PAX directory plus an integrity envelope (`manifest.json`).
+
+### Accepted archive formats
+
+| Format | Extension | Status | When to use |
+|---|---|---|---|
+| zip | `<pax_name>.zip` | **Canonical (preferred)** | All hand-authored submissions and modern releases. First-class on every desktop OS, browser-friendly. |
+| gzip-tar | `<pax_name>.pax.tar.gz` | Legacy (still accepted) | Compatibility with v1 praxis releases. The marketplace continues to publish this alongside `.zip`. |
+
+`submit.pax-market.com` and `praxis_install_pax` accept either format; the marketplace's `publish-artifacts` workflow ships both formats for each pack so legacy consumers keep working. **For new submissions, use `.zip`.**
 
 ### Archive layout
 
-The tarball flattens the PAX directory at its root and adds one file — `manifest.json` — at the top level:
+The archive flattens the PAX directory at its root and adds one file — `manifest.json` — at the top level:
 
 ```
-<pax_name>.pax.tar.gz
+<pax_name>.zip                      (or <pax_name>.pax.tar.gz)
 ├── manifest.json                   # Archive metadata + per-file sha256 + size
 ├── pax.yaml
 ├── knowledge/
@@ -830,7 +852,7 @@ The tarball flattens the PAX directory at its root and adds one file — `manife
     └── quick_start.yaml
 ```
 
-> **Note.** `manifest.json` (archive metadata) is distinct from `pax.yaml` (the PAX manifest). Both live at the archive root; only `pax.yaml` is authored by you.
+> **Note.** `manifest.json` (archive metadata) is distinct from `pax.yaml` (the PAX manifest). Both live at the archive root; only `pax.yaml` is authored by you. **Do not include README.md, image assets, or markdown documentation** — anything not listed in `manifest.json["files"]` will fail the integrity check.
 
 ### `manifest.json` schema
 
@@ -838,7 +860,8 @@ The tarball flattens the PAX directory at its root and adds one file — `manife
 {
   "pax_name": "dukalskis-et-al-2024-transnational-repression",
   "version": "1.0.0",
-  "exported_at": "2026-04-28T12:34:56Z",
+  "schema_version": "3.0",
+  "exported_at": "2026-04-29T12:34:56Z",
   "exported_by": "praxis",
   "files": {
     "pax.yaml": { "sha256": "8a7b...e3", "size": 1284 },
@@ -850,40 +873,136 @@ The tarball flattens the PAX directory at its root and adds one file — `manife
 }
 ```
 
-Every file shipped in the archive (except `manifest.json` itself) MUST appear in `files` with a SHA-256 hex digest and byte size. `import_pax` recomputes each digest on receipt and refuses the archive on any mismatch — this is the integrity boundary between authoring and consumption.
+Every file shipped in the archive (except `manifest.json` itself) MUST appear in `files` keyed by its archive-relative path, with a `{ "sha256": "<hex>", "size": <int> }` value. `import_pax` recomputes each digest on receipt and refuses the archive on any mismatch — this is the integrity boundary between authoring and consumption.
+
+> **Wire shape — pinned.** `files[<path>]` is always a JSON object with `sha256` and `size`. **Never a bare string.** If you see legacy archives shipping bare strings, treat that as a bug (issue #99); consumers should coerce defensively but producers must emit the dict shape.
 
 ### How to produce the archive
 
-**Recommended (round-trip via Praxis):**
+**Path A — Round-trip via Praxis (recommended if you have praxis available):**
 
-```bash
+```python
 # Install your authored directory locally first
-praxis_install_pax(pax_dir="/path/to/my-pax-name")
+praxis_install_pax(source="/path/to/my-pax-name")
 
-# Then export — this is the canonical packaging step (computes sha256s, builds manifest.json, tars+gzips)
+# Then export — canonical packaging (computes sha256s, builds manifest.json, zips)
 praxis_export_pax(pax_name="my-pax-name", output_dir="/path/to/output")
-# Returns: { archive_path, size_bytes, file_count, checksum }
 ```
 
-`export_pax` always reconstructs the archive contents from the database, not the filesystem — so any normalization, ID rewrites, or `extend_pax` additions made after install are reflected in the export.
+`export_pax` always reconstructs the archive contents from the database, not the filesystem — any normalization, ID rewrites, or `extend_pax` additions made after install are reflected in the export.
 
-**Manual (offline, no Praxis runtime):**
+**Path B — Self-contained Python script (no Praxis runtime):**
+
+Save the snippet below as `build_pax.py` next to your PAX directory and run `python3 build_pax.py my-pax-name/`. It produces both `my-pax-name.zip` and (optionally) `my-pax-name.pax.tar.gz` with a valid `manifest.json` envelope. The marketplace's own registry generator uses the same logic; this snippet is the canonical reference implementation for submitters.
+
+```python
+import hashlib, json, sys, zipfile
+from datetime import datetime, timezone
+from pathlib import Path
+
+def build_pax(pack_dir: Path, *, also_targz: bool = False, exported_by: str = "submitter") -> Path:
+    if not (pack_dir / "pax.yaml").exists():
+        sys.exit(f"missing pax.yaml under {pack_dir}")
+    name = pack_dir.name
+
+    # Collect files (skip dotfiles and __pycache__).
+    pack_files = []
+    for p in sorted(pack_dir.rglob("*")):
+        if not p.is_file():
+            continue
+        arcname = str(p.relative_to(pack_dir))
+        if arcname.startswith(".") or "__pycache__" in arcname:
+            continue
+        if arcname == "manifest.json":
+            continue  # never shipped from source; we generate it
+        pack_files.append((p, arcname))
+
+    files = {
+        arcname: {
+            "sha256": hashlib.sha256(p.read_bytes()).hexdigest(),
+            "size": p.stat().st_size,
+        }
+        for p, arcname in pack_files
+    }
+
+    # Read schema_version + version out of pax.yaml without requiring PyYAML.
+    import re
+    text = (pack_dir / "pax.yaml").read_text()
+    def field(k, default=""):
+        m = re.search(rf'^\s*{k}\s*:\s*"?([^"\n]+)"?\s*$', text, re.M)
+        return (m.group(1).strip() if m else default)
+
+    manifest = {
+        "pax_name": name,
+        "version": field("version", "0.0.0"),
+        "schema_version": field("schema_version", "3.0"),
+        "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "exported_by": exported_by,
+        "files": files,
+    }
+    manifest_bytes = json.dumps(manifest, indent=2, sort_keys=True).encode()
+
+    out = pack_dir.parent / f"{name}.zip"
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("manifest.json", manifest_bytes)
+        for p, arcname in pack_files:
+            zf.write(p, arcname=arcname)
+
+    if also_targz:
+        import io, tarfile
+        targz = pack_dir.parent / f"{name}.pax.tar.gz"
+        with tarfile.open(targz, "w:gz") as tar:
+            info = tarfile.TarInfo("manifest.json")
+            info.size = len(manifest_bytes)
+            tar.addfile(info, io.BytesIO(manifest_bytes))
+            for p, arcname in pack_files:
+                tar.add(p, arcname=arcname)
+
+    return out
+
+if __name__ == "__main__":
+    target = Path(sys.argv[1]) if len(sys.argv) > 1 else sys.exit("usage: build_pax.py <pack-dir>")
+    out = build_pax(target.resolve(), also_targz="--targz" in sys.argv)
+    print(f"wrote {out}")
+```
+
+Or if you'd rather not run a script, `submit.pax-market.com` accepts a plain directory upload and runs the same logic server-side — you don't need to produce `manifest.json` yourself in that case.
+
+**Path C — Reference shell snippet (zip only, manual digest pass):**
+
+Useful when you specifically want to build the zip by hand. Requires `python3` (or any tool that produces SHA-256). The Path B script is preferred; this is here for transparency.
 
 ```bash
 cd /path/to/my-pax-name
-# Compute per-file sha256 + size, write manifest.json at the root, then:
-tar -czf ../my-pax-name.pax.tar.gz manifest.json pax.yaml knowledge/ playbooks/
-sha256sum ../my-pax-name.pax.tar.gz   # archive-level checksum (record this for your registry entry)
+python3 - <<'PY'
+import hashlib, json, zipfile
+from datetime import datetime, timezone
+from pathlib import Path
+files = {}
+for p in sorted(Path('.').rglob('*')):
+    if not p.is_file(): continue
+    arc = str(p)
+    if arc.startswith('.') or arc == 'manifest.json' or '__pycache__' in arc: continue
+    files[arc] = {"sha256": hashlib.sha256(p.read_bytes()).hexdigest(), "size": p.stat().st_size}
+manifest = {
+    "pax_name": Path('.').resolve().name,
+    "schema_version": "3.0",
+    "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "exported_by": "submitter",
+    "files": files,
+}
+Path('manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True))
+PY
+zip -r "../$(basename $PWD).zip" manifest.json pax.yaml knowledge playbooks
+rm manifest.json
 ```
-
-The marketplace upload service at [submit.pax-market.com](https://submit.pax-market.com) accepts either a directory upload (it packages for you) or a pre-built `.pax.tar.gz`.
 
 ### Archive integrity rules
 
-- **Filename** — Must be `<pax_name>.pax.tar.gz`. The leading segment must match `pax.yaml`'s `name` field.
-- **No path traversal** — Tar entries with `..`, absolute paths, or symlinks are rejected by `import_pax`.
-- **No extra files** — Anything not listed in `manifest.json["files"]` triggers a validation warning. `manifest.json` itself is excluded from the file map.
-- **Compression** — Must be gzip (`.tar.gz`), not bzip2 or xz. The mime type is `application/gzip`.
+- **Filename** — Must be `<pax_name>.zip` (canonical) or `<pax_name>.pax.tar.gz` (legacy). The leading segment must match `pax.yaml`'s `name` field.
+- **No path traversal** — Entries with `..`, absolute paths, or symlinks are rejected by `import_pax`.
+- **No extra files** — Anything not listed in `manifest.json["files"]` triggers a validation warning. `manifest.json` itself is excluded from the file map. **No README.md, no images, no markdown docs** in the archive.
+- **Compression** — `.zip` (deflate or store) or `.pax.tar.gz` (gzip). No bzip2, no xz, no `.tar` without compression.
 - **Size guidance** — Most paper PAXes are <100 KB compressed; field PAXes (50+ sources) typically 1–5 MB. Hard ceiling enforced by the marketplace upload service is 50 MB.
 
 ---
@@ -1096,6 +1215,13 @@ This document is the canonical PAX specification. All schema changes are recorde
 | 3.0 | 2026-04-28 | Canonical-construct backbone (`canonical_constructs.json`, `construct_relations.json`). Operationalization split — `constructs.json` entries gain `canonical_id`, `operationalization_id`, `operationalization_status`, `coding_rule`. Backbone `relation_type` controlled vocabulary (`subsumes`, `refines`, `disjoint_from`, `equivalent_to`). `unit_of_analysis` on findings (engine pooling/dedup). Minting governance — provisional → canonical promotion logged in `governance_log` with justification. `find_pathways` and `level_bridge` honor `disjoint_from` to block cross-cluster traversal. Sprints 7–9. |
 | 2.0 | 2026-04-07 | Structured statistics on findings (effect_size_value, SE, p, N, CI, model_spec, covariates). Enriched source metadata (methodology, study_design, sample_size, limitations, replication). Construct provenance (formal/operational definitions, measurement_level, provenance chain). Construct relationships (causal/correlational with mechanism). Engine documentation (parameters, assumptions, diagnostics, interpretation). Playbook enhancements (data quality gates, conditional branching, parameter variants). Quality scoring adds statistical_richness, relationship_coverage, source_depth sub-scores. See ADR-007. |
 | 1.0 | 2026-04-05 | Initial PAX format: manifest, domain, constructs (with aliases/measures), sources, findings, propositions, playbooks, engine registry, data sources. |
+
+### v3.0.1 (2026-04-29 — clarifications, no schema change)
+- Banner naming this doc as the source of truth over `pax-market.com/guide/` (issue #95).
+- `author` field semantics by `pax_type` clarified — pack maintainer vs. paper authors (issue #98).
+- Packaging section: `.zip` named canonical, `.pax.tar.gz` kept as legacy alias; both are accepted upload formats (issue #97).
+- "How to produce manifest.json" now ships a self-contained Python script + shell snippet so submitters aren't blocked by the integrity envelope (issue #96).
+- `manifest.json["files"]` shape pinned to `{sha256, size}` dict; bare-string shape called out as a producer-side bug (issue #99).
 
 ### Planned for v3.1
 - Finding TTL/expiration for business metrics that decay

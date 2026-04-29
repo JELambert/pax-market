@@ -6,7 +6,7 @@ Reads pax/*/pax.yaml + knowledge/*.json (committed to git) and generates:
   1. dist/registry.json       — thin install contract
   2. dist/constructs.json     — cross-pack construct index
   3. dist/full-catalog.json   — complete pack data for website consumption
-  4. dist/pax/<name>.pax.tar.gz — downloadable archives
+  4. dist/pax/<name>.zip + <name>.pax.tar.gz — downloadable archives (zip is canonical, tar.gz is legacy)
 
 This script is the registry side of the two-repo architecture. It has no
 Hugo dependency and produces no website content. The full-catalog.json is
@@ -22,6 +22,8 @@ import json
 import re
 import sys
 import tarfile
+import zipfile
+from datetime import datetime, timezone
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -299,45 +301,66 @@ def process_pack(pack_dir: Path) -> dict | None:
     if not tags:
         tags = [pax_type]
 
-    # Archive — output to dist/pax/
+    # Archive — output to dist/pax/. We ship both .zip (canonical, preferred for
+    # hand-authored submissions; per spec) and .pax.tar.gz (legacy, kept so v1
+    # praxis releases keep working). The website's primary download_url points
+    # at .zip; tar.gz lives alongside as a parallel asset.
     archive_dir = DIST_DIR / "pax"
     archive_dir.mkdir(parents=True, exist_ok=True)
-    archive_path = archive_dir / f"{name}.pax.tar.gz"
+    zip_path = archive_dir / f"{name}.zip"
+    targz_path = archive_dir / f"{name}.pax.tar.gz"
 
-    # Collect pack files and compute per-file checksums
+    # Collect pack files and compute per-file checksums + sizes.
+    # Spec: no markdown docs / READMEs ship inside archives. Source pack
+    # directories may contain data_recipe.md / README.md for human readers,
+    # but they don't go in the integrity envelope.
     pack_files = []
     for item in sorted(pack_dir.rglob("*")):
         if item.is_file():
             arcname = str(item.relative_to(pack_dir))
             if "__pycache__" in arcname or arcname.startswith("."):
                 continue
+            if arcname.endswith(".md"):
+                continue
             pack_files.append((item, arcname))
 
-    file_checksums = {
-        arcname: hashlib.sha256(item.read_bytes()).hexdigest()
+    file_entries = {
+        arcname: {
+            "sha256": hashlib.sha256(item.read_bytes()).hexdigest(),
+            "size": item.stat().st_size,
+        }
         for item, arcname in pack_files
     }
 
-    # Build manifest.json required by praxis import_pax()
+    # Build manifest.json — matches the spec in PAX_CREATION_GUIDE.md.
+    # `files` is a dict of {arcname: {sha256, size}} (issue #99).
     manifest_data = {
-        "name": name,
+        "pax_name": name,
         "version": version,
         "schema_version": manifest.get("schema_version", "1.0"),
-        "files": file_checksums,
+        "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "exported_by": "pax-market generate-registry.py",
+        "files": file_entries,
     }
     manifest_bytes = json.dumps(manifest_data, indent=2, sort_keys=True).encode()
 
-    with tarfile.open(archive_path, "w:gz") as tar:
-        # manifest.json first (archive root)
+    # 1. Write .zip (canonical)
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("manifest.json", manifest_bytes)
+        for item, arcname in pack_files:
+            zf.write(item, arcname=arcname)
+
+    # 2. Write .pax.tar.gz (legacy)
+    with tarfile.open(targz_path, "w:gz") as tar:
         manifest_info = tarfile.TarInfo(name="manifest.json")
         manifest_info.size = len(manifest_bytes)
         tar.addfile(manifest_info, io.BytesIO(manifest_bytes))
-        # pack files
         for item, arcname in pack_files:
             tar.add(item, arcname=arcname)
 
-    sha256 = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    archive_size = format_size(archive_path.stat().st_size)
+    sha256 = hashlib.sha256(zip_path.read_bytes()).hexdigest()
+    archive_size = format_size(zip_path.stat().st_size)
+    targz_sha256 = hashlib.sha256(targz_path.read_bytes()).hexdigest()
 
     title = derive_title(name, desc, pax_type, author)
 
@@ -371,9 +394,11 @@ def process_pack(pack_dir: Path) -> dict | None:
         "construct_relations": construct_relations,
         "quality": quality,
         "pax_schema_version": manifest.get("schema_version", "1.0"),
-        "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.pax.tar.gz",
+        "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.zip",
         "download_sha256": sha256,
         "download_size": archive_size,
+        "legacy_targz_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.pax.tar.gz",
+        "legacy_targz_sha256": targz_sha256,
         "published_by": manifest.get("published_by") or "Praxis Agent",
     }
 

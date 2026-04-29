@@ -31,9 +31,11 @@ jobs:
           test -f dist/registry.json || (echo "Missing registry.json" && exit 1)
           test -f dist/constructs.json || (echo "Missing constructs.json" && exit 1)
           test -f dist/full-catalog.json || (echo "Missing full-catalog.json" && exit 1)
-          PACK_COUNT=$(find dist/pax -name '*.pax.tar.gz' | wc -l)
-          echo "Found $PACK_COUNT pack archives"
-          test "$PACK_COUNT" -gt 0 || (echo "No pack archives found" && exit 1)
+          ZIP_COUNT=$(find dist/pax -name '*.zip' | wc -l)
+          TARGZ_COUNT=$(find dist/pax -name '*.pax.tar.gz' | wc -l)
+          echo "Found $ZIP_COUNT zip + $TARGZ_COUNT tar.gz archives"
+          test "$ZIP_COUNT" -gt 0 || (echo "No .zip pack archives found" && exit 1)
+          test "$ZIP_COUNT" = "$TARGZ_COUNT" || (echo "zip/tar.gz count mismatch" && exit 1)
 
       - name: Verify guide markers
         # Loud failure: if either marker is missing, praxis pax_schema.py

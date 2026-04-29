@@ -14,7 +14,13 @@ permissions:
 jobs:
   enable-automerge:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'community') }}
+    # Skip auto-merge for community PRs. A PR is "community" if it's labeled
+    # `community`, originates from a fork, or is authored by anyone other than
+    # the repo owner. Community packs always require manual review.
+    if: >-
+      ${{ !contains(github.event.pull_request.labels.*.name, 'community')
+          && github.event.pull_request.head.repo.full_name == github.repository
+          && github.event.pull_request.user.login == github.repository_owner }}
     timeout-minutes: 30
     steps:
       - name: Enable auto-merge

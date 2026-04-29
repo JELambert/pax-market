@@ -53,7 +53,7 @@ praxis repo = RUNTIME ENGINE
 ## CI Workflows
 - **validate-pack.yml** — Runs on PRs with `pax/**` changes. Checks required fields, valid enums, JSON validity.
 - **stamp-published-by.yml** — Runs on PRs with `pax/**/pax.yaml` changes. Auto-stamps `published_by: <PR-author-login>` if not declared.
-- **auto-merge-pack.yml** — Enables squash merge on valid pack PRs. Skips PRs labeled `community` (those need manual review).
+- **auto-merge-pack.yml** — Enables squash merge on valid pack PRs. Skips community PRs (labeled `community`, from a fork, or authored by anyone other than the repo owner) — those need manual review.
 - **publish-artifacts.yml** — On push to main affecting `pax/**`, `scripts/generate-registry.py`, or `docs/**`, runs `generate-registry.py` and creates GitHub Release with all artifacts (4 registry + 2 guides).
 - **deploy-marketplace.yml** — Build verification.
 
@@ -82,6 +82,19 @@ dist/                        .gitignored — build output
 - Knowledge files: `constructs.json`, `findings.json`, `sources.json`, `domain.json`
 - Optional: `propositions.json`, `construct_relationships.json`, `playbooks/*.yaml`
 - v3 additions: `canonical_constructs.json`, `construct_relations.json` (canonical-construct backbone); `unit_of_analysis`, `scope_conditions`, `sample_n` on findings; `canonical_id`, `operationalization_id`, `coding_rule` on constructs
+
+## Task Delegation
+
+Spawn subagents to isolate context, parallelize independent work, or offload bulk mechanical tasks. Don't spawn when the parent needs the reasoning, when synthesis requires holding things together, or when spawn overhead dominates.
+
+Pick the cheapest model that can do the subtask well:
+- Haiku: bulk mechanical work, no judgment
+- Sonnet: scoped research, code exploration, in-scope synthesis
+- Opus: subtasks needing real planning or tradeoffs
+
+If a subagent realizes it needs a higher tier than itself, return to the parent.
+
+Parent owns final output and cross-spawn synthesis. User instructions override.
 
 ## Don't
 - Don't remove or rename the `<!-- PAX_SCHEMA_START -->`, `<!-- PAX_SCHEMA_END -->`, `<!-- PAX_FIELDS_START -->`, or `<!-- PAX_FIELDS_END -->` markers in `docs/PAX_CREATION_GUIDE.md`. Praxis parses them at import time; corruption breaks every consumer.
