@@ -134,14 +134,24 @@ jobs:
                       missing_constructs = set()
                       missing_domains    = set()
                       missing_sources    = set()
+                      string_shape_construct_ids = 0
+                      string_shape_covariates    = 0
 
                       for fnd in findings:
                           if not isinstance(fnd, dict):
                               continue
-                          # construct_ids may be list or comma-separated string
+                          # construct_ids must be a JSON array per PAX_CREATION_GUIDE.md.
+                          # Older exporters wrote comma-separated strings; praxis v2's
+                          # loader tolerates that defensively (af58dd1) but the PAX
+                          # itself should ship the spec shape. Tracked: #84.
                           cs = fnd.get('construct_ids', [])
                           if isinstance(cs, str):
+                              string_shape_construct_ids += 1
                               cs = [s.strip() for s in cs.split(',') if s.strip()]
+                          # Same shape requirement on covariates_controlled.
+                          cv = fnd.get('covariates_controlled')
+                          if isinstance(cv, str):
+                              string_shape_covariates += 1
                           for cid in cs:
                               if cid and cid not in known_constructs:
                                   missing_constructs.add(cid)
@@ -163,6 +173,10 @@ jobs:
                           errors.append(f'{pack_dir.name}: findings reference {len(missing_domains)} undefined domain/sub_domain id(s) — add them to domain.json or remove the references: {sorted(missing_domains)}')
                       if missing_sources:
                           errors.append(f'{pack_dir.name}: findings reference {len(missing_sources)} undefined source_id(s): {sorted(missing_sources)}')
+                      if string_shape_construct_ids:
+                          errors.append(f'{pack_dir.name}: {string_shape_construct_ids} findings have construct_ids as a string; PAX_CREATION_GUIDE.md requires a JSON array. Convert \"a,b,c\" → [\"a\",\"b\",\"c\"].')
+                      if string_shape_covariates:
+                          errors.append(f'{pack_dir.name}: {string_shape_covariates} findings have covariates_controlled as a string; PAX_CREATION_GUIDE.md requires a JSON array.')
 
           # Report
           if warnings:
