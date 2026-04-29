@@ -21,174 +21,32 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
-      - name: Validate packs in PR
+      - name: Validate changed packs
         run: |
-          python3 -c "
-          import json, sys, os, yaml, subprocess
-          from pathlib import Path
-
-          REQUIRED_MANIFEST = ['name', 'version', 'description', 'pax_type', 'schema_version']
-          VALID_TYPES = ['paper', 'topic', 'field', 'engine', 'enterprise']
-          VALID_SCHEMA_VERSIONS = ['1.0', '2.0', '3.0']
-          errors = []
-          warnings = []
-
-          # Find only pack directories changed in this PR
-          result = subprocess.run(
-              ['git', 'diff', '--name-only', 'origin/main...HEAD'],
-              capture_output=True, text=True
+          set -euo pipefail
+          # Find pack directories changed in this PR.
+          changed_packs=$(
+            git diff --name-only origin/main...HEAD -- 'pax/' \
+              | awk -F/ 'NF>=2 && $1=="pax" {print $2}' \
+              | sort -u
           )
-          changed_files = result.stdout.strip().splitlines()
-          changed_packs = set()
-          for f in changed_files:
-              parts = Path(f).parts
-              if len(parts) >= 2 and parts[0] == 'pax':
-                  changed_packs.add(parts[1])
-
-          if not changed_packs:
-              print('No pax/ changes in this PR — skipping validation')
-              sys.exit(0)
-
-          print(f'Validating {len(changed_packs)} changed pack(s): {sorted(changed_packs)}')
-
-          for pack_name in sorted(changed_packs):
-              pack_dir = Path('pax') / pack_name
-              if not pack_dir.is_dir():
-                  continue  # deleted pack, skip
-              manifest_path = pack_dir / 'pax.yaml'
-              if not manifest_path.exists():
-                  errors.append(f'{pack_dir.name}: missing pax.yaml')
-                  continue
-
-              # Parse manifest
-              try:
-                  with open(manifest_path) as f:
-                      manifest = yaml.safe_load(f)
-              except Exception as e:
-                  errors.append(f'{pack_dir.name}: invalid pax.yaml: {e}')
-                  continue
-
-              # Required fields
-              for field in REQUIRED_MANIFEST:
-                  if not manifest.get(field):
-                      errors.append(f'{pack_dir.name}: missing required field: {field}')
-
-              # Valid pax_type
-              if manifest.get('pax_type') and manifest['pax_type'] not in VALID_TYPES:
-                  errors.append(f'{pack_dir.name}: invalid pax_type: {manifest[\"pax_type\"]}')
-
-              # Valid schema_version
-              sv = str(manifest.get('schema_version', ''))
-              if sv and sv not in VALID_SCHEMA_VERSIONS:
-                  errors.append(f'{pack_dir.name}: unrecognized schema_version: {sv}')
-
-              # Knowledge files valid JSON
-              knowledge_dir = pack_dir / 'knowledge'
-              if knowledge_dir.is_dir():
-                  for json_file in knowledge_dir.glob('*.json'):
-                      try:
-                          with open(json_file) as f:
-                              json.load(f)
-                      except json.JSONDecodeError as e:
-                          errors.append(f'{pack_dir.name}/knowledge/{json_file.name}: invalid JSON: {e}')
-
-              # Quality check: at least 1 construct
-              constructs_file = knowledge_dir / 'constructs.json' if knowledge_dir.is_dir() else None
-              if constructs_file and constructs_file.exists():
-                  try:
-                      with open(constructs_file) as f:
-                          constructs = json.load(f)
-                      if isinstance(constructs, list) and len(constructs) == 0:
-                          warnings.append(f'{pack_dir.name}: no constructs defined')
-                  except Exception:
-                      pass
-
-              # Cross-reference integrity: findings must reference IDs that
-              # actually exist. Catches the JELambert/pax-market#81 class of
-              # bug (pmsc-market-for-force shipped with 5 undefined sub-domains
-              # and 3 undefined constructs, breaking praxis_install_pax).
-              if knowledge_dir.is_dir():
-                  def _safe_load(p):
-                      try:
-                          with open(p) as f:
-                              return json.load(f)
-                      except Exception:
-                          return None
-
-                  findings = _safe_load(knowledge_dir / 'findings.json') or []
-                  if not isinstance(findings, list):
-                      findings = []
-
-                  if findings:
-                      # Collect known IDs from each entity file. domain.json may
-                      # be a single object OR a list — handle both.
-                      def _ids(data, key='id'):
-                          if data is None: return set()
-                          if isinstance(data, dict): data = [data]
-                          return {x.get(key) for x in data if isinstance(x, dict) and x.get(key)}
-
-                      known_constructs = _ids(_safe_load(knowledge_dir / 'constructs.json'))
-                      known_domains    = _ids(_safe_load(knowledge_dir / 'domain.json')) | _ids(_safe_load(knowledge_dir / 'domains.json'))
-                      known_sources    = _ids(_safe_load(knowledge_dir / 'sources.json'))
-
-                      missing_constructs = set()
-                      missing_domains    = set()
-                      missing_sources    = set()
-                      string_shape_construct_ids = 0
-                      string_shape_covariates    = 0
-
-                      for fnd in findings:
-                          if not isinstance(fnd, dict):
-                              continue
-                          # construct_ids must be a JSON array per PAX_CREATION_GUIDE.md.
-                          # Older exporters wrote comma-separated strings; praxis v2's
-                          # loader tolerates that defensively (af58dd1) but the PAX
-                          # itself should ship the spec shape. Tracked: #84.
-                          cs = fnd.get('construct_ids', [])
-                          if isinstance(cs, str):
-                              string_shape_construct_ids += 1
-                              cs = [s.strip() for s in cs.split(',') if s.strip()]
-                          # Same shape requirement on covariates_controlled.
-                          cv = fnd.get('covariates_controlled')
-                          if isinstance(cv, str):
-                              string_shape_covariates += 1
-                          for cid in cs:
-                              if cid and cid not in known_constructs:
-                                  missing_constructs.add(cid)
-                          # domain references
-                          d = fnd.get('domain_id')
-                          if d and d not in known_domains:
-                              missing_domains.add(d)
-                          for sd in (fnd.get('sub_domain_ids') or []):
-                              if sd and sd not in known_domains:
-                                  missing_domains.add(sd)
-                          # source — either source_id or embedded {id: ...}
-                          src = fnd.get('source_id') or (fnd.get('source') or {}).get('id') if isinstance(fnd.get('source'), dict) else fnd.get('source_id')
-                          if src and known_sources and src not in known_sources:
-                              missing_sources.add(src)
-
-                      if missing_constructs:
-                          errors.append(f'{pack_dir.name}: findings reference {len(missing_constructs)} undefined construct_id(s): {sorted(missing_constructs)}')
-                      if missing_domains:
-                          errors.append(f'{pack_dir.name}: findings reference {len(missing_domains)} undefined domain/sub_domain id(s) — add them to domain.json or remove the references: {sorted(missing_domains)}')
-                      if missing_sources:
-                          errors.append(f'{pack_dir.name}: findings reference {len(missing_sources)} undefined source_id(s): {sorted(missing_sources)}')
-                      if string_shape_construct_ids:
-                          errors.append(f'{pack_dir.name}: {string_shape_construct_ids} findings have construct_ids as a string; PAX_CREATION_GUIDE.md requires a JSON array. Convert \"a,b,c\" → [\"a\",\"b\",\"c\"].')
-                      if string_shape_covariates:
-                          errors.append(f'{pack_dir.name}: {string_shape_covariates} findings have covariates_controlled as a string; PAX_CREATION_GUIDE.md requires a JSON array.')
-
-          # Report
-          if warnings:
-              print('Warnings:')
-              for w in warnings:
-                  print(f'  ⚠ {w}')
-
-          if errors:
-              print('Errors:')
-              for e in errors:
-                  print(f'  ✗ {e}')
-              sys.exit(1)
-          else:
-              print(f'✓ All packs valid')
-          "
+          if [ -z "$changed_packs" ]; then
+            echo "No pax/ changes in this PR — skipping validation."
+            exit 0
+          fi
+          echo "Validating $(echo "$changed_packs" | wc -l | tr -d ' ') changed pack(s):"
+          echo "$changed_packs" | sed 's/^/  /'
+          fail=0
+          for pack in $changed_packs; do
+            dir="pax/$pack"
+            if [ ! -d "$dir" ]; then
+              echo "  (deleted: $pack — skipping)"
+              continue
+            fi
+            python3 scripts/validate_pax.py "$dir" || fail=1
+          done
+          if [ "$fail" -ne 0 ]; then
+            echo
+            echo "::error::One or more packs failed validation. See log above."
+            exit 1
+          fi
