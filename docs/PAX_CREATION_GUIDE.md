@@ -159,6 +159,33 @@ For paper PAX, treat the manifest `author` as a denormalized cache of the source
 
 **Optional manifest fields:**
 - `published_by` *(string)* — Display name shown as the publisher on [pax-market.com](https://pax-market.com). If unset, the marketplace registry workflow auto-stamps the GitHub username of the PR submitter at submission time. Set this explicitly only if you want a custom value (an organization name, a multi-author credit, or "Praxis Agent" for automated PAX generation). **Do not set it speculatively** — leaving it unset gives the right default for community submissions.
+- `provides.datasets[]` *(list, v4+)* — Raw data layer. Each entry declares a CSV/Parquet/Excel dataset the PAX ships (or fetches at install time). The praxis installer registers each as a DuckDB-queryable table; playbooks can then derive `construct_observations` rows from it via `register_dataset` + `derive_observations`. See "Raw Datasets (v4)" below.
+
+### Raw Datasets (v4)
+
+PAX v4 introduces a first-class raw data layer. Use it whenever your PAX wants to ship the actual rows that findings were derived from — instead of (or in addition to) the pre-aggregated construct observations.
+
+```yaml
+provides:
+  datasets:
+    - dataset_id: psed_1990_2012
+      display_name: "PSED — Private Security Events Database (1990–2012)"
+      description: "Event-level coding of private military and security activity."
+      source_url: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZKKOK7"
+      format: csv                    # csv | parquet | excel
+      unit_of_analysis: event        # must be in UNIT_OF_ANALYSIS enum
+      bundled: false                 # true → file ships in archive at parquet_relpath; false → fetched at install
+      parquet_relpath: datasets/psed_1990_2012.parquet  # default if omitted
+      sha256: "a1b2c3..."            # required when bundled: true; recomputed and verified at install
+```
+
+**Validation rules** (issue #106, enforced by `scripts/validate_pax.py`):
+- `bundled: true` → file MUST exist at `parquet_relpath` (default `datasets/<dataset_id>.parquet`) inside the pack source directory.
+- `bundled: false` → `source_url` MUST be non-empty.
+- If `sha256` is set on a bundled dataset, it MUST match the file bytes.
+- `dataset_id`, `display_name`, `format`, `unit_of_analysis` are required on every entry.
+
+**Schema version.** A PAX that uses `provides.datasets[]` MUST declare `schema_version: "4.0"`. v3 PAXes (no datasets block) continue to validate unchanged.
 
 ### Step 3: Define the Domain (`knowledge/domain.json`)
 
@@ -1066,6 +1093,10 @@ These are the canonical enum values for all PAX fields. The Praxis codebase pars
 
 **construct_kind values:** quantifiable, concept, process, composite, outcome
 
+**dataset_format values:** csv, parquet, excel
+
+**playbook_action values:** engine, ingest_dataset, data_quality_gate, register_dataset, derive_observations
+
 <!-- PAX_SCHEMA_END — do not remove this marker -->
 
 ---
@@ -1201,6 +1232,25 @@ entities:
       - {name: justification, type: text}
       - {name: source_id, type: text}
     optional: [pax_name]
+
+  dataset:
+    # v4 — raw data layer. Each entry under `provides.datasets[]` in pax.yaml
+    # describes a Parquet/CSV/Excel dataset that ships with the PAX (or is
+    # fetched at install time). The praxis runtime registers each entry in
+    # DuckDB so playbooks can run `register_dataset` + `derive_observations`
+    # against it.
+    required:
+      - {name: dataset_id, type: text}
+      - {name: display_name, type: text}
+      - {name: format, type: enum, enum: DATASET_FORMAT}
+      - {name: unit_of_analysis, type: enum, enum: UNIT_OF_ANALYSIS}
+    recommended:
+      - {name: description, type: text}
+      - {name: source_url, type: text}
+      - {name: bundled, type: boolean}
+      - {name: parquet_relpath, type: text}
+      - {name: sha256, type: text}
+    optional: [row_count, column_count, license]
 ```
 <!-- PAX_FIELDS_END -->
 
@@ -1212,6 +1262,7 @@ This document is the canonical PAX specification. All schema changes are recorde
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 4.0 | 2026-04-29 | Raw data layer: `provides.datasets[]` block on the manifest, `dataset` entity in PAX_FIELDS, `dataset_format` and `playbook_action` controlled vocabularies. Two new playbook actions (`register_dataset`, `derive_observations`) documented in `docs/PLAYBOOK_FORMAT.md`. Validator (`scripts/validate_pax.py`) enforces dataset registration when `provides.datasets[]` is non-empty (issue #106). v3 PAXes without a datasets block continue to validate unchanged. |
 | 3.0 | 2026-04-28 | Canonical-construct backbone (`canonical_constructs.json`, `construct_relations.json`). Operationalization split — `constructs.json` entries gain `canonical_id`, `operationalization_id`, `operationalization_status`, `coding_rule`. Backbone `relation_type` controlled vocabulary (`subsumes`, `refines`, `disjoint_from`, `equivalent_to`). `unit_of_analysis` on findings (engine pooling/dedup). Minting governance — provisional → canonical promotion logged in `governance_log` with justification. `find_pathways` and `level_bridge` honor `disjoint_from` to block cross-cluster traversal. Sprints 7–9. |
 | 2.0 | 2026-04-07 | Structured statistics on findings (effect_size_value, SE, p, N, CI, model_spec, covariates). Enriched source metadata (methodology, study_design, sample_size, limitations, replication). Construct provenance (formal/operational definitions, measurement_level, provenance chain). Construct relationships (causal/correlational with mechanism). Engine documentation (parameters, assumptions, diagnostics, interpretation). Playbook enhancements (data quality gates, conditional branching, parameter variants). Quality scoring adds statistical_richness, relationship_coverage, source_depth sub-scores. See ADR-007. |
 | 1.0 | 2026-04-05 | Initial PAX format: manifest, domain, constructs (with aliases/measures), sources, findings, propositions, playbooks, engine registry, data sources. |

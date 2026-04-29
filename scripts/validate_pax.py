@@ -40,7 +40,15 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_GUIDE = REPO_ROOT / "docs" / "PAX_CREATION_GUIDE.md"
 
 VALID_PAX_TYPES = ("paper", "topic", "field", "engine", "enterprise")
-VALID_SCHEMA_VERSIONS = ("1.0", "2.0", "3.0")
+VALID_SCHEMA_VERSIONS = ("1.0", "2.0", "3.0", "4.0")
+DATASET_FORMATS = ("csv", "parquet", "excel")
+PLAYBOOK_ACTIONS = (
+    "engine",
+    "ingest_dataset",
+    "data_quality_gate",
+    "register_dataset",
+    "derive_observations",
+)
 
 # Entities whose JSON file is REQUIRED if the pack has any findings.
 # (Other entities — propositions, canonical_constructs, etc. — are optional.)
@@ -465,6 +473,87 @@ class Validator:
                         self.err(f"pax.yaml provides.{key} declares {len(missing)} id(s) not present in {fname}: {sorted(missing)}")
 
     # -------------------------------------------------------------------
+    # Pass 6: provides.datasets[] (v4)
+    # -------------------------------------------------------------------
+
+    def check_datasets(self, manifest: dict | None) -> None:
+        """Issue #106 — validate provides.datasets[] entries.
+
+        Each entry must have dataset_id/display_name/format/unit_of_analysis.
+        bundled=true → file exists at parquet_relpath (default
+        datasets/<dataset_id>.parquet).  bundled=false → source_url present.
+        sha256, if set on a bundled file, must match the bytes.
+        """
+        if not isinstance(manifest, dict):
+            return
+        provides = manifest.get("provides") or {}
+        if not isinstance(provides, dict):
+            return
+        datasets = provides.get("datasets")
+        if datasets is None:
+            return
+        if not isinstance(datasets, list):
+            self.err(f"pax.yaml provides.datasets must be a list, got {type(datasets).__name__}")
+            return
+
+        # PAX with datasets MUST declare schema_version 4.0+.
+        sv = str(manifest.get("schema_version", ""))
+        if sv and sv not in ("4.0",):
+            self.err(f"pax.yaml: provides.datasets requires schema_version '4.0', got '{sv}'")
+
+        seen_ids: set[str] = set()
+        for idx, d in enumerate(datasets):
+            if not isinstance(d, dict):
+                self.err(f"pax.yaml provides.datasets[{idx}] must be a mapping")
+                continue
+
+            for required in ("dataset_id", "display_name", "format", "unit_of_analysis"):
+                if not d.get(required):
+                    self.err(f"pax.yaml provides.datasets[{idx}]: missing required field '{required}'")
+
+            ds_id = d.get("dataset_id", "")
+            if ds_id in seen_ids:
+                self.err(f"pax.yaml provides.datasets: duplicate dataset_id '{ds_id}'")
+            elif ds_id:
+                seen_ids.add(ds_id)
+
+            fmt = d.get("format")
+            if fmt and fmt not in DATASET_FORMATS:
+                self.err(f"pax.yaml provides.datasets[{idx}]: format '{fmt}' not in {DATASET_FORMATS}")
+
+            uoa = d.get("unit_of_analysis")
+            uoa_enum = self.enums.get("unit_of_analysis", [])
+            if uoa and uoa_enum and uoa not in uoa_enum:
+                # warning, not error — UoA may legitimately extend over time
+                self.warn(f"pax.yaml provides.datasets[{idx}]: unit_of_analysis '{uoa}' not in canonical enum")
+
+            bundled = bool(d.get("bundled"))
+            relpath = d.get("parquet_relpath") or f"datasets/{ds_id}.parquet" if ds_id else None
+
+            if bundled:
+                if not relpath:
+                    continue
+                full = self.pack_dir / relpath
+                if not full.exists():
+                    self.err(
+                        f"pax.yaml provides.datasets[{idx}]: bundled=true but file not found at {relpath}"
+                    )
+                    continue
+                expected_sha = d.get("sha256")
+                if expected_sha:
+                    import hashlib
+                    actual = hashlib.sha256(full.read_bytes()).hexdigest()
+                    if actual != expected_sha:
+                        self.err(
+                            f"pax.yaml provides.datasets[{idx}]: sha256 mismatch — manifest={expected_sha[:12]}..., file={actual[:12]}..."
+                        )
+            else:
+                if not d.get("source_url"):
+                    self.err(
+                        f"pax.yaml provides.datasets[{idx}]: bundled=false requires non-empty source_url"
+                    )
+
+    # -------------------------------------------------------------------
     # Driver
     # -------------------------------------------------------------------
 
@@ -475,6 +564,7 @@ class Validator:
         self.check_entity_fields(knowledge)
         self.check_known_list_shapes(knowledge)
         self.check_fk_refs(knowledge, manifest)
+        self.check_datasets(manifest)
         return not self.errors
 
 
