@@ -1,0 +1,29 @@
+[
+  {
+    "construct_from": "pmsc_government_event_count",
+    "construct_to": "civil_war_duration",
+    "relationship_type": "causal",
+    "direction": "positive",
+    "strength": "moderate",
+    "mechanism": "Government-hired PMSC event participation proxies government resource commitment to the conflict; greater commitment raises the hazard of war termination. Replication finding: hazard ratio ≈ 1.30 per unit increase.",
+    "source_id": "avant_neu_2019"
+  },
+  {
+    "construct_from": "pmsc_competition",
+    "construct_to": "civil_war_duration",
+    "relationship_type": "correlational",
+    "direction": "null",
+    "strength": "weak",
+    "mechanism": "Akcinaroglu & Radziszewski (2013) hypothesized that reputational competition among government-hired PMSCs improves performance and shortens wars. PSED's reanalysis shows the bivariate correlation does not survive controls for PMSC event participation, indicating event participation, not competition per se, is the operative variable.",
+    "source_id": "avant_neu_2019"
+  },
+  {
+    "construct_from": "pmsc_event_count",
+    "construct_to": "pmsc_abuse_allegation",
+    "relationship_type": "compositional",
+    "direction": "conditional",
+    "strength": "moderate",
+    "mechanism": "Each event in pmsc_event_count carries a binary abuse-allegation indicator; events with national-government or local-commercial clients are disproportionately associated with allegations. Compositional rather than causal — abuse allegation is an attribute coded on the event itself.",
+    "source_id": "avant_neu_2019"
+  }
+]

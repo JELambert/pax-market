@@ -1,0 +1,54 @@
+name: private-security-events-database
+version: "1.0.0"
+pax_type: paper
+schema_version: "3.0"
+description: >-
+  Avant & Neu (2019) "The Private Security Events Database" — introduces
+  PSED, the first event-based dataset on private military and security
+  company (PMSC) involvement in Africa, Latin America, and Southeast
+  Asia, 1990–2012. Provides the event taxonomy (event type, client type,
+  service type), descriptive findings on industry composition and abuse
+  allegations, and a replication of Akcinaroglu & Radziszewski (2013)
+  showing PMSC government-event counts predict shorter civil wars and
+  attenuate the apparent effect of PMSC competition.
+
+author: Avant, Deborah; Neu, Kara Kingma
+created: "2019-02-01"
+license: CC-BY-4.0
+
+provides:
+  constructs:
+    - pmsc_event_count
+    - pmsc_event_type
+    - pmsc_client_type
+    - pmsc_service_type
+    - pmsc_abuse_allegation
+    - pmsc_competition
+    - pmsc_government_event_count
+    - civil_war_duration
+    - conflict_episode
+  sources:
+    - avant_neu_2019
+  propositions:
+    - psed_govt_events_shorten_war
+    - psed_competition_attenuated
+  findings:
+    - pmsc_events_growth_over_time
+    - pmsc_routine_work_dominant
+    - pmsc_clients_govt_local_commercial
+    - pmsc_services_site_security_dominant
+    - pmsc_abuse_allegations_minority_rising
+    - pmsc_govt_events_shorten_civil_war_30pct
+    - pmsc_competition_attenuated_when_events_controlled
+  playbooks:
+    - quick_start
+
+tags:
+  - PMSC
+  - private-military-security
+  - event-data
+  - civil-war
+  - conflict
+  - africa
+  - latin-america
+  - southeast-asia
