@@ -491,6 +491,8 @@ def main() -> int:
     parser.add_argument("pack_dir", type=Path, help="Path to a pax/<name>/ directory")
     parser.add_argument("--guide", type=Path, default=DEFAULT_GUIDE,
                         help="Path to PAX_CREATION_GUIDE.md (default: docs/PAX_CREATION_GUIDE.md)")
+    parser.add_argument("--json", action="store_true",
+                        help="Emit machine-readable JSON to stdout (used by CI to build PR comments).")
     args = parser.parse_args()
 
     pack_dir = args.pack_dir
@@ -517,6 +519,18 @@ def main() -> int:
 
     validator = Validator(pack_dir, enums, fields)
     ok = validator.run()
+
+    if args.json:
+        # Machine-readable mode: single-line JSON to stdout, human messages
+        # go to stderr so they don't pollute the parse.
+        out = {
+            "pack": pack_dir.name,
+            "ok": ok,
+            "errors": validator.errors,
+            "warnings": validator.warnings,
+        }
+        print(json.dumps(out))
+        return 0 if ok else 1
 
     if validator.warnings:
         print(f"\n⚠ {pack_dir.name}: warnings:")
