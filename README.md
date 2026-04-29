@@ -51,13 +51,15 @@ Anyone can submit a pack.
 ### Creation Guide
 See the full [PAX Creation Guide](https://pax-market.com/guide/) for how to build a pack from scratch. You can also [download the spec](https://pax-market.com/PAX_CREATION_GUIDE.md) and feed it to any LLM along with your source material to generate a valid pack.
 
+The canonical source of both the [creation guide](docs/PAX_CREATION_GUIDE.md) and the [usage guide](docs/PAX_USAGE_GUIDE.md) lives in this repo under `docs/`. Edits there propagate to the website (via release artifacts) and to praxis (via its sync workflow). See `docs/README.md` for details.
+
 ## Validation
 
 PRs touching `pax/**` are validated automatically:
 
 - Required manifest fields: `name`, `version`, `description`, `pax_type`, `schema_version`
 - Valid `pax_type`: paper, topic, field, engine, enterprise
-- Valid `schema_version`: 1.0, 2.0
+- Valid `schema_version`: 1.0, 2.0, 3.0
 - All JSON files must be valid
 - At least one construct recommended
 
@@ -66,10 +68,11 @@ PRs touching `pax/**` are validated automatically:
 ```
 Pack added to pax/ → PR validated by CI → merged → publish-artifacts.yml runs
   → GitHub Release created with registry.json + full-catalog.json + tar.gz archives
+    + PAX_CREATION_GUIDE.md + PAX_USAGE_GUIDE.md
   → pax-market.com fetches release → rebuilds → pack appears on the site
 ```
 
-This repo is the **registry** — it contains pack data only. The website frontend lives in a [separate repo](https://github.com/JELambert/pax-website).
+This repo is the **registry** — it contains pack data and the canonical authoring guides. The website frontend lives in a [separate repo](https://github.com/JELambert/pax-website). Praxis (the runtime engine) keeps a vendored copy of the creation guide synced from this repo's releases.
 
 ## Using Packs
 
