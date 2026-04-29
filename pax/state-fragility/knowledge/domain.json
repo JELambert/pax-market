@@ -1,12 +1,21 @@
-{
-  "id": "conflict_event_counts",
-  "display_name": "Conflict Event Counts",
-  "description": "Determinants of the frequency and intensity of political violence events, protests, and armed conflict incidents",
-  "temporal_scope": null,
-  "population": "Countries and subnational regions",
-  "created_at": "2026-04-05T15:05:39.601027+00:00",
-  "source_id": null,
-  "status": "active",
-  "parent_domain_id": null,
-  "level_of_analysis": "macro"
-}
+[
+  {
+    "id": "conflict_event_counts",
+    "display_name": "Conflict Event Counts",
+    "description": "Determinants of the frequency and intensity of political violence events, protests, and armed conflict incidents",
+    "temporal_scope": null,
+    "population": "Countries and subnational regions",
+    "created_at": "2026-04-05T15:05:39.601027+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_domain_id": null,
+    "level_of_analysis": "macro"
+  },
+  {
+    "id": "state_fragility",
+    "display_name": "State Fragility",
+    "description": "Pack-level umbrella sub-domain covering composite indices and predictors of state fragility, weakness, and failure.",
+    "parent_domain_id": "conflict_event_counts",
+    "status": "stub"
+  }
+]

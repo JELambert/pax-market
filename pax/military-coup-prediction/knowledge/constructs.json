@@ -37,7 +37,7 @@
     "id": "gdp_per_capita_coup",
     "display_name": "GDP per Capita (Coup Risk)",
     "construct_type": "quantifiable",
-    "definition": "Logged real GDP per capita as a structural predictor of coup risk. Lower income levels are robustly associated with higher coup probability \u2014 the 'coup trap' mechanism where poverty creates grievances and lowers opportunity costs of plotting. One of the most robust predictors across studies (Londregan & Poole 1990, Gassebner et al. 2016).",
+    "definition": "Logged real GDP per capita as a structural predictor of coup risk. Lower income levels are robustly associated with higher coup probability — the 'coup trap' mechanism where poverty creates grievances and lowers opportunity costs of plotting. One of the most robust predictors across studies (Londregan & Poole 1990, Gassebner et al. 2016).",
     "created_at": "2026-04-05T20:17:02.534054+00:00",
     "source_id": "powell_thyne_2011",
     "status": "active",
@@ -122,7 +122,7 @@
     "id": "military_autonomy",
     "display_name": "Military Autonomy",
     "construct_type": "concept",
-    "definition": "The degree to which the armed forces operate independently from civilian political control. High military autonomy \u2014 separate intelligence apparatus, independent budget authority, professional promotion criteria, corporate identity \u2014 increases both the capability and motivation for military intervention in politics. Reduced by coup-proofing but at the cost of military effectiveness.",
+    "definition": "The degree to which the armed forces operate independently from civilian political control. High military autonomy — separate intelligence apparatus, independent budget authority, professional promotion criteria, corporate identity — increases both the capability and motivation for military intervention in politics. Reduced by coup-proofing but at the cost of military effectiveness.",
     "created_at": "2026-04-05T20:28:17.645280+00:00",
     "source_id": "powell_thyne_2011",
     "status": "active",
@@ -224,7 +224,7 @@
     "id": "coup_history",
     "display_name": "Coup History",
     "construct_type": "quantifiable",
-    "definition": "Count or recency of prior coup attempts in a country. The single strongest predictor of future coups \u2014 the 'coup trap' dynamic where initial coups lower the normative and practical barriers to subsequent attempts. Countries with recent coup histories face 3-5x higher coup risk than countries without. Operationalized as binary (any prior coup), count, or years since last coup.",
+    "definition": "Count or recency of prior coup attempts in a country. The single strongest predictor of future coups — the 'coup trap' dynamic where initial coups lower the normative and practical barriers to subsequent attempts. Countries with recent coup histories face 3-5x higher coup risk than countries without. Operationalized as binary (any prior coup), count, or years since last coup.",
     "created_at": "2026-04-05T20:27:40.808310+00:00",
     "source_id": "powell_thyne_2011",
     "status": "active",
@@ -241,7 +241,7 @@
     "id": "anocracy_coup",
     "display_name": "Anocracy (Coup Risk)",
     "construct_type": "quantifiable",
-    "definition": "Mixed regime type (Polity score approximately -5 to +5) that combines elements of democracy and autocracy. Anocracies face elevated coup risk compared to both full democracies and consolidated autocracies \u2014 the 'inverted U' hypothesis. Partial liberalization creates political competition without establishing strong civilian control institutions.",
+    "definition": "Mixed regime type (Polity score approximately -5 to +5) that combines elements of democracy and autocracy. Anocracies face elevated coup risk compared to both full democracies and consolidated autocracies — the 'inverted U' hypothesis. Partial liberalization creates political competition without establishing strong civilian control institutions.",
     "created_at": "2026-04-05T20:30:15.708912+00:00",
     "source_id": "powell_thyne_2011",
     "status": "active",
@@ -411,7 +411,7 @@
     "id": "military_professionalism",
     "display_name": "Military Professionalism",
     "construct_type": "concept",
-    "definition": "Huntington's triad of professional military attributes: corporate identity (the military as a distinct institution), expertise (management of violence), and responsibility (service to the state). Higher professionalism theoretically reduces coup risk by instilling norms of civilian supremacy. However, B\u00f6hmelt et al. (2018) find that military academies (a proxy for professionalism) can actually increase coup risk by creating networks and shared identity among officers.",
+    "definition": "Huntington's triad of professional military attributes: corporate identity (the military as a distinct institution), expertise (management of violence), and responsibility (service to the state). Higher professionalism theoretically reduces coup risk by instilling norms of civilian supremacy. However, Böhmelt et al. (2018) find that military academies (a proxy for professionalism) can actually increase coup risk by creating networks and shared identity among officers.",
     "created_at": "2026-04-12T17:58:59.483292+00:00",
     "source_id": "feaver_1996",
     "status": "active",
@@ -479,7 +479,7 @@
     "id": "power_sharing_institutions",
     "display_name": "Power-Sharing Institutions",
     "construct_type": "concept",
-    "definition": "Formal mechanisms in authoritarian regimes for distributing spoils and credibly committing to elites that they will receive ongoing benefits from cooperation: ruling parties, legislatures, cabinets, and patronage networks. Svolik (2009, 2012) shows these institutions reduce coup risk by solving the credible commitment problem \u2014 without them, the dictator cannot credibly promise not to eliminate rivals. Boix & Svolik (2013) demonstrate that power-sharing institutions are 'foundations of limited authoritarian government.'",
+    "definition": "Formal mechanisms in authoritarian regimes for distributing spoils and credibly committing to elites that they will receive ongoing benefits from cooperation: ruling parties, legislatures, cabinets, and patronage networks. Svolik (2009, 2012) shows these institutions reduce coup risk by solving the credible commitment problem — without them, the dictator cannot credibly promise not to eliminate rivals. Boix & Svolik (2013) demonstrate that power-sharing institutions are 'foundations of limited authoritarian government.'",
     "created_at": "2026-04-12T18:00:34.524341+00:00",
     "source_id": "svolik_2009",
     "status": "active",
@@ -496,7 +496,7 @@
     "id": "anti_coup_norm",
     "display_name": "Anti-Coup Norm",
     "construct_type": "concept",
-    "definition": "The international normative prohibition against unconstitutional changes of government that emerged after the Cold War. Institutionalized through AU Lom\u00e9 Declaration (2000), OAS Inter-American Democratic Charter (2001), and UN General Assembly resolutions. Tansey (2017) documents the norm's rise and argues it has meaningfully reduced coup frequency post-1991. However, Tansey also warns of 'norm fading' as recent coups (2020s Sahel wave) face weaker international responses.",
+    "definition": "The international normative prohibition against unconstitutional changes of government that emerged after the Cold War. Institutionalized through AU Lomé Declaration (2000), OAS Inter-American Democratic Charter (2001), and UN General Assembly resolutions. Tansey (2017) documents the norm's rise and argues it has meaningfully reduced coup frequency post-1991. However, Tansey also warns of 'norm fading' as recent coups (2020s Sahel wave) face weaker international responses.",
     "created_at": "2026-04-12T18:00:58.887853+00:00",
     "source_id": "tansey_2017",
     "status": "active",
@@ -967,5 +967,33 @@
     "measurement_level": null,
     "validity_notes": null,
     "provenance_json": null
+  },
+  {
+    "id": "executive_aggrandizement",
+    "display_name": "Executive Aggrandizement",
+    "definition": "Incremental incumbent-led erosion of democratic checks and balances (e.g., judicial independence, legislative oversight, press freedom) through legal and institutional changes; a non-coup pathway to autocratization.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "guardian_coup",
+    "display_name": "Guardian Coup",
+    "definition": "A coup in which the military intervenes claiming to safeguard the constitution or restore order, typically promising a return to civilian rule after a transitional period.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "popular_legitimacy_of_coup",
+    "display_name": "Popular Legitimacy of Coup",
+    "definition": "The degree of public support, mobilization, or perceived justification for a coup attempt; signaled by mass protests, demonstrations, and approval polling.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "regional_coup_culture",
+    "display_name": "Regional Coup Culture",
+    "definition": "Geographic clustering and contagion of coup activity within a region, captured by neighbor-country coup history and shared regional norms about military intervention.",
+    "construct_type": "variable",
+    "aliases": []
   }
 ]

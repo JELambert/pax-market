@@ -53,7 +53,6 @@
   {
     "id": 1266,
     "source_id": "goldstone_et_al_2010",
-    "domain_id": "",
     "finding_text": "Infant mortality rate (a proxy for state capacity and development) is the second strongest predictor in the PITF model after regime type. Countries with infant mortality above the global median face ~2.5x higher instability risk, reflecting the deep link between public health capacity and state resilience.",
     "construct_ids": [
       "state_fragility_index",
@@ -74,13 +73,13 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "conflict_event_counts"
   },
   {
     "id": 1267,
     "source_id": "call_2011",
-    "domain_id": "",
-    "finding_text": "The concept of 'failed states' is analytically misleading \u2014 states rarely fail across all dimensions simultaneously. Call proposes distinguishing between 'collapsed states' (no central authority), 'weak states' (low capacity but functional), and 'war-torn states' (conflict-degraded). Most so-called failed states retain significant institutional capacity in some domains.",
+    "finding_text": "The concept of 'failed states' is analytically misleading — states rarely fail across all dimensions simultaneously. Call proposes distinguishing between 'collapsed states' (no central authority), 'weak states' (low capacity but functional), and 'war-torn states' (conflict-degraded). Most so-called failed states retain significant institutional capacity in some domains.",
     "construct_ids": [
       "state_fragility_index",
       "institutional_capacity"
@@ -99,12 +98,12 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "conflict_event_counts"
   },
   {
     "id": 1268,
     "source_id": "fund_for_peace_fsi_2024",
-    "domain_id": "",
     "finding_text": "State fragility shows strong path dependence: countries in the 'Alert' category (FSI > 90) have a >80% probability of remaining in that category the following year. Escape from deep fragility requires sustained multi-dimensional improvement. The average time to move from Alert to Warning category is ~15 years.",
     "construct_ids": [
       "state_fragility_index"
@@ -123,6 +122,7 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "conflict_event_counts"
   }
 ]

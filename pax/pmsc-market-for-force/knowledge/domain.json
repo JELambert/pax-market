@@ -1,12 +1,49 @@
-{
-  "id": "pmsc_market_for_force",
-  "display_name": "Private Military and Security Companies",
-  "description": "The study of private military and security companies (PMSCs), commercial military actors, and mercenaries \u2014 their organizational typologies, market structure, consequences for conflict dynamics, regulatory frameworks, and evolving roles in international security. Encompasses the privatization of security from historical mercenaries through modern corporate military service providers.",
-  "temporal_scope": "1945-present, with focus on post-Cold War (1990-present)",
-  "population": "PMSCs, mercenaries, and commercial military actors involved in armed conflicts and security provision worldwide",
-  "created_at": "2026-04-07T15:42:52.760402+00:00",
-  "source_id": null,
-  "status": "active",
-  "parent_domain_id": null,
-  "level_of_analysis": "meso"
-}
+[
+  {
+    "id": "pmsc_market_for_force",
+    "display_name": "Private Military and Security Companies",
+    "description": "The study of private military and security companies (PMSCs), commercial military actors, and mercenaries — their organizational typologies, market structure, consequences for conflict dynamics, regulatory frameworks, and evolving roles in international security. Encompasses the privatization of security from historical mercenaries through modern corporate military service providers.",
+    "temporal_scope": "1945-present, with focus on post-Cold War (1990-present)",
+    "population": "PMSCs, mercenaries, and commercial military actors involved in armed conflicts and security provision worldwide",
+    "created_at": "2026-04-07T15:42:52.760402+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_domain_id": null,
+    "level_of_analysis": "meso"
+  },
+  {
+    "id": "pmsc_regulation",
+    "display_name": "PMSC Regulation",
+    "description": "Sub-domain covering legal, normative, and self-regulatory frameworks governing private military and security contractors.",
+    "parent_domain_id": "pmsc_market_for_force",
+    "status": "stub"
+  },
+  {
+    "id": "pmsc_typology",
+    "display_name": "PMSC Typology",
+    "description": "Sub-domain covering classification schemes for PMCs/PMSCs by service mix, client, and structure.",
+    "parent_domain_id": "pmsc_market_for_force",
+    "status": "stub"
+  },
+  {
+    "id": "pmsc_conflict_consequences",
+    "display_name": "PMSC Conflict Consequences",
+    "description": "Sub-domain covering empirical effects of PMSC presence on conflict duration, intensity, and civilian outcomes.",
+    "parent_domain_id": "pmsc_market_for_force",
+    "status": "stub"
+  },
+  {
+    "id": "pmsc_china_bri",
+    "display_name": "PMSCs in China & the Belt and Road",
+    "description": "Sub-domain covering Chinese PMSCs and security provision along Belt and Road Initiative corridors.",
+    "parent_domain_id": "pmsc_market_for_force",
+    "status": "stub"
+  },
+  {
+    "id": "pmsc_data_measurement",
+    "display_name": "PMSC Data & Measurement",
+    "description": "Sub-domain covering data sources, datasets, and measurement strategies for studying the PMSC industry.",
+    "parent_domain_id": "pmsc_market_for_force",
+    "status": "stub"
+  }
+]

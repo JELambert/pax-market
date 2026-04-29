@@ -122,7 +122,7 @@
     "id": "population_size",
     "display_name": "Population Size",
     "construct_type": "quantifiable",
-    "definition": "Total population, logged and lagged one year. Larger populations increase civil war risk \u2014 more people means more potential recruits and more heterogeneous grievances, though the mechanism is contested.",
+    "definition": "Total population, logged and lagged one year. Larger populations increase civil war risk — more people means more potential recruits and more heterogeneous grievances, though the mechanism is contested.",
     "created_at": "2026-04-02T15:51:17.037084+00:00",
     "source_id": "fearon_laitin_2003",
     "status": "active",
@@ -168,5 +168,12 @@
     "measurement_level": null,
     "validity_notes": null,
     "provenance_json": null
+  },
+  {
+    "id": "ethnic_fractionalization",
+    "display_name": "Ethnic Fractionalization (ELF)",
+    "definition": "The probability that two randomly drawn individuals from a country belong to different ethnic groups; commonly operationalized as the ELF index.",
+    "construct_type": "variable",
+    "aliases": []
   }
 ]

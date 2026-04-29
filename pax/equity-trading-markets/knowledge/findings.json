@@ -7,7 +7,7 @@
     "construct_ids": [
       "equity_risk_premium",
       "small_cap_premium",
-      "value_premium"
+      "value_premium_etm"
     ],
     "direction": "positive",
     "effect_size": "R-squared > 90% for portfolio returns",
@@ -39,7 +39,7 @@
     "domain_id": "stock_market_returns",
     "finding_text": "The value premium (HML factor) averages approximately 4.4% per year historically, but has been shrinking since publication, raising questions about whether it was a genuine risk premium or a statistical artifact that was arbitraged away.",
     "construct_ids": [
-      "value_premium"
+      "value_premium_etm"
     ],
     "direction": "positive",
     "effect_size": "4.4% annual average, declining post-publication",
@@ -362,7 +362,7 @@
     "id": 1618,
     "source_id": "fama_1970_emh",
     "domain_id": "equity_trading_markets",
-    "finding_text": "Evidence from event studies supports semi-strong form efficiency \u2014 prices adjust rapidly to public information such as stock splits and earnings announcements. Weak-form efficiency is broadly supported by the absence of profitable filter rules. Strong-form efficiency fails: corporate insiders earn abnormal returns.",
+    "finding_text": "Evidence from event studies supports semi-strong form efficiency — prices adjust rapidly to public information such as stock splits and earnings announcements. Weak-form efficiency is broadly supported by the absence of profitable filter rules. Strong-form efficiency fails: corporate insiders earn abnormal returns.",
     "construct_ids": [
       "market_efficiency_etm",
       "price_discovery_etm",
@@ -424,7 +424,7 @@
     "ci_lower": null,
     "ci_upper": null,
     "effect_size_type": null,
-    "model_specification": "Quadratic programming: min w'\u03a3w subject to w'\u03bc = target_return, sum(w) = 1, w \u2265 0",
+    "model_specification": "Quadratic programming: min w'Σw subject to w'μ = target_return, sum(w) = 1, w ≥ 0",
     "covariates_controlled": [
       "[]"
     ]
@@ -460,7 +460,7 @@
     "ci_lower": null,
     "ci_upper": null,
     "effect_size_type": null,
-    "model_specification": "Equilibrium pricing from mean-variance optimization: E[Ri] = Rf + \u03b2i(E[Rm] - Rf)",
+    "model_specification": "Equilibrium pricing from mean-variance optimization: E[Ri] = Rf + βi(E[Rm] - Rf)",
     "covariates_controlled": [
       "[]"
     ]
@@ -509,7 +509,7 @@
     "id": 1679,
     "source_id": "whaley_2000_vix",
     "domain_id": "equity_trading_markets",
-    "finding_text": "The CBOE VIX (computed from S&P 100 implied volatilities) serves as a forward-looking fear gauge: spikes in VIX reliably precede periods of equity market turbulence. The put-call ratio and VIX are complementary sentiment measures \u2014 put-call ratio captures directional investor positioning while VIX captures expected market volatility.",
+    "finding_text": "The CBOE VIX (computed from S&P 100 implied volatilities) serves as a forward-looking fear gauge: spikes in VIX reliably precede periods of equity market turbulence. The put-call ratio and VIX are complementary sentiment measures — put-call ratio captures directional investor positioning while VIX captures expected market volatility.",
     "construct_ids": [
       "put_call_ratio_etm",
       "implied_volatility_etm"

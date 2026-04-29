@@ -1,12 +1,21 @@
-{
-  "id": "global_supply_chain_risk",
-  "display_name": "Global Supply Chain Risk",
-  "description": "Comprehensive field covering supply chain vulnerability, disruption propagation, resilience measurement, and risk mitigation across global multi-tier networks. Spans quantitative risk modeling, geospatial analysis, network science, machine learning, simulation, and industry practice.",
-  "temporal_scope": "1990-2026",
-  "population": "Global supply chains across industries (manufacturing, semiconductor, pharmaceutical, food, energy, defense)",
-  "created_at": "2026-04-14T01:46:07.500442+00:00",
-  "source_id": null,
-  "status": "active",
-  "parent_domain_id": null,
-  "level_of_analysis": "cross-level"
-}
+[
+  {
+    "id": "global_supply_chain_risk",
+    "display_name": "Global Supply Chain Risk",
+    "description": "Comprehensive field covering supply chain vulnerability, disruption propagation, resilience measurement, and risk mitigation across global multi-tier networks. Spans quantitative risk modeling, geospatial analysis, network science, machine learning, simulation, and industry practice.",
+    "temporal_scope": "1990-2026",
+    "population": "Global supply chains across industries (manufacturing, semiconductor, pharmaceutical, food, energy, defense)",
+    "created_at": "2026-04-14T01:46:07.500442+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_domain_id": null,
+    "level_of_analysis": "cross-level"
+  },
+  {
+    "id": "global_trade_flows",
+    "display_name": "Global Trade Flows",
+    "description": "Sub-domain covering bilateral and multilateral trade-flow measurement and gravity-model analysis.",
+    "parent_domain_id": "global_supply_chain_risk",
+    "status": "stub"
+  }
+]

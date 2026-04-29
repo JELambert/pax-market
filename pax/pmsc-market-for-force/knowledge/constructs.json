@@ -3,7 +3,7 @@
     "id": "pmsc_presence",
     "display_name": "PMSC Presence",
     "construct_type": "quantifiable",
-    "definition": "Binary indicator (0/1) of whether a private military or security company is active in a given conflict-year. The workhorse measure in quantitative PMSC research, though widely acknowledged as crude \u2014 service-type disaggregation consistently produces more nuanced findings.",
+    "definition": "Binary indicator (0/1) of whether a private military or security company is active in a given conflict-year. The workhorse measure in quantitative PMSC research, though widely acknowledged as crude — service-type disaggregation consistently produces more nuanced findings.",
     "created_at": "2026-04-07T15:43:11.653005+00:00",
     "source_id": "avant_2005_market_for_force",
     "status": "active",
@@ -20,7 +20,7 @@
     "id": "pmsc_type",
     "display_name": "PMSC Organizational Type",
     "construct_type": "concept",
-    "definition": "Categorical classification of private military and security companies by organizational form and service portfolio. Singer (2003) distinguishes military provider firms, military consulting firms, and military support firms. McFate (2014) uses a 2-axis typology: government linkage (state-connected to independent) \u00d7 service spectrum (security-only to military operations).",
+    "definition": "Categorical classification of private military and security companies by organizational form and service portfolio. Singer (2003) distinguishes military provider firms, military consulting firms, and military support firms. McFate (2014) uses a 2-axis typology: government linkage (state-connected to independent) × service spectrum (security-only to military operations).",
     "created_at": "2026-04-07T15:43:32.275863+00:00",
     "source_id": "avant_2005_market_for_force",
     "status": "active",
@@ -326,7 +326,7 @@
     "id": "democratic_accountability_gap",
     "display_name": "Democratic Accountability Gap",
     "construct_type": "outcome",
-    "definition": "The erosion of democratic oversight when security functions are privatized \u2014 confidentiality clauses, contractor legal ambiguity, and legislative exclusion combine to shield PMSCs from public accountability mechanisms that apply to uniformed forces.",
+    "definition": "The erosion of democratic oversight when security functions are privatized — confidentiality clauses, contractor legal ambiguity, and legislative exclusion combine to shield PMSCs from public accountability mechanisms that apply to uniformed forces.",
     "created_at": "2026-04-07T16:17:44.478839+00:00",
     "source_id": null,
     "status": "active",
@@ -474,5 +474,26 @@
     "measurement_level": null,
     "validity_notes": null,
     "provenance_json": null
+  },
+  {
+    "id": "pmsc_industry_size",
+    "display_name": "PMSC Industry Size",
+    "definition": "The aggregate revenue or market value of the global private military and security company industry, typically measured in USD per year.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "pmsc_symbolic_power",
+    "display_name": "PMSC Symbolic Power",
+    "definition": "The Bourdieusian capacity of private military and security companies to shape shared understandings of legitimate security provision and what counts as security expertise.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "wagner_group_model",
+    "display_name": "Wagner Group Model",
+    "definition": "An emergent PMC archetype combining state-linked corrupt informal networks, paramilitary capabilities, and resource-extraction interests, exemplified by Russia's Wagner Group; does not fit traditional PMC typologies.",
+    "construct_type": "variable",
+    "aliases": []
   }
 ]

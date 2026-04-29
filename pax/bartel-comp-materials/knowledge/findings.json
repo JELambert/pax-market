@@ -3,7 +3,7 @@
     "id": 1282,
     "source_id": "riebesell_2025_matbench_discovery",
     "domain_id": "ml_materials_discovery",
-    "finding_text": "GNN interatomic potentials (MACE-MP, CHGNet, SevenNet) achieve Discovery Acceleration Factors of 5\u20136x on the WBM test set, compared to ~1x for random baseline and ~2x for simpler one-shot GNN predictors like MEGNet.",
+    "finding_text": "GNN interatomic potentials (MACE-MP, CHGNet, SevenNet) achieve Discovery Acceleration Factors of 5–6x on the WBM test set, compared to ~1x for random baseline and ~2x for simpler one-shot GNN predictors like MEGNet.",
     "construct_ids": [
       "discovery_acceleration_factor",
       "gnn_interatomic_potential",
@@ -32,7 +32,7 @@
     "finding_text": "Only 15.3% of WBM test structures are thermodynamically stable (on or within 0 meV/atom of the convex hull), establishing the random discovery baseline for computing DAF.",
     "construct_ids": [
       "thermodynamic_stability",
-      "energy_above_convex_hull"
+      "energy_above_hull"
     ],
     "direction": "null",
     "effect_size": null,
@@ -133,11 +133,11 @@
     "id": 1287,
     "source_id": "deng_2023_chgnet",
     "domain_id": "ml_materials_discovery",
-    "finding_text": "CHGNet, trained on 1.5M MPtrj DFT trajectory frames with magnetic moment supervision, achieves force MAE of ~0.06 eV/\u00c5 and correctly predicts DFT-relaxed structure energies within ~0.03 eV/atom for the majority of Materials Project entries.",
+    "finding_text": "CHGNet, trained on 1.5M MPtrj DFT trajectory frames with magnetic moment supervision, achieves force MAE of ~0.06 eV/Å and correctly predicts DFT-relaxed structure energies within ~0.03 eV/atom for the majority of Materials Project entries.",
     "construct_ids": [
       "gnn_interatomic_potential",
       "formation_energy_per_atom",
-      "energy_above_convex_hull"
+      "energy_above_hull"
     ],
     "direction": "positive",
     "effect_size": null,
@@ -159,7 +159,7 @@
     "id": 1288,
     "source_id": "riebesell_2025_matbench_discovery",
     "domain_id": "ml_materials_discovery",
-    "finding_text": "GNN interatomic potentials (MACE-MP, CHGNet, SevenNet) achieve Discovery Acceleration Factors of 5\u20136x on the WBM test set, vs ~1x for random baseline and ~2x for simpler one-shot GNN predictors.",
+    "finding_text": "GNN interatomic potentials (MACE-MP, CHGNet, SevenNet) achieve Discovery Acceleration Factors of 5–6x on the WBM test set, vs ~1x for random baseline and ~2x for simpler one-shot GNN predictors.",
     "construct_ids": [
       "discovery_acceleration_factor",
       "gnn_interatomic_potential",
@@ -188,7 +188,7 @@
     "finding_text": "Only 15.3% of WBM test structures are thermodynamically stable, establishing the random discovery baseline for computing DAF.",
     "construct_ids": [
       "thermodynamic_stability",
-      "energy_above_convex_hull"
+      "energy_above_hull"
     ],
     "direction": "null",
     "effect_size": null,
@@ -236,11 +236,11 @@
     "id": 1291,
     "source_id": "deng_2023_chgnet",
     "domain_id": "ml_materials_discovery",
-    "finding_text": "CHGNet trained on 1.5M MPtrj DFT trajectory frames achieves force MAE of ~0.06 eV/\u00c5 and energy MAE of ~0.03 eV/atom on Materials Project held-out entries.",
+    "finding_text": "CHGNet trained on 1.5M MPtrj DFT trajectory frames achieves force MAE of ~0.06 eV/Å and energy MAE of ~0.03 eV/atom on Materials Project held-out entries.",
     "construct_ids": [
       "gnn_interatomic_potential",
       "formation_energy_per_atom",
-      "energy_above_convex_hull"
+      "energy_above_hull"
     ],
     "direction": "positive",
     "effect_size": null,
@@ -288,7 +288,7 @@
     "id": 1293,
     "source_id": "bartel_2019_tolerance_factor",
     "domain_id": "bartel_comp_materials",
-    "finding_text": "The revised tolerance factor \u03c4 achieves 92% classification accuracy for perovskite vs non-perovskite ABX3 compositions across 576 experimental data points, significantly outperforming the classical Goldschmidt tolerance factor t (74% accuracy).",
+    "finding_text": "The revised tolerance factor τ achieves 92% classification accuracy for perovskite vs non-perovskite ABX3 compositions across 576 experimental data points, significantly outperforming the classical Goldschmidt tolerance factor t (74% accuracy).",
     "construct_ids": [
       "revised_tolerance_factor",
       "perovskite_formability"
@@ -313,7 +313,7 @@
     "id": 1294,
     "source_id": "bartel_2019_tolerance_factor",
     "domain_id": "bartel_comp_materials",
-    "finding_text": "The revised tolerance factor \u03c4 correctly predicts the stability of both oxide and halide perovskites within a single model, whereas previous tolerance factors required separate parameterizations for different anion chemistries.",
+    "finding_text": "The revised tolerance factor τ correctly predicts the stability of both oxide and halide perovskites within a single model, whereas previous tolerance factors required separate parameterizations for different anion chemistries.",
     "construct_ids": [
       "revised_tolerance_factor",
       "perovskite_formability"
@@ -388,14 +388,14 @@
     "id": 1297,
     "source_id": "deng_2023_chgnet",
     "domain_id": "bartel_comp_materials",
-    "finding_text": "CHGNet achieves force prediction MAE of 30 meV/\u00c5 and energy MAE of 22 meV/atom on the Materials Project trajectory (MPtrj) dataset containing 1.58M structures, while uniquely modeling charge states and magnetic moments through explicit charge equilibration.",
+    "finding_text": "CHGNet achieves force prediction MAE of 30 meV/Å and energy MAE of 22 meV/atom on the Materials Project trajectory (MPtrj) dataset containing 1.58M structures, while uniquely modeling charge states and magnetic moments through explicit charge equilibration.",
     "construct_ids": [
       "neural_network_potential",
       "force_field_mae",
       "formation_energy_per_atom"
     ],
     "direction": "positive",
-    "effect_size": "Force MAE: 30 meV/\u00c5; Energy MAE: 22 meV/atom",
+    "effect_size": "Force MAE: 30 meV/Å; Energy MAE: 22 meV/atom",
     "method_used": "graph_neural_network",
     "confidence": "strong",
     "added_at": "2026-04-06T23:50:55.729946+00:00",
@@ -465,7 +465,7 @@
     "id": 1300,
     "source_id": "bartel_2021_autonomous_design",
     "domain_id": "bartel_comp_materials",
-    "finding_text": "The primary bottleneck in autonomous materials discovery is not computational prediction accuracy but the gap between thermodynamic stability predictions and practical synthesizability \u2014 many thermodynamically stable materials remain experimentally inaccessible.",
+    "finding_text": "The primary bottleneck in autonomous materials discovery is not computational prediction accuracy but the gap between thermodynamic stability predictions and practical synthesizability — many thermodynamically stable materials remain experimentally inaccessible.",
     "construct_ids": [
       "energy_above_hull",
       "synthesis_success_rate",
@@ -6379,7 +6379,7 @@
     "id": 1550,
     "source_id": "bartel_2019_tolerance_factor",
     "domain_id": "perovskite_stability",
-    "finding_text": "The octahedral factor mu shows a clear lower bound of ~0.41 for perovskite formability \u2014 compositions with mu below this threshold almost never form stable perovskite structures, providing a useful necessary-but-not-sufficient screening criterion.",
+    "finding_text": "The octahedral factor mu shows a clear lower bound of ~0.41 for perovskite formability — compositions with mu below this threshold almost never form stable perovskite structures, providing a useful necessary-but-not-sufficient screening criterion.",
     "construct_ids": [
       "octahedral_factor",
       "perovskite_formability"
@@ -6844,7 +6844,7 @@
       "double_perovskite_bandgap"
     ],
     "direction": "positive",
-    "effect_size": "Band gap range: 1.0-3.5 eV; DFT accuracy: \u00b10.3 eV",
+    "effect_size": "Band gap range: 1.0-3.5 eV; DFT accuracy: ±0.3 eV",
     "method_used": "HSE06 hybrid DFT",
     "confidence": "strong",
     "added_at": "2026-04-07T00:49:55.382608+00:00",
@@ -6863,7 +6863,7 @@
     "id": 1553,
     "source_id": "bartel_2019_tolerance_factor",
     "domain_id": "perovskite_stability",
-    "finding_text": "Perovskite formability is necessary but not sufficient for desirable band gaps \u2014 many stable perovskites have band gaps outside the optimal 1.1-1.7 eV window for photovoltaics, requiring joint optimization of stability and electronic properties.",
+    "finding_text": "Perovskite formability is necessary but not sufficient for desirable band gaps — many stable perovskites have band gaps outside the optimal 1.1-1.7 eV window for photovoltaics, requiring joint optimization of stability and electronic properties.",
     "construct_ids": [
       "band_gap",
       "perovskite_formability"
@@ -6913,7 +6913,7 @@
     "id": 1555,
     "source_id": "bartel_2018_gibbs_descriptor",
     "domain_id": "ml_materials_discovery",
-    "finding_text": "Temperature-dependent Gibbs energy predictions reveal that ~15% of materials stable at 0K become unstable at synthesis temperatures, and ~5% of 0K-unstable materials become accessible at elevated temperatures \u2014 demonstrating that static DFT stability predictions can be misleading for synthesis planning.",
+    "finding_text": "Temperature-dependent Gibbs energy predictions reveal that ~15% of materials stable at 0K become unstable at synthesis temperatures, and ~5% of 0K-unstable materials become accessible at elevated temperatures — demonstrating that static DFT stability predictions can be misleading for synthesis planning.",
     "construct_ids": [
       "formation_energy_per_atom",
       "synthesis_temperature",
@@ -6939,7 +6939,7 @@
     "id": 1556,
     "source_id": "bartel_2018_subgroup_compressed",
     "domain_id": "perovskite_stability",
-    "finding_text": "Decomposition reactions to competing phases are essential for correctly assessing DFT-predicted stability \u2014 comparing only to elemental references overestimates stability by 0.1-0.5 eV/atom for many ternary oxides, leading to false positive stability predictions.",
+    "finding_text": "Decomposition reactions to competing phases are essential for correctly assessing DFT-predicted stability — comparing only to elemental references overestimates stability by 0.1-0.5 eV/atom for many ternary oxides, leading to false positive stability predictions.",
     "construct_ids": [
       "energy_above_hull",
       "formation_energy_per_atom"
@@ -6964,7 +6964,7 @@
     "id": 1557,
     "source_id": "goldsmith_2018_ml_catalyst",
     "domain_id": "catalysis_energy",
-    "finding_text": "Machine learning approaches to heterogeneous catalyst design can accelerate screening by identifying structure-activity relationships from DFT data, but performance is limited by the quality and diversity of training data \u2014 underrepresented catalyst compositions show significantly higher prediction errors.",
+    "finding_text": "Machine learning approaches to heterogeneous catalyst design can accelerate screening by identifying structure-activity relationships from DFT data, but performance is limited by the quality and diversity of training data — underrepresented catalyst compositions show significantly higher prediction errors.",
     "construct_ids": [
       "energy_prediction_mae",
       "oxygen_evolution_overpotential"
@@ -7037,7 +7037,6 @@
   {
     "id": 1560,
     "source_id": "blanc_2021_mg_crs_cathode",
-    "domain_id": "",
     "finding_text": "MgxCr2S4 spinel cathode operates via the high-voltage Cr3+/4+ redox couple. DFT predicted it as a suitable high-voltage Mg cathode, but experimental electrochemical cycling showed limited reversibility.",
     "construct_ids": [
       "intercalation_voltage",
@@ -7058,12 +7057,12 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "autonomous_synthesis"
   },
   {
     "id": 1561,
     "source_id": "park_2021_ca_cathodes",
-    "domain_id": "",
     "finding_text": "First-principles evaluation of P-type layered CaTM2O4 demonstrates that several compositions have excellent battery properties: thermodynamic stability, average voltages of 2.2-4.2 V vs Ca/Ca2+, energy densities up to 600-800 Wh/kg.",
     "construct_ids": [
       "ca_intercalation_voltage",
@@ -7084,12 +7083,12 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "autonomous_synthesis"
   },
   {
     "id": 1562,
     "source_id": "kwon_2022_ca_mno_intercalation",
-    "domain_id": "",
     "finding_text": "Nanocrystalline layered MnOx with high defect concentration and lattice water demonstrates remarkable room-temperature Ca2+ electrochemical activity, achieving capacity of ~100-130 mAh/g.",
     "construct_ids": [
       "ca_intercalation_voltage",
@@ -7110,12 +7109,12 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "autonomous_synthesis"
   },
   {
     "id": 1563,
     "source_id": "szymanski_2025_topological_descriptors",
-    "domain_id": "",
     "finding_text": "Betti curves derived from persistent homology of electron density improve ML model performance by over 33 percentage points compared to models trained on raw electron density data.",
     "construct_ids": [
       "betti_curve_descriptor",
@@ -7136,12 +7135,12 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "autonomous_synthesis"
   },
   {
     "id": 1564,
     "source_id": "lee_2021_autoxrd",
-    "domain_id": "",
     "finding_text": "Ensemble convolutional neural network trained on physics-informed augmented simulated diffraction spectra achieves exceptional accuracy for multi-phase mixture identification.",
     "construct_ids": [
       "xrd_phase_identification_accuracy",
@@ -7161,6 +7160,7 @@
     "engine_run_id": null,
     "challenges_finding_id": null,
     "effect_size_value": null,
-    "effect_size_se": null
+    "effect_size_se": null,
+    "domain_id": "autonomous_synthesis"
   }
 ]

@@ -241,7 +241,7 @@
     "id": "redistributive_effect_taxes",
     "display_name": "Redistributive Effect of Taxes (Reynolds-Smolensky)",
     "construct_type": "quantifiable",
-    "definition": "The Reynolds-Smolensky index measures the reduction in income inequality due to the tax system, computed as the difference between the Gini coefficient of pre-tax and post-tax income. Separates vertical redistribution (progressivity \u00d7 effective tax rate) from reranking effects.",
+    "definition": "The Reynolds-Smolensky index measures the reduction in income inequality due to the tax system, computed as the difference between the Gini coefficient of pre-tax and post-tax income. Separates vertical redistribution (progressivity × effective tax rate) from reranking effects.",
     "created_at": "2026-04-13T20:47:34.018009+00:00",
     "source_id": null,
     "status": "active",
@@ -309,7 +309,7 @@
     "id": "voluntary_compliance_rate",
     "display_name": "Voluntary Compliance Rate",
     "construct_type": "quantifiable",
-    "definition": "The proportion of total tax obligations that are met by taxpayers without enforcement action \u2014 including on-time filing, accurate reporting, and timely payment. Complementary to the tax gap: VCR = 1 - (tax gap / theoretical liability). High voluntary compliance indicates strong tax morale and administrative effectiveness.",
+    "definition": "The proportion of total tax obligations that are met by taxpayers without enforcement action — including on-time filing, accurate reporting, and timely payment. Complementary to the tax gap: VCR = 1 - (tax gap / theoretical liability). High voluntary compliance indicates strong tax morale and administrative effectiveness.",
     "created_at": "2026-04-13T20:49:01.486495+00:00",
     "source_id": null,
     "status": "active",
@@ -411,7 +411,7 @@
     "id": "non_tax_revenue_share",
     "display_name": "Non-Tax Revenue Share",
     "construct_type": "quantifiable",
-    "definition": "Non-tax government revenues \u2014 including fees, fines, state enterprise dividends, property income, and grants \u2014 as a percentage of total government revenue. High non-tax shares may reduce fiscal accountability and tax compliance incentives by weakening the revenue-service provision link.",
+    "definition": "Non-tax government revenues — including fees, fines, state enterprise dividends, property income, and grants — as a percentage of total government revenue. High non-tax shares may reduce fiscal accountability and tax compliance incentives by weakening the revenue-service provision link.",
     "created_at": "2026-04-13T20:51:15.362452+00:00",
     "source_id": null,
     "status": "active",
@@ -440,5 +440,19 @@
     "measurement_level": null,
     "validity_notes": null,
     "provenance_json": null
+  },
+  {
+    "id": "income_inequality_gini",
+    "display_name": "Income Inequality (Gini Coefficient)",
+    "definition": "Standard summary measure of income concentration in a population, ranging from 0 (perfect equality) to 1 (perfect inequality); used here as an outcome of fiscal policy choices.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "top_income_share",
+    "display_name": "Top Income Share",
+    "definition": "The share of total national income accruing to the top decile, top 1%, or top 0.1% of earners; a key inequality measure responsive to top-marginal-rate policy.",
+    "construct_type": "variable",
+    "aliases": []
   }
 ]

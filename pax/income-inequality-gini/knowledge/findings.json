@@ -165,7 +165,7 @@
     "id": 708,
     "source_id": "milanovic_2016",
     "domain_id": "income_inequality",
-    "finding_text": "Inequality follows 'Kuznets waves' \u2014 cyclical patterns of rising and falling inequality driven by technological change, globalization, and policy responses, rather than the single inverted-U curve originally proposed by Kuznets.",
+    "finding_text": "Inequality follows 'Kuznets waves' — cyclical patterns of rising and falling inequality driven by technological change, globalization, and policy responses, rather than the single inverted-U curve originally proposed by Kuznets.",
     "construct_ids": [
       "income_inequality_gini",
       "economic_growth_rate"
@@ -300,8 +300,8 @@
     "domain_id": "income_inequality",
     "finding_text": "The share of national income going to the top decile in the United States increased from about 35% in 1980 to over 47% by 2010, driven primarily by rising labor income inequality at the top (supermanagers) and capital income concentration.",
     "construct_ids": [
-      "income_share_top_10pct",
-      "gini_coefficient"
+      "income_share_top_10_pct",
+      "gini_coefficient_income"
     ],
     "direction": "positive",
     "effect_size": null,
@@ -333,7 +333,7 @@
     "domain_id": "income_inequality",
     "finding_text": "Racial segregation, income inequality, school quality, social capital, and family structure explain most of the geographic variation in intergenerational mobility. Of these, segregation and inequality are the strongest predictors.",
     "construct_ids": [
-      "gini_coefficient"
+      "gini_coefficient_income"
     ],
     "direction": "negative",
     "effect_size": null,
@@ -365,8 +365,8 @@
     "domain_id": "income_inequality",
     "finding_text": "When the rate of return on capital (r) exceeds the rate of economic growth (g), wealth concentrates and inequality rises. This r>g dynamic has been the historical norm except during the mid-20th century wars and policy interventions.",
     "construct_ids": [
-      "gini_coefficient",
-      "income_share_top_10pct"
+      "gini_coefficient_income",
+      "income_share_top_10_pct"
     ],
     "direction": "positive",
     "effect_size": null,
@@ -496,7 +496,7 @@
     "domain_id": "income_inequality",
     "finding_text": "Intergenerational income mobility varies dramatically across US regions. Areas with higher Gini coefficients have significantly lower rates of upward mobility (Great Gatsby curve at the local level), with a correlation of approximately -0.6 between inequality and mobility.",
     "construct_ids": [
-      "gini_coefficient"
+      "gini_coefficient_income"
     ],
     "direction": "negative",
     "effect_size": null,
@@ -528,8 +528,8 @@
     "domain_id": "income_inequality",
     "finding_text": "Global inequality between 1988-2008 shows an 'elephant curve': real income gains of 60-70% for the global middle class (percentiles 30-60, mainly China/India), near-zero gains for percentiles 75-90 (lower-middle class in rich countries), and 60%+ gains for the global top 1%.",
     "construct_ids": [
-      "gini_coefficient",
-      "income_share_top_10pct"
+      "gini_coefficient_income",
+      "income_share_top_10_pct"
     ],
     "direction": "positive",
     "effect_size": null,
@@ -561,7 +561,7 @@
     "domain_id": "income_inequality",
     "finding_text": "Income inequality follows an inverted-U pattern with economic development: inequality rises in early industrialization as labor moves from low-inequality agriculture to high-inequality industry, then falls as the industrial sector matures and social transfers increase.",
     "construct_ids": [
-      "gini_coefficient"
+      "gini_coefficient_income"
     ],
     "direction": "conditional",
     "effect_size": null,
@@ -624,7 +624,7 @@
     "id": 1681,
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
-    "finding_text": "The compression of top incomes from 1940\u20131970 is largely explained by high marginal tax rates reducing rent extraction and the returns to top-coded compensation, with little evidence of reduced real effort among top earners",
+    "finding_text": "The compression of top incomes from 1940–1970 is largely explained by high marginal tax rates reducing rent extraction and the returns to top-coded compensation, with little evidence of reduced real effort among top earners",
     "construct_ids": [
       "top_marginal_income_tax_rate",
       "redistributive_effect_taxes"

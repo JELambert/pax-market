@@ -1,12 +1,63 @@
-{
-  "id": "autonomous_synthesis",
-  "display_name": "Autonomous Materials Synthesis",
-  "description": "AI-driven autonomous experimentation platforms for accelerated materials synthesis. Covers the A-Lab robotic synthesis platform, ML-guided precursor selection, adaptive XRD characterization, Bayesian optimization of synthesis parameters, and closed-loop discovery workflows.",
-  "temporal_scope": "2021-2026",
-  "population": "Target inorganic materials for experimental synthesis",
-  "created_at": "2026-04-06T23:52:14.286600+00:00",
-  "source_id": null,
-  "status": "active",
-  "parent_domain_id": "bartel_comp_materials",
-  "level_of_analysis": "Synthesis reaction and experimental campaign"
-}
+[
+  {
+    "id": "autonomous_synthesis",
+    "display_name": "Autonomous Materials Synthesis",
+    "description": "AI-driven autonomous experimentation platforms for accelerated materials synthesis. Covers the A-Lab robotic synthesis platform, ML-guided precursor selection, adaptive XRD characterization, Bayesian optimization of synthesis parameters, and closed-loop discovery workflows.",
+    "temporal_scope": "2021-2026",
+    "population": "Target inorganic materials for experimental synthesis",
+    "created_at": "2026-04-06T23:52:14.286600+00:00",
+    "source_id": null,
+    "status": "active",
+    "parent_domain_id": "bartel_comp_materials",
+    "level_of_analysis": "Synthesis reaction and experimental campaign"
+  },
+  {
+    "id": "bartel_comp_materials",
+    "display_name": "Bartel Computational Materials",
+    "description": "Pack-level umbrella domain for computational materials science contributions in this PAX (Bartel lab).",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  },
+  {
+    "id": "ml_materials_discovery",
+    "display_name": "ML Materials Discovery",
+    "description": "Sub-domain covering ML-driven inorganic materials discovery, stability prediction, and convex-hull screening (cross-references the ml-materials-discovery PAX).",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  },
+  {
+    "id": "perovskite_stability",
+    "display_name": "Perovskite Stability",
+    "description": "Sub-domain covering thermodynamic and decomposition stability of perovskite oxides and halides.",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  },
+  {
+    "id": "crystal_topology",
+    "display_name": "Crystal Topology",
+    "description": "Sub-domain covering topological descriptors of crystal structures used as ML features.",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  },
+  {
+    "id": "catalysis_energy",
+    "display_name": "Catalysis & Energy Materials",
+    "description": "Sub-domain covering catalysis applications and energy-related materials (electrocatalysts, hydrogen storage, etc.).",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  },
+  {
+    "id": "battery_materials",
+    "display_name": "Battery Materials",
+    "description": "Sub-domain covering battery cathode/anode/electrolyte material design and screening.",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  },
+  {
+    "id": "synthesis_thermodynamics",
+    "display_name": "Synthesis Thermodynamics",
+    "description": "Sub-domain covering thermodynamic models of synthesizability and reaction-route prediction.",
+    "parent_domain_id": "autonomous_synthesis",
+    "status": "stub"
+  }
+]

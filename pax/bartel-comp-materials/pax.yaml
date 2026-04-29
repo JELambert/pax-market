@@ -37,7 +37,6 @@ provides:
   - perovskite_formability
   - gibbs_energy_descriptor
   - reaction_driving_force
-  - energy_above_convex_hull
   - band_gap
   - exciton_binding_energy
   - sequential_pairwise_mechanism

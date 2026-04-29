@@ -75,12 +75,26 @@
     "id": "mean_absolute_error_materials",
     "display_name": "Mean Absolute Error (MAE) for Property Prediction",
     "construct_type": "quantifiable",
-    "definition": "Primary regression metric in Matbench: average absolute difference between predicted and DFT-computed material properties (eV/atom for energies, eV for band gaps, GPa for moduli). Lower is better; state-of-the-art models achieve ~0.02\u20130.05 eV/atom for formation energy.",
+    "definition": "Primary regression metric in Matbench: average absolute difference between predicted and DFT-computed material properties (eV/atom for energies, eV for band gaps, GPa for moduli). Lower is better; state-of-the-art models achieve ~0.02–0.05 eV/atom for formation energy.",
     "created_at": "2026-04-06T19:49:07.646670+00:00",
     "source_id": "riebesell_2025_matbench_discovery",
     "status": "active",
     "parent_construct_id": null,
     "pax_origin": null,
     "canonical": 0
+  },
+  {
+    "id": "bulk_modulus",
+    "display_name": "Bulk Modulus",
+    "definition": "A material's resistance to uniform compression, defined as the ratio of an infinitesimal pressure increase to the resulting relative volume decrease; a structure-dependent mechanical property predicted by ML models.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "crystal_structure_representation",
+    "display_name": "Crystal Structure Representation",
+    "definition": "The featurization scheme used to encode a crystalline material for ML models, ranging from composition-only vectors to graph-based representations of atomic geometry.",
+    "construct_type": "variable",
+    "aliases": []
   }
 ]

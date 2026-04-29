@@ -654,7 +654,7 @@
     "id": 1681,
     "source_id": "piketty_saez_2003",
     "domain_id": "taxation_fiscal",
-    "finding_text": "The compression of top incomes from 1940\u20131970 is largely explained by high marginal tax rates reducing rent extraction and the returns to top-coded compensation, with little evidence of reduced real effort among top earners",
+    "finding_text": "The compression of top incomes from 1940–1970 is largely explained by high marginal tax rates reducing rent extraction and the returns to top-coded compensation, with little evidence of reduced real effort among top earners",
     "construct_ids": [
       "top_marginal_income_tax_rate",
       "redistributive_effect_taxes"
@@ -1528,7 +1528,7 @@
     "domain_id": "taxation_fiscal",
     "finding_text": "Declining effective tax rates on top income earners since 1980 are strongly correlated with rising top income shares; the US top 1% income share doubled from 10% to 20% as their effective tax rates fell by roughly 20pp, driven by both tax cuts and the increasing importance of capital income.",
     "construct_ids": [
-      "effective_tax_rate_by_quintile",
+      "effective_tax_rate_quintile",
       "top_marginal_income_tax_rate",
       "redistributive_effect_taxes"
     ],
@@ -1872,7 +1872,7 @@
     "domain_id": "taxation_fiscal",
     "finding_text": "US effective tax rates by income quintile show a pronounced U-shaped pattern when including payroll taxes and state/local taxes: the bottom and middle quintiles face effective total tax rates similar to or above the top 1%, undermining the progressive character of the nominal income tax schedule.",
     "construct_ids": [
-      "effective_tax_rate_by_quintile",
+      "effective_tax_rate_quintile",
       "tax_progressivity_index",
       "payroll_tax_rate"
     ],
@@ -1908,7 +1908,7 @@
     "id": 1727,
     "source_id": "romer_romer_2010",
     "domain_id": "taxation_fiscal",
-    "finding_text": "Tax-based fiscal consolidations produce smaller short-run output losses than spending-based adjustment but are not costless; the composition of government expenditure matters \u2014 cuts to public investment have larger negative multipliers than cuts to transfers in the medium term.",
+    "finding_text": "Tax-based fiscal consolidations produce smaller short-run output losses than spending-based adjustment but are not costless; the composition of government expenditure matters — cuts to public investment have larger negative multipliers than cuts to transfers in the medium term.",
     "construct_ids": [
       "government_expenditure_gdp_pct",
       "fiscal_balance_gdp_pct",
@@ -1946,7 +1946,7 @@
     "id": 1729,
     "source_id": "gupta_et_al_2007",
     "domain_id": "taxation_fiscal",
-    "finding_text": "Non-tax revenue share is negatively associated with tax effort across developing countries; aid flows and natural resource rents crowd out domestic tax mobilization \u2014 a 10pp increase in non-tax revenue share reduces the tax/GDP ratio by approximately 1.5-2pp.",
+    "finding_text": "Non-tax revenue share is negatively associated with tax effort across developing countries; aid flows and natural resource rents crowd out domestic tax mobilization — a 10pp increase in non-tax revenue share reduces the tax/GDP ratio by approximately 1.5-2pp.",
     "construct_ids": [
       "non_tax_revenue_share",
       "tax_effort_index",

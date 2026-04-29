@@ -202,5 +202,33 @@
     "measurement_level": null,
     "validity_notes": null,
     "provenance_json": null
+  },
+  {
+    "id": "capital_gains_tax_rate",
+    "display_name": "Capital Gains Tax Rate",
+    "definition": "The statutory or effective tax rate applied to realized capital gains; key policy lever affecting after-tax top-income shares.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "effective_tax_rate_by_quintile",
+    "display_name": "Effective Tax Rate by Income Quintile",
+    "definition": "Total taxes paid as a share of pre-tax income, computed separately for each income quintile; measures progressivity of the tax system.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "redistributive_effect_taxes",
+    "display_name": "Redistributive Effect of Taxes",
+    "definition": "The reduction in income inequality (e.g., Gini) attributable to taxes and transfers, measured as the difference between pre- and post-fiscal Gini coefficients.",
+    "construct_type": "variable",
+    "aliases": []
+  },
+  {
+    "id": "top_marginal_income_tax_rate",
+    "display_name": "Top Marginal Income Tax Rate",
+    "definition": "The statutory marginal income tax rate applied to the highest income bracket; a primary lever shaping top-income shares.",
+    "construct_type": "variable",
+    "aliases": []
   }
 ]
