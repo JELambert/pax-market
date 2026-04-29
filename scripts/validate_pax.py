@@ -346,45 +346,123 @@ class Validator:
     # Pass 5: cross-file FK references
     # -------------------------------------------------------------------
 
-    def check_fk_refs(self, knowledge: dict[str, Any]) -> None:
-        findings = normalize_to_list(knowledge.get("findings.json"))
-        if not findings:
-            return
+    def check_fk_refs(self, knowledge: dict[str, Any], manifest: dict | None) -> None:
+        # Collect known IDs across the entity files exactly once.
         known_constructs = collect_ids(normalize_to_list(knowledge.get("constructs.json")))
         known_domains = collect_ids(normalize_to_list(knowledge.get("domain.json"))) | collect_ids(normalize_to_list(knowledge.get("domains.json")))
         known_sources = collect_ids(normalize_to_list(knowledge.get("sources.json")))
+        known_canonical = collect_ids(normalize_to_list(knowledge.get("canonical_constructs.json")))
+        known_propositions = collect_ids(normalize_to_list(knowledge.get("propositions.json")))
 
-        missing_constructs: set[str] = set()
-        missing_domains: set[str] = set()
-        missing_sources: set[str] = set()
+        # ---- findings → constructs / domains / sub_domains / sources ----
+        findings = normalize_to_list(knowledge.get("findings.json"))
+        if findings:
+            mc, md, ms = set(), set(), set()
+            for fnd in findings:
+                if not isinstance(fnd, dict):
+                    continue
+                cs = fnd.get("construct_ids", [])
+                if isinstance(cs, str):
+                    cs = [s.strip() for s in cs.split(",") if s.strip()]
+                for cid in cs:
+                    if cid and cid not in known_constructs:
+                        mc.add(cid)
+                d = fnd.get("domain_id")
+                if d and d not in known_domains:
+                    md.add(d)
+                for sd in (fnd.get("sub_domain_ids") or []):
+                    if sd and sd not in known_domains:
+                        md.add(sd)
+                src = fnd.get("source_id")
+                if not src and isinstance(fnd.get("source"), dict):
+                    src = fnd["source"].get("id")
+                if src and known_sources and src not in known_sources:
+                    ms.add(src)
+            if mc:
+                self.err(f"findings reference {len(mc)} undefined construct_id(s): {sorted(mc)}")
+            if md:
+                self.err(f"findings reference {len(md)} undefined domain/sub_domain id(s): {sorted(md)}")
+            if ms:
+                self.err(f"findings reference {len(ms)} undefined source_id(s): {sorted(ms)}")
 
-        for fnd in findings:
-            if not isinstance(fnd, dict):
-                continue
-            cs = fnd.get("construct_ids", [])
-            if isinstance(cs, str):
-                cs = [s.strip() for s in cs.split(",") if s.strip()]
-            for cid in cs:
-                if cid and cid not in known_constructs:
-                    missing_constructs.add(cid)
-            d = fnd.get("domain_id")
-            if d and d not in known_domains:
-                missing_domains.add(d)
-            for sd in (fnd.get("sub_domain_ids") or []):
-                if sd and sd not in known_domains:
-                    missing_domains.add(sd)
-            src = fnd.get("source_id")
-            if not src and isinstance(fnd.get("source"), dict):
-                src = fnd["source"].get("id")
-            if src and known_sources and src not in known_sources:
-                missing_sources.add(src)
+        # ---- propositions → constructs ----
+        propositions = normalize_to_list(knowledge.get("propositions.json"))
+        if propositions:
+            missing = set()
+            for p in propositions:
+                if not isinstance(p, dict):
+                    continue
+                for f in ("construct_from", "construct_to"):
+                    cid = p.get(f)
+                    if cid and cid not in known_constructs:
+                        missing.add(cid)
+            if missing:
+                self.err(f"propositions reference {len(missing)} undefined construct_id(s) in construct_from/construct_to: {sorted(missing)}")
 
-        if missing_constructs:
-            self.err(f"findings reference {len(missing_constructs)} undefined construct_id(s): {sorted(missing_constructs)}")
-        if missing_domains:
-            self.err(f"findings reference {len(missing_domains)} undefined domain/sub_domain id(s): {sorted(missing_domains)}")
-        if missing_sources:
-            self.err(f"findings reference {len(missing_sources)} undefined source_id(s): {sorted(missing_sources)}")
+        # ---- construct_relationships → constructs ----
+        rels = normalize_to_list(knowledge.get("construct_relationships.json"))
+        if rels:
+            missing = set()
+            for r in rels:
+                if not isinstance(r, dict):
+                    continue
+                for f in ("construct_from", "construct_to", "from_construct", "to_construct"):
+                    cid = r.get(f)
+                    if cid and cid not in known_constructs:
+                        missing.add(cid)
+            if missing:
+                self.err(f"construct_relationships reference {len(missing)} undefined construct_id(s): {sorted(missing)}")
+
+        # ---- construct_relations (v3 backbone) → canonical_constructs ----
+        crels = normalize_to_list(knowledge.get("construct_relations.json"))
+        if crels:
+            missing = set()
+            for r in crels:
+                if not isinstance(r, dict):
+                    continue
+                for f in ("from_id", "to_id"):
+                    cid = r.get(f)
+                    if cid and known_canonical and cid not in known_canonical:
+                        missing.add(cid)
+            if missing:
+                self.err(f"construct_relations reference {len(missing)} undefined canonical_construct id(s): {sorted(missing)}")
+
+        # ---- constructs.canonical_id → canonical_constructs ----
+        constructs = normalize_to_list(knowledge.get("constructs.json"))
+        if constructs and known_canonical:
+            missing = set()
+            for c in constructs:
+                if not isinstance(c, dict):
+                    continue
+                cid = c.get("canonical_id")
+                if cid and cid not in known_canonical:
+                    missing.add(cid)
+            if missing:
+                self.err(f"constructs reference {len(missing)} undefined canonical_id(s): {sorted(missing)}")
+
+        # ---- pax.yaml provides:* → matching knowledge entities ----
+        # NOTE: provides.findings is denormalized metadata — findings don't
+        # carry an id field per PAX_FIELDS, so there's nothing to FK against.
+        # Only check entities that actually have ids: constructs, sources,
+        # propositions.
+        if isinstance(manifest, dict):
+            provides = manifest.get("provides") or {}
+            if isinstance(provides, dict):
+                checks = (
+                    ("constructs",   known_constructs,   "constructs.json"),
+                    ("sources",      known_sources,      "sources.json"),
+                    ("propositions", known_propositions, "propositions.json"),
+                )
+                for key, known_set, fname in checks:
+                    declared = provides.get(key)
+                    if not isinstance(declared, list):
+                        continue
+                    if not known_set:
+                        # Entity file absent or has no ids → can't FK-check.
+                        continue
+                    missing = {x for x in declared if x and x not in known_set}
+                    if missing:
+                        self.err(f"pax.yaml provides.{key} declares {len(missing)} id(s) not present in {fname}: {sorted(missing)}")
 
     # -------------------------------------------------------------------
     # Driver
@@ -392,11 +470,11 @@ class Validator:
 
     def run(self) -> bool:
         self.check_files()
-        self.check_manifest()
+        manifest = self.check_manifest()
         knowledge = self.check_knowledge_json()
         self.check_entity_fields(knowledge)
         self.check_known_list_shapes(knowledge)
-        self.check_fk_refs(knowledge)
+        self.check_fk_refs(knowledge, manifest)
         return not self.errors
 
 
