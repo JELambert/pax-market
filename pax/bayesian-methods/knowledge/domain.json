@@ -1,0 +1,11 @@
+{
+  "id": "bayesian_methods",
+  "display_name": "Bayesian Methods",
+  "description": "Bayesian statistical methods — priors and posteriors, conjugate families, credible intervals, MCMC/HMC/NUTS/variational inference, hierarchical and multilevel models, posterior predictive checks, Bayes factors, and the modern Bayesian workflow. Engine pack focus: turning KB findings from other packs into informative priors for Bayesian regression.",
+  "level_of_analysis": "macro",
+  "parent_domain_id": null,
+  "temporal_scope": null,
+  "population": null,
+  "research_questions": [],
+  "status": "active"
+}
