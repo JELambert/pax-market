@@ -1,0 +1,130 @@
+[
+  {
+    "id": "pmsc_event_count",
+    "display_name": "PMSC Event Count",
+    "construct_type": "quantifiable",
+    "definition": "Count of discrete, dated, located events in which a PMSC was reported to be involved within a given unit (country-year, conflict-episode, region-year). PSED's primary unit of observation. Each event must satisfy two coding rules: (1) at least one PMSC is named or clearly identifiable in the source, and (2) the PMSC is involved in one of the seven event types (work, demonstration, riot, strike, violence, crime, plot).",
+    "measurement_level": "ratio",
+    "coding_rule": "Each unique event-id in the PSED CSV is one observation. Aggregations sum events over country, year, conflict, client filter, etc.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "PMSC events", "alias_type": "synonym"},
+      {"alias": "PMSC incident count", "alias_type": "synonym"},
+      {"alias": "PSED events", "alias_type": "abbreviation"}
+    ]
+  },
+  {
+    "id": "pmsc_event_type",
+    "display_name": "PMSC Event Type",
+    "construct_type": "concept",
+    "definition": "Categorical classification of the kind of occurrence in which a PMSC was involved. Four categories (demonstration, riot, strike, violence) inherit from SCAD (Salehyan et al. 2012) with PSED-added modifiers; three categories (routine work, crime, plot) are PSED additions to capture non-contentious and non-violent PMSC activity.",
+    "measurement_level": "nominal",
+    "coding_rule": "Mutually exclusive at the event level. Categories: routine_work, demonstration (spontaneous|organized), riot (spontaneous|organized), strike (general|limited), violence (pro_gov|anti_gov|intra_gov|extra_gov|commercial), crime (general|psc_perpetrator), plot.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "event category", "alias_type": "synonym"},
+      {"alias": "incident type", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "pmsc_client_type",
+    "display_name": "PMSC Client Type",
+    "construct_type": "concept",
+    "definition": "Categorical classification of the entity that hired or compensated the PMSC involved in an event. An event may have multiple client codings if multiple PMSCs with distinct clients were involved.",
+    "measurement_level": "nominal",
+    "coding_rule": "Categories: government (local|national|foreign), commercial (local|transnational), rebel, criminal, civilian, politician, political_organization, ngo, igo.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "PMSC employer", "alias_type": "synonym"},
+      {"alias": "contractor client", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "pmsc_service_type",
+    "display_name": "PMSC Service Type",
+    "construct_type": "concept",
+    "definition": "Categorical classification of the service the PMSC performed during the event. Categories follow Avant 2005's taxonomy and span external (military-adjacent) and internal (security) support. The service observed may differ from what the PMSC was contracted for.",
+    "measurement_level": "nominal",
+    "coding_rule": "Categories (with armed/unarmed modifiers where applicable): site_security, operational_support, military_advice_training, police_advice_training, crime_prevention, logistical_support, intelligence.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "contracted service", "alias_type": "synonym"},
+      {"alias": "PMSC function", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "pmsc_abuse_allegation",
+    "display_name": "PMSC Abuse Allegation",
+    "construct_type": "concept",
+    "definition": "Whether an event includes a public allegation that a PMSC committed a human-rights abuse, and if so, the type of abuse alleged. Allegations are not the same as substantiated abuse; PSED records what is reported, not what is judicially proven.",
+    "measurement_level": "nominal",
+    "coding_rule": "Binary indicator per event (any allegation), plus categorical type: physical, labor, environmental, health, development. Categories drawn from the Corporations and Human Rights Database Mapping Trends project.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "human rights allegation", "alias_type": "synonym"},
+      {"alias": "PMSC abuse", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "pmsc_competition",
+    "display_name": "PMSC Competition",
+    "construct_type": "quantifiable",
+    "definition": "Count of distinct PMSCs hired by the government or by rebels during a given conflict episode. Akcinaroglu & Radziszewski (2013) introduced this as a measure of market competition, theorizing that more PMSCs operating in a conflict implies reputational competition and faster goal accomplishment.",
+    "measurement_level": "ratio",
+    "coding_rule": "Distinct PMSC-client-side count per conflict-episode. PSED reanalysis treats this measure as an alternative to event counts.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "PMSC market competition", "alias_type": "synonym"},
+      {"alias": "Akcinaroglu-Radziszewski competition", "alias_type": "operationalization"},
+      {"alias": "AR2013 competition", "alias_type": "abbreviation"}
+    ]
+  },
+  {
+    "id": "pmsc_government_event_count",
+    "display_name": "Government-Hired PMSC Event Count",
+    "construct_type": "quantifiable",
+    "definition": "Count of PSED events with a government client (local, national, or foreign), aggregated to the conflict-episode level. The replication's substitute for Akcinaroglu & Radziszewski's competition variable on the government side.",
+    "measurement_level": "ratio",
+    "coding_rule": "Filter pmsc_event_count to events where pmsc_client_type ∈ {government_local, government_national, government_foreign}, then aggregate to conflict-episode.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "PMSC events government", "alias_type": "synonym"},
+      {"alias": "Events PMCs (government)", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "civil_war_duration",
+    "display_name": "Civil War Duration",
+    "construct_type": "outcome",
+    "definition": "Time from civil war onset to termination, modeled in a Cox proportional-hazards framework where the hazard is the conditional probability of war termination given survival to time t. Used in the replication of Akcinaroglu & Radziszewski (2013) on African civil wars 1990–2008.",
+    "measurement_level": "ratio",
+    "coding_rule": "Conflict-year survival panel from Correlates of War v4.0; failure event is conflict termination. Onset and termination per A&R 2013 coding.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "war termination time", "alias_type": "synonym"},
+      {"alias": "conflict duration", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "conflict_episode",
+    "display_name": "Conflict Episode",
+    "construct_type": "concept",
+    "definition": "A bounded internal armed conflict between a government and one or more organized armed opposition groups, with a defined onset year and (eventual) termination year. The unit of analysis at which PMSC competition and government-event counts are aggregated for the duration replication.",
+    "measurement_level": "nominal",
+    "coding_rule": "Conflict-episode IDs follow Correlates of War v4.0 intra-state war definitions in the replication; one row per conflict-year for duration modeling.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "civil conflict", "alias_type": "synonym"},
+      {"alias": "intra-state war", "alias_type": "synonym"}
+    ]
+  }
+]

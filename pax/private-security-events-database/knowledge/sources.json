@@ -1,0 +1,26 @@
+[
+  {
+    "id": "avant_neu_2019",
+    "source_type": "academic_paper",
+    "title": "The Private Security Events Database",
+    "authors": "Avant, Deborah; Neu, Kara Kingma",
+    "year": 2019,
+    "doi": "10.1177/0022002718824394",
+    "journal": "Journal of Conflict Resolution",
+    "volume": "63",
+    "issue": "8",
+    "pages": "1986-2006",
+    "open_access": false,
+    "abstract": "Since the 1990s, the private provision of military and security services has become a common feature of local, national, and transnational politics. The prevalence of private security has generated important questions about its consequences, but data to answer these questions are sparse. In this article, we introduce the Private Security Events Database (PSED) that traces the involvement of private military and security companies (PMSCs) in events in Africa, Latin America, and Southeast Asia from 1990 to 2012. We describe the PSED project, highlight its descriptive findings, conduct a replication and reanalysis of Akcinaroglu and Radziszewski's contract data in Africa, and compare the two databases' coverage of Sierra Leone from 1991 to 1997.",
+    "url": "https://journals.sagepub.com/doi/10.1177/0022002718824394",
+    "data_url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZKKOK7",
+    "data_doi": "10.7910/DVN/ZKKOK7",
+    "methodology_summary": "Standard news-based event data collection. Lexis Nexis and World News Connection English-language news searches with the terms 'private security', 'private military', and 'mercenary'/'mercenaries' for each country and the time period. Articles read by at least two human coders. An event is recorded only when (1) a PMSC is mentioned and (2) the PMSC is involved in one of seven event categories (routine work, demonstration, riot, strike, violence, crime, plot). Event-type categorization coordinated with the Social Conflict Analysis Database (SCAD) to enable cross-referencing. Per-event variables include location, dates, deaths/injuries, services performed, client type, abuse allegations, perpetrator and victim coding, DoD-style incident type, PMSC name and nationality, and a free-text description.",
+    "sample_size": 1288,
+    "population_description": "1,288 reported PMSC events across three regions (Africa 57%, Latin America 29%, Southeast Asia 14%) over 1990–2012. Africa includes 53 sub-Saharan and North African states; Latin America includes 22 states from Mexico to Argentina; Southeast Asia includes 11 states.",
+    "study_design": "observational_longitudinal",
+    "key_limitations": "Media-source bias: undercounts overall PMSC activity (only reported events appear) and overcounts violent events relative to mundane work; international news favors big or English-coverage events. Geographic scope excludes MENA, post-Soviet space, and OECD. Temporal coverage 1990–2012 only. Reporting allegations is not the same as substantiating them. Some PMSCs may operate covertly with no media trace. The PSED data manager URL (psed.siecenter.du.edu) was active at publication; sustained access is via Harvard Dataverse.",
+    "replication_status": "Authors replicate Akcinaroglu & Radziszewski (2013) using PSED event counts in place of A&R's PMSC-count competition variable, on African civil wars 1990–2008 with Cox proportional-hazards models. Replication confirms A&R's correlation between PMSC presence and shorter wars but rejects A&R's competition mechanism: when PSED government-event counts and A&R competition are both included, competition loses significance.",
+    "data_availability": "PSED data publicly available on Harvard Dataverse at doi:10.7910/DVN/ZKKOK7 (file: PSED 1990-2012 Feb 2019.csv). Data manager visualization at https://psed.siecenter.du.edu (institutional)."
+  }
+]

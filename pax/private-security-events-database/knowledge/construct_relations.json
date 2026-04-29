@@ -1,0 +1,16 @@
+[
+  {
+    "from_id": "concept:pmsc_event",
+    "to_id": "concept:pmsc_client",
+    "relation_type": "subsumes",
+    "justification": "Each PMSC event has an associated PMSC client; client is an attribute of the event. The event-level concept subsumes the client classification as one of its descriptive dimensions.",
+    "source_id": "avant_neu_2019"
+  },
+  {
+    "from_id": "concept:pmsc_event",
+    "to_id": "concept:pmsc_service",
+    "relation_type": "subsumes",
+    "justification": "Each PMSC event records the service performed; service is an attribute of the event.",
+    "source_id": "avant_neu_2019"
+  }
+]

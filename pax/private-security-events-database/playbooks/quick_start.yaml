@@ -1,0 +1,105 @@
+id: quick_start
+display_name: "Replicate Avant & Neu (2019) — Table 2: PMSCs and Civil War Duration"
+description: >
+  Three-step replication of Avant & Neu's reanalysis of Akcinaroglu &
+  Radziszewski (2013) using PSED event counts on African civil wars
+  1990–2008. Step 1: AR2013's original Cox model with PMSC competition
+  variables (Table 2, Model 1). Step 2: PSED substitution — replace
+  competition with PSED government and rebel event counts (Table 2,
+  Model 2). Step 3: Both — show the competition coefficient attenuates
+  while event counts remain significant (Table 2, Model 3).
+  Data is not bundled. The PSED CSV must be ingested from Harvard
+  Dataverse (doi:10.7910/DVN/ZKKOK7) and joined to a user-supplied A&R
+  2013 conflict-year panel before this playbook runs.
+estimated_runtime: "1 minute"
+requires_data: true
+
+steps:
+
+  - step: 1
+    id: ar2013_baseline
+    display_name: "AR2013 Baseline — Competition Variables Only (Table 2, Model 1)"
+    action: engine
+    engine: cox_ph
+    params:
+      duration: civil_war_duration
+      outcome: conflict_terminated
+      predictors:
+        - pmsc_competition
+        - gdp_per_capita
+        - ethnic_fractionalization
+        - ethnic_wars
+        - conflict_intensity
+        - mountainous_terrain
+        - polity
+        - proportion_of_forces
+        - support_rebels
+        - support_government
+    expected_results:
+      pmsc_competition:
+        hazard_ratio: 1.294
+        direction: positive
+        p_threshold: 0.05
+
+  - step: 2
+    id: psed_substitution
+    display_name: "PSED Substitution — Event Counts Replace Competition (Table 2, Model 2)"
+    action: engine
+    engine: cox_ph
+    depends_on: [ar2013_baseline]
+    compare_to_kb: true
+    params:
+      duration: civil_war_duration
+      outcome: conflict_terminated
+      predictors:
+        - pmsc_government_event_count
+        - pmsc_rebel_event_count
+        - gdp_per_capita
+        - ethnic_fractionalization
+        - ethnic_wars
+        - conflict_intensity
+        - mountainous_terrain
+        - polity
+        - proportion_of_forces
+        - support_rebels
+        - support_government
+    expected_results:
+      pmsc_government_event_count:
+        hazard_ratio: 1.299
+        direction: positive
+        p_threshold: 0.001
+        attaches_finding: pmsc_govt_events_shorten_civil_war_30pct
+
+  - step: 3
+    id: horse_race
+    display_name: "Horse Race — Both Sets of Variables (Table 2, Model 3)"
+    action: engine
+    engine: cox_ph
+    depends_on: [psed_substitution]
+    compare_to_kb: true
+    params:
+      duration: civil_war_duration
+      outcome: conflict_terminated
+      predictors:
+        - pmsc_competition
+        - pmsc_government_event_count
+        - pmsc_rebel_event_count
+        - gdp_per_capita
+        - ethnic_fractionalization
+        - ethnic_wars
+        - conflict_intensity
+        - mountainous_terrain
+        - polity
+        - proportion_of_forces
+        - support_rebels
+        - support_government
+    expected_results:
+      pmsc_competition:
+        hazard_ratio: 1.086
+        direction: "null"
+        p_threshold: 0.05
+        attaches_finding: pmsc_competition_attenuated_when_events_controlled
+      pmsc_government_event_count:
+        hazard_ratio: 1.307
+        direction: positive
+        p_threshold: 0.05

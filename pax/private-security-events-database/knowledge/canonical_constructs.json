@@ -1,0 +1,38 @@
+[
+  {
+    "id": "concept:pmsc_event",
+    "display_name": "PMSC Event",
+    "kind": "concept",
+    "formal_definition": "A discrete, dated, located incident in which a private military or security company is reported to have been involved, satisfying inclusion criteria of (a) named or clearly identifiable PMSC and (b) participation in a recognized event category (work, demonstration, riot, strike, violence, crime, plot). The unit of analysis for events-based PMSC datasets.",
+    "status": "provisional",
+    "unit_kind": "event",
+    "owner": "private-security-events-database"
+  },
+  {
+    "id": "concept:pmsc_client",
+    "display_name": "PMSC Client",
+    "kind": "concept",
+    "formal_definition": "The kind of entity that hires or compensates a private military or security company, classified along axes such as government vs. non-state, local vs. transnational, and commercial vs. political. Used to characterize the demand side of the private security market.",
+    "status": "provisional",
+    "unit_kind": "categorical",
+    "owner": "private-security-events-database"
+  },
+  {
+    "id": "concept:pmsc_service",
+    "display_name": "PMSC Service",
+    "kind": "concept",
+    "formal_definition": "The functional category of work a PMSC performs, such as site security, operational support, military or police advice and training, crime prevention, logistical support, or intelligence. Used to characterize the supply side of the private security market.",
+    "status": "provisional",
+    "unit_kind": "categorical",
+    "owner": "private-security-events-database"
+  },
+  {
+    "id": "concept:civil_war_duration",
+    "display_name": "Civil War Duration",
+    "kind": "outcome",
+    "formal_definition": "Time elapsed from the onset of an internal armed conflict between a state government and one or more organized armed groups to its termination, modeled as time-to-event in survival-analysis frameworks. Operationalizations differ in onset/termination thresholds and in the inclusion of low-intensity or one-sided conflict episodes.",
+    "status": "provisional",
+    "unit_kind": "duration",
+    "owner": "private-security-events-database"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "psed_govt_events_shorten_war",
+    "proposition_text": "Greater participation by government-hired PMSCs in reported events is associated with shorter civil wars, plausibly because event participation proxies the resources a government is willing and able to commit to the conflict — independent of whether multiple PMSCs are competing for the contract.",
+    "construct_from": "pmsc_government_event_count",
+    "construct_to": "civil_war_duration",
+    "direction": "positive",
+    "domain_id": "private_security_and_conflict",
+    "source_id": "avant_neu_2019",
+    "theoretical_basis": "Event participation as a proxy for government resource commitment to the conflict, distinct from market-competition mechanisms emphasized in Akcinaroglu & Radziszewski (2013).",
+    "scope_conditions": "African civil wars 1990–2008; results do not generalize automatically to rebel-hired PMSC events (smaller sample, different incentive structure) or to non-African conflicts.",
+    "status": "active"
+  },
+  {
+    "id": "psed_competition_attenuated",
+    "proposition_text": "Akcinaroglu & Radziszewski (2013)'s claim that competition among government-hired PMSCs shortens civil wars is not robust to controlling for the count of events those PMSCs participated in: once event participation is in the model, competition loses statistical significance, suggesting competition is not the operative mechanism.",
+    "construct_from": "pmsc_competition",
+    "construct_to": "civil_war_duration",
+    "direction": "null",
+    "domain_id": "private_security_and_conflict",
+    "source_id": "avant_neu_2019",
+    "theoretical_basis": "Methodological reanalysis: a confounder (event participation) that correlates with both PMSC competition and conflict duration explains away the competition-duration relationship.",
+    "scope_conditions": "African civil wars 1990–2008; A&R 2013 replication panel; Cox proportional-hazards specification. PSED authors are explicit that the result does not rule out a role for competition but shifts the burden of proof.",
+    "status": "active"
+  }
+]

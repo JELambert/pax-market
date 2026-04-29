@@ -1,0 +1,17 @@
+[
+  {
+    "id": "private_security_and_conflict",
+    "display_name": "Private Security and Conflict",
+    "description": "PMSC behavior in dated, located events and its relationship to conflict outcomes (duration, lethality, abuse allegations, governance). Distinct from contract-level PMSC analyses by examining what PMSC personnel actually did, in whose service, and with what consequences.",
+    "temporal_scope": "1990-2012 (PSED v.Feb-2019); extension planned through 2016",
+    "geographic_scope": "Africa, Latin America, Southeast Asia",
+    "population": "Reported events involving private military and security companies in international and regional English-language news sources",
+    "level_of_analysis": "event (with country-year and conflict-episode aggregations)",
+    "research_questions": [
+      "How prevalent and what kind is reported PMSC activity across regions and over time?",
+      "Who hires PMSCs, and for what services?",
+      "When and against whom are PMSCs alleged to commit human rights abuses?",
+      "Does PMSC participation in events affect civil war duration, and through what mechanism?"
+    ]
+  }
+]
