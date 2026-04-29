@@ -3,7 +3,7 @@ name: Publish Registry Artifacts
 on:
   push:
     branches: [main]
-    paths: ['pax/**', 'scripts/generate-registry.py']
+    paths: ['pax/**', 'scripts/generate-registry.py', 'docs/**']
   workflow_dispatch:
 
 permissions:
@@ -35,6 +35,19 @@ jobs:
           echo "Found $PACK_COUNT pack archives"
           test "$PACK_COUNT" -gt 0 || (echo "No pack archives found" && exit 1)
 
+      - name: Verify guide markers
+        # Loud failure: if either marker is missing, praxis pax_schema.py
+        # parsing breaks at import time. Don't ship a release that would
+        # poison the downstream consumer.
+        run: |
+          set -euo pipefail
+          test -s docs/PAX_CREATION_GUIDE.md
+          test -s docs/PAX_USAGE_GUIDE.md
+          grep -q '<!-- PAX_SCHEMA_START' docs/PAX_CREATION_GUIDE.md
+          grep -q '<!-- PAX_SCHEMA_END'   docs/PAX_CREATION_GUIDE.md
+          grep -q '<!-- PAX_FIELDS_START' docs/PAX_CREATION_GUIDE.md
+          grep -q '<!-- PAX_FIELDS_END'   docs/PAX_CREATION_GUIDE.md
+
       - name: Bundle pack archives
         run: |
           cd dist && tar -cf pax-archives.tar pax/
@@ -54,5 +67,7 @@ jobs:
             dist/registry.json \
             dist/constructs.json \
             dist/full-catalog.json \
-            dist/pax-archives.tar
+            dist/pax-archives.tar \
+            docs/PAX_CREATION_GUIDE.md \
+            docs/PAX_USAGE_GUIDE.md
 
