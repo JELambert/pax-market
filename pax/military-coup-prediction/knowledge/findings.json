@@ -4,7 +4,12 @@
     "source_id": "londregan_poole_1990",
     "domain_id": "military_coup_prediction",
     "finding_text": "Low GDP per capita and slow economic growth are the two strongest predictors of coup attempts. Using simultaneous equations to address reverse causality, the study finds poverty creates a 'coup trap' where coups depress growth, which further increases coup risk. The effect of income on coup probability is strongly non-linear \u2014 marginal effects are largest at low income levels.",
-    "construct_ids": "coup_attempt,gdp_per_capita_coup,economic_growth_shock,coup_trap_mechanism",
+    "construct_ids": [
+      "coup_attempt",
+      "gdp_per_capita_coup",
+      "economic_growth_shock",
+      "coup_trap_mechanism"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Simultaneous equations, panel of 121 countries 1950-1982",
@@ -34,7 +39,11 @@
     "source_id": "londregan_poole_1990",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coups have a significant negative causal effect on subsequent economic growth, confirming the reverse causality channel of the coup trap. Countries experiencing coups suffer growth penalties that persist for several years, further increasing future coup risk through the poverty channel.",
-    "construct_ids": "coup_attempt,economic_growth_shock,coup_trap_mechanism",
+    "construct_ids": [
+      "coup_attempt",
+      "economic_growth_shock",
+      "coup_trap_mechanism"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Simultaneous equations with instrumental variables",
@@ -64,7 +73,12 @@
     "source_id": "belkin_schofer_2003",
     "domain_id": "military_coup_prediction",
     "finding_text": "Three structural conditions significantly predict coup risk: (1) recent coup history (coup trap), (2) low regime legitimacy, and (3) absence of strong civil society. Countries with all three conditions face extremely high coup risk. The model correctly classifies ~80% of country-years, outperforming models relying on economic variables alone.",
-    "construct_ids": "coup_attempt,coup_history,regime_durability_coup,anocracy_coup",
+    "construct_ids": [
+      "coup_attempt",
+      "coup_history",
+      "regime_durability_coup",
+      "anocracy_coup"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Logistic regression, global panel 1960-1999",
@@ -94,7 +108,12 @@
     "source_id": "mcgowan_2003",
     "domain_id": "military_coup_prediction",
     "finding_text": "Sub-Saharan Africa experienced 80 successful coups, 108 failed attempts, and 139 reported plots between 1956-2001 \u2014 the highest regional coup rate globally. West Africa had the highest sub-regional concentration. Coup frequency peaked in the 1966-1980 period and declined significantly after 1990, coinciding with democratization waves and international anti-coup norms.",
-    "construct_ids": "coup_attempt,coup_success,cold_war_era_coup,coup_contagion",
+    "construct_ids": [
+      "coup_attempt",
+      "coup_success",
+      "cold_war_era_coup",
+      "coup_contagion"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Comprehensive dataset coding, trend analysis",
@@ -124,7 +143,11 @@
     "source_id": "collier_hoeffler_2007",
     "domain_id": "military_coup_prediction",
     "finding_text": "Military spending significantly reduces coup risk \u2014 a 1 percentage point increase in military spending as a share of GDP reduces coup probability by approximately 30%. This 'loyalty purchase' effect is robust to controls for income, regime type, and coup history. However, the effect diminishes at very high spending levels, suggesting diminishing returns to buying military loyalty.",
-    "construct_ids": "coup_attempt,military_spending_share,coup_history",
+    "construct_ids": [
+      "coup_attempt",
+      "military_spending_share",
+      "coup_history"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Logistic regression with instrumental variables for military spending endogeneity",
@@ -154,7 +177,11 @@
     "source_id": "leon_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Military spending has theoretically ambiguous effects on coup risk: it buys loyalty (reducing grievances) but also increases military capability (enabling coups). The net effect depends on whether spending is targeted at elite units vs. broadly distributed. Empirically, the loyalty-purchase effect dominates \u2014 higher spending reduces coup risk \u2014 but the capability channel means very large militaries can still pose threats.",
-    "construct_ids": "coup_attempt,military_spending_share,military_autonomy",
+    "construct_ids": [
+      "coup_attempt",
+      "military_spending_share",
+      "military_autonomy"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Game-theoretic model with empirical testing",
@@ -184,7 +211,11 @@
     "source_id": "singh_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coups succeed or fail based primarily on whether initial movers can establish a focal point for military coordination, not on the balance of forces. The seizure of broadcast media (radio stations, TV) is critical not for military advantage but for signaling to other officers that the coup is underway and gaining momentum. Failed coups typically fail because they cannot solve the coordination problem.",
-    "construct_ids": "coup_success,coordination_problem_coup,coup_attempt",
+    "construct_ids": [
+      "coup_success",
+      "coordination_problem_coup",
+      "coup_attempt"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Coordination game model with comparative case studies (Ghana, Nigeria, Sierra Leone)",
@@ -214,7 +245,11 @@
     "source_id": "alesina_et_al_1996",
     "domain_id": "military_coup_prediction",
     "finding_text": "Political instability (measured by coups, revolutions, and assassinations) significantly reduces economic growth. The relationship is bidirectional: poor growth increases instability, and instability reduces growth. In a sample of 113 countries 1950-1982, countries with high propensity for government change grew significantly slower even controlling for other determinants.",
-    "construct_ids": "coup_attempt,economic_growth_shock,coup_trap_mechanism",
+    "construct_ids": [
+      "coup_attempt",
+      "economic_growth_shock",
+      "coup_trap_mechanism"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Panel regression, simultaneous equations, 113 countries 1950-1982",
@@ -244,7 +279,12 @@
     "source_id": "londregan_poole_1990",
     "domain_id": "military_coup_prediction",
     "finding_text": "Low GDP per capita and slow economic growth are the two strongest predictors of coup attempts. Using simultaneous equations to address reverse causality, the study finds poverty creates a 'coup trap' where coups depress growth, which further increases coup risk. The effect of income on coup probability is strongly non-linear.",
-    "construct_ids": "coup_attempt,gdp_per_capita_coup,economic_growth_shock,coup_trap_mechanism",
+    "construct_ids": [
+      "coup_attempt",
+      "gdp_per_capita_coup",
+      "economic_growth_shock",
+      "coup_trap_mechanism"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Simultaneous equations, panel of 121 countries 1950-1982",
@@ -274,7 +314,12 @@
     "source_id": "belkin_schofer_2003",
     "domain_id": "military_coup_prediction",
     "finding_text": "Three structural conditions significantly predict coup risk: recent coup history, low regime legitimacy, and absence of strong civil society. Countries with all three face extremely high coup risk. Model correctly classifies ~80% of country-years, outperforming economic-variable-only models.",
-    "construct_ids": "coup_attempt,coup_history,regime_durability_coup,praetorian_state",
+    "construct_ids": [
+      "coup_attempt",
+      "coup_history",
+      "regime_durability_coup",
+      "praetorian_state"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Logistic regression, global panel 1960-1999",
@@ -304,7 +349,13 @@
     "source_id": "mcgowan_2003",
     "domain_id": "military_coup_prediction",
     "finding_text": "Sub-Saharan Africa experienced 80 successful coups, 108 failed attempts, and 139 reported plots between 1956-2001. West Africa had the highest sub-regional concentration. Coup frequency peaked 1966-1980 and declined significantly after 1990, coinciding with democratization waves and international anti-coup norms.",
-    "construct_ids": "coup_attempt,coup_success,cold_war_era_coup,coup_contagion,regional_coup_culture",
+    "construct_ids": [
+      "coup_attempt",
+      "coup_success",
+      "cold_war_era_coup",
+      "coup_contagion",
+      "regional_coup_culture"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Comprehensive dataset coding, trend analysis, sub-Saharan Africa 1956-2001",
@@ -334,7 +385,11 @@
     "source_id": "collier_hoeffler_2007",
     "domain_id": "military_coup_prediction",
     "finding_text": "Military spending significantly reduces coup risk. A 1 percentage point increase in military spending as share of GDP reduces coup probability by approximately 30%. This loyalty purchase effect is robust to controls for income, regime type, and coup history, but diminishes at very high spending levels.",
-    "construct_ids": "coup_attempt,military_spending_share,patronage_capacity",
+    "construct_ids": [
+      "coup_attempt",
+      "military_spending_share",
+      "patronage_capacity"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Logistic regression with instrumental variables for military spending endogeneity",
@@ -364,7 +419,12 @@
     "source_id": "leon_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Military spending has theoretically ambiguous effects: it buys loyalty (reducing grievances) but also increases military capability (enabling coups). The net effect depends on whether spending targets elite units vs broadly distributed. Empirically, the loyalty-purchase effect dominates, but very large militaries still pose threats.",
-    "construct_ids": "coup_attempt,military_spending_share,military_autonomy,patronage_capacity",
+    "construct_ids": [
+      "coup_attempt",
+      "military_spending_share",
+      "military_autonomy",
+      "patronage_capacity"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Game-theoretic model with empirical testing on global panel",
@@ -394,7 +454,10 @@
     "source_id": "singh_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coups succeed or fail based primarily on whether initial movers can establish a focal point for military coordination, not on the balance of forces. Seizure of broadcast media is critical for signaling, not military advantage. Failed coups typically fail because they cannot solve the coordination problem.",
-    "construct_ids": "coup_success,coordination_problem_coup",
+    "construct_ids": [
+      "coup_success",
+      "coordination_problem_coup"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Coordination game model with comparative case studies (Ghana, Nigeria, Sierra Leone)",
@@ -424,7 +487,11 @@
     "source_id": "alesina_et_al_1996",
     "domain_id": "military_coup_prediction",
     "finding_text": "Political instability (coups, revolutions, assassinations) significantly reduces economic growth. The relationship is bidirectional. In 113 countries 1950-1982, countries with high propensity for government change grew significantly slower even controlling for other determinants, confirming the coup trap feedback mechanism.",
-    "construct_ids": "coup_attempt,economic_growth_shock,coup_trap_mechanism",
+    "construct_ids": [
+      "coup_attempt",
+      "economic_growth_shock",
+      "coup_trap_mechanism"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Panel regression, simultaneous equations, 113 countries 1950-1982",
@@ -454,7 +521,11 @@
     "source_id": "svolik_2009",
     "domain_id": "military_coup_prediction",
     "finding_text": "Authoritarian power-sharing through institutions (parties, legislatures) solves the credible commitment problem between dictators and military elites. Without power-sharing institutions, dictators cannot credibly promise not to eliminate rivals, increasing coup risk. Regimes with stronger institutional power-sharing are significantly more durable.",
-    "construct_ids": "coup_attempt,power_sharing_institutions,authoritarian_regime_type",
+    "construct_ids": [
+      "coup_attempt",
+      "power_sharing_institutions",
+      "authoritarian_regime_type"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Formal model with empirical tests on authoritarian regime panel",
@@ -484,7 +555,11 @@
     "source_id": "sudduth_2017",
     "domain_id": "military_coup_prediction",
     "finding_text": "Elite purges are strategically rational for dictators facing coup threats but create a purge paradox: the act of purging can trigger preemptive coups if targets learn of impending purges. Purges are most dangerous when targeting officers with independent support bases. The timing and scope of purges significantly predict coup attempt onset.",
-    "construct_ids": "coup_attempt,elite_purge,authoritarian_regime_type",
+    "construct_ids": [
+      "coup_attempt",
+      "elite_purge",
+      "authoritarian_regime_type"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Formal model with empirical tests on authoritarian leader panel",
@@ -514,7 +589,12 @@
     "source_id": "casper_tyson_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Popular protests serve as information signals that help military officers coordinate coup attempts by revealing regime weakness and reducing uncertainty about popular support for regime change. Anti-government protests significantly predict coup attempts, especially when protest intensity signals broad-based opposition.",
-    "construct_ids": "coup_attempt,protest_activity_coup,coordination_problem_coup,popular_legitimacy_of_coup",
+    "construct_ids": [
+      "coup_attempt",
+      "protest_activity_coup",
+      "coordination_problem_coup",
+      "popular_legitimacy_of_coup"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Formal model of protest-coup linkage with empirical tests",
@@ -544,7 +624,13 @@
     "source_id": "thyne_powell_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coups against autocracies are significantly more likely to produce democratization than coups against democracies. Post-Cold War coups against autocracies led to competitive elections within 5 years in the majority of cases. Coups against democracies almost always reduce democratic quality.",
-    "construct_ids": "coup_attempt,post_coup_democratization,post_coup_elections,democratic_coup,authoritarian_regime_type",
+    "construct_ids": [
+      "coup_attempt",
+      "post_coup_democratization",
+      "post_coup_elections",
+      "democratic_coup",
+      "authoritarian_regime_type"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Logistic regression on post-coup regime outcomes 1950-2008",
@@ -574,7 +660,11 @@
     "source_id": "derpanopoulos_et_al_2016",
     "domain_id": "military_coup_prediction",
     "finding_text": "Challenges the optimistic finding that coups promote democracy. Reanalysis shows coups rarely produce durable democratic transitions. Post-coup elections are often low-quality or reversed. The apparent post-Cold War democratization effect is sensitive to how democracy is measured and the time horizon examined.",
-    "construct_ids": "coup_attempt,post_coup_democratization,post_coup_elections",
+    "construct_ids": [
+      "coup_attempt",
+      "post_coup_democratization",
+      "post_coup_elections"
+    ],
     "direction": "null",
     "effect_size": null,
     "method_used": "Replication and robustness analysis of Marinov and Goemans findings",
@@ -604,7 +694,12 @@
     "source_id": "tansey_2017",
     "domain_id": "military_coup_prediction",
     "finding_text": "The international anti-coup norm that emerged post-1991 is fading. While the norm initially reduced coup frequency through credible threats of sanctions and diplomatic isolation, enforcement has become inconsistent. The 2013 Egypt coup and subsequent Sahel wave faced weaker international responses, signaling declining deterrent credibility.",
-    "construct_ids": "anti_coup_norm,international_sanctions_coup,coup_attempt,sahel_coup_wave",
+    "construct_ids": [
+      "anti_coup_norm",
+      "international_sanctions_coup",
+      "coup_attempt",
+      "sahel_coup_wave"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Qualitative analysis of anti-coup norm development and erosion",
@@ -634,7 +729,12 @@
     "source_id": "nordvik_2018",
     "domain_id": "military_coup_prediction",
     "finding_text": "Oil both promotes and prevents coups. Oil windfalls allow regimes to buy military loyalty (rentier peace), but oil price crashes destabilize patronage networks and trigger coups. The conditional effect means oil-rich states have lower baseline coup risk but face acute vulnerability during commodity downturns. Exploiting oil price shocks as exogenous variation provides strong causal identification.",
-    "construct_ids": "coup_attempt,oil_rents_coup,rentier_state_coup,patronage_capacity",
+    "construct_ids": [
+      "coup_attempt",
+      "oil_rents_coup",
+      "rentier_state_coup",
+      "patronage_capacity"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Panel analysis exploiting oil price shocks as exogenous variation",
@@ -664,7 +764,11 @@
     "source_id": "pilster_bohmelt_2011",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coup-proofing structures (parallel security forces, command fragmentation) significantly reduce military effectiveness in interstate wars. Countries with more coup-proofed militaries perform worse in combat, controlling for other determinants of military effectiveness. This establishes the coup-proofing dilemma: regimes trade external security for internal security.",
-    "construct_ids": "coup_attempt,parallel_security_forces,military_autonomy",
+    "construct_ids": [
+      "coup_attempt",
+      "parallel_security_forces",
+      "military_autonomy"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Quantitative analysis linking coup-proofing structures to military effectiveness in wars 1967-99",
@@ -694,7 +798,12 @@
     "source_id": "bohmelt_et_al_2018",
     "domain_id": "military_coup_prediction",
     "finding_text": "Military academies, contrary to Huntington's professionalization thesis, can increase coup risk. Academies create dense officer networks and shared professional identity that facilitate coordination. Countries with military academies face higher coup risk, challenging the assumption that professionalism reduces military intervention in politics.",
-    "construct_ids": "coup_attempt,military_professionalism,coordination_problem_coup,objective_civilian_control",
+    "construct_ids": [
+      "coup_attempt",
+      "military_professionalism",
+      "coordination_problem_coup",
+      "objective_civilian_control"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Panel analysis testing whether military academies increase or decrease coup risk",
@@ -724,7 +833,11 @@
     "source_id": "houle_2016",
     "domain_id": "military_coup_prediction",
     "finding_text": "Income inequality breeds coups but not civil wars. Coups require elite coordination (feasible under inequality because elites are cohesive), while civil wars require mass mobilization (difficult under inequality because the poor face collective action problems). This explains why coup-prone and civil-war-prone countries have different structural profiles.",
-    "construct_ids": "coup_attempt,income_inequality_coup,post_coup_civil_war",
+    "construct_ids": [
+      "coup_attempt",
+      "income_inequality_coup",
+      "post_coup_civil_war"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Panel logistic regression comparing determinants of coups vs civil wars",
@@ -754,7 +867,11 @@
     "source_id": "bell_sudduth_2015",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coups during ongoing civil wars are common and have distinct dynamics: war creates both motive (blame for military setbacks) and opportunity (decentralized military command). Post-coup outcomes during civil war differ from peacetime coups, with higher risk of conflict escalation and regime fragmentation.",
-    "construct_ids": "coup_attempt,post_coup_civil_war,leader_tenure_coup",
+    "construct_ids": [
+      "coup_attempt",
+      "post_coup_civil_war",
+      "leader_tenure_coup"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Logistic regression on country-year panel examining coups during active civil wars",
@@ -784,7 +901,12 @@
     "source_id": "svolik_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "Young democracies face two distinct threats: military coups and incumbent takeovers. Coup risk declines with democratic age (consolidation), but incumbent takeover risk remains relatively constant. Democracies that survive their early years become increasingly coup-proof through institutional deepening, but executive self-coups remain a persistent threat.",
-    "construct_ids": "democratic_coup,autogolpe,regime_durability_coup,executive_aggrandizement",
+    "construct_ids": [
+      "democratic_coup",
+      "autogolpe",
+      "regime_durability_coup",
+      "executive_aggrandizement"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Competing risks model of democratic breakdown via coups vs incumbent takeovers",
@@ -814,7 +936,12 @@
     "source_id": "quinlivan_1999",
     "domain_id": "military_coup_prediction",
     "finding_text": "Middle Eastern coup-proofing involves a distinctive architecture: parallel security forces, ethnic/tribal stacking of elite units, rotation of commanders, professional military marginalization, and family/clan control of intelligence services. This architecture explains why some Middle Eastern states (Syria, Saudi Arabia) avoided coups while others (Iraq pre-2003, Egypt) remained vulnerable.",
-    "construct_ids": "parallel_security_forces,ethnic_stacking,coup_attempt,regional_coup_culture",
+    "construct_ids": [
+      "parallel_security_forces",
+      "ethnic_stacking",
+      "coup_attempt",
+      "regional_coup_culture"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Comparative case studies of coup-proofing in Middle Eastern states",
@@ -844,7 +971,12 @@
     "source_id": "bou_nassif_2015",
     "domain_id": "military_coup_prediction",
     "finding_text": "Coup-proofing architecture predetermined military behavior during the Arab Spring. In Egypt and Tunisia, where militaries retained institutional autonomy and corporate interests, officers defected from the regime. In Syria and Bahrain, where deep coup-proofing fragmented the military and tied elite units to the regime ethnically, the military remained loyal.",
-    "construct_ids": "parallel_security_forces,ethnic_stacking,military_corporate_interest,guardian_coup",
+    "construct_ids": [
+      "parallel_security_forces",
+      "ethnic_stacking",
+      "military_corporate_interest",
+      "guardian_coup"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Comparative case analysis of military responses during Arab Spring",
@@ -874,7 +1006,12 @@
     "source_id": "jenkins_kposowa_1990",
     "domain_id": "military_coup_prediction",
     "finding_text": "Ethnic competition and military centrality are the primary structural determinants of African coups. Colonial military legacies (ethnically segmented forces, officer corps trained abroad) create enduring vulnerability. Economic variables are secondary to political-military structural factors in explaining African coup variation 1957-1984.",
-    "construct_ids": "coup_attempt,ethnic_fractionalization_military,postcolonial_military_legacy,regional_coup_culture",
+    "construct_ids": [
+      "coup_attempt",
+      "ethnic_fractionalization_military",
+      "postcolonial_military_legacy",
+      "regional_coup_culture"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Event history analysis, sub-Saharan Africa 1957-1984",
@@ -904,7 +1041,11 @@
     "source_id": "boix_svolik_2013",
     "domain_id": "military_coup_prediction",
     "finding_text": "Legislatures in dictatorships serve as power-sharing institutions that reduce coup risk. Dictators who establish legislatures and allow limited political competition create credible commitments to share power, reducing the incentive for military elites to seize power through coups. Legislative institutions are foundations of limited authoritarian government.",
-    "construct_ids": "coup_attempt,power_sharing_institutions,authoritarian_regime_type",
+    "construct_ids": [
+      "coup_attempt",
+      "power_sharing_institutions",
+      "authoritarian_regime_type"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Formal model of institutional power-sharing with empirical tests",
@@ -934,7 +1075,11 @@
     "source_id": "feaver_1996",
     "domain_id": "military_coup_prediction",
     "finding_text": "Huntington's objective civilian control thesis (professionalization reduces coup risk) and Janowitz's constabulary model (political integration of military) represent fundamentally different prescriptions for civil-military relations. The tension between them remains unresolved: professionalization may create autonomous military power while politicization may erode military effectiveness.",
-    "construct_ids": "objective_civilian_control,military_professionalism,principal_agent_cmr",
+    "construct_ids": [
+      "objective_civilian_control",
+      "military_professionalism",
+      "principal_agent_cmr"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Theoretical review synthesizing Huntington and Janowitz frameworks",
@@ -964,7 +1109,11 @@
     "source_id": "feaver_2003",
     "domain_id": "military_coup_prediction",
     "finding_text": "Civil-military relations can be modeled as a principal-agent problem where civilian principals delegate defense to military agents. Military shirking (pursuing own preferences) varies with monitoring costs, punishment credibility, and preference divergence. Coups represent the extreme case of agent rebellion when the principal lacks credible oversight mechanisms.",
-    "construct_ids": "principal_agent_cmr,objective_civilian_control,military_autonomy",
+    "construct_ids": [
+      "principal_agent_cmr",
+      "objective_civilian_control",
+      "military_autonomy"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Principal-agent theory applied to civil-military relations",
@@ -994,7 +1143,12 @@
     "source_id": "desch_1999",
     "domain_id": "military_coup_prediction",
     "finding_text": "The external threat environment is the primary determinant of civilian control over the military. High external threats unite civilian and military preferences, strengthening civilian control. Low external threats allow preference divergence and weaken control. Internal threats are the worst case: they give the military a domestic political role that undermines civilian supremacy.",
-    "construct_ids": "objective_civilian_control,military_autonomy,disposition_opportunity,coup_attempt",
+    "construct_ids": [
+      "objective_civilian_control",
+      "military_autonomy",
+      "disposition_opportunity",
+      "coup_attempt"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Theoretical framework linking threat environment to civilian control",
@@ -1024,7 +1178,12 @@
     "source_id": "souare_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "The African Union's anti-coup norm (Lome Declaration 2000) had a partial deterrent effect on coups in Africa. Coup frequency declined after the norm's institutionalization, but enforcement was inconsistent. Coups that enjoyed popular support or backing from major regional powers were less likely to face meaningful AU sanctions.",
-    "construct_ids": "au_anti_coup_mechanism,anti_coup_norm,international_sanctions_coup,coup_attempt",
+    "construct_ids": [
+      "au_anti_coup_mechanism",
+      "anti_coup_norm",
+      "international_sanctions_coup",
+      "coup_attempt"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Empirical assessment of AU anti-coup norm effectiveness 1952-2012",
@@ -1054,7 +1213,13 @@
     "source_id": "perez_linan_polga_2016",
     "domain_id": "military_coup_prediction",
     "finding_text": "Latin American military coups have been largely replaced by constitutional removals (impeachments) since the 1990s. Both mechanisms respond to similar structural conditions (economic crisis, presidential scandal, legislative opposition), but the shift from coups to impeachments reflects the rising costs of unconstitutional power seizure in the post-Cold War era.",
-    "construct_ids": "coup_attempt,anti_coup_norm,autogolpe,regional_coup_culture,bureaucratic_authoritarianism",
+    "construct_ids": [
+      "coup_attempt",
+      "anti_coup_norm",
+      "autogolpe",
+      "regional_coup_culture",
+      "bureaucratic_authoritarianism"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Comparative analysis of coups vs constitutional removals in Latin America 1945-2010",
@@ -1084,7 +1249,13 @@
     "source_id": "roessler_2016",
     "domain_id": "military_coup_prediction",
     "finding_text": "African rulers face a coup-civil war trap: including rival ethnic elites in the ruling coalition reduces coup risk but creates insurgency risk from empowered rivals; excluding them raises coup risk from marginalized groups. This dilemma has no stable equilibrium, explaining why many African states cycle between coups and civil wars.",
-    "construct_ids": "coup_attempt,ethnic_stacking,ethnic_fractionalization_military,post_coup_civil_war,coup_trap_mechanism",
+    "construct_ids": [
+      "coup_attempt",
+      "ethnic_stacking",
+      "ethnic_fractionalization_military",
+      "post_coup_civil_war",
+      "coup_trap_mechanism"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Mixed methods: formal model plus case studies and quantitative panel analysis",
@@ -1114,7 +1285,13 @@
     "source_id": "albrecht_koehler_schutz_2021",
     "domain_id": "military_coup_prediction",
     "finding_text": "The identity and goals of coup perpetrators significantly predict post-coup regime outcomes. Coups by reformist officers or guardians are more likely to produce democratization than coups by regime insiders or factionalists. Coup agency\u2014who stages the coup and why\u2014matters as much as structural conditions for understanding post-coup trajectories.",
-    "construct_ids": "coup_success,guardian_coup,coup_type,post_coup_democratization,post_coup_regime_type",
+    "construct_ids": [
+      "coup_success",
+      "guardian_coup",
+      "coup_type",
+      "post_coup_democratization",
+      "post_coup_regime_type"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Analysis of coup perpetrator characteristics and post-coup outcomes",
@@ -1144,7 +1321,12 @@
     "source_id": "bell_2016",
     "domain_id": "military_coup_prediction",
     "finding_text": "Post-coup transitions to democracy are more likely when the deposed regime was autocratic and when international pressure for elections is strong. The relationship between coups and democratization is conditional on both the pre-coup regime type and the post-Cold War international environment. Coups can serve as a pathway to democracy under specific structural conditions.",
-    "construct_ids": "post_coup_democratization,post_coup_elections,international_sanctions_coup,authoritarian_regime_type",
+    "construct_ids": [
+      "post_coup_democratization",
+      "post_coup_elections",
+      "international_sanctions_coup",
+      "authoritarian_regime_type"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Panel analysis of post-coup regime outcomes",
@@ -1174,7 +1356,12 @@
     "source_id": "white_2019",
     "domain_id": "military_coup_prediction",
     "finding_text": "Civil war peace agreements increase subsequent coup risk. Peace processes redistribute power and create military restructuring pressures that threaten military corporate interests. Military elites who lose status or face integration with former enemies have heightened motivation to stage coups to preserve their institutional position.",
-    "construct_ids": "coup_attempt,post_coup_civil_war,military_corporate_interest,elite_purge",
+    "construct_ids": [
+      "coup_attempt",
+      "post_coup_civil_war",
+      "military_corporate_interest",
+      "elite_purge"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Quantitative analysis of coup risk following civil war peace agreements",
@@ -1204,7 +1391,12 @@
     "source_id": "bjornskov_rode_2019",
     "domain_id": "military_coup_prediction",
     "finding_text": "New dataset distinguishing regime types and transition modes shows that coups remain the most common form of autocratic regime change, accounting for approximately 60% of all authoritarian regime transitions 1950-2018. However, the share of transitions via coups has declined while elections and popular uprisings have increased.",
-    "construct_ids": "coup_attempt,coup_type,authoritarian_regime_type,cold_war_era_coup",
+    "construct_ids": [
+      "coup_attempt",
+      "coup_type",
+      "authoritarian_regime_type",
+      "cold_war_era_coup"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "New dataset coding regime types and transitions 1950-2018",
@@ -1234,7 +1426,12 @@
     "source_id": "powell_2014",
     "domain_id": "military_coup_prediction",
     "finding_text": "There is a substitution dynamic between coups and civil wars in Africa. Coup-proofing reduces coup risk but may increase civil war risk by weakening the military's ability to suppress insurgencies and by creating grievances among marginalized military factions that turn to rebellion. The coup-civil war tradeoff is a structural feature of fragile states.",
-    "construct_ids": "coup_attempt,post_coup_civil_war,parallel_security_forces,ethnic_stacking",
+    "construct_ids": [
+      "coup_attempt",
+      "post_coup_civil_war",
+      "parallel_security_forces",
+      "ethnic_stacking"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Panel analysis of coup-civil war substitution dynamics in Africa",
@@ -1264,7 +1461,12 @@
     "source_id": "besley_robinson_2010",
     "domain_id": "military_coup_prediction",
     "finding_text": "Civilian control of the military depends on institutional design that makes coup rents low relative to loyalty rents. When economic resources are large and institutional constraints on rulers are weak, the military faces strong incentives to seize power. Democratic institutions that constrain the executive also reduce coup risk by limiting the spoils of power.",
-    "construct_ids": "coup_attempt,patronage_capacity,power_sharing_institutions,principal_agent_cmr",
+    "construct_ids": [
+      "coup_attempt",
+      "patronage_capacity",
+      "power_sharing_institutions",
+      "principal_agent_cmr"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Formal model of civilian control as a function of institutional design and rents",
@@ -1294,7 +1496,12 @@
     "source_id": "croissant_kuehn_2010",
     "domain_id": "military_coup_prediction",
     "finding_text": "Civilian control of the military cannot be measured solely by coup occurrence. Even in coup-free states, militaries may exercise extensive political prerogatives: control over defense policy, internal security roles, military justice systems, and economic enterprises. A multidimensional conceptualization of civilian control is needed beyond the fallacy of coup-ism.",
-    "construct_ids": "objective_civilian_control,military_autonomy,military_business_interests,military_corporate_interest",
+    "construct_ids": [
+      "objective_civilian_control",
+      "military_autonomy",
+      "military_business_interests",
+      "military_corporate_interest"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Conceptual framework for measuring civilian control beyond coup occurrence",
@@ -1324,7 +1531,12 @@
     "source_id": "brooks_2019",
     "domain_id": "military_coup_prediction",
     "finding_text": "The civil-military relations literature has four distinct research traditions: structural (institutional determinants of civilian control), agency (individual leader decisions), cultural (norms of military non-intervention), and organizational (military as bureaucratic institution). Integrating these traditions is essential for understanding when and why militaries intervene in politics.",
-    "construct_ids": "objective_civilian_control,disposition_opportunity,principal_agent_cmr,military_professionalism",
+    "construct_ids": [
+      "objective_civilian_control",
+      "disposition_opportunity",
+      "principal_agent_cmr",
+      "military_professionalism"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Comprehensive review identifying four CMR research traditions",
@@ -1354,7 +1566,11 @@
     "source_id": "miller_2016",
     "domain_id": "military_coup_prediction",
     "finding_text": "Reanalysis of whether coups promote democracy finds the result is fragile. Post-coup democratization depends heavily on measurement choices, time horizons, and sample restrictions. When using stricter democracy measures and longer time horizons, the positive effect of coups on democratization weakens substantially or disappears.",
-    "construct_ids": "post_coup_democratization,post_coup_elections,coup_attempt",
+    "construct_ids": [
+      "post_coup_democratization",
+      "post_coup_elections",
+      "coup_attempt"
+    ],
     "direction": "null",
     "effect_size": null,
     "method_used": "Replication and robustness analysis with alternative specifications",

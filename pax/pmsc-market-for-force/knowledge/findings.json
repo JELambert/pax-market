@@ -4,7 +4,10 @@
     "source_id": "singer_2003_corporate_warriors",
     "domain_id": "pmsc_typology",
     "finding_text": "Singer's tip-of-the-spear typology classifies PMSCs into three tiers by proximity to combat: Military Provider Firms (direct combat), Military Consulting Firms (advisory/training), and Military Support Firms (logistics/intelligence). This remains the most widely-used classification scheme despite limitations.",
-    "construct_ids": "pmsc_type,pmsc_service_spectrum",
+    "construct_ids": [
+      "pmsc_type",
+      "pmsc_service_spectrum"
+    ],
     "direction": "unknown",
     "effect_size": null,
     "method_used": "Qualitative typology construction, case study analysis",
@@ -34,7 +37,12 @@
     "source_id": "petersohn_2017_effectiveness_severity",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "PMSC services increase client military effectiveness which translates into increased conflict severity in weak states (1990-2007). Effects depend on service type \u2014 combat services have stronger severity effects than support/logistics services.",
-    "construct_ids": "pmsc_presence,conflict_intensity_pmsc,pmsc_service_spectrum,pmsc_military_effectiveness",
+    "construct_ids": [
+      "pmsc_presence",
+      "conflict_intensity_pmsc",
+      "pmsc_service_spectrum",
+      "pmsc_military_effectiveness"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Quantitative panel analysis, 30 weak states, 1990-2007, PSD data",
@@ -64,7 +72,10 @@
     "source_id": "petersohn_2014_mercenaries_severity",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "Both mercenaries and modern PMSCs increase civil war severity across 1946-2002. The severity-increasing effect is present across the full historical range, challenging claims that modern PMSCs are fundamentally different from historical mercenaries in their conflict impacts.",
-    "construct_ids": "pmsc_presence,conflict_intensity_pmsc",
+    "construct_ids": [
+      "pmsc_presence",
+      "conflict_intensity_pmsc"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Quantitative panel, global civil wars 1946-2002",
@@ -94,7 +105,10 @@
     "source_id": "akcinaroglu_radziszewski_2013_africa",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "Competition among government-hired PMCs in African civil wars (1990-2008) incentivizes better service delivery and faster conflict termination. Monopoly PMSC arrangements extend conflicts.",
-    "construct_ids": "pmsc_market_competition,conflict_duration_pmsc",
+    "construct_ids": [
+      "pmsc_market_competition",
+      "conflict_duration_pmsc"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Survival analysis, African civil wars 1990-2008",
@@ -124,7 +138,10 @@
     "source_id": "faulkner_lambert_powell_2019",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "The Akcinaroglu-Radziszewski competition operationalization suffers from four aggregation problems: (1) actual competition is rare despite co-presence; (2) multiple firms are often subsidiaries; (3) aggregation conflates collaboration with competition; (4) the competition measure lacks empirical validity. Sierra Leone case study demonstrates these coding issues.",
-    "construct_ids": "pmsc_market_competition,conflict_duration_pmsc",
+    "construct_ids": [
+      "pmsc_market_competition",
+      "conflict_duration_pmsc"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Case study with coding critique, Sierra Leone",
@@ -154,7 +171,10 @@
     "source_id": "petersohn_2024_termination",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "Early CMA intervention (within first year of conflict) substantially increases probability of conflict termination using CMAD data and Cox PH models. No evidence that CMAs select into easier conflicts (appendix logistic regression test).",
-    "construct_ids": "pmsc_presence,conflict_duration_pmsc",
+    "construct_ids": [
+      "pmsc_presence",
+      "conflict_duration_pmsc"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Cox proportional hazard models, CMAD 1990-2010",
@@ -184,7 +204,11 @@
     "source_id": "penel_petersohn_2022_civilian",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "Distinguishing corporate PMSCs from mercenaries, and government clients from rebel clients, matters substantively for civilian victimization outcomes. Collapsing these categories produces misleading inferences. Montreux Document coding is substantively significant.",
-    "construct_ids": "pmsc_type,pmsc_client_type,civilian_victimization_pmsc",
+    "construct_ids": [
+      "pmsc_type",
+      "pmsc_client_type",
+      "civilian_victimization_pmsc"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Country-year panel with 1-year lag on all IVs, CMAD, Africa/MENA/LatAm/Asia 1980-2011",
@@ -214,7 +238,10 @@
     "source_id": "petersohn_2021_onset",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "PMSC presence in year t-1 is associated with conflict onset using Cox PH models and PSED data across Latin America, Africa, and Southeast Asia 1990-2011. PMSC presence slightly increases likelihood of conflict onset.",
-    "construct_ids": "pmsc_presence,conflict_onset_pmsc",
+    "construct_ids": [
+      "pmsc_presence",
+      "conflict_onset_pmsc"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Cox proportional hazard models, PSED data 1990-2011",
@@ -244,7 +271,10 @@
     "source_id": "petersohn_2014_anti_mercenary_norm",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "PMSCs achieved legitimacy by reinterpreting the anti-mercenary norm \u2014 redefining their use of force as individual self-defence rather than combat participation, carving normative space distinct from historical mercenaries.",
-    "construct_ids": "anti_mercenary_norm,pmsc_type",
+    "construct_ids": [
+      "anti_mercenary_norm",
+      "pmsc_type"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Norm analysis, qualitative/interpretive",
@@ -274,7 +304,12 @@
     "source_id": "petersohn_lees_2023_escalate",
     "domain_id": "pmsc_market_for_force",
     "finding_text": "Conditions under which PMSCs escalate or dampen conflict severity depend on client type, oversight mechanisms, and service categories \u2014 refining earlier finding that PMSCs uniformly increase severity.",
-    "construct_ids": "pmsc_presence,conflict_intensity_pmsc,pmsc_client_type,pmsc_accountability",
+    "construct_ids": [
+      "pmsc_presence",
+      "conflict_intensity_pmsc",
+      "pmsc_client_type",
+      "pmsc_accountability"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "PSD data, 30 weak states 1990-2007, addresses endogeneity via lagged battle deaths",
@@ -304,7 +339,10 @@
     "source_id": "singer_2003_corporate_warriors",
     "domain_id": "pmsc_typology",
     "finding_text": "The PMSC industry grew from an estimated $55.6 billion in 1990 to over $100 billion by 2003, driven by post-Cold War military downsizing that created both supply (demobilized soldiers seeking employment) and demand (weak states, peacekeeping shortfalls, and new security threats).",
-    "construct_ids": "pmsc_industry_size,pmsc_presence",
+    "construct_ids": [
+      "pmsc_industry_size",
+      "pmsc_presence"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Industry analysis, market size estimation",
@@ -334,7 +372,10 @@
     "source_id": "mcfate_2014_modern_mercenary",
     "domain_id": "pmsc_typology",
     "finding_text": "PMSCs represent not an anomaly but a historical norm. The state monopoly on violence was a brief 150-year interlude (roughly 1648-1990s). The current era of privatized violence represents a return to the pre-Westphalian norm of multiple competing armed actors.",
-    "construct_ids": "state_monopoly_violence,neomedievalism",
+    "construct_ids": [
+      "state_monopoly_violence",
+      "neomedievalism"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Historical analysis, neomedievalist theoretical framework",
@@ -364,7 +405,11 @@
     "source_id": "mcfate_2014_modern_mercenary",
     "domain_id": "pmsc_typology",
     "finding_text": "McFate's two-axis typology (government linkage \u00d7 service spectrum) reveals that PMSC organizational forms are far more diverse than the simple mercenary/contractor binary suggests. Organizations range from state-owned enterprises to fully independent market actors, and from defensive security to offensive combat operations.",
-    "construct_ids": "pmsc_type,pmsc_government_linkage,pmsc_service_spectrum",
+    "construct_ids": [
+      "pmsc_type",
+      "pmsc_government_linkage",
+      "pmsc_service_spectrum"
+    ],
     "direction": "unknown",
     "effect_size": null,
     "method_used": "Typological theory, practitioner analysis",
@@ -394,7 +439,10 @@
     "source_id": "avant_2005_market_for_force",
     "domain_id": "pmsc_regulation",
     "finding_text": "Different institutional arrangements for overseeing private force \u2014 contract type, oversight mechanisms, market competition \u2014 produce systematically different accountability outcomes. Market structure shapes whether PMSCs face contractual, market-based, or political accountability.",
-    "construct_ids": "pmsc_accountability,pmsc_market_structure",
+    "construct_ids": [
+      "pmsc_accountability",
+      "pmsc_market_structure"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Comparative institutional analysis, case studies",
@@ -424,7 +472,10 @@
     "source_id": "avant_2005_market_for_force",
     "domain_id": "pmsc_typology",
     "finding_text": "Avant identifies three functional arenas of private force: external security (military operations), internal security (policing, border control), and commercial security (corporate protection). Each arena has distinct accountability dynamics and regulatory challenges.",
-    "construct_ids": "pmsc_type,pmsc_service_spectrum",
+    "construct_ids": [
+      "pmsc_type",
+      "pmsc_service_spectrum"
+    ],
     "direction": "unknown",
     "effect_size": null,
     "method_used": "Theoretical framework construction",
@@ -454,7 +505,10 @@
     "source_id": "petersohn_2022_cmad",
     "domain_id": "pmsc_data_measurement",
     "finding_text": "CMAD covers all civil wars 1980-2016 globally except Europe, recording approximately 6,971 contractual relationships. It codes 11 service categories and explicitly distinguishes corporate PMSCs from mercenary outfits \u2014 a critical distinction that prior datasets (PSED, PSD) collapsed.",
-    "construct_ids": "pmsc_type,pmsc_service_spectrum",
+    "construct_ids": [
+      "pmsc_type",
+      "pmsc_service_spectrum"
+    ],
     "direction": "unknown",
     "effect_size": null,
     "method_used": "Dataset construction, systematic coding of open-source materials",
@@ -484,7 +538,10 @@
     "source_id": "petersohn_2015_social_structure",
     "domain_id": "pmsc_typology",
     "finding_text": "Personal networks and relationship-based trust, not anonymous price-and-quality competition, drive PMSC procurement patterns. The market for force operates through three structures \u2014 collaborative, competitive, and rival \u2014 each producing different performance outcomes.",
-    "construct_ids": "pmsc_market_structure,pmsc_market_competition",
+    "construct_ids": [
+      "pmsc_market_structure",
+      "pmsc_market_competition"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Social network analysis, market structure theory",
@@ -514,7 +571,10 @@
     "source_id": "dunigan_petersohn_2015_markets",
     "domain_id": "pmsc_typology",
     "finding_text": "Comparative analysis across 12 countries reveals the global market for force is not monolithic but a conglomeration of neoliberal, hybrid, and racketeering market types that vary by local political conditions and geostrategic context.",
-    "construct_ids": "pmsc_market_structure,pmsc_type",
+    "construct_ids": [
+      "pmsc_market_structure",
+      "pmsc_type"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Comparative case studies across 12 countries",
@@ -544,7 +604,9 @@
     "source_id": "avant_2000_mercenary_citizen",
     "domain_id": "pmsc_typology",
     "finding_text": "The historical transition from mercenary to citizen armies was driven by domestic political conditions and military defeats, not purely by state-building ideology. Path dependency played a key role, challenging both realist and constructivist accounts.",
-    "construct_ids": "state_monopoly_violence",
+    "construct_ids": [
+      "state_monopoly_violence"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Historical comparative analysis",
@@ -574,7 +636,10 @@
     "source_id": "percy_2007_mercenaries_norm",
     "domain_id": "pmsc_regulation",
     "finding_text": "A robust international social norm against mercenary use has persisted for centuries, but has never produced effective legal prohibition. The 1989 UN Mercenary Convention has been ratified by only 35 states and excludes all major PMSC-employing nations.",
-    "construct_ids": "anti_mercenary_norm,regulatory_framework_strength",
+    "construct_ids": [
+      "anti_mercenary_norm",
+      "regulatory_framework_strength"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Historical norm tracing, international law analysis",
@@ -604,7 +669,10 @@
     "source_id": "percy_2007_mercenaries_norm",
     "domain_id": "pmsc_regulation",
     "finding_text": "The anti-mercenary norm has two components: illegitimacy of force outside authorized control, and moral problems with fighting for purely financial motives. PMSCs exploit the definitional ambiguity between these components to claim legitimacy.",
-    "construct_ids": "anti_mercenary_norm,pmsc_accountability",
+    "construct_ids": [
+      "anti_mercenary_norm",
+      "pmsc_accountability"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Norm theory analysis",
@@ -634,7 +702,10 @@
     "source_id": "leander_2005_power",
     "domain_id": "pmsc_regulation",
     "finding_text": "PMCs exercise symbolic power (Bourdieu) by shaping shared understandings of what counts as security and who constitutes a legitimate security actor. This power has shifted from the public/state sphere to the private/market sphere.",
-    "construct_ids": "pmsc_symbolic_power,security_commodification",
+    "construct_ids": [
+      "pmsc_symbolic_power",
+      "security_commodification"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Bourdieu-inflected discourse analysis",
@@ -664,7 +735,10 @@
     "source_id": "leander_2005_destabilizing",
     "domain_id": "pmsc_regulation",
     "finding_text": "The market for force undermines the public-goods character of security by commodifying it. Commodification erodes democratic accountability and creates incentive structures that prioritize profit over public interest.",
-    "construct_ids": "security_commodification,democratic_accountability_gap",
+    "construct_ids": [
+      "security_commodification",
+      "democratic_accountability_gap"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Critical security analysis",
@@ -694,7 +768,11 @@
     "source_id": "marten_2019_wagner",
     "domain_id": "pmsc_typology",
     "finding_text": "The Wagner Group does not fit existing PMC typology categories. It operates through corrupt informal networks linked to the Russian state, combining military operations with influence campaigns across 6+ countries (Nigeria, Crimea, Ukraine, Syria, Sudan, CAR). While operationally similar to PMCs, the informal state-PMC nexus serves purposes that potentially undermine Russian security interests.",
-    "construct_ids": "wagner_group_model,pmsc_type,pmsc_government_linkage",
+    "construct_ids": [
+      "wagner_group_model",
+      "pmsc_type",
+      "pmsc_government_linkage"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Process tracing, case study analysis across 6 countries",
@@ -724,7 +802,11 @@
     "source_id": "bara_kreutz_2022_peace",
     "domain_id": "pmsc_conflict_consequences",
     "finding_text": "Civil conflicts featuring PMSCs in combat roles are more likely to recur post-war. PMSC presence exacerbates the post-war credible commitment problem \u2014 belligerents fear redeployment of hired forces, making durable peace harder to achieve.",
-    "construct_ids": "pmsc_presence,post_conflict_recurrence,peace_durability_pmsc",
+    "construct_ids": [
+      "pmsc_presence",
+      "post_conflict_recurrence",
+      "peace_durability_pmsc"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Duration analysis, PSED and UCDP data 1990-2014",
@@ -754,7 +836,10 @@
     "source_id": "cockayne_2008_montreux",
     "domain_id": "pmsc_regulation",
     "finding_text": "The Montreux Document (2008) resulted from three years of negotiations and establishes 27 statements on state obligations under IHL and human rights law applicable to PMSC operations. It represents the first international consensus framework for PMSC regulation.",
-    "construct_ids": "montreux_document,regulatory_framework_strength",
+    "construct_ids": [
+      "montreux_document",
+      "regulatory_framework_strength"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Legal analysis, participant observation of negotiations",
@@ -784,7 +869,10 @@
     "source_id": "krahmann_2013_state_monopoly",
     "domain_id": "pmsc_regulation",
     "finding_text": "The US is leading a norm shift, not just exploiting a loophole \u2014 extensive PMSC use is changing the normative environment in ways that allow other states to follow. The state monopoly on violence norm is being transformed, not just circumvented.",
-    "construct_ids": "state_monopoly_violence,anti_mercenary_norm",
+    "construct_ids": [
+      "state_monopoly_violence",
+      "anti_mercenary_norm"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Norm change analysis, US policy analysis",
@@ -814,7 +902,10 @@
     "source_id": "avant_2006_iraq",
     "domain_id": "pmsc_regulation",
     "finding_text": "Iraq demonstrates how contractor legal status falls between military and civilian categories, creating accountability voids. The Blackwater killings in Fallujah and Abu Ghraib involvement illustrate how heavy reliance on PMSCs creates both political and legal complications.",
-    "construct_ids": "democratic_accountability_gap,pmsc_accountability",
+    "construct_ids": [
+      "democratic_accountability_gap",
+      "pmsc_accountability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Case study analysis, Iraq 2003-2006",
@@ -844,7 +935,10 @@
     "source_id": "avant_sigelman_2010_democracy",
     "domain_id": "pmsc_regulation",
     "finding_text": "Reliance on private security contractors in Iraq undermined democratic accountability mechanisms. Confidentiality clauses and contractor legal status shielded PMSCs from both legislative and public oversight.",
-    "construct_ids": "democratic_accountability_gap,pmsc_accountability",
+    "construct_ids": [
+      "democratic_accountability_gap",
+      "pmsc_accountability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Democratic theory analysis, Iraq case study",
@@ -874,7 +968,10 @@
     "source_id": "abrahamsen_williams_2009_assemblages",
     "domain_id": "pmsc_typology",
     "finding_text": "Security governance operates through transnational networks \u2014 'global security assemblages' \u2014 that blur public/private distinctions. Case studies from Sierra Leone and Nigeria show how PMSCs interact with state and non-state actors to produce emergent security governance institutions.",
-    "construct_ids": "security_assemblage,pmsc_type",
+    "construct_ids": [
+      "security_assemblage",
+      "pmsc_type"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Assemblage theory, comparative case studies (Sierra Leone, Nigeria)",
@@ -904,7 +1001,10 @@
     "source_id": "cotton_petersohn_dunigan_2010",
     "domain_id": "pmsc_conflict_consequences",
     "finding_text": "Systematic survey of US military personnel with Iraq experience reveals mixed perceptions: PSCs are viewed as useful for gap-filling and specialized tasks but problematic for command integration and coordination with military units.",
-    "construct_ids": "pmsc_military_effectiveness,pmsc_presence",
+    "construct_ids": [
+      "pmsc_military_effectiveness",
+      "pmsc_presence"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Survey research, US military and State Department personnel",
@@ -934,7 +1034,10 @@
     "source_id": "dunigan_2011_victory_for_hire",
     "domain_id": "pmsc_conflict_consequences",
     "finding_text": "PSC deployment yields positive tactical outcomes when integrated into clear command structures. PSC deployment yields negative outcomes when chains of command are unclear or when PSCs operate autonomously. Military effectiveness of PSCs is conditional on organizational integration.",
-    "construct_ids": "pmsc_military_effectiveness,pmsc_accountability",
+    "construct_ids": [
+      "pmsc_military_effectiveness",
+      "pmsc_accountability"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": "Comparative case studies of PSC deployments",
@@ -964,7 +1067,10 @@
     "source_id": "legarda_nouwens_2018_bri",
     "domain_id": "pmsc_china_bri",
     "finding_text": "At least 20 Chinese private security companies provide international services to protect Belt and Road Initiative investments in Pakistan, Sudan, Iraq, and other countries. Chinese domestic law does not apply overseas, creating a legal grey zone for these operations.",
-    "construct_ids": "chinese_psc_presence,bri_security_provision",
+    "construct_ids": [
+      "chinese_psc_presence",
+      "bri_security_provision"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Policy analysis, company mapping",
@@ -994,7 +1100,10 @@
     "source_id": "arduino_2020_chinese_psc_africa",
     "domain_id": "pmsc_china_bri",
     "finding_text": "An estimated 35,000-62,000 Chinese private security contractors operate across 50 African countries to protect BRI-linked investments. Major companies include Beijing DeWe, Huaxin Zhong An, Overseas Security Guardians, and China Security Technology Group.",
-    "construct_ids": "chinese_psc_presence,bri_security_provision",
+    "construct_ids": [
+      "chinese_psc_presence",
+      "bri_security_provision"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Empirical mapping, interview-based research",
@@ -1024,7 +1133,11 @@
     "source_id": "howe_1998_executive_outcomes",
     "domain_id": "pmsc_conflict_consequences",
     "finding_text": "Executive Outcomes' operations in Angola (1993-94) and Sierra Leone (1995-96) with approximately 2,000 ex-SADF veterans achieved rapid tactical success. Qualified positive assessment of EO's stabilizing role, while identifying significant accountability gaps in the absence of regulatory oversight.",
-    "construct_ids": "pmsc_military_effectiveness,pmsc_accountability,pmsc_presence",
+    "construct_ids": [
+      "pmsc_military_effectiveness",
+      "pmsc_accountability",
+      "pmsc_presence"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": "Case study analysis, Angola and Sierra Leone",
@@ -1054,7 +1167,10 @@
     "source_id": "petersohn_2021_combat_market",
     "domain_id": "pmsc_regulation",
     "finding_text": "Since 2013, combat services have been increasingly exchanged on the market despite the anti-mercenary norm. This reflects rational calculations by actors rather than norm collapse \u2014 compliance or violation of the norm reflects strategic interaction between states, PMSCs, and international audiences.",
-    "construct_ids": "anti_mercenary_norm,pmsc_service_spectrum",
+    "construct_ids": [
+      "anti_mercenary_norm",
+      "pmsc_service_spectrum"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": "Norm analysis, post-2013 market trends",

@@ -4,7 +4,11 @@
     "source_id": "food_climate_vulnerability_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Cold chain logistics disruptions account for 30-40% of food loss in developing countries. Climate change increases ambient temperatures, requiring more energy-intensive cold chain operations and increasing failure probability during extreme heat events.",
-    "construct_ids": "food_supply_chain_disruption,climate_exposure_score,lead_time_variability",
+    "construct_ids": [
+      "food_supply_chain_disruption",
+      "climate_exposure_score",
+      "lead_time_variability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -34,7 +38,10 @@
     "source_id": "anderson_van_wincoop_2003",
     "domain_id": "global_trade_flows",
     "finding_text": "Structural gravity with multilateral resistance terms shows that trade barriers matter relative to average barriers, not in absolute terms: a country pair trades more when both face high barriers with the rest of the world.",
-    "construct_ids": "bilateral_trade_value,bilateral_distance_km",
+    "construct_ids": [
+      "bilateral_trade_value",
+      "bilateral_distance_km"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -64,7 +71,10 @@
     "source_id": "nature_food_resilience_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Food supply chain research is heavily biased toward production-stage analysis (crop yield impacts). Only 15% of reviewed studies examine processing disruptions, 10% examine distribution/logistics, and 5% examine retail-level impacts. This creates blind spots in understanding full supply chain vulnerability.",
-    "construct_ids": "food_supply_chain_disruption,supply_chain_visibility",
+    "construct_ids": [
+      "food_supply_chain_disruption",
+      "supply_chain_visibility"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -94,7 +104,11 @@
     "source_id": "irena_critical_materials_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Recycling could supply 10-20% of critical mineral demand by 2040 for lithium, cobalt, and nickel from end-of-life EV batteries. However, current recycling infrastructure handles less than 5% of battery waste. Scaling requires $10-15 billion in recycling facility investment globally.",
-    "construct_ids": "energy_transition_mineral_demand,critical_mineral_dependency,supplier_substitutability",
+    "construct_ids": [
+      "energy_transition_mineral_demand",
+      "critical_mineral_dependency",
+      "supplier_substitutability"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -124,7 +138,11 @@
     "source_id": "mitre_supply_chain_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "DoD supply chain illumination efforts reveal that most weapon systems contain 500-2,000+ unique electronic components from 100-300 suppliers across 15-25 countries. Full Tier 3+ mapping for a single major weapon system requires 6-12 months and significant analyst effort, demonstrating the visibility challenge.",
-    "construct_ids": "defense_supply_chain_integrity,tier_depth,supply_chain_visibility",
+    "construct_ids": [
+      "defense_supply_chain_integrity",
+      "tier_depth",
+      "supply_chain_visibility"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -154,7 +172,11 @@
     "source_id": "zhao_et_al_2011",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Small-world supply networks (high clustering + short path lengths) show intermediate robustness: more robust than scale-free under targeted attack but less robust under random failure. The clustering provides local redundancy that partially buffers targeted attacks on hubs.",
-    "construct_ids": "cascading_failure_size,network_betweenness_centrality,supply_chain_resilience_score",
+    "construct_ids": [
+      "cascading_failure_size",
+      "network_betweenness_centrality",
+      "supply_chain_resilience_score"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -184,7 +206,10 @@
     "source_id": "christopher_peck_2004",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Four levels of supply chain risk form a nested hierarchy: (1) process/value stream risks (within the firm), (2) asset and infrastructure dependency risks, (3) supply chain network risks (inter-organizational), (4) environmental risks (external). Effective SCRM must address all four levels simultaneously.",
-    "construct_ids": "supply_chain_vulnerability_index,supply_chain_resilience_score",
+    "construct_ids": [
+      "supply_chain_vulnerability_index",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -214,7 +239,11 @@
     "source_id": "mckinsey_2020",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Reshoring/nearshoring trade-off analysis: shifting 25% of supply chain to domestic/near sources increases annual operating costs by 1-5% but reduces disruption-related losses by 15-25%. Net present value is positive for industries with high disruption frequency (>1 event per 3 years) and high disruption cost (>5% annual revenue).",
-    "construct_ids": "nearshoring_reshoring,geographic_concentration_risk,supply_chain_resilience_score",
+    "construct_ids": [
+      "nearshoring_reshoring",
+      "geographic_concentration_risk",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -244,7 +273,12 @@
     "source_id": "semiconductor_resilience_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Automotive industry semiconductor shortage (2020-2023) caused estimated $210 billion in lost global automotive revenue. The shortage originated from demand reallocation (automotive canceled orders in Q2 2020, consumer electronics absorbed the capacity) combined with fab capacity constraints and long qualification cycles.",
-    "construct_ids": "semiconductor_concentration,supplier_substitutability,disruption_severity_index,pandemic_demand_shock",
+    "construct_ids": [
+      "semiconductor_concentration",
+      "supplier_substitutability",
+      "disruption_severity_index",
+      "pandemic_demand_shock"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -274,7 +308,11 @@
     "source_id": "iea_critical_minerals_2025",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Export restrictions on critical minerals have increased 5-fold since 2009. As of 2024, 15+ countries impose export controls on at least one critical mineral. Resource nationalism and strategic competition are accelerating fragmentation of mineral supply chains into geopolitical blocs.",
-    "construct_ids": "trade_policy_uncertainty,critical_mineral_dependency,geopolitical_risk_index",
+    "construct_ids": [
+      "trade_policy_uncertainty",
+      "critical_mineral_dependency",
+      "geopolitical_risk_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -304,7 +342,10 @@
     "source_id": "buldyrev_et_al_2010",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "In interdependent networks, even a small initial failure (removing 1-2% of nodes) can trigger complete network collapse if the two networks have sufficiently high interdependency. The percolation transition is first-order (abrupt) in interdependent networks vs. second-order (gradual) in single networks.",
-    "construct_ids": "cascading_failure_size,supply_chain_resilience_score",
+    "construct_ids": [
+      "cascading_failure_size",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -334,7 +375,12 @@
     "source_id": "dolgui_ivanov_sokolov_2018",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Ripple effect mitigation requires different strategies at different timescales: (1) proactive structural measures (dual sourcing, geographic diversification) months-years before disruption, (2) real-time detection and response (visibility, contingency activation) during disruption, (3) adaptive recovery (demand reallocation, capacity reconfiguration) post-disruption.",
-    "construct_ids": "ripple_effect,supply_chain_resilience_score,supplier_diversification,supply_chain_visibility",
+    "construct_ids": [
+      "ripple_effect",
+      "supply_chain_resilience_score",
+      "supplier_diversification",
+      "supply_chain_visibility"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -364,7 +410,11 @@
     "source_id": "simchi_levi_et_al_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Worst-case CVaR analysis reveals that the 5% worst disruption scenarios account for 35-50% of total expected disruption cost. This extreme fat-tail distribution means that average-case risk analysis dramatically underestimates true supply chain exposure. REI with CVaR captures this tail risk.",
-    "construct_ids": "risk_exposure_index,disruption_severity_index,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "risk_exposure_index",
+      "disruption_severity_index",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -394,7 +444,10 @@
     "source_id": "baryannis_et_al_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply chain risk identification using NLP achieves highest accuracy when combining multiple text sources: news articles (for disruption events), financial filings (for supplier risk indicators), and social media (for early signals). Multi-source fusion improves F1-score by 12-18% over single-source approaches.",
-    "construct_ids": "supply_chain_disruption_binary,supply_chain_visibility",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "supply_chain_visibility"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -424,7 +477,9 @@
     "source_id": "hendricks_singhal_2005",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Equity risk (systematic and unsystematic) increases by 13.5% on average following supply chain disruption announcements.",
-    "construct_ids": "supply_chain_disruption_binary",
+    "construct_ids": [
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -454,7 +509,11 @@
     "source_id": "bode_wagner_2015",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Horizontal complexity (number of direct suppliers) significantly increases supply chain disruption frequency: \u03b2=0.19, p<0.01 (N=467). Each additional tier of supply chain depth amplifies the effect.",
-    "construct_ids": "supplier_diversification,supply_chain_disruption_binary,tier_depth",
+    "construct_ids": [
+      "supplier_diversification",
+      "supply_chain_disruption_binary",
+      "tier_depth"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -477,14 +536,21 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Structural equation modeling with latent variables for complexity dimensions",
-    "covariates_controlled": "[\"firm_size\", \"industry\", \"supply_chain_length\"]"
+    "covariates_controlled": [
+      "[\"firm_size\"",
+      "\"industry\"",
+      "\"supply_chain_length\"]"
+    ]
   },
   {
     "id": 1731,
     "source_id": "hendricks_singhal_2005",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply chain disruptions cause average abnormal stock returns of approximately -40% over a three-year window relative to matched controls. Analysis of 827 disruption announcements from SEC filings.",
-    "construct_ids": "supply_chain_disruption_binary,disruption_severity_index",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "disruption_severity_index"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -507,14 +573,22 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Event study with matched-pair controls, cumulative abnormal returns over 3-year window",
-    "covariates_controlled": "[\"industry\", \"firm_size\", \"pre_disruption_performance\"]"
+    "covariates_controlled": [
+      "[\"industry\"",
+      "\"firm_size\"",
+      "\"pre_disruption_performance\"]"
+    ]
   },
   {
     "id": 1733,
     "source_id": "simchi_levi_et_al_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Nodes where Time-To-Recover exceeds Time-To-Survive (TTR > TTS) represent critical vulnerabilities. Ford Motor Company implementation identified previously unknown single-source dependencies across 1,200+ components.",
-    "construct_ids": "risk_exposure_index,recovery_time,time_to_survive",
+    "construct_ids": [
+      "risk_exposure_index",
+      "recovery_time",
+      "time_to_survive"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -537,14 +611,21 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Graph-theoretic analysis with mixed-integer programming for worst-case identification",
-    "covariates_controlled": "[\"supplier_location\", \"component_criticality\", \"inventory_levels\"]"
+    "covariates_controlled": [
+      "[\"supplier_location\"",
+      "\"component_criticality\"",
+      "\"inventory_levels\"]"
+    ]
   },
   {
     "id": 1735,
     "source_id": "bode_wagner_2015",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Spatial complexity (geographic spread of supplier base) independently increases disruption frequency: \u03b2=0.15, p<0.05 (N=467). The three complexity dimensions (horizontal, vertical, spatial) amplify each other's effects.",
-    "construct_ids": "geographic_concentration_risk,supply_chain_disruption_binary",
+    "construct_ids": [
+      "geographic_concentration_risk",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -567,14 +648,21 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "SEM with interaction terms between complexity dimensions",
-    "covariates_controlled": "[\"firm_size\", \"industry\"]"
+    "covariates_controlled": [
+      "[\"firm_size\"",
+      "\"industry\"]"
+    ]
   },
   {
     "id": 1736,
     "source_id": "craighead_et_al_2007",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply chain density and node criticality are positively associated with disruption severity, while recovery capability and early warning capability mitigate severity. Node criticality shows the strongest effect on severity.",
-    "construct_ids": "disruption_severity_index,network_betweenness_centrality,supply_chain_resilience_score",
+    "construct_ids": [
+      "disruption_severity_index",
+      "network_betweenness_centrality",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -597,14 +685,21 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Multi-method: case study analysis with simulation validation",
-    "covariates_controlled": "[\"supply_chain_complexity\", \"mitigation_capability\"]"
+    "covariates_controlled": [
+      "[\"supply_chain_complexity\"",
+      "\"mitigation_capability\"]"
+    ]
   },
   {
     "id": 1738,
     "source_id": "ivanov_2020",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Timing of facility closures and reopenings has greater impact on supply chain performance than disruption duration or propagation speed. Simultaneous global closure produces 30-40% greater revenue loss than sequential closure.",
-    "construct_ids": "ripple_effect,recovery_time,disruption_severity_index",
+    "construct_ids": [
+      "ripple_effect",
+      "recovery_time",
+      "disruption_severity_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -634,7 +729,10 @@
     "source_id": "buldyrev_et_al_2010",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Interdependent networks are dramatically more vulnerable to cascading failures than isolated networks. A small initial failure can trigger complete network collapse through cross-network dependencies. Broader degree distributions increase vulnerability (opposite of single-network behavior).",
-    "construct_ids": "cascading_failure_size,supply_chain_resilience_score",
+    "construct_ids": [
+      "cascading_failure_size",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -664,7 +762,11 @@
     "source_id": "brintrup_et_al_2018",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Network betweenness centrality of suppliers is significantly associated with firm-level supply chain performance and risk exposure. Firms with high-betweenness suppliers face greater disruption risk but also benefit from information access.",
-    "construct_ids": "network_betweenness_centrality,supply_chain_resilience_score,supplier_financial_health",
+    "construct_ids": [
+      "network_betweenness_centrality",
+      "supply_chain_resilience_score",
+      "supplier_financial_health"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -687,14 +789,20 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Empirical network analysis of automotive supply chain with degree, betweenness, and eigenvector centrality",
-    "covariates_controlled": "[\"firm_size\", \"industry_segment\"]"
+    "covariates_controlled": [
+      "[\"firm_size\"",
+      "\"industry_segment\"]"
+    ]
   },
   {
     "id": 1744,
     "source_id": "dolgui_ivanov_sokolov_2018",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The ripple effect differs fundamentally from the bullwhip effect: ripple is disruption-driven propagation affecting supply chain structure, while bullwhip is information-driven demand amplification. Mitigation requires different strategies: structural redundancy for ripple, information sharing for bullwhip.",
-    "construct_ids": "ripple_effect,bullwhip_effect",
+    "construct_ids": [
+      "ripple_effect",
+      "bullwhip_effect"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -724,7 +832,10 @@
     "source_id": "baryannis_et_al_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Random forests and support vector machines are the most commonly applied ML methods for supply chain risk prediction. However, most studies lack standardized benchmarking and rely on proprietary datasets, limiting reproducibility.",
-    "construct_ids": "supply_chain_disruption_binary,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -754,7 +865,10 @@
     "source_id": "hosseini_ivanov_dolgui_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Bayesian networks are the most promising quantitative method for supply chain resilience analysis because they handle uncertainty, incorporate expert knowledge, support both forward (prediction) and backward (diagnosis) inference, and work with incomplete data.",
-    "construct_ids": "supply_chain_resilience_score,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -784,7 +898,10 @@
     "source_id": "papachristou_rahimian_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Cascading failure sizes in production networks follow power-law distributions. Structural resilience can be defined as the largest exogenous shock magnitude a network can withstand before undergoing a phase transition to large-scale collapse.",
-    "construct_ids": "cascading_failure_size,supply_chain_resilience_score",
+    "construct_ids": [
+      "cascading_failure_size",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -814,7 +931,10 @@
     "source_id": "forrester_1958",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Demand amplification (bullwhip effect) emerges naturally from the structure of multi-echelon supply chains with information delays and local optimization. A 10% retail demand increase can produce 40%+ order variance amplification at the factory level.",
-    "construct_ids": "bullwhip_effect,lead_time_variability",
+    "construct_ids": [
+      "bullwhip_effect",
+      "lead_time_variability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -844,7 +964,11 @@
     "source_id": "ivanov_dolgui_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The ripple effect during COVID-19 was amplified by simultaneous disruptions across multiple supply chain echelons and geographic regions. Simulation shows that staggered recovery strategies (prioritizing critical nodes) reduce total recovery time by 20-30% compared to uniform reopening.",
-    "construct_ids": "ripple_effect,recovery_time,supply_chain_resilience_score",
+    "construct_ids": [
+      "ripple_effect",
+      "recovery_time",
+      "supply_chain_resilience_score"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -874,7 +998,10 @@
     "source_id": "chen_et_al_2025_gnn_xai",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Temporal graph attention networks combined with LLM-generated explanations achieve state-of-the-art performance for supply chain risk early warning. SHAP values identify the most influential network-structural and temporal features driving risk predictions.",
-    "construct_ids": "supply_chain_disruption_binary,network_betweenness_centrality",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "network_betweenness_centrality"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -904,7 +1031,10 @@
     "source_id": "iea_critical_minerals_2025",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "China controls 50-90% of global refining capacity for key critical minerals including rare earths (90%), cobalt (75%), lithium (65%), and graphite (90%). Annual demand for critical minerals projected to rise 6x by 2030 under net-zero scenarios.",
-    "construct_ids": "critical_mineral_dependency,geographic_concentration_risk",
+    "construct_ids": [
+      "critical_mineral_dependency",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -934,7 +1064,11 @@
     "source_id": "rand_semiconductor_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "TSMC produces 92% of the world's most advanced semiconductors (<7nm). A China blockade of Taiwan scenario would inflict an estimated $2.7 trillion in global GDP losses in the first year, primarily through supply chain disruption.",
-    "construct_ids": "geographic_concentration_risk,disruption_severity_index,critical_mineral_dependency",
+    "construct_ids": [
+      "geographic_concentration_risk",
+      "disruption_severity_index",
+      "critical_mineral_dependency"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -964,7 +1098,11 @@
     "source_id": "tomlin_2006",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Optimal risk management strategy depends on disruption characteristics: mitigation (dual sourcing) dominates for high-frequency/short-duration disruptions; contingency (inventory) dominates for low-frequency/long-duration disruptions.",
-    "construct_ids": "supplier_diversification,inventory_buffer_ratio,supply_chain_disruption_binary",
+    "construct_ids": [
+      "supplier_diversification",
+      "inventory_buffer_ratio",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -994,7 +1132,10 @@
     "source_id": "acemoglu_et_al_2012",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Microeconomic shocks do not average out when the production network has asymmetric structure. Sectors with high Domar weight (large share of aggregate output) propagate shocks to the aggregate economy. Top 5 sectors account for >50% of aggregate volatility.",
-    "construct_ids": "cascading_failure_size,network_betweenness_centrality",
+    "construct_ids": [
+      "cascading_failure_size",
+      "network_betweenness_centrality"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1017,14 +1158,21 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Cobb-Douglas production network with input-output linkages from BEA data, 474 sectors",
-    "covariates_controlled": "[\"sector_size\", \"input_output_structure\"]"
+    "covariates_controlled": [
+      "[\"sector_size\"",
+      "\"input_output_structure\"]"
+    ]
   },
   {
     "id": 1741,
     "source_id": "zhao_et_al_2011",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Scale-free supply networks are robust to random failures but vulnerable to targeted attacks on high-betweenness nodes. Removing the top 5% highest-betweenness nodes fragments the network into disconnected components.",
-    "construct_ids": "network_betweenness_centrality,cascading_failure_size,supply_chain_resilience_score",
+    "construct_ids": [
+      "network_betweenness_centrality",
+      "cascading_failure_size",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1054,7 +1202,11 @@
     "source_id": "anselin_1995",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "LISA statistics successfully decompose global spatial autocorrelation into local cluster types: High-High (hot spots), Low-Low (cold spots), High-Low (spatial outliers), and Low-High (spatial outliers). Enables identification of localized risk concentrations invisible to global measures.",
-    "construct_ids": "morans_i_trade_flow,spatial_contagion,geographic_concentration_risk",
+    "construct_ids": [
+      "morans_i_trade_flow",
+      "spatial_contagion",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1084,7 +1236,12 @@
     "source_id": "mckinsey_2020",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Companies can expect disruptions lasting 1-2 months every 3.7 years on average, losing 40%+ of one year's profits per decade. 93% of supply chain executives plan to increase resilience through dual sourcing, regionalization, and inventory buffers.",
-    "construct_ids": "supply_chain_disruption_binary,disruption_severity_index,supplier_diversification,nearshoring_reshoring",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "disruption_severity_index",
+      "supplier_diversification",
+      "nearshoring_reshoring"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1114,7 +1271,10 @@
     "source_id": "kosasih_brintrup_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Graph neural networks outperform traditional ML methods for supply chain risk prediction on network-structured data. GAT architecture achieves highest performance for link prediction and node classification tasks on supply chain knowledge graphs.",
-    "construct_ids": "supply_chain_disruption_binary,network_betweenness_centrality",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "network_betweenness_centrality"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1144,7 +1304,11 @@
     "source_id": "schmitt_singh_2012",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Decentralized inventory design reduces cost variance through risk diversification effect. In multi-echelon supply chains, distributing safety stock across echelons rather than concentrating at one level provides better protection against disruptions.",
-    "construct_ids": "inventory_buffer_ratio,disruption_severity_index,supply_chain_resilience_score",
+    "construct_ids": [
+      "inventory_buffer_ratio",
+      "disruption_severity_index",
+      "supply_chain_resilience_score"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1174,7 +1338,11 @@
     "source_id": "sheffi_rice_2005",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Flexibility-based resilience strategies (process flexibility, supplier substitution, postponement) are more cost-effective than redundancy-based strategies (excess inventory, backup suppliers) for most firms. Flexibility provides protection across disruption types while redundancy protects only against specific anticipated failures.",
-    "construct_ids": "supply_chain_resilience_score,supplier_diversification,inventory_buffer_ratio",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supplier_diversification",
+      "inventory_buffer_ratio"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1204,7 +1372,10 @@
     "source_id": "anderson_van_wincoop_2003",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Multilateral resistance terms in gravity models substantially affect bilateral trade flow estimates. Ignoring multilateral resistance biases distance and border effects upward. National borders reduce trade between US and Canada by 44% (down from McCallum's 2,200% estimate).",
-    "construct_ids": "trade_flow_volume,geographic_concentration_risk",
+    "construct_ids": [
+      "trade_flow_volume",
+      "geographic_concentration_risk"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1234,7 +1405,11 @@
     "source_id": "melnychuk_et_al_2025",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Causal ML methods (treatment effect estimation, counterfactual prediction) enable 'what-if' scenario analysis for supply chain interventions. Causal forests identify heterogeneous treatment effects of dual sourcing across different supply chain contexts.",
-    "construct_ids": "supplier_diversification,supply_chain_disruption_binary,supply_chain_resilience_score",
+    "construct_ids": [
+      "supplier_diversification",
+      "supply_chain_disruption_binary",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1264,7 +1439,11 @@
     "source_id": "iea_critical_minerals_2025",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "DRC produces approximately 75% of global cobalt. Top 3 producing countries control 75%+ of supply for most critical minerals. Geographic concentration creates single-point-of-failure risk for clean energy supply chains.",
-    "construct_ids": "critical_mineral_dependency,geographic_concentration_risk,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "critical_mineral_dependency",
+      "geographic_concentration_risk",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1294,7 +1473,11 @@
     "source_id": "wef_supply_chain_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply chain disruption rated among top 5 short-term global risks by 1,490 risk professionals. Geopolitical fragmentation and climate change identified as the two primary structural drivers increasing future supply chain risk.",
-    "construct_ids": "supply_chain_disruption_binary,geopolitical_risk_index,climate_exposure_score",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "geopolitical_risk_index",
+      "climate_exposure_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1324,7 +1507,10 @@
     "source_id": "ho_et_al_2015",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Systematic review of 224 SCRM papers (2003-2013) identifies macro risks (natural disasters, geopolitical events, economic crises) as the most-studied risk category, but quantitative risk assessment methods remain underdeveloped relative to qualitative frameworks.",
-    "construct_ids": "supply_chain_vulnerability_index,geopolitical_risk_index",
+    "construct_ids": [
+      "supply_chain_vulnerability_index",
+      "geopolitical_risk_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1354,7 +1540,11 @@
     "source_id": "behrens_ertur_koch_2012",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Ignoring spatial dependence in bilateral trade flow estimation leads to biased parameter estimates. Spatial autoregressive gravity models reduce estimated distance elasticity by 15-20% compared to non-spatial models, demonstrating that third-country trade effects are empirically important.",
-    "construct_ids": "morans_i_trade_flow,trade_flow_volume,spatial_contagion",
+    "construct_ids": [
+      "morans_i_trade_flow",
+      "trade_flow_volume",
+      "spatial_contagion"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1377,14 +1567,25 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Spatial autoregressive gravity model with queen contiguity and k-nearest neighbor weights",
-    "covariates_controlled": "[\"gdp_origin\", \"gdp_destination\", \"distance\", \"common_language\", \"colonial_ties\", \"rta\"]"
+    "covariates_controlled": [
+      "[\"gdp_origin\"",
+      "\"gdp_destination\"",
+      "\"distance\"",
+      "\"common_language\"",
+      "\"colonial_ties\"",
+      "\"rta\"]"
+    ]
   },
   {
     "id": 1763,
     "source_id": "tang_2006",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Robust supply chain strategies that combine postponement, strategic stock, flexible supply base, and economic supply incentives can mitigate disruption risk at lower cost than pure redundancy strategies.",
-    "construct_ids": "supply_chain_resilience_score,supplier_diversification,inventory_buffer_ratio",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supplier_diversification",
+      "inventory_buffer_ratio"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1414,7 +1615,11 @@
     "source_id": "perera_bell_bliemer_2017",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply chain networks exhibit scale-free properties: most nodes have few connections while a small number of hub nodes have disproportionately many. This topology makes networks robust to random failures but catastrophically vulnerable to targeted attacks on hubs.",
-    "construct_ids": "network_betweenness_centrality,cascading_failure_size,supply_chain_resilience_score",
+    "construct_ids": [
+      "network_betweenness_centrality",
+      "cascading_failure_size",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1444,7 +1649,10 @@
     "source_id": "chen_wu_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Sequential change-point detection using Hawkes processes can identify supply chain disruption onset in real-time with controlled false alarm rates. Modified CUSUM procedure achieves sub-hour detection latency for cascading event sequences.",
-    "construct_ids": "supply_chain_disruption_binary,ripple_effect",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "ripple_effect"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1474,7 +1682,10 @@
     "source_id": "iso_28000_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "ISO 28000:2022 establishes requirements for supply chain security management systems covering risk assessment methodology, security controls, incident management, business continuity, and continual improvement. Aligned with ISO 31000 risk management principles.",
-    "construct_ids": "supply_chain_vulnerability_index,supply_chain_resilience_score",
+    "construct_ids": [
+      "supply_chain_vulnerability_index",
+      "supply_chain_resilience_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1504,7 +1715,11 @@
     "source_id": "snyder_et_al_2016",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Review of 180 OR/MS works identifies five key decision categories under supply chain disruption: evaluating disruption impacts, strategic network design, sourcing decisions, contract design, and inventory management. Two-stage stochastic programming is the dominant optimization approach.",
-    "construct_ids": "supply_chain_resilience_score,supplier_diversification,inventory_buffer_ratio",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supplier_diversification",
+      "inventory_buffer_ratio"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1534,7 +1749,11 @@
     "source_id": "semiconductor_resilience_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The 2021 Texas winter storm caused Samsung Austin fab to shut down for 6+ weeks, resulting in estimated $268 million revenue loss and cascading shortages in automotive and consumer electronics. Average semiconductor lead times peaked at 26.2 weeks in 2021 (vs. 12-14 weeks pre-COVID).",
-    "construct_ids": "semiconductor_concentration,recovery_time,lead_time_variability",
+    "construct_ids": [
+      "semiconductor_concentration",
+      "recovery_time",
+      "lead_time_variability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1564,7 +1783,11 @@
     "source_id": "covid_pharma_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "China and India produce approximately 80% of global active pharmaceutical ingredients (APIs). During COVID-19, India's export ban on 26 APIs and API intermediates in March 2020 caused immediate shortages of essential medicines globally, including paracetamol and hydroxychloroquine.",
-    "construct_ids": "api_geographic_concentration,geographic_concentration_risk,supply_chain_disruption_binary",
+    "construct_ids": [
+      "api_geographic_concentration",
+      "geographic_concentration_risk",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1594,7 +1817,10 @@
     "source_id": "food_climate_vulnerability_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Scoping review of 67 papers finds growing evidence of food supply chain weakening from climate change. Most research focuses on production-stage impacts (crop yield reduction from extreme heat, drought, flooding) with limited coverage of processing, distribution, and retail disruptions.",
-    "construct_ids": "food_supply_chain_disruption,climate_exposure_score",
+    "construct_ids": [
+      "food_supply_chain_disruption",
+      "climate_exposure_score"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1624,7 +1850,10 @@
     "source_id": "irena_critical_materials_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Clean energy mineral demand is projected to quadruple by 2030 under stated policies and potentially 6x under net-zero scenarios. Lithium demand alone grows 13x by 2040 in the NZE scenario, driven primarily by EV batteries.",
-    "construct_ids": "energy_transition_mineral_demand,critical_mineral_dependency",
+    "construct_ids": [
+      "energy_transition_mineral_demand",
+      "critical_mineral_dependency"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1654,7 +1883,10 @@
     "source_id": "mitre_supply_chain_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Analysis of 41 documented supply chain attacks on defense systems reveals three primary attack vectors: counterfeit components (hardware trojans, relabeled parts), compromised software (malicious code injection, backdoors), and insider threats. The commercial electronics supply chain is the primary vulnerability pathway.",
-    "construct_ids": "defense_supply_chain_integrity,cyber_risk_exposure",
+    "construct_ids": [
+      "defense_supply_chain_integrity",
+      "cyber_risk_exposure"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1684,7 +1916,11 @@
     "source_id": "suez_canal_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The 6-day Suez Canal blockage by the Ever Given (March 2021) delayed an estimated $9.6 billion per day in global trade. 422 vessels were queued, affecting 12% of global trade that transits the canal. Cascading delays persisted for 2-3 months after reopening.",
-    "construct_ids": "chokepoint_vulnerability,disruption_severity_index,recovery_time",
+    "construct_ids": [
+      "chokepoint_vulnerability",
+      "disruption_severity_index",
+      "recovery_time"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1714,7 +1950,11 @@
     "source_id": "baker_bloom_davis_2016",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Trade policy uncertainty (TPU) component of the Economic Policy Uncertainty index shows sharp spikes during trade conflicts: US-China trade war (2018-2019) produced TPU levels 3x historical average. Elevated TPU reduces firm investment by 1.5% and hiring by 0.7% (using narrative identification).",
-    "construct_ids": "trade_policy_uncertainty,trade_flow_volume,supply_chain_disruption_binary",
+    "construct_ids": [
+      "trade_policy_uncertainty",
+      "trade_flow_volume",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1737,14 +1977,21 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Text-based EPU index from newspaper archives with VAR identification using narrative shocks",
-    "covariates_controlled": "[\"gdp_growth\", \"monetary_policy\", \"fiscal_policy\"]"
+    "covariates_controlled": [
+      "[\"gdp_growth\"",
+      "\"monetary_policy\"",
+      "\"fiscal_policy\"]"
+    ]
   },
   {
     "id": 1764,
     "source_id": "chopra_sodhi_2004",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Nine distinct categories of supply chain risk identified: disruptions, delays, systems, forecast, intellectual property, procurement, receivables, inventory, and capacity. Each requires different mitigation approaches; one-size-fits-all strategies are suboptimal.",
-    "construct_ids": "supply_chain_vulnerability_index,supply_chain_disruption_binary",
+    "construct_ids": [
+      "supply_chain_vulnerability_index",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1774,7 +2021,11 @@
     "source_id": "choi_dooley_rungtusanatham_2001",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply networks exhibit complex adaptive system properties: self-organization, emergence, co-evolution, and nonlinear dynamics. Traditional linear control approaches are insufficient; management must balance control with allowing beneficial emergence.",
-    "construct_ids": "supply_chain_resilience_score,bullwhip_effect,ripple_effect",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "bullwhip_effect",
+      "ripple_effect"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1804,7 +2055,10 @@
     "source_id": "nist_800_161_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "NIST C-SCRM framework identifies three levels of supply chain cyber risk management: Level 1 (enterprise strategy and governance), Level 2 (mission and business process), Level 3 (operational system implementation). Effective C-SCRM requires integration across all three levels.",
-    "construct_ids": "cyber_risk_exposure,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "cyber_risk_exposure",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1834,7 +2088,11 @@
     "source_id": "lesage_pace_2009",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Direct/indirect/total impacts decomposition in spatial models reveals that spatial spillover effects (indirect impacts) can equal or exceed direct effects in magnitude. For trade flows, this means disruption in one region affects not only bilateral partners but also third-country trade through network effects.",
-    "construct_ids": "spatial_contagion,trade_flow_volume,morans_i_trade_flow",
+    "construct_ids": [
+      "spatial_contagion",
+      "trade_flow_volume",
+      "morans_i_trade_flow"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1864,7 +2122,10 @@
     "source_id": "semiconductor_resilience_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "TSMC controls 92% of global advanced semiconductor manufacturing (<7nm process). Samsung and Intel share the remaining 8%. This extreme concentration means any disruption to TSMC operations (earthquake, geopolitical conflict, water shortage) would halt global electronics, automotive, and defense production.",
-    "construct_ids": "semiconductor_concentration,geographic_concentration_risk",
+    "construct_ids": [
+      "semiconductor_concentration",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1894,7 +2155,11 @@
     "source_id": "rand_semiconductor_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Expert tabletop exercise concludes there are no good short-term options for replacing TSMC capacity if China moves on Taiwan. New fab construction requires 3-5 years and $10-20 billion per facility. CHIPS Act investments will reduce but not eliminate concentration risk.",
-    "construct_ids": "semiconductor_concentration,supplier_substitutability,recovery_time",
+    "construct_ids": [
+      "semiconductor_concentration",
+      "supplier_substitutability",
+      "recovery_time"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -1924,7 +2189,11 @@
     "source_id": "covid_pharma_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "PPE supply chain failures during COVID-19 were driven by 95% concentration of N95 mask production in China. US domestic production covered only 10% of surge demand. Panic buying amplified shortages by 300-400% above normal consumption.",
-    "construct_ids": "api_geographic_concentration,pandemic_demand_shock,bullwhip_effect",
+    "construct_ids": [
+      "api_geographic_concentration",
+      "pandemic_demand_shock",
+      "bullwhip_effect"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1954,7 +2223,11 @@
     "source_id": "nature_food_resilience_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Global food supply chains are increasingly vulnerable to correlated environmental shocks. Climate change creates synchronized crop failures across breadbasket regions. The 2010 Russian heat wave caused wheat export bans triggering price spikes across 80+ importing countries.",
-    "construct_ids": "food_supply_chain_disruption,spatial_contagion,geographic_concentration_risk",
+    "construct_ids": [
+      "food_supply_chain_disruption",
+      "spatial_contagion",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -1984,7 +2257,11 @@
     "source_id": "irena_critical_materials_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Geographic concentration in critical mineral refining exceeds extraction concentration. China refines 90% of rare earths, 75% of cobalt, 65% of lithium, and 90% of graphite. This refining chokepoint creates more acute vulnerability than extraction-level concentration.",
-    "construct_ids": "energy_transition_mineral_demand,critical_mineral_dependency,geographic_concentration_risk",
+    "construct_ids": [
+      "energy_transition_mineral_demand",
+      "critical_mineral_dependency",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2014,7 +2291,11 @@
     "source_id": "mitre_supply_chain_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Three interconnected supply chains create cascading defense vulnerabilities: (1) global commercial supply chain provides 80%+ of DoD components, (2) DoD acquisition supply chain inherits commercial dependencies, (3) DoD sustainment supply chain faces obsolescence from commercial product cycles.",
-    "construct_ids": "defense_supply_chain_integrity,tier_depth,supplier_substitutability",
+    "construct_ids": [
+      "defense_supply_chain_integrity",
+      "tier_depth",
+      "supplier_substitutability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2044,7 +2325,11 @@
     "source_id": "suez_canal_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Network analysis of the Suez blockage reveals that chokepoint disruptions have nonlinear effects: the first day of blockage delays a manageable number of vessels, but by day 3-4 queueing cascades create exponentially growing downstream impacts as schedule disruptions propagate through port networks.",
-    "construct_ids": "chokepoint_vulnerability,ripple_effect,cascading_failure_size",
+    "construct_ids": [
+      "chokepoint_vulnerability",
+      "ripple_effect",
+      "cascading_failure_size"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2074,7 +2359,11 @@
     "source_id": "ivanov_2020",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Pandemic-induced supply chain disruptions differ qualitatively from traditional disruptions: they are (1) simultaneous across geographies, (2) affect both supply and demand, (3) create novel demand patterns (PPE, remote work equipment), and (4) have uncertain duration. Traditional single-node disruption models significantly underestimate pandemic impacts.",
-    "construct_ids": "pandemic_demand_shock,ripple_effect,supply_chain_disruption_binary",
+    "construct_ids": [
+      "pandemic_demand_shock",
+      "ripple_effect",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2104,7 +2393,12 @@
     "source_id": "mckinsey_2020",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "93% of supply chain executives surveyed plan to increase supply chain resilience through (1) dual/multi-sourcing of critical inputs (54%), (2) increasing inventory buffers (47%), (3) nearshoring/regionalizing supply base (40%), and (4) improving supply chain visibility (38%).",
-    "construct_ids": "supplier_diversification,inventory_buffer_ratio,nearshoring_reshoring,supply_chain_visibility",
+    "construct_ids": [
+      "supplier_diversification",
+      "inventory_buffer_ratio",
+      "nearshoring_reshoring",
+      "supply_chain_visibility"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2134,7 +2428,11 @@
     "source_id": "mckinsey_2020",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Analysis of 23 industry value chains finds that industries with the highest geographic concentration and lowest supplier substitutability face the greatest disruption risk. Pharmaceuticals, semiconductors, and mining/metals rank highest on both dimensions.",
-    "construct_ids": "geographic_concentration_risk,supplier_substitutability,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "geographic_concentration_risk",
+      "supplier_substitutability",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2164,7 +2462,11 @@
     "source_id": "hendricks_singhal_2005",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Operating income declines by 107% relative to industry-matched controls in the year of a supply chain disruption announcement. Effects persist: operating income remains depressed 33-40% below controls two years post-disruption.",
-    "construct_ids": "supply_chain_disruption_binary,disruption_severity_index,recovery_time",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "disruption_severity_index",
+      "recovery_time"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -2187,14 +2489,21 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Event study with industry-matched controls, measuring operating income changes from disruption year through t+2",
-    "covariates_controlled": "[\"industry\", \"firm_size\", \"pre_disruption_performance\"]"
+    "covariates_controlled": [
+      "[\"industry\"",
+      "\"firm_size\"",
+      "\"pre_disruption_performance\"]"
+    ]
   },
   {
     "id": 1791,
     "source_id": "hosseini_ivanov_dolgui_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Bayesian network models outperform regression for supply chain resilience assessment when data is incomplete and expert knowledge must be integrated. Forward inference (predicting risk) and backward inference (diagnosing causes) provide complementary analytical capabilities unavailable in single-direction models.",
-    "construct_ids": "supply_chain_resilience_score,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2224,7 +2533,11 @@
     "source_id": "forrester_1958",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "System dynamics simulation reveals that ordering policies, inventory adjustment rates, and information delays are the primary structural drivers of bullwhip amplification. Reducing information delay from 3 weeks to 1 week decreases upstream demand amplification by approximately 50%.",
-    "construct_ids": "bullwhip_effect,supply_chain_visibility,lead_time_variability",
+    "construct_ids": [
+      "bullwhip_effect",
+      "supply_chain_visibility",
+      "lead_time_variability"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -2254,7 +2567,11 @@
     "source_id": "schmitt_singh_2012",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Monte Carlo simulation of multi-echelon supply chains shows that disruption risk (measured by cost-at-risk at 95th percentile) increases nonlinearly with supply chain length. Adding a 4th echelon increases cost-at-risk by 35-60% compared to 3-echelon networks, depending on disruption probability.",
-    "construct_ids": "tier_depth,disruption_severity_index,inventory_buffer_ratio",
+    "construct_ids": [
+      "tier_depth",
+      "disruption_severity_index",
+      "inventory_buffer_ratio"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2284,7 +2601,11 @@
     "source_id": "ivanov_dolgui_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Simultaneous disruptions across multiple supply chain tiers (as in COVID-19) produce superadditive damage: total impact exceeds the sum of individual tier disruptions by 40-80%. This 'ripple amplification' effect is not captured by traditional single-node disruption models.",
-    "construct_ids": "ripple_effect,pandemic_demand_shock,disruption_severity_index",
+    "construct_ids": [
+      "ripple_effect",
+      "pandemic_demand_shock",
+      "disruption_severity_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2314,7 +2635,10 @@
     "source_id": "chen_et_al_2025_gnn_xai",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Temporal graph attention networks achieve 15-20% higher AUC than static GNN baselines for supply chain disruption prediction, demonstrating that temporal evolution of network structure carries predictive signal beyond static topology. SHAP analysis reveals that changes in betweenness centrality over rolling 90-day windows are the most predictive temporal feature.",
-    "construct_ids": "supply_chain_disruption_binary,network_betweenness_centrality",
+    "construct_ids": [
+      "supply_chain_disruption_binary",
+      "network_betweenness_centrality"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2344,7 +2668,11 @@
     "source_id": "behrens_ertur_koch_2012",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Spatial autoregressive parameter (rho) in gravity models of trade is positive and highly significant (\u03c1=0.38, p<0.001), confirming that trade flows between any country pair are influenced by trade flows between neighboring pairs. Ignoring this spatial structure biases distance elasticity estimates upward by 15-20%.",
-    "construct_ids": "morans_i_trade_flow,trade_flow_volume,spatial_contagion",
+    "construct_ids": [
+      "morans_i_trade_flow",
+      "trade_flow_volume",
+      "spatial_contagion"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2367,14 +2695,26 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Spatial autoregressive gravity model with queen contiguity weights, MLE estimation, 68 countries",
-    "covariates_controlled": "[\"gdp_origin\", \"gdp_destination\", \"distance\", \"common_language\", \"colonial_ties\", \"rta\", \"common_border\"]"
+    "covariates_controlled": [
+      "[\"gdp_origin\"",
+      "\"gdp_destination\"",
+      "\"distance\"",
+      "\"common_language\"",
+      "\"colonial_ties\"",
+      "\"rta\"",
+      "\"common_border\"]"
+    ]
   },
   {
     "id": 1803,
     "source_id": "suez_canal_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Post-Suez blockage, 15% of container shipping companies rerouted vessels around the Cape of Good Hope, adding 10-15 days transit time and $300,000-400,000 in fuel costs per vessel. This demonstrates trade-off between chokepoint risk and cost-optimal routing.",
-    "construct_ids": "chokepoint_vulnerability,lead_time_variability,nearshoring_reshoring",
+    "construct_ids": [
+      "chokepoint_vulnerability",
+      "lead_time_variability",
+      "nearshoring_reshoring"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2404,7 +2744,11 @@
     "source_id": "nist_800_161_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "NIST identifies that 80%+ of federal IT system vulnerabilities originate in the supply chain rather than in end-user operations. Third-party software components, hardware firmware, and cloud service dependencies create attack surfaces invisible to traditional perimeter-based security.",
-    "construct_ids": "cyber_risk_exposure,defense_supply_chain_integrity,supply_chain_visibility",
+    "construct_ids": [
+      "cyber_risk_exposure",
+      "defense_supply_chain_integrity",
+      "supply_chain_visibility"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2434,7 +2778,11 @@
     "source_id": "nature_food_resilience_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Just three countries (US, Brazil, Argentina) account for 70%+ of global soybean exports. Four companies (ABCD: ADM, Bunge, Cargill, Louis Dreyfus) control approximately 70-90% of global grain trade. This dual geographic and corporate concentration creates extreme fragility.",
-    "construct_ids": "food_supply_chain_disruption,geographic_concentration_risk,supplier_substitutability",
+    "construct_ids": [
+      "food_supply_chain_disruption",
+      "geographic_concentration_risk",
+      "supplier_substitutability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2464,7 +2812,10 @@
     "source_id": "baker_bloom_davis_2016",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "US-China trade war (2018-2019) produced trade policy uncertainty levels 3x the historical average. Structural break analysis confirms a regime shift in TPU coinciding with the first tariff announcements in March 2018, persisting through Phase 1 deal in January 2020.",
-    "construct_ids": "trade_policy_uncertainty,geopolitical_risk_index",
+    "construct_ids": [
+      "trade_policy_uncertainty",
+      "geopolitical_risk_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2494,7 +2845,11 @@
     "source_id": "bode_wagner_2015",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Interaction effects between complexity dimensions are significant and amplifying: the combination of high horizontal complexity (many suppliers) AND high vertical complexity (many tiers) produces disruption frequency 2.5x higher than predicted by either dimension alone. \u03b2_interaction=0.12, p<0.05.",
-    "construct_ids": "tier_depth,supplier_diversification,supply_chain_disruption_binary",
+    "construct_ids": [
+      "tier_depth",
+      "supplier_diversification",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2517,14 +2872,22 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "SEM with multiplicative interaction terms between complexity dimensions",
-    "covariates_controlled": "[\"firm_size\", \"industry\", \"supply_chain_length\"]"
+    "covariates_controlled": [
+      "[\"firm_size\"",
+      "\"industry\"",
+      "\"supply_chain_length\"]"
+    ]
   },
   {
     "id": 1792,
     "source_id": "papachristou_rahimian_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "In production networks with Cobb-Douglas technology, the percolation threshold for catastrophic network collapse depends on the network degree distribution. Heavy-tailed (scale-free) networks have lower percolation thresholds under targeted attack but higher thresholds under random failure, compared to Erdos-Renyi random networks.",
-    "construct_ids": "cascading_failure_size,network_betweenness_centrality,supply_chain_resilience_score",
+    "construct_ids": [
+      "cascading_failure_size",
+      "network_betweenness_centrality",
+      "supply_chain_resilience_score"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -2554,7 +2917,11 @@
     "source_id": "acemoglu_et_al_2012",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The contribution of sectoral shocks to aggregate volatility decays as 1/\u221aN in symmetric networks but can persist as 1/N^(1/\u03b3) in asymmetric networks where \u03b3 is related to the tail of the degree distribution. This means supply chain shocks to well-connected sectors have aggregate macroeconomic consequences.",
-    "construct_ids": "cascading_failure_size,network_betweenness_centrality,trade_flow_volume",
+    "construct_ids": [
+      "cascading_failure_size",
+      "network_betweenness_centrality",
+      "trade_flow_volume"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2577,14 +2944,21 @@
     "ci_upper": null,
     "effect_size_type": null,
     "model_specification": "Multi-sector general equilibrium model with Cobb-Douglas production and input-output linkages from BEA 474-sector data",
-    "covariates_controlled": "[\"sector_size\", \"input_share_distribution\"]"
+    "covariates_controlled": [
+      "[\"sector_size\"",
+      "\"input_share_distribution\"]"
+    ]
   },
   {
     "id": 1796,
     "source_id": "craighead_et_al_2007",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply chain warning capability (ability to detect disruptions early) has a stronger moderating effect on disruption severity than recovery capability. Firms with strong warning systems experience 40-60% lower severity than firms with only reactive recovery capabilities.",
-    "construct_ids": "supply_chain_visibility,disruption_severity_index,supply_chain_resilience_score",
+    "construct_ids": [
+      "supply_chain_visibility",
+      "disruption_severity_index",
+      "supply_chain_resilience_score"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -2614,7 +2988,11 @@
     "source_id": "melnychuk_et_al_2025",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Causal forest analysis reveals heterogeneous treatment effects of dual sourcing on disruption risk. Dual sourcing reduces disruption probability by 30-50% for low-complexity supply chains but only 10-15% for high-complexity chains with many interdependencies, because backup supplier activation is harder in complex networks.",
-    "construct_ids": "supplier_diversification,supply_chain_disruption_binary,tier_depth",
+    "construct_ids": [
+      "supplier_diversification",
+      "supply_chain_disruption_binary",
+      "tier_depth"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -2644,7 +3022,11 @@
     "source_id": "lesage_pace_2009",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "In spatial Durbin models of bilateral trade, indirect (spillover) effects account for 30-50% of the total impact of trade barriers. A tariff increase between countries A and B reduces not only A-B trade but also trade between A and B's neighbors through multilateral resistance effects.",
-    "construct_ids": "spatial_contagion,trade_flow_volume,trade_policy_uncertainty",
+    "construct_ids": [
+      "spatial_contagion",
+      "trade_flow_volume",
+      "trade_policy_uncertainty"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2674,7 +3056,11 @@
     "source_id": "suez_canal_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "12% of global trade by volume transits the Suez Canal. The Strait of Malacca handles 25-30% of global maritime trade. Combined, the top 5 maritime chokepoints (Suez, Malacca, Panama, Hormuz, Bab el-Mandeb) carry approximately 80% of global seaborne oil trade and 65% of total maritime commerce.",
-    "construct_ids": "chokepoint_vulnerability,geographic_concentration_risk,trade_flow_volume",
+    "construct_ids": [
+      "chokepoint_vulnerability",
+      "geographic_concentration_risk",
+      "trade_flow_volume"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2704,7 +3090,11 @@
     "source_id": "iso_28000_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "ISO 28000:2022 identifies seven categories of supply chain security threats requiring management system controls: terrorism, organized crime, piracy, cyber attacks, natural disasters, pandemics, and geopolitical instability. Integration with ISO 31000 risk management enables comprehensive risk assessment methodology.",
-    "construct_ids": "supply_chain_vulnerability_index,cyber_risk_exposure,defense_supply_chain_integrity",
+    "construct_ids": [
+      "supply_chain_vulnerability_index",
+      "cyber_risk_exposure",
+      "defense_supply_chain_integrity"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2734,7 +3124,11 @@
     "source_id": "food_climate_vulnerability_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Climate-induced crop yield losses of 5-10% per decade are projected for major staples (wheat, maize, rice) under RCP 4.5 scenarios. Extreme heat events causing simultaneous crop failures across multiple breadbasket regions (US Midwest, South Asia, Eastern Europe) represent a growing systemic risk to global food supply chains.",
-    "construct_ids": "food_supply_chain_disruption,climate_exposure_score,spatial_contagion",
+    "construct_ids": [
+      "food_supply_chain_disruption",
+      "climate_exposure_score",
+      "spatial_contagion"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2764,7 +3158,10 @@
     "source_id": "baker_bloom_davis_2016",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Trade policy uncertainty has a statistically significant negative impact on bilateral trade flows: a one-standard-deviation increase in the TPU index reduces bilateral trade by approximately 4-6% over the following quarter. The effect is strongest for intermediate goods (supply chain inputs) vs. final goods.",
-    "construct_ids": "trade_policy_uncertainty,trade_flow_volume",
+    "construct_ids": [
+      "trade_policy_uncertainty",
+      "trade_flow_volume"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -2787,14 +3184,23 @@
     "ci_upper": null,
     "effect_size_type": "beta",
     "model_specification": "Panel gravity model with TPU index as regressor, distinguishing intermediate vs. final goods trade",
-    "covariates_controlled": "[\"gdp\", \"distance\", \"exchange_rate\", \"rta_membership\"]"
+    "covariates_controlled": [
+      "[\"gdp\"",
+      "\"distance\"",
+      "\"exchange_rate\"",
+      "\"rta_membership\"]"
+    ]
   },
   {
     "id": 1810,
     "source_id": "wef_supply_chain_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "62% of surveyed risk professionals identify geoeconomic confrontation (sanctions, export controls, technology decoupling) as the top risk to supply chains over the next 2 years. Climate-related risks rank #1 for 10-year horizon, surpassing geopolitical risks in long-run importance.",
-    "construct_ids": "geopolitical_risk_index,climate_exposure_score,trade_policy_uncertainty",
+    "construct_ids": [
+      "geopolitical_risk_index",
+      "climate_exposure_score",
+      "trade_policy_uncertainty"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2824,7 +3230,11 @@
     "source_id": "tang_2006",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Robust supply chain strategies operate across four categories: (1) postponement (delay product differentiation), (2) strategic stock (decoupling buffers), (3) flexible supply base (qualified alternatives), (4) economic supply incentives (risk-sharing contracts). Combining multiple strategies provides greater resilience than any single approach.",
-    "construct_ids": "supply_chain_resilience_score,supplier_diversification,inventory_buffer_ratio",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supplier_diversification",
+      "inventory_buffer_ratio"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2854,7 +3264,12 @@
     "source_id": "sheffi_rice_2005",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Nokia's response to the 2000 Philips chip factory fire demonstrates that early detection (visibility) combined with pre-planned contingency (flexibility) can turn a supply chain disruption into competitive advantage. Nokia recovered in 5 days while competitor Ericsson lost $400M in revenue and eventually exited the mobile phone market.",
-    "construct_ids": "supply_chain_visibility,recovery_time,supply_chain_resilience_score,supplier_substitutability",
+    "construct_ids": [
+      "supply_chain_visibility",
+      "recovery_time",
+      "supply_chain_resilience_score",
+      "supplier_substitutability"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -2884,7 +3299,11 @@
     "source_id": "chopra_sodhi_2004",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Strategies that mitigate one supply chain risk category often exacerbate another. Increasing inventory buffers mitigates delay risk but increases inventory holding risk. Multi-sourcing mitigates supply disruption risk but increases procurement complexity risk. Effective SCRM requires explicit recognition of these trade-offs.",
-    "construct_ids": "supply_chain_vulnerability_index,inventory_buffer_ratio,supplier_diversification",
+    "construct_ids": [
+      "supply_chain_vulnerability_index",
+      "inventory_buffer_ratio",
+      "supplier_diversification"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -2914,7 +3333,11 @@
     "source_id": "kosasih_brintrup_2022",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Knowledge graph reasoning using GNNs identifies supply chain risk relationships not visible to tabular ML models. Graph attention networks achieve 85% accuracy in predicting missing supply chain links (hidden dependencies) vs. 72% for random forest baselines without network features.",
-    "construct_ids": "supply_chain_visibility,supply_chain_disruption_binary,network_betweenness_centrality",
+    "construct_ids": [
+      "supply_chain_visibility",
+      "supply_chain_disruption_binary",
+      "network_betweenness_centrality"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -2944,7 +3367,11 @@
     "source_id": "covid_pharma_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Pharmaceutical supply chain disruptions during COVID-19 were amplified by just-in-time inventory practices: 73% of surveyed firms had less than 3 months of API safety stock. Firms with 6+ months of buffer stock reported 60% fewer drug shortage events.",
-    "construct_ids": "inventory_buffer_ratio,api_geographic_concentration,supply_chain_disruption_binary",
+    "construct_ids": [
+      "inventory_buffer_ratio",
+      "api_geographic_concentration",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "negative",
     "effect_size": null,
     "method_used": null,
@@ -2974,7 +3401,11 @@
     "source_id": "irena_critical_materials_2023",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Mineral supply chain lead times for new mining projects average 10-15 years from discovery to production. Refining capacity expansion requires 3-5 years. This structural time lag means current geographic concentration cannot be significantly diversified before 2035, even with aggressive investment.",
-    "construct_ids": "critical_mineral_dependency,supplier_substitutability,recovery_time",
+    "construct_ids": [
+      "critical_mineral_dependency",
+      "supplier_substitutability",
+      "recovery_time"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3004,7 +3435,11 @@
     "source_id": "iea_critical_minerals_2025",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Indonesia's 2020 nickel ore export ban demonstrated how resource nationalism can rapidly restructure mineral supply chains. Within 2 years, Indonesia's share of global nickel processing rose from 5% to 40%, while Philippine and Russian market shares declined. Export controls are now used by 15+ countries for critical minerals.",
-    "construct_ids": "critical_mineral_dependency,trade_policy_uncertainty,geographic_concentration_risk",
+    "construct_ids": [
+      "critical_mineral_dependency",
+      "trade_policy_uncertainty",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3034,7 +3469,11 @@
     "source_id": "choi_dooley_rungtusanatham_2001",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Supply networks exhibit co-evolutionary dynamics: individual firms adapt their strategies (sourcing, inventory, pricing) in response to network-level disruptions, but these adaptations collectively create new emergent properties that can amplify or dampen future disruptions. This feedback loop is not captured by equilibrium models.",
-    "construct_ids": "supply_chain_resilience_score,ripple_effect,bullwhip_effect",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "ripple_effect",
+      "bullwhip_effect"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
@@ -3064,7 +3503,12 @@
     "source_id": "semiconductor_resilience_2024",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The 2021 Renesas factory fire (Japan) halted production of microcontrollers used in 30% of global automotive electronics. Toyota, the world's best-managed supply chain, was forced to cut production by 500,000 vehicles. Full recovery took 100+ days despite Renesas being a Tier 1 supplier to most automakers.",
-    "construct_ids": "semiconductor_concentration,recovery_time,disruption_severity_index,supply_chain_disruption_binary",
+    "construct_ids": [
+      "semiconductor_concentration",
+      "recovery_time",
+      "disruption_severity_index",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3094,7 +3538,10 @@
     "source_id": "brintrup_et_al_2018",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "In automotive supply chain networks, eigenvector centrality is a better predictor of systemic importance than simple degree centrality. Suppliers with high eigenvector centrality (connected to other well-connected firms) create larger cascading effects when disrupted, even if they have fewer direct customers.",
-    "construct_ids": "network_betweenness_centrality,cascading_failure_size",
+    "construct_ids": [
+      "network_betweenness_centrality",
+      "cascading_failure_size"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3124,7 +3571,10 @@
     "source_id": "snyder_et_al_2016",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Two-stage stochastic programming is the most commonly used optimization approach for supply chain network design under disruption risk, appearing in 40%+ of reviewed OR/MS models. However, the approach requires specifying probability distributions for disruptions, which are often unavailable. Distributionally robust optimization (DRO) is emerging as an alternative requiring only moment or support information.",
-    "construct_ids": "supply_chain_resilience_score,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "supply_chain_resilience_score",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3154,7 +3604,11 @@
     "source_id": "perera_bell_bliemer_2017",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Empirical studies of supply chain networks consistently find small-world properties: high clustering coefficient (5-10x random networks) with short average path length (2-4 hops). This topology enables efficient information flow but also rapid disruption propagation.",
-    "construct_ids": "cascading_failure_size,ripple_effect,network_betweenness_centrality",
+    "construct_ids": [
+      "cascading_failure_size",
+      "ripple_effect",
+      "network_betweenness_centrality"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3184,7 +3638,9 @@
     "source_id": "baryannis_et_al_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "NLP-based supply chain risk detection from news articles achieves 78-85% precision for disruption event classification using BERT-based models, but recall remains lower (65-72%) due to the diversity of disruption descriptions. Combining NLP with structured financial data improves both precision and recall by 5-10%.",
-    "construct_ids": "supply_chain_disruption_binary",
+    "construct_ids": [
+      "supply_chain_disruption_binary"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3214,7 +3670,12 @@
     "source_id": "simchi_levi_et_al_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Ford Motor Company implementation of REI identified that 70% of critical single-source dependencies were in Tier 2+ suppliers invisible to Ford's direct procurement. The REI framework enabled prioritization of 1,200 components by disruption exposure, directing mitigation investment to the highest-risk nodes.",
-    "construct_ids": "risk_exposure_index,supply_chain_visibility,tier_depth,supplier_substitutability",
+    "construct_ids": [
+      "risk_exposure_index",
+      "supply_chain_visibility",
+      "tier_depth",
+      "supplier_substitutability"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3244,7 +3705,11 @@
     "source_id": "anderson_van_wincoop_2003",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Bilateral trade flows are determined not only by bilateral trade costs but by trade costs with all other partners (multilateral resistance). This means supply chain reconfiguration decisions (nearshoring) in one country pair affect trade flows across the entire network through general equilibrium effects.",
-    "construct_ids": "trade_flow_volume,nearshoring_reshoring,spatial_contagion",
+    "construct_ids": [
+      "trade_flow_volume",
+      "nearshoring_reshoring",
+      "spatial_contagion"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3274,7 +3739,11 @@
     "source_id": "mitre_supply_chain_2019",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Counterfeit electronic components represent an estimated $169 billion annual market globally. 70% of counterfeit parts entering DoD supply chains originate from China. Common attack vectors include: relabeled parts (54%), recycled components (27%), cloned/overproduced parts (11%), and tampered components (8%).",
-    "construct_ids": "defense_supply_chain_integrity,cyber_risk_exposure,geographic_concentration_risk",
+    "construct_ids": [
+      "defense_supply_chain_integrity",
+      "cyber_risk_exposure",
+      "geographic_concentration_risk"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3304,7 +3773,9 @@
     "source_id": "ho_et_al_2015",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "Of 224 SCRM papers reviewed (2003-2013), 54% are qualitative (case studies, conceptual frameworks) and only 46% use quantitative methods. Among quantitative papers, mathematical modeling (24%) and simulation (12%) dominate, while ML/AI represents less than 5% of the literature \u2014 a gap that has since expanded rapidly.",
-    "construct_ids": "supply_chain_vulnerability_index",
+    "construct_ids": [
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3334,7 +3805,11 @@
     "source_id": "covid_pharma_disruption_2021",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "The WHO Essential Medicines List includes 120 drugs for which global API production is concentrated in 3 or fewer countries. For 22 essential medicines, a single country produces >80% of the global API supply, creating critical single-points-of-failure for global health security.",
-    "construct_ids": "api_geographic_concentration,supplier_substitutability,supply_chain_vulnerability_index",
+    "construct_ids": [
+      "api_geographic_concentration",
+      "supplier_substitutability",
+      "supply_chain_vulnerability_index"
+    ],
     "direction": "positive",
     "effect_size": null,
     "method_used": null,
@@ -3364,7 +3839,11 @@
     "source_id": "tomlin_2006",
     "domain_id": "global_supply_chain_risk",
     "finding_text": "When disruption frequency is low (<2% per period) and duration is long (>8 weeks), contingency strategies (inventory buffers, emergency sourcing) dominate mitigation strategies (dual sourcing) by 20-35% in expected cost. When frequency is high (>5%) and duration short (<2 weeks), mitigation dominates by 15-25%.",
-    "construct_ids": "inventory_buffer_ratio,supplier_diversification,supply_chain_disruption_binary",
+    "construct_ids": [
+      "inventory_buffer_ratio",
+      "supplier_diversification",
+      "supply_chain_disruption_binary"
+    ],
     "direction": "conditional",
     "effect_size": null,
     "method_used": null,
