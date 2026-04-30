@@ -70,6 +70,19 @@ PLAYBOOK_ACTIONS = tuple((_SPEC.get("enums") or {}).get("playbook_action") or (
 REQUIRED_KNOWLEDGE_FILES = tuple(_SPEC.get("required_knowledge_files") or ("constructs.json", "sources.json", "findings.json"))
 
 
+def _legacy_alias_status(canonical: str) -> dict | None:
+    """Return the legacy_field_aliases entry for `canonical`, or None."""
+    for entry in _SPEC.get("legacy_field_aliases") or []:
+        if entry.get("canonical") == canonical:
+            return entry
+    return None
+
+
+def _today_iso() -> str:
+    from datetime import date
+    return date.today().isoformat()
+
+
 # ---------------------------------------------------------------------------
 # Guide parsers
 # ---------------------------------------------------------------------------
@@ -224,13 +237,26 @@ class Validator:
         if version and not re.fullmatch(r"\d+\.\d+\.\d+(-[\w.-]+)?", version):
             self.err(f"pax.yaml: version '{version}' is not a valid semver")
 
-        # built_against_schema: enum. Legacy `schema_version` is still
-        # accepted with a deprecation warning during the migration window.
-        sv = str(manifest.get("built_against_schema", "") or manifest.get("schema_version", ""))
+        # built_against_schema: enum. Legacy aliases (e.g., schema_version)
+        # are accepted per the pax_spec.yaml legacy_field_aliases timeline:
+        #   today < deprecated_at  → silent
+        #   deprecated_at..remove_after → warn
+        #   today >= remove_after  → hard-fail with migration instruction
+        canon = "built_against_schema"
+        legacy_entry = _legacy_alias_status(canon)
+        legacy_name = (legacy_entry or {}).get("legacy_name", "")
+        sv = str(manifest.get(canon, "") or (manifest.get(legacy_name, "") if legacy_name else ""))
         if sv and sv not in VALID_SCHEMA_VERSIONS:
-            self.err(f"pax.yaml: built_against_schema '{sv}' not in {VALID_SCHEMA_VERSIONS}")
-        if not manifest.get("built_against_schema") and manifest.get("schema_version"):
-            self.warn("pax.yaml: 'schema_version' is deprecated — rename to 'built_against_schema' (same semantics, clearer name)")
+            self.err(f"pax.yaml: {canon} '{sv}' not in {VALID_SCHEMA_VERSIONS}")
+        if legacy_entry and not manifest.get(canon) and legacy_name and manifest.get(legacy_name):
+            today = _today_iso()
+            dep_at = legacy_entry.get("deprecated_at", "")
+            rem_after = legacy_entry.get("remove_after", "")
+            migration = legacy_entry.get("migration", f"rename to '{canon}'")
+            if rem_after and today >= rem_after:
+                self.err(f"pax.yaml: '{legacy_name}' was removed on {rem_after}. {migration}")
+            elif dep_at and today >= dep_at:
+                self.warn(f"pax.yaml: '{legacy_name}' is deprecated as of {dep_at} (removal: {rem_after or 'TBD'}). {migration}")
 
         # pax_type: enum
         pt = manifest.get("pax_type")

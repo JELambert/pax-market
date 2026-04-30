@@ -58,6 +58,28 @@ This is the heaviest change. The recent `schema_version` → `built_against_sche
 5. Update the guide examples + checklist + version-history entry.
 6. The consistency-check script likely needs a small regex update to recognize the new code shape.
 
+## Deprecating a legacy field name
+
+Renaming a manifest field doesn't end the day the rename ships. The validator keeps accepting the legacy name until a declared sunset date. To deprecate cleanly:
+
+1. In `docs/pax_spec.yaml`, append an entry under `legacy_field_aliases`:
+   ```yaml
+   legacy_field_aliases:
+     - canonical: <new_name>
+       legacy_name: <old_name>
+       deprecated_at: "YYYY-MM-DD"   # date warnings start (usually today)
+       remove_after: "YYYY-MM-DD"    # date hard-failure starts (usually +90d)
+       migration: "Human-readable instruction for migrating."
+   ```
+2. The validator will:
+   - silently accept the legacy name before `deprecated_at`,
+   - emit a deprecation warning between `deprecated_at` and `remove_after`,
+   - hard-fail with the migration instruction once today >= `remove_after`.
+3. Any code that needs to read either name should use the canonical-or-legacy fallback pattern (e.g., `manifest.get(canon) or manifest.get(legacy)`); CI's consistency check accepts that shape.
+4. After `remove_after` lands and any external consumers have caught up, remove the alias entry from `pax_spec.yaml` and the legacy fallback from scripts. The validator then fails fast with a more direct "unknown field" error.
+
+Bumping `remove_after` to extend a window is a deliberate spec change — make it consciously, not as a way to dodge a failing CI.
+
 ## What CI enforces
 
 `scripts/check_spec_consistency.py` runs in two workflows:
@@ -68,10 +90,13 @@ This is the heaviest change. The recent `schema_version` → `built_against_sche
 It asserts:
 
 - Guide title and header version stamp match `current_version` + `last_updated`.
+- Guide has a `## What's New in v<major(current_version)>` heading (catches the most likely narrative-drift case).
 - Guide SCHEMA block enums match `enums` exactly.
 - Guide FIELDS block entity manifest matches `entities` exactly.
 - Guide version-history table rows match `version_history` (in order).
+- **Inline examples in the guide.** Every fenced YAML/JSON block is scanned for `built_against_schema:`, `pax_type:`, `direction:`, `finding_type:`, `unit_of_analysis:`, etc. Values must be in the spec's enum or `valid_versions` list. Catches stale example values after a rename or enum removal.
 - `scripts/validate_pax.py` literal-tuple fallbacks match the YAML.
+- **Every `scripts/*.py` is AST-scanned** for module-level tuple/list literals of ≥3 short lowercase strings — the signature of an enum vocabulary. Any such literal must either (a) be one of the registered fallbacks in `validate_pax.py`, (b) appear in the consistency check's `KNOWN_REGISTERED` set, or (c) appear in `EXEMPT` with a reason. Catches "someone added a new spec-state constant in a new script and didn't register coverage."
 - `scripts/build_pax.py` and `scripts/generate-registry.py` schema-version fallbacks match `defaults`.
 - `README.md` and `CLAUDE.md` valid-versions enumerations match `valid_versions`.
 - Every `pax/*/pax.yaml`'s `built_against_schema` is in `valid_versions`.

@@ -28,8 +28,20 @@ last_updated: "2026-04-30"
 # enforced by the validator yet.
 manifest_field_names:
   built_against_schema: "built_against_schema"
-  legacy_built_against_schema_alias: "schema_version"
   min_schema_required: "min_schema_required"
+
+# Legacy field aliases. Each entry has an explicit deprecation timeline so
+# warnings don't live forever. Validator behavior:
+#   - today < deprecated_at        → silently accept (pre-deprecation)
+#   - deprecated_at <= today < remove_after → emit deprecation warning
+#   - today >= remove_after        → hard-fail with migration instruction
+# Bumping `remove_after` requires a deliberate spec change, not a drift fix.
+legacy_field_aliases:
+  - canonical: built_against_schema
+    legacy_name: schema_version
+    deprecated_at: "2026-04-30"
+    remove_after: "2026-08-01"
+    migration: "Rename `schema_version:` to `built_against_schema:` in pax.yaml — same value, clearer name."
 
 pax_types: [paper, topic, field, enterprise, engine]
 
