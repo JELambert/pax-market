@@ -304,6 +304,9 @@ class Validator:
         if type_ == "text" and not isinstance(v, str):
             self.err(f"{fname}[{idx}].{name}: must be a string, got {type(v).__name__}")
             return
+        if type_ == "boolean" and not isinstance(v, bool):
+            self.err(f"{fname}[{idx}].{name}: must be a boolean, got {type(v).__name__}")
+            return
         # Enum membership
         if type_ == "enum" and enum_ref:
             # PAX_FIELDS manifest references enum names like UNIT_OF_ANALYSIS;

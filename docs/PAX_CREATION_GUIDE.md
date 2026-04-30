@@ -159,33 +159,7 @@ For paper PAX, treat the manifest `author` as a denormalized cache of the source
 
 **Optional manifest fields:**
 - `published_by` *(string)* — Display name shown as the publisher on [pax-market.com](https://pax-market.com). If unset, the marketplace registry workflow auto-stamps the GitHub username of the PR submitter at submission time. Set this explicitly only if you want a custom value (an organization name, a multi-author credit, or "Praxis Agent" for automated PAX generation). **Do not set it speculatively** — leaving it unset gives the right default for community submissions.
-- `provides.datasets[]` *(list, v4+)* — Raw data layer. Each entry declares a CSV/Parquet/Excel dataset the PAX ships (or fetches at install time). The praxis installer registers each as a DuckDB-queryable table; playbooks can then derive `construct_observations` rows from it via `register_dataset` + `derive_observations`. See "Raw Datasets (v4)" below.
-
-### Raw Datasets (v4)
-
-PAX v4 introduces a first-class raw data layer. Use it whenever your PAX wants to ship the actual rows that findings were derived from — instead of (or in addition to) the pre-aggregated construct observations.
-
-```yaml
-provides:
-  datasets:
-    - dataset_id: psed_1990_2012
-      display_name: "PSED — Private Security Events Database (1990–2012)"
-      description: "Event-level coding of private military and security activity."
-      source_url: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZKKOK7"
-      format: csv                    # csv | parquet | excel
-      unit_of_analysis: event        # must be in UNIT_OF_ANALYSIS enum
-      bundled: false                 # true → file ships in archive at parquet_relpath; false → fetched at install
-      parquet_relpath: datasets/psed_1990_2012.parquet  # default if omitted
-      sha256: "a1b2c3..."            # required when bundled: true; recomputed and verified at install
-```
-
-**Validation rules** (issue #106, enforced by `scripts/validate_pax.py`):
-- `bundled: true` → file MUST exist at `parquet_relpath` (default `datasets/<dataset_id>.parquet`) inside the pack source directory.
-- `bundled: false` → `source_url` MUST be non-empty.
-- If `sha256` is set on a bundled dataset, it MUST match the file bytes.
-- `dataset_id`, `display_name`, `format`, `unit_of_analysis` are required on every entry.
-
-**Schema version.** A PAX that uses `provides.datasets[]` MUST declare `schema_version: "4.0"`. v3 PAXes (no datasets block) continue to validate unchanged.
+- `provides.datasets[]` *(list, v4+)* — Raw data layer. Each entry declares a CSV/Parquet/Excel dataset the PAX ships (or fetches at install time). The praxis installer registers each as a DuckDB-queryable table; playbooks can then derive `construct_observations` rows from it via `register_dataset` + `derive_observations`. **Spec lives in [Raw Datasets (v4)](#raw-datasets-v4) below — populate this manifest block after Step 9 if your PAX needs it.**
 
 ### Step 3: Define the Domain (`knowledge/domain.json`)
 
@@ -493,6 +467,71 @@ steps:
       domestic_repression_cli:
         direction: positive
 ```
+
+### Step 10: Declare Raw Datasets (`provides.datasets[]`, v4 only — optional)
+
+If your PAX ships raw underlying data (or fetches it at install time) — not just pre-aggregated construct observations — declare each dataset under `provides.datasets[]` in `pax.yaml`. The praxis installer registers each as a DuckDB-queryable table, and playbooks transform it into `construct_observations` via the `register_dataset` + `derive_observations` action pair. See [Raw Datasets (v4)](#raw-datasets-v4) below for the full spec.
+
+PAXes without raw data should skip this step. v3 PAXes (no datasets block) keep validating unchanged.
+
+---
+
+## Raw Datasets (v4)
+
+PAX v4 introduces a first-class raw data layer. Use it whenever your PAX wants to ship the actual rows that findings were derived from — instead of (or in addition to) the pre-aggregated construct observations. This is what makes a PAX a *replication artifact* rather than a summary; agents can re-derive the findings end-to-end from the raw rows.
+
+### Manifest block
+
+```yaml
+schema_version: "4.0"               # bump from "3.0" when you add datasets
+provides:
+  datasets:
+    - dataset_id: psed_1990_2012
+      display_name: "PSED — Private Security Events Database (1990–2012)"
+      description: "Event-level coding of private military and security activity."
+      source_url: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZKKOK7"
+      format: csv                                         # csv | parquet | excel
+      unit_of_analysis: event                             # must be in UNIT_OF_ANALYSIS enum
+      bundled: false                                      # true → file ships inside the archive; false → fetched at install
+      parquet_relpath: datasets/psed_1990_2012.parquet    # defaults to datasets/<dataset_id>.parquet
+      sha256: "a1b2c3..."                                 # for bundled: integrity verified by validator;
+                                                          # for non-bundled: verified after fetch by the installer
+```
+
+### Required and optional fields
+
+| Field | Required? | Notes |
+|---|---|---|
+| `dataset_id` | yes | kebab-case-or-snake-case, unique within the PAX |
+| `display_name` | yes | human-readable, shown on the marketplace |
+| `format` | yes | one of `csv`, `parquet`, `excel` |
+| `unit_of_analysis` | yes | should be in the canonical `UNIT_OF_ANALYSIS` enum (warning if not) |
+| `description` | recommended | one or two sentences for the marketplace card |
+| `source_url` | required if `bundled: false` | upstream source the installer fetches |
+| `bundled` | recommended | `true` ships the file inside the archive; default `false` |
+| `parquet_relpath` | optional | defaults to `datasets/<dataset_id>.parquet`; ignored unless format-conversion is needed |
+| `sha256` | recommended | hex digest for integrity verification |
+| `row_count`, `column_count`, `license` | optional | passed through to the marketplace card |
+
+### Validator rules (enforced by `scripts/validate_pax.py`, issue #106)
+
+- `bundled: true` → the file MUST exist at `parquet_relpath` (default `datasets/<dataset_id>.parquet`) inside the pack source directory.
+- `bundled: false` → `source_url` MUST be non-empty.
+- If `sha256` is set on a bundled dataset, it MUST match the actual file bytes.
+- `dataset_id`, `display_name`, `format`, `unit_of_analysis` are required on every entry.
+- `format` MUST be one of `csv`, `parquet`, `excel`.
+- Duplicate `dataset_id` within a PAX is an error.
+- Declaring `provides.datasets[]` requires `schema_version: "4.0"`. v3 PAXes without a datasets block keep validating unchanged.
+- A `unit_of_analysis` outside the canonical enum is a **warning**, not an error — engines may legitimately introduce new units faster than the spec.
+
+### Playbook integration
+
+Datasets are consumed by playbook steps using two new actions documented in [`docs/PLAYBOOK_FORMAT.md`](./PLAYBOOK_FORMAT.md):
+
+- `register_dataset` — fetch (or copy from bundle), convert to Parquet, register in DuckDB.
+- `derive_observations` — run a single-statement SQL query against the registered dataset and insert the result rows into `construct_observations`.
+
+The legacy `ingest_dataset` action still works for v3-style PAXes; new PAXes should prefer the v4 split because it makes the SQL inspectable and replayable in isolation.
 
 ---
 
