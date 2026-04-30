@@ -129,7 +129,7 @@ provides:
   - schmitt_singh_2012
   - bode_wagner_2015
   - hendricks_singhal_2005
-schema_version: '4.0'
+built_against_schema: '4.0'
 tags:
 - field
 - global-supply-chain-risk

@@ -27,7 +27,7 @@ PAX v4 extends v3 with a first-class raw data layer:
 - **`dataset` entity in PAX_FIELDS** with the required/recommended/optional field manifest. New `dataset_format` and `playbook_action` controlled vocabularies.
 - **Validator enforcement** for bundled-file existence, sha256 match, source_url presence on non-bundled datasets, and duplicate `dataset_id` detection (issue #106).
 
-`schema_version` is the version of the spec the pack is built against, not a feature flag. Every newly authored pack should declare `schema_version: "4.0"` even if it doesn't use the new dataset block — the block is optional.
+`built_against_schema` (renamed from the older `schema_version`) is the version of the spec the pack is built against, **not a feature flag**. Every newly authored pack should declare `built_against_schema: "4.0"` even if it doesn't use the new dataset block — the block is optional. The legacy field name `schema_version` is still accepted by the validator with a deprecation warning so older packs and external consumers (pax-website, praxis) keep working during the migration window.
 
 ## What's New in v3
 
@@ -123,7 +123,7 @@ description: >
   First large-N quantitative study of domestic drivers of transnational
   repression. Tests the hypothesis that authoritarian crackdowns at home
   increase subsequent likelihood of repressing citizens abroad.
-schema_version: "4.0"
+built_against_schema: "4.0"   # was schema_version — same semantics, clearer name
 pax_type: paper          # paper | topic | field | enterprise | engine
 author: "Dukalskis, Alexander; Furstenberg, Saipira; Hellmeier, Sebastian; Scales, Redmond"
 created: "2024-01-15"
@@ -149,7 +149,7 @@ provides:
   engines: []             # list registered engine IDs the PAX uses
 ```
 
-**Required fields:** name, version, description, schema_version, pax_type
+**Required fields:** name, version, description, built_against_schema, pax_type (legacy `schema_version` still accepted with a deprecation warning)
 **pax_type values:**
 - `paper` — single paper
 - `topic` — research topic (multiple papers)
@@ -483,7 +483,7 @@ steps:
 
 If your PAX ships raw underlying data (or fetches it at install time) — not just pre-aggregated construct observations — declare each dataset under `provides.datasets[]` in `pax.yaml`. The praxis installer registers each as a DuckDB-queryable table, and playbooks transform it into `construct_observations` via the `register_dataset` + `derive_observations` action pair. See [Raw Datasets (v4)](#raw-datasets-v4) below for the full spec.
 
-PAXes without raw data should skip this step — the block is optional. The pack still declares `schema_version: "4.0"` because it is built against the v4 spec; the dataset block simply isn't exercised.
+PAXes without raw data should skip this step — the block is optional. The pack still declares `built_against_schema: "4.0"` because it is built against the v4 spec; the dataset block simply isn't exercised.
 
 ---
 
@@ -494,7 +494,7 @@ PAX v4 introduces a first-class raw data layer. Use it whenever your PAX wants t
 ### Manifest block
 
 ```yaml
-schema_version: "4.0"               # current spec version
+built_against_schema: "4.0"         # current spec version
 provides:
   datasets:
     - dataset_id: psed_1990_2012
@@ -532,7 +532,7 @@ provides:
 - `dataset_id`, `display_name`, `format`, `unit_of_analysis` are required on every entry.
 - `format` MUST be one of `csv`, `parquet`, `excel`.
 - Duplicate `dataset_id` within a PAX is an error.
-- Declaring `provides.datasets[]` requires `schema_version: "4.0"` or higher.
+- Declaring `provides.datasets[]` requires `built_against_schema: "4.0"` or higher.
 - A `unit_of_analysis` outside the canonical enum is a **warning**, not an error — engines may legitimately introduce new units faster than the spec.
 
 ### Playbook integration
@@ -723,7 +723,7 @@ Before submitting your PAX, verify:
 - [ ] `name` is kebab-case (e.g. `my-research-topic`)
 - [ ] `version` is semver (e.g. `1.0.0`)
 - [ ] `description` is 1-3 sentences
-- [ ] `schema_version` is `"4.0"` for all newly authored packs. Legacy values (`"1.0"`, `"2.0"`, `"3.0"`) remain valid for archival packs but new submissions should declare `"4.0"`.
+- [ ] `built_against_schema` is `"4.0"` for all newly authored packs (legacy field name `schema_version` still accepted with a deprecation warning). Legacy values (`"1.0"`, `"2.0"`, `"3.0"`) remain valid for archival packs but new submissions should declare `"4.0"`.
 - [ ] `pax_type` is one of: paper, topic, field, enterprise, engine
 - [ ] `provides` lists all entity IDs from knowledge files
 
@@ -937,7 +937,7 @@ The archive flattens the PAX directory at its root and adds one file — `manife
 {
   "pax_name": "dukalskis-et-al-2024-transnational-repression",
   "version": "1.0.0",
-  "schema_version": "4.0",
+  "built_against_schema": "4.0",
   "exported_at": "2026-04-29T12:34:56Z",
   "exported_by": "praxis",
   "files": {
@@ -1002,17 +1002,18 @@ def build_pax(pack_dir: Path, *, also_targz: bool = False, exported_by: str = "s
         for p, arcname in pack_files
     }
 
-    # Read schema_version + version out of pax.yaml without requiring PyYAML.
+    # Read built_against_schema + version out of pax.yaml without requiring PyYAML.
     import re
     text = (pack_dir / "pax.yaml").read_text()
     def field(k, default=""):
         m = re.search(rf'^\s*{k}\s*:\s*"?([^"\n]+)"?\s*$', text, re.M)
         return (m.group(1).strip() if m else default)
 
+    schema = field("built_against_schema", "") or field("schema_version", "4.0")
     manifest = {
         "pax_name": name,
         "version": field("version", "0.0.0"),
-        "schema_version": field("schema_version", "4.0"),
+        "built_against_schema": schema,
         "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "exported_by": exported_by,
         "files": files,
@@ -1063,7 +1064,7 @@ for p in sorted(Path('.').rglob('*')):
     files[arc] = {"sha256": hashlib.sha256(p.read_bytes()).hexdigest(), "size": p.stat().st_size}
 manifest = {
     "pax_name": Path('.').resolve().name,
-    "schema_version": "4.0",
+    "built_against_schema": "4.0",
     "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     "exported_by": "submitter",
     "files": files,
@@ -1160,9 +1161,9 @@ required, recommended, and optional fields for each PAX knowledge entity.
 ```yaml
 entities:
   pax_yaml:
-    required: [name, version, description, schema_version, pax_type]
+    required: [name, version, description, built_against_schema, pax_type]
     recommended: [author, tags, provides, engines]
-    optional: [dependencies, registry_url, domain_id]
+    optional: [dependencies, registry_url, domain_id, schema_version, min_schema_required]
 
   domain:
     required: [id, display_name, description]
@@ -1312,7 +1313,7 @@ This document is the canonical PAX specification. All schema changes are recorde
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 4.0 | 2026-04-29 | Raw data layer: `provides.datasets[]` block on the manifest, `dataset` entity in PAX_FIELDS, `dataset_format` and `playbook_action` controlled vocabularies. Two new playbook actions (`register_dataset`, `derive_observations`) documented in `docs/PLAYBOOK_FORMAT.md`. Validator (`scripts/validate_pax.py`) enforces dataset registration when `provides.datasets[]` is non-empty (issue #106). v4 is backwards-compatible: the new dataset block is optional, so packs that don't ship raw data simply omit it and still declare `schema_version: "4.0"` against the current spec. All in-repo packs were bumped to 4.0 on 2026-04-30. |
+| 4.0 | 2026-04-30 | Raw data layer: `provides.datasets[]` block on the manifest, `dataset` entity in PAX_FIELDS, `dataset_format` and `playbook_action` controlled vocabularies. Two new playbook actions (`register_dataset`, `derive_observations`) documented in `docs/PLAYBOOK_FORMAT.md`. Validator (`scripts/validate_pax.py`) enforces dataset registration when `provides.datasets[]` is non-empty (issue #106). Manifest field rename: `schema_version` → `built_against_schema` (legacy name still accepted with a deprecation warning). All in-repo packs were bumped to 4.0 and renamed on 2026-04-30. v4 is backwards-compatible: the dataset block is optional, so packs that don't ship raw data still declare `built_against_schema: "4.0"` against the current spec. |
 | 3.0 | 2026-04-28 | Canonical-construct backbone (`canonical_constructs.json`, `construct_relations.json`). Operationalization split — `constructs.json` entries gain `canonical_id`, `operationalization_id`, `operationalization_status`, `coding_rule`. Backbone `relation_type` controlled vocabulary (`subsumes`, `refines`, `disjoint_from`, `equivalent_to`). `unit_of_analysis` on findings (engine pooling/dedup). Minting governance — provisional → canonical promotion logged in `governance_log` with justification. `find_pathways` and `level_bridge` honor `disjoint_from` to block cross-cluster traversal. Sprints 7–9. |
 | 2.0 | 2026-04-07 | Structured statistics on findings (effect_size_value, SE, p, N, CI, model_spec, covariates). Enriched source metadata (methodology, study_design, sample_size, limitations, replication). Construct provenance (formal/operational definitions, measurement_level, provenance chain). Construct relationships (causal/correlational with mechanism). Engine documentation (parameters, assumptions, diagnostics, interpretation). Playbook enhancements (data quality gates, conditional branching, parameter variants). Quality scoring adds statistical_richness, relationship_coverage, source_depth sub-scores. See ADR-007. |
 | 1.0 | 2026-04-05 | Initial PAX format: manifest, domain, constructs (with aliases/measures), sources, findings, propositions, playbooks, engine registry, data sources. |

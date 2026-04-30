@@ -25,6 +25,12 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
+      - name: Spec consistency check
+        # Fails the PR if docs/pax_spec.yaml disagrees with the guide,
+        # any script's hardcoded fallbacks, the docs (README / CLAUDE.md),
+        # or any pack's built_against_schema. Spec is the source of truth.
+        run: python3 scripts/check_spec_consistency.py
+
       - name: Validate changed packs
         id: validate
         run: |

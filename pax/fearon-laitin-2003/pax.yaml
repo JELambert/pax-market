@@ -34,5 +34,5 @@ provides:
   propositions: []
   sources:
   - fearon_laitin_2003
-schema_version: '4.0'
+built_against_schema: '4.0'
 version: 1.0.1

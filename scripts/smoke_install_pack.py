@@ -122,9 +122,12 @@ def smoke_check(pack_dir: Path) -> dict:
                 m = re.search(rf'^\s*{key}\s*:\s*"?([^"\n]+)"?\s*$', pax_yaml, re.M)
                 return m.group(1).strip() if m else ""
 
-            for k in ("name", "version", "description", "schema_version", "pax_type"):
+            for k in ("name", "version", "description", "pax_type"):
                 if not field(k):
                     fail(errors, f"pax.yaml missing required field: {k}")
+            # Either the canonical or legacy schema-version field must be present.
+            if not field("built_against_schema") and not field("schema_version"):
+                fail(errors, "pax.yaml missing required field: built_against_schema (or legacy schema_version)")
 
             yaml_name = field("name")
             man_name = manifest.get("pax_name", "")

@@ -57,10 +57,12 @@ def build_pax(pack_dir: Path, *, also_targz: bool = False, exported_by: str = "s
     }
 
     text = (pack_dir / "pax.yaml").read_text()
+    # Prefer the canonical name; fall back to the legacy alias for older packs.
+    schema = _read_yaml_field(text, "built_against_schema", "") or _read_yaml_field(text, "schema_version", "4.0")
     manifest = {
         "pax_name": name,
         "version": _read_yaml_field(text, "version", "0.0.0"),
-        "schema_version": _read_yaml_field(text, "schema_version", "4.0"),
+        "built_against_schema": schema,
         "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "exported_by": exported_by,
         "files": files,

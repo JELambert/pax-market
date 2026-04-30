@@ -38,21 +38,36 @@ except ImportError:
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_GUIDE = REPO_ROOT / "docs" / "PAX_CREATION_GUIDE.md"
+SPEC_PATH = REPO_ROOT / "docs" / "pax_spec.yaml"
 
-VALID_PAX_TYPES = ("paper", "topic", "field", "engine", "enterprise")
-VALID_SCHEMA_VERSIONS = ("1.0", "2.0", "3.0", "4.0")
-DATASET_FORMATS = ("csv", "parquet", "excel")
-PLAYBOOK_ACTIONS = (
-    "engine",
-    "ingest_dataset",
-    "data_quality_gate",
-    "register_dataset",
-    "derive_observations",
-)
 
-# Entities whose JSON file is REQUIRED if the pack has any findings.
-# (Other entities — propositions, canonical_constructs, etc. — are optional.)
-REQUIRED_KNOWLEDGE_FILES = ("constructs.json", "sources.json", "findings.json")
+def _load_spec() -> dict:
+    """Load docs/pax_spec.yaml — the source of truth for spec constants.
+    Returns {} if the file is missing so callers can fall back to hardcoded
+    defaults; in CI, scripts/check_spec_consistency.py asserts the fallbacks
+    match the YAML.
+    """
+    if SPEC_PATH.is_file():
+        try:
+            return yaml.safe_load(SPEC_PATH.read_text()) or {}
+        except Exception:
+            return {}
+    return {}
+
+
+_SPEC = _load_spec()
+
+# Constants below derive from docs/pax_spec.yaml when present; the literal
+# tuples are kept as defense-in-depth fallbacks. CI's check_spec_consistency.py
+# enforces that these literals agree with the YAML, so drift cannot land.
+VALID_PAX_TYPES = tuple(_SPEC.get("pax_types") or ("paper", "topic", "field", "enterprise", "engine"))
+VALID_SCHEMA_VERSIONS = tuple(_SPEC.get("valid_versions") or ("1.0", "2.0", "3.0", "4.0"))
+DATASET_FORMATS = tuple((_SPEC.get("enums") or {}).get("dataset_format") or ("csv", "parquet", "excel"))
+PLAYBOOK_ACTIONS = tuple((_SPEC.get("enums") or {}).get("playbook_action") or (
+    "engine", "ingest_dataset", "data_quality_gate", "register_dataset", "derive_observations",
+))
+
+REQUIRED_KNOWLEDGE_FILES = tuple(_SPEC.get("required_knowledge_files") or ("constructs.json", "sources.json", "findings.json"))
 
 
 # ---------------------------------------------------------------------------
@@ -209,10 +224,13 @@ class Validator:
         if version and not re.fullmatch(r"\d+\.\d+\.\d+(-[\w.-]+)?", version):
             self.err(f"pax.yaml: version '{version}' is not a valid semver")
 
-        # schema_version: enum
-        sv = str(manifest.get("schema_version", ""))
+        # built_against_schema: enum. Legacy `schema_version` is still
+        # accepted with a deprecation warning during the migration window.
+        sv = str(manifest.get("built_against_schema", "") or manifest.get("schema_version", ""))
         if sv and sv not in VALID_SCHEMA_VERSIONS:
-            self.err(f"pax.yaml: schema_version '{sv}' not in {VALID_SCHEMA_VERSIONS}")
+            self.err(f"pax.yaml: built_against_schema '{sv}' not in {VALID_SCHEMA_VERSIONS}")
+        if not manifest.get("built_against_schema") and manifest.get("schema_version"):
+            self.warn("pax.yaml: 'schema_version' is deprecated — rename to 'built_against_schema' (same semantics, clearer name)")
 
         # pax_type: enum
         pt = manifest.get("pax_type")
@@ -499,10 +517,10 @@ class Validator:
             self.err(f"pax.yaml provides.datasets must be a list, got {type(datasets).__name__}")
             return
 
-        # PAX with datasets MUST declare schema_version 4.0+.
-        sv = str(manifest.get("schema_version", ""))
+        # PAX with datasets MUST declare built_against_schema 4.0+.
+        sv = str(manifest.get("built_against_schema", "") or manifest.get("schema_version", ""))
         if sv and sv not in ("4.0",):
-            self.err(f"pax.yaml: provides.datasets requires schema_version '4.0', got '{sv}'")
+            self.err(f"pax.yaml: provides.datasets requires built_against_schema '4.0', got '{sv}'")
 
         seen_ids: set[str] = set()
         for idx, d in enumerate(datasets):
@@ -572,7 +590,12 @@ class Validator:
 
 
 # Fallback for pax.yaml required fields if the FIELDS manifest can't be parsed.
-REQUIRED_PAX_YAML_FIELDS = ("name", "version", "description", "schema_version", "pax_type")
+# Fallback list for when the FIELDS block parse fails. Mirrors
+# docs/pax_spec.yaml entities.pax_yaml.required (string entries only); CI
+# enforces they agree.
+REQUIRED_PAX_YAML_FIELDS = tuple(
+    f for f in ((_SPEC.get("entities") or {}).get("pax_yaml") or {}).get("required", []) if isinstance(f, str)
+) or ("name", "version", "description", "built_against_schema", "pax_type")
 
 
 # ---------------------------------------------------------------------------

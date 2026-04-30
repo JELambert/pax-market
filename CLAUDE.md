@@ -3,6 +3,12 @@
 ## What This Is
 Git-based registry for PAX (Portable Analytical eXpertise) packages. This repo IS the source of truth for published packs AND the canonical home of the PAX authoring/usage guides — no database dependency. The website frontend lives in the separate `pax-website` repo; the runtime engine lives in `praxis` (which vendors a copy of the creation guide from here).
 
+## Spec governance — read this BEFORE making any spec change
+
+**`docs/pax_spec.yaml` is the source of truth** for the moving parts of the PAX format (current version, valid versions, enums, entity field manifests, defaults). Edit it FIRST. Then update `docs/PAX_CREATION_GUIDE.md` and any code that mirrors a value. CI (`scripts/check_spec_consistency.py`, run by both `validate-pack.yml` and `publish-artifacts.yml`) asserts everything agrees and **fails the build on any drift**. Full workflow: `docs/CONTRIBUTING_SPEC.md`.
+
+When in doubt, run `python3 scripts/check_spec_consistency.py` locally — it tells you exactly what's out of sync.
+
 **Browse at [pax-market.com](https://pax-market.com)**
 
 ## Architecture (Three-Repo Split)
@@ -76,9 +82,9 @@ dist/                        .gitignored — build output
 ```
 
 ## Pack Schema
-- Required manifest fields: `name`, `version`, `description`, `pax_type`, `schema_version`
+- Required manifest fields: `name`, `version`, `description`, `pax_type`, `built_against_schema` (legacy `schema_version` still accepted with a deprecation warning)
 - Valid `pax_type`: paper, topic, field, engine, enterprise
-- Valid `schema_version`: "1.0", "2.0", "3.0", "4.0"
+- Valid `built_against_schema`: "1.0", "2.0", "3.0", "4.0"
 - Knowledge files: `constructs.json`, `findings.json`, `sources.json`, `domain.json`
 - Optional: `propositions.json`, `construct_relationships.json`, `playbooks/*.yaml`
 - v3 additions: `canonical_constructs.json`, `construct_relations.json` (canonical-construct backbone); `unit_of_analysis`, `scope_conditions`, `sample_n` on findings; `canonical_id`, `operationalization_id`, `coding_rule` on constructs

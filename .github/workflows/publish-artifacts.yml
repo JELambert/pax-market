@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
+      - name: Spec consistency check
+        # Source of truth is docs/pax_spec.yaml. Block release on any drift.
+        run: python3 scripts/check_spec_consistency.py
+
       - name: Generate registry artifacts
         run: python3 scripts/generate-registry.py
 

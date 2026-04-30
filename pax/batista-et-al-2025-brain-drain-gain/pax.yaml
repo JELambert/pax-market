@@ -5,7 +5,7 @@ description: >
   countries. Synthesizes recent quasi-experimental evidence (DID, RD, SSIV, RA)
   on brain drain vs. brain gain mechanisms across human capital, innovation,
   trade/FDI, norms, political institutions, and population health.
-schema_version: '4.0'
+built_against_schema: '4.0'
 pax_type: paper
 author: "Batista, Catia; Han, Daniel; Haushofer, Johannes; Khanna, Gaurav; McKenzie, David; Mobarak, Ahmed Mushfiq; Theoharides, Caroline; Yang, Dean"
 created: "2026-04-28"

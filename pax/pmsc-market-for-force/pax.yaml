@@ -136,5 +136,5 @@ provides:
   - leander_2005_destabilizing
   - dunigan_petersohn_2015_markets
   - icoca_2010_code
-schema_version: '4.0'
+built_against_schema: '4.0'
 version: 1.0.25

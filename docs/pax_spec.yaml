@@ -1,0 +1,253 @@
+# PAX Specification — machine-readable source of truth.
+#
+# This file is THE source of truth for the moving parts of the PAX format:
+# current version, valid versions, controlled vocabularies, per-entity field
+# manifests, and script defaults.
+#
+# Edit this file FIRST when changing the spec. CI (scripts/check_spec_consistency.py)
+# asserts that docs/PAX_CREATION_GUIDE.md, validate_pax.py, build_pax.py,
+# generate-registry.py, README.md, CLAUDE.md, and every pax/*/pax.yaml agree
+# with the values declared here. Drift fails the build — there is no warning
+# tier.
+#
+# Hand-authored prose, rationale, and step-by-step instructions stay in
+# PAX_CREATION_GUIDE.md. Nothing in this file is generated; nothing in the
+# guide is generated from this file. The guide simply must agree with it.
+
+current_version: "4.0"
+valid_versions: ["1.0", "2.0", "3.0", "4.0"]
+last_updated: "2026-04-30"
+
+# Manifest field names. The pack manifest's "what spec was this built
+# against" field is `built_against_schema` — name chosen to make the meaning
+# unmistakable (this is the spec version the pack was authored against, NOT
+# a feature flag for "which features I use"). The legacy name `schema_version`
+# is still accepted by the validator with a deprecation warning, so existing
+# consumers (pax-website, praxis) keep working during the migration window.
+# `min_schema_required` is reserved for future feature-flag use and is not
+# enforced by the validator yet.
+manifest_field_names:
+  built_against_schema: "built_against_schema"
+  legacy_built_against_schema_alias: "schema_version"
+  min_schema_required: "min_schema_required"
+
+pax_types: [paper, topic, field, enterprise, engine]
+
+# Controlled vocabularies — these mirror PAX_CREATION_GUIDE.md's PAX_SCHEMA
+# block exactly. The guide block stays as a human-readable view of these
+# values; CI asserts they agree.
+enums:
+  pax_type: [paper, topic, field, enterprise, engine]
+  source_type: [academic_paper, journal_article, book, book_chapter, working_paper, report, dataset, manual, synthetic]
+  construct_type: [quantifiable, concept, process, composite, outcome]
+  direction: [positive, negative, "null", conditional, unknown]
+  confidence: [strong, moderate, weak, foundational, unknown]
+  finding_type: [empirical, theoretical, normative, mechanism, methodological]
+  evidence_type: [quantitative, qualitative, mixed, theoretical, exploratory]
+  finding_state: [provisional, confirmed, contested, superseded, retracted]
+  level_of_analysis: [micro, meso, macro, cross-level, dyadic]
+  measurement_level: [nominal, ordinal, interval, ratio]
+  relationship_type: [causal, correlational, mediating, moderating, compositional]
+  study_design: [rct, quasi_experimental, observational_longitudinal, observational_cross_sectional, case_study, meta_analysis, review, theoretical]
+  effect_size_type: [beta, odds_ratio, hazard_ratio, risk_ratio, incidence_rate_ratio, correlation_r, cohens_d, eta_squared, ratio, elasticity, semielasticity, percent_change, percentage_point_change, marginal_effect, mean_difference]
+  strength: [strong, moderate, weak]
+  alias_type: [synonym, abbreviation, operationalization]
+  unit_of_analysis: [country-year, region-year, province-year, municipality-year, county-year, district-year, dyad-year, individual, household, firm, firm-year, firm-quarter, patient, patient-episode, site, site-year, event, conflict-episode, other]
+  relation_type: [subsumes, refines, disjoint_from, equivalent_to]
+  operationalization_status: [active, deprecated]
+  canonical_status: [provisional, canonical, deprecated]
+  construct_kind: [quantifiable, concept, process, composite, outcome]
+  dataset_format: [csv, parquet, excel]
+  playbook_action: [engine, ingest_dataset, data_quality_gate, register_dataset, derive_observations]
+
+# Per-entity field manifest — mirrors the FIELDS block in PAX_CREATION_GUIDE.md.
+# `required` are bare strings (or {name,type,enum} dicts when typed). validate_pax.py
+# already understands both shapes; the YAML uses the same shape verbatim.
+entities:
+  pax_yaml:
+    required: [name, version, description, built_against_schema, pax_type]
+    recommended: [author, tags, provides, engines]
+    optional: [dependencies, registry_url, domain_id, schema_version, min_schema_required]
+
+  domain:
+    required: [id, display_name, description]
+    recommended: [temporal_scope, population, level_of_analysis]
+    optional: [research_questions, parent_domain_id]
+
+  source:
+    required: [id, source_type, title]
+    recommended:
+      - {name: methodology_summary, type: text}
+      - {name: sample_size, type: integer}
+      - {name: population_description, type: text}
+      - {name: study_design, type: enum, enum: STUDY_DESIGNS}
+      - {name: key_limitations, type: text}
+      - {name: replication_status, type: text}
+      - {name: data_availability, type: text}
+      - {name: journal, type: text}
+      - {name: url, type: text}
+    optional: [authors, year, doi, abstract]
+
+  construct:
+    required: [id, display_name, construct_type, definition]
+    recommended:
+      - {name: formal_definition, type: text}
+      - {name: operational_definition, type: text}
+      - {name: measurement_level, type: enum, enum: MEASUREMENT_LEVELS}
+      - {name: aliases, type: list}
+      - {name: measures, type: list}
+      - {name: domain_ids, type: list}
+    optional: [parent_construct_id, validity_notes, provenance_json, source_id, canonical_id, operationalization_id]
+
+  finding:
+    required: [source_id, domain_id, finding_text, construct_ids, direction]
+    recommended:
+      - {name: confidence, type: enum, enum: CONFIDENCE_VALUES}
+      - {name: finding_type, type: enum, enum: FINDING_TYPES}
+      - {name: evidence_type, type: enum, enum: EVIDENCE_TYPES}
+      - {name: unit_of_analysis, type: enum, enum: UNIT_OF_ANALYSIS}
+      - {name: scope_conditions, type: text}
+      - {name: sample_n, type: integer}
+      - {name: effect_size_value, type: number}
+      - {name: effect_size_se, type: number}
+      - {name: p_value, type: number}
+      - {name: ci_lower, type: number}
+      - {name: ci_upper, type: number}
+      - {name: effect_size_type, type: enum, enum: EFFECT_SIZE_TYPES}
+    optional: [method_used, sample_size, r_squared, model_specification, covariates_controlled, state]
+
+  proposition:
+    required: [id, proposition_text, construct_from, construct_to]
+    recommended:
+      - {name: direction, type: enum, enum: DIRECTION_VALUES}
+      - {name: theoretical_basis, type: text}
+      - {name: scope_conditions, type: text}
+    optional: [domain_id, status, source_id]
+
+  construct_relationship:
+    required: [construct_from, construct_to, relationship_type]
+    recommended:
+      - {name: direction, type: enum, enum: DIRECTION_VALUES}
+      - {name: strength, type: enum, enum: STRENGTH_VALUES}
+      - {name: mechanism, type: text}
+    optional: [source_id]
+
+  construct_alias:
+    required: [construct_id, alias]
+    recommended:
+      - {name: alias_type, type: enum, enum: ALIAS_TYPES}
+      - {name: source_id, type: text}
+      - {name: pax_name, type: text}
+    optional: [added_at]
+
+  construct_measure:
+    required: [construct_id, measure_description]
+    recommended:
+      - {name: unit, type: text}
+      - {name: scale_description, type: text}
+      - {name: source_id, type: text}
+      - {name: pax_name, type: text}
+    optional: [added_at]
+
+  construct_evidence:
+    required: [construct_id, source_id, contribution_type]
+    recommended:
+      - {name: pax_name, type: text}
+    optional: [added_at]
+
+  dataset_variable:
+    required: [source_id, column_name]
+    recommended:
+      - {name: construct_id, type: text}
+      - {name: description, type: text}
+      - {name: units, type: text}
+      - {name: scale_type, type: text}
+      - {name: table_name, type: text}
+    optional: [notes, priority, operationalization_notes]
+
+  canonical_construct:
+    required: [id, display_name, kind, formal_definition]
+    recommended:
+      - {name: status, type: text}
+      - {name: unit_kind, type: text}
+      - {name: owner, type: text}
+    optional: [superseded_by]
+
+  construct_operationalization:
+    required: [id, canonical_id, display_name, coding_rule]
+    recommended:
+      - {name: measurement_level, type: enum, enum: MEASUREMENT_LEVELS}
+      - {name: source_id, type: text}
+      - {name: status, type: text}
+    optional: [threshold_json, unit]
+
+  construct_relation:
+    required: [from_id, to_id, relation_type]
+    recommended:
+      - {name: justification, type: text}
+      - {name: source_id, type: text}
+    optional: [pax_name]
+
+  dataset:
+    required:
+      - {name: dataset_id, type: text}
+      - {name: display_name, type: text}
+      - {name: format, type: enum, enum: DATASET_FORMAT}
+      - {name: unit_of_analysis, type: enum, enum: UNIT_OF_ANALYSIS}
+    recommended:
+      - {name: description, type: text}
+      - {name: source_url, type: text}
+      - {name: bundled, type: boolean}
+      - {name: parquet_relpath, type: text}
+      - {name: sha256, type: text}
+    optional: [row_count, column_count, license]
+
+# Script defaults — when a script needs to fall back to a default value for
+# `built_against_schema` (because a manifest omits it or build_pax was given
+# a directory with a malformed pax.yaml), use these.
+defaults:
+  build_pax_schema_fallback: "4.0"
+  registry_schema_fallback: "4.0"
+
+# Files that MUST exist under <pack>/knowledge/ for any non-trivial PAX.
+required_knowledge_files: [constructs.json, sources.json, findings.json]
+
+# Fields whose value MUST be a JSON list. Catches the issue #84 class of bug
+# where authors paste comma-separated strings instead of arrays.
+known_list_fields:
+  finding: [construct_ids, sub_domain_ids, covariates_controlled]
+
+# Version history — newest first. The latest entry's version + date must
+# equal current_version + last_updated above.
+version_history:
+  - version: "4.0"
+    date: "2026-04-30"
+    summary: |
+      Raw data layer. provides.datasets[] block on the manifest, dataset entity in
+      PAX_FIELDS, dataset_format and playbook_action controlled vocabularies. Two new
+      playbook actions (register_dataset, derive_observations) documented in
+      docs/PLAYBOOK_FORMAT.md. Validator enforces dataset registration when
+      provides.datasets[] is non-empty (issue #106). Manifest field rename
+      schema_version → built_against_schema (legacy name still accepted with a
+      deprecation warning).
+  - version: "3.0"
+    date: "2026-04-28"
+    summary: |
+      Canonical-construct backbone (canonical_constructs.json, construct_relations.json).
+      Operationalization split — constructs.json entries gain canonical_id,
+      operationalization_id, operationalization_status, coding_rule. Backbone relation_type
+      controlled vocabulary. unit_of_analysis on findings (engine pooling/dedup).
+      Minting governance — provisional → canonical promotion logged. Sprints 7–9.
+  - version: "2.0"
+    date: "2026-04-07"
+    summary: |
+      Structured statistics on findings (effect_size_value, SE, p, N, CI, model_spec,
+      covariates). Enriched source metadata (methodology, study_design, sample_size,
+      limitations, replication). Construct provenance (formal/operational definitions,
+      measurement_level, provenance chain). Construct relationships (causal/correlational
+      with mechanism). Engine documentation. Playbook enhancements. ADR-007.
+  - version: "1.0"
+    date: "2026-04-05"
+    summary: |
+      Initial PAX format: manifest, domain, constructs (with aliases/measures), sources,
+      findings, propositions, playbooks, engine registry, data sources.

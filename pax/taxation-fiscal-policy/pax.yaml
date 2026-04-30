@@ -79,7 +79,7 @@ provides:
   - zucman_2014_jep
   - diamond_mirrlees_1971
 refresh_policy: null
-schema_version: '4.0'
+built_against_schema: '4.0'
 tags:
 - topic
 - taxation-fiscal

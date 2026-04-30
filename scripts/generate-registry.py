@@ -334,10 +334,12 @@ def process_pack(pack_dir: Path) -> dict | None:
 
     # Build manifest.json — matches the spec in PAX_CREATION_GUIDE.md.
     # `files` is a dict of {arcname: {sha256, size}} (issue #99).
+    # Prefer the canonical built_against_schema name; fall back to legacy.
+    schema = manifest.get("built_against_schema") or manifest.get("schema_version", "4.0")
     manifest_data = {
         "pax_name": name,
         "version": version,
-        "schema_version": manifest.get("schema_version", "4.0"),
+        "built_against_schema": schema,
         "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "exported_by": "pax-market generate-registry.py",
         "files": file_entries,
@@ -393,7 +395,7 @@ def process_pack(pack_dir: Path) -> dict | None:
         "canonical_constructs": canonical_constructs,
         "construct_relations": construct_relations,
         "quality": quality,
-        "pax_schema_version": manifest.get("schema_version", "4.0"),
+        "pax_schema_version": manifest.get("built_against_schema") or manifest.get("schema_version", "4.0"),
         "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.zip",
         "download_sha256": sha256,
         "download_size": archive_size,

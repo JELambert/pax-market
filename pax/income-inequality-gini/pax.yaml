@@ -51,7 +51,7 @@ provides:
   - ostry_2014
   - chetty_hendren_kline_saez_2014
 refresh_policy: null
-schema_version: '4.0'
+built_against_schema: '4.0'
 tags:
 - topic
 - income-inequality

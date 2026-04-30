@@ -54,7 +54,7 @@ provides:
   - blei_2017_vi_review
   - vandeschoot_2021_bayesian_primer
 refresh_policy: null
-schema_version: '4.0'
+built_against_schema: '4.0'
 tags:
 - bayesian
 - mcmc
