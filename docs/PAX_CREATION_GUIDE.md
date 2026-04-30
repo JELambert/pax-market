@@ -1,8 +1,8 @@
-# PAX v3 Specification & Creation Guide
+# PAX v4 Specification & Creation Guide
 
-> **Schema version:** 3.0 — Last updated: 2026-04-29
+> **Schema version:** 4.0 — Last updated: 2026-04-30
 >
-> This document is the canonical specification for PAX v3. All future PAX schema changes are documented here. For v1→v2 migration context, see `docs/adr/ADR-007-pax-v2-schema-evolution.md`. PAX v3 builds on v2 by adding the canonical-construct backbone, structured statistics, and minting governance (Sprints 7–9).
+> This document is the canonical specification for PAX v4. All future PAX schema changes are documented here. For v1→v2 migration context, see `docs/adr/ADR-007-pax-v2-schema-evolution.md`. v3 added the canonical-construct backbone, structured statistics, and minting governance (Sprints 7–9). v4 adds the raw data layer (`provides.datasets[]` + `register_dataset` / `derive_observations` playbook actions).
 >
 > **Source of truth.** This file (and its release-asset copy at [pax-market.com/PAX_CREATION_GUIDE.md](https://pax-market.com/PAX_CREATION_GUIDE.md)) is the canonical PAX spec. The friendlier walkthrough at [pax-market.com/guide/](https://pax-market.com/guide/) may lag the spec on field names, enums, or packaging details. **When the two disagree, this document wins.** If you find a contradiction, please open an issue on the [pax-market repo](https://github.com/JELambert/pax-market/issues) and the friendlier guide will be updated to match.
 
@@ -17,6 +17,17 @@ A self-contained guide for creating Praxis PAX (Portable Analytical eXpertise) p
 **No Praxis runtime required.** This guide produces static files (YAML + JSON). The output can be validated offline, then imported into any Praxis instance or published to the [PAX Marketplace](https://pax-market.com).
 
 ---
+
+## What's New in v4
+
+PAX v4 extends v3 with a first-class raw data layer:
+
+- **`provides.datasets[]` on the manifest.** Declare CSV/Parquet/Excel datasets the PAX ships (`bundled: true`) or fetches at install time (`bundled: false`). The praxis installer registers each as a DuckDB-queryable table.
+- **Two new playbook actions.** `register_dataset` resolves a declared dataset into a registered DuckDB table; `derive_observations` runs a single-statement SQL query against it and inserts the result rows into `construct_observations`. The legacy `ingest_dataset` action still works.
+- **`dataset` entity in PAX_FIELDS** with the required/recommended/optional field manifest. New `dataset_format` and `playbook_action` controlled vocabularies.
+- **Validator enforcement** for bundled-file existence, sha256 match, source_url presence on non-bundled datasets, and duplicate `dataset_id` detection (issue #106).
+
+`schema_version` is the version of the spec the pack is built against, not a feature flag. Every newly authored pack should declare `schema_version: "4.0"` even if it doesn't use the new dataset block — the block is optional.
 
 ## What's New in v3
 
@@ -112,7 +123,7 @@ description: >
   First large-N quantitative study of domestic drivers of transnational
   repression. Tests the hypothesis that authoritarian crackdowns at home
   increase subsequent likelihood of repressing citizens abroad.
-schema_version: "3.0"
+schema_version: "4.0"
 pax_type: paper          # paper | topic | field | enterprise | engine
 author: "Dukalskis, Alexander; Furstenberg, Saipira; Hellmeier, Sebastian; Scales, Redmond"
 created: "2024-01-15"
@@ -483,7 +494,7 @@ PAX v4 introduces a first-class raw data layer. Use it whenever your PAX wants t
 ### Manifest block
 
 ```yaml
-schema_version: "4.0"               # bump from "3.0" when you add datasets
+schema_version: "4.0"               # current spec version
 provides:
   datasets:
     - dataset_id: psed_1990_2012
@@ -712,7 +723,7 @@ Before submitting your PAX, verify:
 - [ ] `name` is kebab-case (e.g. `my-research-topic`)
 - [ ] `version` is semver (e.g. `1.0.0`)
 - [ ] `description` is 1-3 sentences
-- [ ] `schema_version` is `"3.0"` (or `"2.0"` for legacy packages without canonical backbone)
+- [ ] `schema_version` is `"4.0"` for all newly authored packs. Legacy values (`"1.0"`, `"2.0"`, `"3.0"`) remain valid for archival packs but new submissions should declare `"4.0"`.
 - [ ] `pax_type` is one of: paper, topic, field, enterprise, engine
 - [ ] `provides` lists all entity IDs from knowledge files
 
@@ -926,7 +937,7 @@ The archive flattens the PAX directory at its root and adds one file — `manife
 {
   "pax_name": "dukalskis-et-al-2024-transnational-repression",
   "version": "1.0.0",
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "exported_at": "2026-04-29T12:34:56Z",
   "exported_by": "praxis",
   "files": {
@@ -1001,7 +1012,7 @@ def build_pax(pack_dir: Path, *, also_targz: bool = False, exported_by: str = "s
     manifest = {
         "pax_name": name,
         "version": field("version", "0.0.0"),
-        "schema_version": field("schema_version", "3.0"),
+        "schema_version": field("schema_version", "4.0"),
         "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "exported_by": exported_by,
         "files": files,
@@ -1052,7 +1063,7 @@ for p in sorted(Path('.').rglob('*')):
     files[arc] = {"sha256": hashlib.sha256(p.read_bytes()).hexdigest(), "size": p.stat().st_size}
 manifest = {
     "pax_name": Path('.').resolve().name,
-    "schema_version": "3.0",
+    "schema_version": "4.0",
     "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     "exported_by": "submitter",
     "files": files,

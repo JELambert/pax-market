@@ -60,7 +60,7 @@ def build_pax(pack_dir: Path, *, also_targz: bool = False, exported_by: str = "s
     manifest = {
         "pax_name": name,
         "version": _read_yaml_field(text, "version", "0.0.0"),
-        "schema_version": _read_yaml_field(text, "schema_version", "3.0"),
+        "schema_version": _read_yaml_field(text, "schema_version", "4.0"),
         "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "exported_by": exported_by,
         "files": files,
