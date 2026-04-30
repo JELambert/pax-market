@@ -59,7 +59,7 @@ PRs touching `pax/**` are validated automatically:
 
 - Required manifest fields: `name`, `version`, `description`, `pax_type`, `schema_version`
 - Valid `pax_type`: paper, topic, field, engine, enterprise
-- Valid `schema_version`: 1.0, 2.0, 3.0
+- Valid `schema_version`: 1.0, 2.0, 3.0, 4.0
 - All JSON files must be valid
 - At least one construct recommended
 

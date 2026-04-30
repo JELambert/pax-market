@@ -337,7 +337,7 @@ def process_pack(pack_dir: Path) -> dict | None:
     manifest_data = {
         "pax_name": name,
         "version": version,
-        "schema_version": manifest.get("schema_version", "1.0"),
+        "schema_version": manifest.get("schema_version", "4.0"),
         "exported_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "exported_by": "pax-market generate-registry.py",
         "files": file_entries,
@@ -393,7 +393,7 @@ def process_pack(pack_dir: Path) -> dict | None:
         "canonical_constructs": canonical_constructs,
         "construct_relations": construct_relations,
         "quality": quality,
-        "pax_schema_version": manifest.get("schema_version", "1.0"),
+        "pax_schema_version": manifest.get("schema_version", "4.0"),
         "download_url": f"{MARKETPLACE_BASE_URL}/pax/{name}.zip",
         "download_sha256": sha256,
         "download_size": archive_size,

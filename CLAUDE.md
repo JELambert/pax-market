@@ -78,7 +78,7 @@ dist/                        .gitignored — build output
 ## Pack Schema
 - Required manifest fields: `name`, `version`, `description`, `pax_type`, `schema_version`
 - Valid `pax_type`: paper, topic, field, engine, enterprise
-- Valid `schema_version`: "1.0", "2.0", "3.0"
+- Valid `schema_version`: "1.0", "2.0", "3.0", "4.0"
 - Knowledge files: `constructs.json`, `findings.json`, `sources.json`, `domain.json`
 - Optional: `propositions.json`, `construct_relationships.json`, `playbooks/*.yaml`
 - v3 additions: `canonical_constructs.json`, `construct_relations.json` (canonical-construct backbone); `unit_of_analysis`, `scope_conditions`, `sample_n` on findings; `canonical_id`, `operationalization_id`, `coding_rule` on constructs
