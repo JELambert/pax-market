@@ -7,7 +7,7 @@ description: >
   and mixed classes. Demonstrates that domain-specific fine-tuning yields the
   best classification performance and that BeigeSage sentiment correlates with
   macroeconomic indicators (GDP growth, unemployment, CPI).
-schema_version: "3.0"
+schema_version: '4.0'
 pax_type: paper
 author: "Smith, Charlie; Lambert, Joshua"
 published_by: "JELambert"

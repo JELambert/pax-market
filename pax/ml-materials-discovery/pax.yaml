@@ -29,5 +29,5 @@ provides:
   - riebesell_2025_matbench_discovery
   - dunn_2020_matbench
   - deng_2023_chgnet
-schema_version: '1.0'
+schema_version: '4.0'
 version: 1.0.2

@@ -41,5 +41,5 @@ provides:
   - rosekind_et_al_1995
   - hafner_et_al_2017
   - barnes_wagner_2009
-schema_version: '1.0'
+schema_version: '4.0'
 version: 1.0.1

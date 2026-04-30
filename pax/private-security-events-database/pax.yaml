@@ -1,7 +1,7 @@
 name: private-security-events-database
 version: "1.0.0"
 pax_type: paper
-schema_version: "3.0"
+schema_version: '4.0'
 description: >-
   Avant & Neu (2019) "The Private Security Events Database" — introduces
   PSED, the first event-based dataset on private military and security

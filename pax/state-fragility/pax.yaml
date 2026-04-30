@@ -34,7 +34,7 @@ provides:
   - goldstone_et_al_2010
   - call_2011
   - urdal_2006
-schema_version: '1.0'
+schema_version: '4.0'
 tags:
 - topic
 - state-fragility

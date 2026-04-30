@@ -122,5 +122,5 @@ provides:
   - mcgowan_2003
   - boix_svolik_2013
   - bell_sudduth_2015
-schema_version: '1.0'
+schema_version: '4.0'
 version: 2.0.0

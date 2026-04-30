@@ -254,5 +254,5 @@ provides:
   - abdelsamie_2023_bifeo3_pathways
   - ouyang_2021_nasicon_stability
   - bartel_2020_halide_double_perovskites
-schema_version: '1.0'
+schema_version: '4.0'
 version: 1.0.12

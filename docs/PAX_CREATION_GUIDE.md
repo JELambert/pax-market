@@ -472,7 +472,7 @@ steps:
 
 If your PAX ships raw underlying data (or fetches it at install time) — not just pre-aggregated construct observations — declare each dataset under `provides.datasets[]` in `pax.yaml`. The praxis installer registers each as a DuckDB-queryable table, and playbooks transform it into `construct_observations` via the `register_dataset` + `derive_observations` action pair. See [Raw Datasets (v4)](#raw-datasets-v4) below for the full spec.
 
-PAXes without raw data should skip this step. v3 PAXes (no datasets block) keep validating unchanged.
+PAXes without raw data should skip this step — the block is optional. The pack still declares `schema_version: "4.0"` because it is built against the v4 spec; the dataset block simply isn't exercised.
 
 ---
 
@@ -521,7 +521,7 @@ provides:
 - `dataset_id`, `display_name`, `format`, `unit_of_analysis` are required on every entry.
 - `format` MUST be one of `csv`, `parquet`, `excel`.
 - Duplicate `dataset_id` within a PAX is an error.
-- Declaring `provides.datasets[]` requires `schema_version: "4.0"`. v3 PAXes without a datasets block keep validating unchanged.
+- Declaring `provides.datasets[]` requires `schema_version: "4.0"` or higher.
 - A `unit_of_analysis` outside the canonical enum is a **warning**, not an error — engines may legitimately introduce new units faster than the spec.
 
 ### Playbook integration
@@ -1301,7 +1301,7 @@ This document is the canonical PAX specification. All schema changes are recorde
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 4.0 | 2026-04-29 | Raw data layer: `provides.datasets[]` block on the manifest, `dataset` entity in PAX_FIELDS, `dataset_format` and `playbook_action` controlled vocabularies. Two new playbook actions (`register_dataset`, `derive_observations`) documented in `docs/PLAYBOOK_FORMAT.md`. Validator (`scripts/validate_pax.py`) enforces dataset registration when `provides.datasets[]` is non-empty (issue #106). v3 PAXes without a datasets block continue to validate unchanged. |
+| 4.0 | 2026-04-29 | Raw data layer: `provides.datasets[]` block on the manifest, `dataset` entity in PAX_FIELDS, `dataset_format` and `playbook_action` controlled vocabularies. Two new playbook actions (`register_dataset`, `derive_observations`) documented in `docs/PLAYBOOK_FORMAT.md`. Validator (`scripts/validate_pax.py`) enforces dataset registration when `provides.datasets[]` is non-empty (issue #106). v4 is backwards-compatible: the new dataset block is optional, so packs that don't ship raw data simply omit it and still declare `schema_version: "4.0"` against the current spec. All in-repo packs were bumped to 4.0 on 2026-04-30. |
 | 3.0 | 2026-04-28 | Canonical-construct backbone (`canonical_constructs.json`, `construct_relations.json`). Operationalization split — `constructs.json` entries gain `canonical_id`, `operationalization_id`, `operationalization_status`, `coding_rule`. Backbone `relation_type` controlled vocabulary (`subsumes`, `refines`, `disjoint_from`, `equivalent_to`). `unit_of_analysis` on findings (engine pooling/dedup). Minting governance — provisional → canonical promotion logged in `governance_log` with justification. `find_pathways` and `level_bridge` honor `disjoint_from` to block cross-cluster traversal. Sprints 7–9. |
 | 2.0 | 2026-04-07 | Structured statistics on findings (effect_size_value, SE, p, N, CI, model_spec, covariates). Enriched source metadata (methodology, study_design, sample_size, limitations, replication). Construct provenance (formal/operational definitions, measurement_level, provenance chain). Construct relationships (causal/correlational with mechanism). Engine documentation (parameters, assumptions, diagnostics, interpretation). Playbook enhancements (data quality gates, conditional branching, parameter variants). Quality scoring adds statistical_richness, relationship_coverage, source_depth sub-scores. See ADR-007. |
 | 1.0 | 2026-04-05 | Initial PAX format: manifest, domain, constructs (with aliases/measures), sources, findings, propositions, playbooks, engine registry, data sources. |
