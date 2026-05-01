@@ -1119,6 +1119,22 @@ The PAX is the unit of portable expertise. Build it once, use it everywhere.
 
 ---
 
+## Migrating v3 → v4
+
+**When to migrate.** Your v3 PAX has a playbook that references external data preprocessing — a `data_recipe.md`, a README pointing at a Dataverse file, instructions like "first run this Python snippet to clean the CSV". v3 had no first-class way to express that step; v4 does, via `provides.datasets[]` plus the `register_dataset` and `derive_observations` playbook actions. If your PAX is purely model/finding/proposition with no external data dependency, you don't need to migrate anything — just bump `built_against_schema` to `4.0` whenever convenient.
+
+**What to do.**
+
+1. **Declare the dataset on the manifest.** Add a `provides.datasets[]` entry to `pax.yaml` with `dataset_id`, `display_name`, `format` (csv|parquet|excel), `unit_of_analysis`, and either `bundled: true` (with the file at `datasets/<dataset_id>.parquet` and a `sha256:`) or `bundled: false` plus a canonical `source_url`. The validator enforces `built_against_schema: "4.0"` whenever this block is present.
+2. **Add a `prepare_<datasetname>` playbook.** One `register_dataset` step that points at the same `dataset_id` and source, then one `derive_observations` step per construct the dataset feeds. Each derive step's SQL must select `construct_id`, `entity_id`, `time_value`, `value_numeric`, and `unit_of_analysis` (matching your construct's canonical unit) from `dataset`.
+3. **Wire existing playbooks to depend on prepare.** Add `depends_on: [prepare_<datasetname>]` to the first step of any analysis playbook that consumes the derived observations, and list the new playbook under `provides.playbooks` so the registry surfaces it.
+4. **Delete the freestanding recipe.** `data_recipe.md` and equivalent README scaffolding are obsolete once the SQL lives in a playbook — markdown isn't part of the v4 archive integrity envelope anyway, so leaving it lying around just invites confusion.
+5. **Bump nothing else.** `built_against_schema` is already `4.0` for everything in this repo; the migration is additive.
+
+**Worked example.** `pax/private-security-events-database/` — see the commit that closed issues #107 / #108 for the conversion shape: manifest gains `provides.datasets[]`, a new `prepare_psed.yaml` does `register_dataset` + four `derive_observations` steps, `quick_start.yaml` drops its old "see data_recipe.md" preamble, and the recipe markdown is deleted.
+
+---
+
 ## Controlled Vocabularies Reference
 
 These are the canonical enum values for all PAX fields. The Praxis codebase parses this section at runtime — changes here propagate automatically to validation, MCP tool schemas, and LLM extraction prompts.

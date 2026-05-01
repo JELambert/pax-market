@@ -1,0 +1,107 @@
+id: prepare_psed
+display_name: "Prepare PSED — fetch + aggregate event-level → country-year"
+description: >
+  Fetches the PSED Dataverse file (DOI 10.7910/DVN/ZKKOK7, file 3365449),
+  registers it as a DuckDB table, and derives the country-year construct
+  observations the quick_start playbook consumes. Source rows: 1,291
+  events, 70 countries, 1990–2012 (498 non-empty country-year cells).
+  File is tab-delimited ASCII (despite the legacy claim of comma-
+  delimited). ISO3 country codes are lowercased on derive to match
+  praxis entity_id casing.
+estimated_runtime: "30 seconds"
+requires_data: false
+
+steps:
+  - step: 1
+    id: register_psed_raw
+    action: register_dataset
+    params:
+      dataset_id: psed_1990_2012
+      source_url: "https://dataverse.harvard.edu/api/access/datafile/3365449"
+      format: csv
+      unit_of_analysis: event
+      delimiter: "\t"
+
+  - step: 2
+    id: derive_event_count
+    action: derive_observations
+    depends_on: [register_psed_raw]
+    params:
+      dataset_id: psed_1990_2012
+      sql: |
+        SELECT
+          'pmsc_event_count' AS construct_id,
+          LOWER(country_code) AS entity_id,
+          year AS time_value,
+          COUNT(*) AS value_numeric,
+          'country-year' AS unit_of_analysis
+        FROM dataset
+        WHERE country_code IS NOT NULL AND year BETWEEN 1990 AND 2012
+        GROUP BY LOWER(country_code), year
+
+  - step: 3
+    id: derive_government_event_count
+    action: derive_observations
+    depends_on: [register_psed_raw]
+    params:
+      dataset_id: psed_1990_2012
+      sql: |
+        SELECT
+          'pmsc_government_event_count' AS construct_id,
+          LOWER(country_code) AS entity_id,
+          year AS time_value,
+          COUNT(*) AS value_numeric,
+          'country-year' AS unit_of_analysis
+        FROM dataset
+        WHERE (
+          COALESCE("Client Types - Local Government", 0)
+          + COALESCE("Client Types - National Government", 0)
+          + COALESCE("Client Types - Foreign Government", 0)
+        ) > 0
+          AND country_code IS NOT NULL
+          AND year BETWEEN 1990 AND 2012
+        GROUP BY LOWER(country_code), year
+
+  - step: 4
+    id: derive_rebel_event_count
+    action: derive_observations
+    depends_on: [register_psed_raw]
+    params:
+      dataset_id: psed_1990_2012
+      sql: |
+        SELECT
+          'pmsc_rebel_event_count' AS construct_id,
+          LOWER(country_code) AS entity_id,
+          year AS time_value,
+          COUNT(*) AS value_numeric,
+          'country-year' AS unit_of_analysis
+        FROM dataset
+        WHERE COALESCE("Client Types - Rebel", 0) > 0
+          AND country_code IS NOT NULL
+          AND year BETWEEN 1990 AND 2012
+        GROUP BY LOWER(country_code), year
+
+  - step: 5
+    id: derive_abuse_allegation
+    action: derive_observations
+    depends_on: [register_psed_raw]
+    params:
+      dataset_id: psed_1990_2012
+      sql: |
+        SELECT
+          'pmsc_abuse_allegation' AS construct_id,
+          LOWER(country_code) AS entity_id,
+          year AS time_value,
+          COUNT(*) AS value_numeric,
+          'country-year' AS unit_of_analysis
+        FROM dataset
+        WHERE (
+          COALESCE("Abuse - Physical", 0)
+          + COALESCE("Abuse - Environmental", 0)
+          + COALESCE("Abuse - Labor", 0)
+          + COALESCE("Abuse - Development", 0)
+          + COALESCE("Abuse - Health", 0)
+        ) > 0
+          AND country_code IS NOT NULL
+          AND year BETWEEN 1990 AND 2012
+        GROUP BY LOWER(country_code), year

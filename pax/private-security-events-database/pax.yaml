@@ -25,8 +25,20 @@ provides:
     - pmsc_abuse_allegation
     - pmsc_competition
     - pmsc_government_event_count
+    - pmsc_rebel_event_count
     - civil_war_duration
     - conflict_episode
+  datasets:
+    - dataset_id: psed_1990_2012
+      display_name: "PSED — Private Security Events Database (1990–2012)"
+      description: >-
+        Event-level coding of private military and security activity in
+        Africa, Latin America, and Southeast Asia, 1990–2012. 1,291 events
+        across 70 countries.
+      source_url: "https://dataverse.harvard.edu/api/access/datafile/3365449"
+      format: csv
+      unit_of_analysis: event
+      bundled: false
   sources:
     - avant_neu_2019
   propositions:
@@ -41,6 +53,7 @@ provides:
     - pmsc_govt_events_shorten_civil_war_30pct
     - pmsc_competition_attenuated_when_events_controlled
   playbooks:
+    - prepare_psed
     - quick_start
 
 tags:

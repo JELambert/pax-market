@@ -100,6 +100,20 @@
     ]
   },
   {
+    "id": "pmsc_rebel_event_count",
+    "display_name": "Rebel-Hired PMSC Event Count",
+    "construct_type": "quantifiable",
+    "definition": "Count of PSED events with a rebel client, aggregated to the country-year (or conflict-episode) level. Mirrors `pmsc_government_event_count` on the rebel side; together the pair operationalizes Avant & Neu's PSED substitution for AR2013's competition variable.",
+    "measurement_level": "ratio",
+    "coding_rule": "Filter pmsc_event_count to events where the `Client Types - Rebel` flag is set, then aggregate. 97 events in PSED 1990–2012.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "avant_neu_2019",
+    "aliases": [
+      {"alias": "PMSC events rebel", "alias_type": "synonym"},
+      {"alias": "Events PMCs (rebel)", "alias_type": "synonym"}
+    ]
+  },
+  {
     "id": "civil_war_duration",
     "display_name": "Civil War Duration",
     "construct_type": "outcome",

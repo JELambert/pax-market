@@ -8,19 +8,12 @@ description: >
   competition with PSED government and rebel event counts (Table 2,
   Model 2). Step 3: Both — show the competition coefficient attenuates
   while event counts remain significant (Table 2, Model 3).
-  Data is not bundled. The PSED CSV must be ingested from Harvard
-  Dataverse (doi:10.7910/DVN/ZKKOK7) and joined to a user-supplied A&R
-  2013 conflict-year panel before this playbook runs.
-  PSED ships event-level (one row per private-security event) but this
-  playbook consumes country-year aggregates. See `data_recipe.md` in
-  this PAX's source directory for the canonical preprocessing pipeline:
-  it covers the latin-1 encoding, the comma-delimited .tab quirk, the
-  uppercase→lowercase ISO3 normalization needed to match praxis's
-  entity_id casing, and the exact aggregation rules for
-  `pmsc_event_count`, `pmsc_government_event_count` (union of three
-  client-type flags), and `pmsc_abuse_allegation`. `pmsc_competition`,
-  `civil_war_duration`, and `conflict_episode` come from the AR2013 /
-  UCDP-PRIO panel side of the join, not from PSED itself.
+  Run the `prepare_psed` playbook first — it fetches the PSED CSV from
+  Harvard Dataverse (doi:10.7910/DVN/ZKKOK7) and derives the
+  country-year construct observations consumed below. The AR2013 /
+  UCDP-PRIO panel (pmsc_competition, civil_war_duration,
+  conflict_episode, plus the standard covariates) is genuinely user-
+  supplied — outside Avant & Neu's scope.
 estimated_runtime: "1 minute"
 requires_data: true
 
