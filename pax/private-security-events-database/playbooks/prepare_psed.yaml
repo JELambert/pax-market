@@ -17,6 +17,7 @@ steps:
     action: register_dataset
     params:
       dataset_id: psed_1990_2012
+      source: "https://dataverse.harvard.edu/api/access/datafile/3365449"
       source_url: "https://dataverse.harvard.edu/api/access/datafile/3365449"
       format: csv
       unit_of_analysis: event
@@ -31,13 +32,13 @@ steps:
       sql: |
         SELECT
           'pmsc_event_count' AS construct_id,
-          LOWER(country_code) AS entity_id,
-          year AS time_value,
+          LOWER("Country Code") AS entity_id,
+          "Year" AS time_value,
           COUNT(*) AS value_numeric,
           'country-year' AS unit_of_analysis
         FROM dataset
-        WHERE country_code IS NOT NULL AND year BETWEEN 1990 AND 2012
-        GROUP BY LOWER(country_code), year
+        WHERE "Country Code" IS NOT NULL AND "Year" BETWEEN 1990 AND 2012
+        GROUP BY LOWER("Country Code"), "Year"
 
   - step: 3
     id: derive_government_event_count
@@ -48,8 +49,8 @@ steps:
       sql: |
         SELECT
           'pmsc_government_event_count' AS construct_id,
-          LOWER(country_code) AS entity_id,
-          year AS time_value,
+          LOWER("Country Code") AS entity_id,
+          "Year" AS time_value,
           COUNT(*) AS value_numeric,
           'country-year' AS unit_of_analysis
         FROM dataset
@@ -58,9 +59,9 @@ steps:
           + COALESCE("Client Types - National Government", 0)
           + COALESCE("Client Types - Foreign Government", 0)
         ) > 0
-          AND country_code IS NOT NULL
-          AND year BETWEEN 1990 AND 2012
-        GROUP BY LOWER(country_code), year
+          AND "Country Code" IS NOT NULL
+          AND "Year" BETWEEN 1990 AND 2012
+        GROUP BY LOWER("Country Code"), "Year"
 
   - step: 4
     id: derive_rebel_event_count
@@ -71,15 +72,15 @@ steps:
       sql: |
         SELECT
           'pmsc_rebel_event_count' AS construct_id,
-          LOWER(country_code) AS entity_id,
-          year AS time_value,
+          LOWER("Country Code") AS entity_id,
+          "Year" AS time_value,
           COUNT(*) AS value_numeric,
           'country-year' AS unit_of_analysis
         FROM dataset
         WHERE COALESCE("Client Types - Rebel", 0) > 0
-          AND country_code IS NOT NULL
-          AND year BETWEEN 1990 AND 2012
-        GROUP BY LOWER(country_code), year
+          AND "Country Code" IS NOT NULL
+          AND "Year" BETWEEN 1990 AND 2012
+        GROUP BY LOWER("Country Code"), "Year"
 
   - step: 5
     id: derive_abuse_allegation
@@ -90,18 +91,18 @@ steps:
       sql: |
         SELECT
           'pmsc_abuse_allegation' AS construct_id,
-          LOWER(country_code) AS entity_id,
-          year AS time_value,
+          LOWER("Country Code") AS entity_id,
+          "Year" AS time_value,
           COUNT(*) AS value_numeric,
           'country-year' AS unit_of_analysis
         FROM dataset
         WHERE (
-          COALESCE("Abuse - Physical", 0)
-          + COALESCE("Abuse - Environmental", 0)
-          + COALESCE("Abuse - Labor", 0)
-          + COALESCE("Abuse - Development", 0)
-          + COALESCE("Abuse - Health", 0)
+          COALESCE("Allegations Of Abuse - Physical", 0)
+          + COALESCE("Allegations Of Abuse - Environmental", 0)
+          + COALESCE("Allegations Of Abuse - Labor", 0)
+          + COALESCE("Allegations Of Abuse - Development", 0)
+          + COALESCE("Allegations Of Abuse - Health", 0)
         ) > 0
-          AND country_code IS NOT NULL
-          AND year BETWEEN 1990 AND 2012
-        GROUP BY LOWER(country_code), year
+          AND "Country Code" IS NOT NULL
+          AND "Year" BETWEEN 1990 AND 2012
+        GROUP BY LOWER("Country Code"), "Year"

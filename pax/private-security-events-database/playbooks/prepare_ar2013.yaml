@@ -1,0 +1,406 @@
+id: prepare_ar2013
+display_name: "Prepare AR2013 — derive conflict-episode-year observations from the AR2013 COW panel"
+description: >
+  Derives conflict-episode-level construct observations from the
+  Akcinaroglu & Radziszewski (2013) COW conflict-year panel. These
+  observations feed the quick_start Cox-PH replication of Avant & Neu's
+  Table 2 Models 1–3 (pmsc_competition, civil_war_duration,
+  conflict_terminated, the 9 control variables, and the cross-PAX-joined
+  pmsc_government_event_count and pmsc_rebel_event_count).
+
+  CITATION: Akcinaroglu, Seden, and Elizabeth Radziszewski. 2013. "Private
+  Military Companies, Opportunities, and Termination of Civil Wars in Africa."
+  Journal of Conflict Resolution 57(5): 795-821.
+  DOI: 10.1177/0022002712449325
+
+  ============================================================
+  PREREQUISITE — REGISTER THE AR2013 DATASET MANUALLY FIRST
+  ============================================================
+  This playbook does NOT include a register_dataset step because the
+  AR2013 supplement is hosted on Sage Journals behind a Cloudflare bot
+  challenge that no automated fetch can clear, and the file cannot be
+  redistributed inside this PAX. The dataset must be registered by a
+  human-in-the-loop process before this playbook is run.
+
+  Steps for the future replicator:
+
+    1. Download the supplement zip from Sage in a browser (Cloudflare
+       requires a real browser session):
+         https://journals.sagepub.com/doi/suppl/10.1177/0022002712449325/suppl_file/10_1177_0022002712449325.zip
+
+    2. Unzip and locate `ar2013_cow_conflict_year.csv` (the COW
+       Correlates of War conflict-year panel used in Avant & Neu's Table 2
+       Models 1–3). Note: the ACD-panel file in the supplement is for the
+       original AR2013 Models 3–4 and is NOT used in this replication.
+
+    3. Register the CSV with praxis using the absolute path on your
+       machine — example via the praxis MCP tool:
+         praxis_register_dataset(
+           pax_name="private-security-events-database",
+           dataset_id="ar2013_cow_conflict_year",
+           source="/absolute/path/to/ar2013_cow_conflict_year.csv",
+           format="csv",
+           unit_of_analysis="conflict-episode-year",
+         )
+       Or via Python: import praxis and call the equivalent function.
+
+    4. Run this playbook. All derive steps target the
+       `ar2013_cow_conflict_year` dataset registered in step 3.
+
+  When praxis ships per-playbook `inputs:` (praxis#399) and tilde
+  expansion (praxis#404), this playbook can include a parameterized
+  register_dataset step and fold the manual step back into the playbook.
+  Until then, the manual register is the contract.
+  ============================================================
+
+  Unit of analysis: conflict-episode-year (cowcode × sidea × sideb × onset year).
+  A stable conflict_id is derived as:
+    LOWER(CAST(cowcode AS VARCHAR)) || '_' || REPLACE(sidea,' ','_') || '_'
+    || REPLACE(sideb,' ','_') || '_' || CAST(CAST(start AS INTEGER) AS VARCHAR)
+
+  Cross-PAX dependency: the last two steps
+  (derive_pmsc_government_event_count_by_episode and
+  derive_pmsc_rebel_event_count_by_episode) join AR2013 conflict-episodes
+  to PSED country-year aggregates via the infrastructure-country-codes-crosswalk
+  PAX's COW→ISO3 mapping. Install that PAX first; otherwise the cross-PAX
+  view names will not resolve.
+
+estimated_runtime: "15 seconds"
+requires_data: true
+
+steps:
+
+  - step: 1
+    id: derive_pmsc_competition
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'pmsc_competition' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          COALESCE(numgov, 0) AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+
+  - step: 2
+    id: derive_civil_war_duration
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'civil_war_duration' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          COALESCE(duration, 0) AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+
+  - step: 3
+    id: derive_conflict_episode
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT  -- conflict_episode: nominal concept; value_numeric=1 means episode exists this year; entity_id encodes conflict metadata
+          'conflict_episode' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          1 AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+
+  - step: 4
+    id: derive_gdp_per_capita
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'gdp_per_capita' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          lngdp AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND lngdp IS NOT NULL
+
+  - step: 5
+    id: derive_ethnic_fractionalization
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'ethnic_fractionalization' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          lnethfrac AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND lnethfrac IS NOT NULL
+
+  - step: 6
+    id: derive_ethnic_wars
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'ethnic_wars' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          ethnicconflict AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND ethnicconflict IS NOT NULL
+
+  - step: 7
+    id: derive_conflict_intensity
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'conflict_intensity' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          intensity AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND intensity IS NOT NULL
+
+  - step: 8
+    id: derive_mountainous_terrain
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'mountainous_terrain' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          lnmntest AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND lnmntest IS NOT NULL
+
+  - step: 9
+    id: derive_polity
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'polity' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          polity AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND polity IS NOT NULL
+
+  - step: 10
+    id: derive_proportion_of_forces
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'proportion_of_forces' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          lnprop1 AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND lnprop1 IS NOT NULL
+
+  - step: 11
+    id: derive_support_rebels
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'support_rebels' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          rsup AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND rsup IS NOT NULL
+
+  - step: 12
+    id: derive_support_government
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'support_government' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          govsup AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND govsup IS NOT NULL
+
+  - step: 13
+    id: derive_conflict_terminated
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        SELECT
+          'conflict_terminated' AS construct_id,
+          LOWER(CAST(cowcode AS VARCHAR)) || '_'
+            || REPLACE(sidea, ' ', '_') || '_'
+            || REPLACE(sideb, ' ', '_') || '_'
+            || CAST(CAST(start AS INTEGER) AS VARCHAR) AS entity_id,
+          year AS time_value,
+          terminate AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset
+        WHERE cowcode IS NOT NULL
+          AND year IS NOT NULL
+          AND terminate IS NOT NULL
+
+  - step: 14
+    id: derive_pmsc_government_event_count_by_episode
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        WITH cow_to_iso AS (
+          SELECT ccode_cow, MIN(iso3) AS iso3
+          FROM pax_infrastructure_country_codes_crosswalk__country_codes_crosswalk
+          WHERE iso3 IS NOT NULL
+          GROUP BY ccode_cow
+        ),
+        psed_gov_year AS (
+          SELECT
+            LOWER("Country Code") AS iso3_lower,
+            "Year" AS year,
+            COUNT(*) AS gov_event_count
+          FROM pax_private_security_events_database__psed_1990_2012
+          WHERE (
+            COALESCE("Client Types - Local Government", 0)
+            + COALESCE("Client Types - National Government", 0)
+            + COALESCE("Client Types - Foreign Government", 0)
+          ) > 0
+            AND "Country Code" IS NOT NULL
+            AND "Year" BETWEEN 1990 AND 2012
+          GROUP BY LOWER("Country Code"), "Year"
+        )
+        SELECT
+          'pmsc_government_event_count' AS construct_id,
+          LOWER(CAST(a.cowcode AS VARCHAR)) || '_'
+            || REPLACE(a.sidea, ' ', '_') || '_'
+            || REPLACE(a.sideb, ' ', '_') || '_'
+            || CAST(CAST(a.start AS INTEGER) AS VARCHAR) AS entity_id,
+          a.year AS time_value,
+          COALESCE(p.gov_event_count, 0) AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset a
+        LEFT JOIN cow_to_iso c ON a.cowcode = c.ccode_cow
+        LEFT JOIN psed_gov_year p ON LOWER(c.iso3) = p.iso3_lower AND a.year = p.year
+        WHERE a.cowcode IS NOT NULL AND a.year IS NOT NULL
+
+  - step: 15
+    id: derive_pmsc_rebel_event_count_by_episode
+    action: derive_observations
+    params:
+      dataset_id: ar2013_cow_conflict_year
+      sql: |
+        WITH cow_to_iso AS (
+          SELECT ccode_cow, MIN(iso3) AS iso3
+          FROM pax_infrastructure_country_codes_crosswalk__country_codes_crosswalk
+          WHERE iso3 IS NOT NULL
+          GROUP BY ccode_cow
+        ),
+        psed_rebel_year AS (
+          SELECT
+            LOWER("Country Code") AS iso3_lower,
+            "Year" AS year,
+            COUNT(*) AS rebel_event_count
+          FROM pax_private_security_events_database__psed_1990_2012
+          WHERE COALESCE("Client Types - Rebel", 0) > 0
+            AND "Country Code" IS NOT NULL
+            AND "Year" BETWEEN 1990 AND 2012
+          GROUP BY LOWER("Country Code"), "Year"
+        )
+        SELECT
+          'pmsc_rebel_event_count' AS construct_id,
+          LOWER(CAST(a.cowcode AS VARCHAR)) || '_'
+            || REPLACE(a.sidea, ' ', '_') || '_'
+            || REPLACE(a.sideb, ' ', '_') || '_'
+            || CAST(CAST(a.start AS INTEGER) AS VARCHAR) AS entity_id,
+          a.year AS time_value,
+          COALESCE(p.rebel_event_count, 0) AS value_numeric,
+          'conflict-episode-year' AS unit_of_analysis
+        FROM dataset a
+        LEFT JOIN cow_to_iso c ON a.cowcode = c.ccode_cow
+        LEFT JOIN psed_rebel_year p ON LOWER(c.iso3) = p.iso3_lower AND a.year = p.year
+        WHERE a.cowcode IS NOT NULL AND a.year IS NOT NULL

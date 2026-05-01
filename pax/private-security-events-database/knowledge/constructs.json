@@ -140,5 +140,155 @@
       {"alias": "civil conflict", "alias_type": "synonym"},
       {"alias": "intra-state war", "alias_type": "synonym"}
     ]
+  },
+  {
+    "id": "gdp_per_capita",
+    "display_name": "GDP per Capita (logged)",
+    "construct_type": "quantifiable",
+    "definition": "Natural log of GDP per capita for the country in a given conflict-year, used as a control for economic development in the AR2013 Cox proportional-hazards model of civil war duration. Wealthier states are expected to have greater capacity to terminate conflicts quickly.",
+    "measurement_level": "ratio",
+    "coding_rule": "Derived from the `lngdp` column in the AR2013 COW conflict-year panel (already logged). Source column: lngdp.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "GDP/cap", "alias_type": "abbreviation"},
+      {"alias": "log GDP", "alias_type": "synonym"},
+      {"alias": "lngdp", "alias_type": "operationalization"}
+    ]
+  },
+  {
+    "id": "ethnic_fractionalization",
+    "display_name": "Ethnic Fractionalization (logged)",
+    "construct_type": "quantifiable",
+    "definition": "Natural log of the ethno-linguistic fractionalization (ELF) index, measuring the probability that two randomly selected individuals in a country belong to different ethnic groups. Higher values indicate greater ethnic diversity; included as a control in the AR2013 duration model.",
+    "measurement_level": "ratio",
+    "coding_rule": "Derived from the `lnethfrac` column in the AR2013 COW conflict-year panel (already logged ELF). Source column: lnethfrac.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "ELF index", "alias_type": "abbreviation"},
+      {"alias": "ethnic diversity", "alias_type": "synonym"},
+      {"alias": "lnethfrac", "alias_type": "operationalization"}
+    ]
+  },
+  {
+    "id": "ethnic_wars",
+    "display_name": "Ethnic War Indicator",
+    "construct_type": "quantifiable",
+    "definition": "Binary indicator equal to 1 if the civil conflict has a predominantly ethnic character, 0 otherwise. Included in the AR2013 model as a control because ethnic conflicts may follow different termination dynamics than non-ethnic ones.",
+    "measurement_level": "nominal",
+    "coding_rule": "Derived directly from the `ethnicconflict` column in the AR2013 COW conflict-year panel (0/1 binary). Source column: ethnicconflict.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "ethnic conflict indicator", "alias_type": "synonym"},
+      {"alias": "ethnicconflict", "alias_type": "operationalization"},
+      {"alias": "ethnic war dummy", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "conflict_intensity",
+    "display_name": "Conflict Intensity",
+    "construct_type": "quantifiable",
+    "definition": "Ordinal scale of battle-death intensity for a conflict-year, distinguishing minor conflicts from wars based on annual fatality thresholds. Used in AR2013 as a control for the severity of fighting, which may independently predict war termination.",
+    "measurement_level": "ratio",
+    "coding_rule": "Derived directly from the `intensity` column in the AR2013 COW conflict-year panel. Source column: intensity.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "battle intensity", "alias_type": "synonym"},
+      {"alias": "conflict severity", "alias_type": "synonym"},
+      {"alias": "intensity", "alias_type": "operationalization"}
+    ]
+  },
+  {
+    "id": "mountainous_terrain",
+    "display_name": "Mountainous Terrain (logged)",
+    "construct_type": "quantifiable",
+    "definition": "Natural log of the percentage of a country's territory classified as mountainous, used as a control for geographic factors that facilitate rebel sanctuary and prolong civil wars. Higher values indicate more rugged terrain.",
+    "measurement_level": "ratio",
+    "coding_rule": "Derived from the `lnmntest` column in the AR2013 COW conflict-year panel (already logged percent mountainous). Source column: lnmntest.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "terrain ruggedness", "alias_type": "synonym"},
+      {"alias": "log percent mountainous", "alias_type": "synonym"},
+      {"alias": "lnmntest", "alias_type": "operationalization"}
+    ]
+  },
+  {
+    "id": "polity",
+    "display_name": "Polity Score",
+    "construct_type": "quantifiable",
+    "definition": "Combined Polity IV score ranging from -10 (fully autocratic) to +10 (fully democratic), included in AR2013 as a control for regime type, which may affect the government's capacity and willingness to end conflicts through negotiation or force.",
+    "measurement_level": "interval",
+    "coding_rule": "Derived directly from the `polity` column in the AR2013 COW conflict-year panel. Source column: polity.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "Polity IV score", "alias_type": "synonym"},
+      {"alias": "democracy score", "alias_type": "synonym"},
+      {"alias": "regime score", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "proportion_of_forces",
+    "display_name": "Proportion of Forces (logged)",
+    "construct_type": "quantifiable",
+    "definition": "Natural log of the ratio of government military personnel to rebel force size, measuring the balance of military capability between sides. AR2013 includes this as a control because lopsided force ratios may accelerate conflict termination.",
+    "measurement_level": "ratio",
+    "coding_rule": "Derived from the `lnprop1` column in the AR2013 COW conflict-year panel (already logged proportion). Source column: lnprop1.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "force ratio", "alias_type": "synonym"},
+      {"alias": "military balance", "alias_type": "synonym"},
+      {"alias": "lnprop1", "alias_type": "operationalization"}
+    ]
+  },
+  {
+    "id": "support_rebels",
+    "display_name": "External Support for Rebels",
+    "construct_type": "quantifiable",
+    "definition": "Binary indicator equal to 1 if rebels received external state support during the conflict-year, 0 otherwise. External support can prolong conflicts by replenishing rebel resources; AR2013 includes this as a control in the duration model.",
+    "measurement_level": "nominal",
+    "coding_rule": "Derived directly from the `rsup` column in the AR2013 COW conflict-year panel (0/1 binary). Source column: rsup.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "rebel external support", "alias_type": "synonym"},
+      {"alias": "rsup", "alias_type": "operationalization"},
+      {"alias": "third-party rebel support", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "support_government",
+    "display_name": "External Support for Government",
+    "construct_type": "quantifiable",
+    "definition": "Binary indicator equal to 1 if the government received external state support during the conflict-year, 0 otherwise. Government-side external support may strengthen counterinsurgency capacity and hasten war termination; included as a control in AR2013.",
+    "measurement_level": "nominal",
+    "coding_rule": "Derived directly from the `govsup` column in the AR2013 COW conflict-year panel (0/1 binary). Source column: govsup.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "government external support", "alias_type": "synonym"},
+      {"alias": "govsup", "alias_type": "operationalization"},
+      {"alias": "third-party government support", "alias_type": "synonym"}
+    ]
+  },
+  {
+    "id": "conflict_terminated",
+    "display_name": "Conflict Terminated (Failure Event)",
+    "construct_type": "outcome",
+    "definition": "Binary failure-event indicator for survival analysis: 1 in the conflict-year a civil war ends (peace, military victory, or low-activity threshold crossing), 0 otherwise. The dependent failure variable in the Cox proportional-hazards model of civil war duration.",
+    "measurement_level": "nominal",
+    "coding_rule": "Derived directly from the `terminate` column in the AR2013 COW conflict-year panel (0/1 binary). Source column: terminate.",
+    "domain_ids": ["private_security_and_conflict"],
+    "source_id": "akcinaroglu_radziszewski_2013",
+    "aliases": [
+      {"alias": "conflict end", "alias_type": "synonym"},
+      {"alias": "war termination event", "alias_type": "synonym"},
+      {"alias": "terminate", "alias_type": "operationalization"}
+    ]
   }
 ]

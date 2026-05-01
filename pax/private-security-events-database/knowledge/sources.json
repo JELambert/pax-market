@@ -23,4 +23,27 @@
     "replication_status": "Authors replicate Akcinaroglu & Radziszewski (2013) using PSED event counts in place of A&R's PMSC-count competition variable, on African civil wars 1990–2008 with Cox proportional-hazards models. Replication confirms A&R's correlation between PMSC presence and shorter wars but rejects A&R's competition mechanism: when PSED government-event counts and A&R competition are both included, competition loses significance.",
     "data_availability": "PSED data publicly available on Harvard Dataverse at doi:10.7910/DVN/ZKKOK7 (file: PSED 1990-2012 Feb 2019.csv). Data manager visualization at https://psed.siecenter.du.edu (institutional)."
   }
+  ,
+  {
+    "id": "akcinaroglu_radziszewski_2013",
+    "source_type": "academic_paper",
+    "title": "Private Military Companies, Opportunities, and Termination of Civil Wars in Africa",
+    "authors": "Akcinaroglu, Seden; Radziszewski, Elizabeth",
+    "year": 2013,
+    "doi": "10.1177/0022002712449325",
+    "journal": "Journal of Conflict Resolution",
+    "volume": "57",
+    "issue": "5",
+    "pages": "795-821",
+    "open_access": false,
+    "abstract": "This article examines how private military companies (PMSCs) affect the termination of civil wars in Africa. The authors argue that PMSCs create opportunities for civil war termination by shifting the balance of power toward governments and by creating competitive pressures that incentivize efficiency and speedy goal accomplishment. Using an original dataset of PMSC activity in African civil wars from 1990 to 2008, the authors find that increased PMSC competition—measured as the number of distinct PMSCs hired by a conflict party—is associated with faster civil war termination.",
+    "url": "https://journals.sagepub.com/doi/10.1177/0022002712449325",
+    "data_availability": "Replication data available as a supplementary zip via Sage Journals at https://journals.sagepub.com/doi/suppl/10.1177/0022002712449325/suppl_file/10_1177_0022002712449325.zip. NOTE: This URL is protected by Cloudflare bot challenge and cannot be fetched autonomously; a human must download the zip in a browser, unzip it, and supply the local path ar2013_cow_conflict_year.csv to the prepare_ar2013 playbook. The archive also contains ar2013_acd_conflict_year.csv (ACD-panel version used in the original AR2013 Models 3-4 but NOT in Avant & Neu's replication) and ar2013_codebook.txt.",
+    "methodology_summary": "Cox proportional-hazards survival models on a conflict-episode-year panel. Unit of analysis is the conflict-episode-year (one row per conflict-year per belligerent dyad). The COW panel (ar2013_cow_conflict_year.csv) covers African civil conflicts 1990–2008 drawn from the Correlates of War Intra-State War dataset v4.0. Key independent variable is pmsc_competition (numgov: count of distinct PMSCs hired by the government side per conflict-episode). Outcome is conflict termination (terminate=1). Control variables include ethnic fractionalization (ethfrac), polity score, mountainous terrain (mtnest), conflict intensity, military personnel (milper), rebel size (rebelsize), proportion of forces (prop1), rebel support (rsup), government support (govsup), and GDP per capita (gdp). All continuous controls entered in natural log form. Models estimated with time-varying covariates; standard errors clustered on conflict episode.",
+    "sample_size": null,
+    "population_description": "African civil conflicts 1990–2008 coded from the COW Intra-State War dataset v4.0. One observation per conflict-episode-year per belligerent dyad (government versus named rebel group). The alternate ACD panel covers a broader set of conflicts using UCDP/PRIO Armed Conflict Dataset coding.",
+    "study_design": "observational_longitudinal",
+    "key_limitations": "PMSC data collected by the authors using secondary sources and may undercount covert or sub-contracted PMSC activity. Competition operationalized as a count of distinct PMSCs rather than a market-structure measure, which may conflate scale with competition. Sample restricted to Africa. Avant & Neu (2019) subsequently show the competition coefficient attenuates to non-significance when PSED government-event counts are included as alternative operationalization.",
+    "replication_status": "Replicated by Avant & Neu (2019) in Journal of Conflict Resolution 63(8): 1986-2006. Avant & Neu demonstrate that the AR2013 competition result is sensitive to operationalization: replacing pmsc_competition with PSED government-event counts (pmsc_government_event_count) produces larger and more significant hazard ratios, and in a horse-race model competition loses significance while government-event counts remain significant."
+  }
 ]
