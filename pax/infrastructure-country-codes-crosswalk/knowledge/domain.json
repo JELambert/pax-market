@@ -1,0 +1,13 @@
+[
+  {
+    "id": "country_coding_systems",
+    "display_name": "Country Coding Systems",
+    "description": "Cross-cutting interoperability domain covering standardized numeric and alpha-3 country codes used in political science and international relations datasets. Includes COW (Correlates of War), Polity IV, Gleditsch-Ward (G&W), and ISO 3166-1 alpha-3 coding conventions, along with the spelling-variant crosswalks required to join datasets that encode countries differently.",
+    "level_of_analysis": "macro",
+    "research_questions": [
+      "Which numeric country code corresponds to a given country-name spelling in COW, Polity, or G&W?",
+      "How do COW, Polity, and G&W codes diverge for specific countries or time periods?",
+      "What ISO 3166-1 alpha-3 code corresponds to a given COW numeric code?"
+    ]
+  }
+]

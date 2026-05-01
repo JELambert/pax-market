@@ -1,0 +1,14 @@
+[
+  {
+    "from_id": "concept:country_code",
+    "to_id": "concept:country",
+    "relation_type": "refines",
+    "notes": "A country code is a specific identifier for a country — it refines the broader country concept by adding a formal coding system identity."
+  },
+  {
+    "from_id": "concept:country_code",
+    "to_id": "concept:country_code",
+    "relation_type": "equivalent_to",
+    "notes": "COW, Polity, G&W, and ISO3 codes are all operationalizations of the same canonical country_code concept — they are equivalent at the canonical level even though they diverge in specific assignments for succession states, reunifications, and dependencies."
+  }
+]

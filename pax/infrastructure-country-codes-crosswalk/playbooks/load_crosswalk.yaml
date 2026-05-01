@@ -1,0 +1,92 @@
+id: load_crosswalk
+display_name: "Load Country-Code Crosswalk — register + derive observations"
+description: >
+  Registers the bundled country_codes.csv as a DuckDB-queryable table and
+  derives construct observations for each of the four code types
+  (COW, Polity, G&W, ISO3). Entity IDs are the country_name strings
+  (lowercased for consistency with Praxis conventions). Each row in
+  country_codes.csv becomes one observation per non-null code column.
+  NULL Polity/G&W values (meaning "same as COW") are NOT emitted as
+  separate observations — the COW observation is the fallback.
+estimated_runtime: "5 seconds"
+requires_data: false
+
+steps:
+  - step: 1
+    id: register_crosswalk
+    action: register_dataset
+    params:
+      dataset_id: country_codes_crosswalk
+      format: csv
+      unit_of_analysis: other
+
+  - step: 2
+    id: derive_cow_codes
+    action: derive_observations
+    depends_on: [register_crosswalk]
+    params:
+      dataset_id: country_codes_crosswalk
+      sql: |
+        SELECT
+          'country_code_cow'        AS construct_id,
+          LOWER(country_name)       AS entity_id,
+          NULL                      AS time_value,
+          CAST(ccode_cow AS DOUBLE) AS value_numeric,
+          country_name              AS value_text,
+          'other'                   AS unit_of_analysis
+        FROM dataset
+        WHERE ccode_cow IS NOT NULL
+
+  - step: 3
+    id: derive_polity_codes
+    action: derive_observations
+    depends_on: [register_crosswalk]
+    params:
+      dataset_id: country_codes_crosswalk
+      sql: |
+        SELECT
+          'country_code_polity'           AS construct_id,
+          LOWER(country_name)             AS entity_id,
+          NULL                            AS time_value,
+          CAST(ccode_polity AS DOUBLE)    AS value_numeric,
+          country_name                    AS value_text,
+          'other'                         AS unit_of_analysis
+        FROM dataset
+        WHERE ccode_polity IS NOT NULL
+          AND TRIM(CAST(ccode_polity AS VARCHAR)) <> ''
+
+  - step: 4
+    id: derive_gw_codes
+    action: derive_observations
+    depends_on: [register_crosswalk]
+    params:
+      dataset_id: country_codes_crosswalk
+      sql: |
+        SELECT
+          'country_code_gw'             AS construct_id,
+          LOWER(country_name)           AS entity_id,
+          NULL                          AS time_value,
+          CAST(ccode_gw AS DOUBLE)      AS value_numeric,
+          country_name                  AS value_text,
+          'other'                       AS unit_of_analysis
+        FROM dataset
+        WHERE ccode_gw IS NOT NULL
+          AND TRIM(CAST(ccode_gw AS VARCHAR)) <> ''
+
+  - step: 5
+    id: derive_iso3_codes
+    action: derive_observations
+    depends_on: [register_crosswalk]
+    params:
+      dataset_id: country_codes_crosswalk
+      sql: |
+        SELECT
+          'country_code_iso3'   AS construct_id,
+          LOWER(country_name)   AS entity_id,
+          NULL                  AS time_value,
+          NULL                  AS value_numeric,
+          iso3                  AS value_text,
+          'other'               AS unit_of_analysis
+        FROM dataset
+        WHERE iso3 IS NOT NULL
+          AND TRIM(iso3) <> ''
