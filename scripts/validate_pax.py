@@ -60,7 +60,7 @@ _SPEC = _load_spec()
 # Constants below derive from docs/pax_spec.yaml when present; the literal
 # tuples are kept as defense-in-depth fallbacks. CI's check_spec_consistency.py
 # enforces that these literals agree with the YAML, so drift cannot land.
-VALID_PAX_TYPES = tuple(_SPEC.get("pax_types") or ("paper", "topic", "field", "enterprise", "engine"))
+VALID_PAX_TYPES = tuple(_SPEC.get("pax_types") or ("paper", "topic", "field", "enterprise", "engine", "infrastructure"))
 VALID_SCHEMA_VERSIONS = tuple(_SPEC.get("valid_versions") or ("1.0", "2.0", "3.0", "4.0"))
 DATASET_FORMATS = tuple((_SPEC.get("enums") or {}).get("dataset_format") or ("csv", "parquet", "excel"))
 PLAYBOOK_ACTIONS = tuple((_SPEC.get("enums") or {}).get("playbook_action") or (

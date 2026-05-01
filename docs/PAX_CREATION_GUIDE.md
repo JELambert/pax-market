@@ -64,6 +64,7 @@ A PAX is a portable knowledge package that captures everything needed to underst
 | `field` | Entire research field or comprehensive body of work | 30-100+ constructs, 50-300+ findings, 20-150 sources | Bartel computational materials science (142 papers) |
 | `enterprise` | Business/industry domain | 5-20 constructs, variable findings, internal + external sources | SaaS customer churn prediction |
 | `engine` | Analytical method package (no domain knowledge) | 0-5 constructs, bundled Python engines | Bayesian regression methods |
+| `infrastructure` | Shared interoperability artifact (crosswalks, lookups, normalizers, geographic boundaries, ID resolvers) | 0-5 constructs, 1-3 datasets, no findings | Country-codes crosswalk (COW ↔ ISO3); calendar conversions; currency normalizer |
 
 **Paper PAX** — Start here. Read one paper, extract its contribution. Good for building up a topic incrementally.
 
@@ -72,6 +73,18 @@ A PAX is a portable knowledge package that captures everything needed to underst
 **Field PAX** — Comprehensive coverage of a researcher's body of work or an entire subdiscipline. Usually built by extending a topic PAX repeatedly. May have sub-domains with `parent_domain_id`.
 
 **Enterprise PAX** — Business analytics domain. Uses the same schema but constructs are often KPIs, findings come from internal analyses, and playbooks encode business-relevant workflows.
+
+**Engine PAX** — Method package, no domain knowledge. Ships engines + minimal constructs needed to describe what they consume/produce.
+
+**Infrastructure PAX** — Shared interoperability data that *isn't* research evidence but is required for research PAXes to interoperate. Crosswalks (COW ↔ ISO3 country codes), lookups (ISO 4217 currency codes), normalizers (date format conversions), geographic boundaries, ID resolvers. Distinguishing properties:
+
+- **Not research output.** No findings; constructs describe what the artifact resolves, not empirical claims.
+- **Cross-cutting consumer base.** A single infrastructure PAX is consumed by many research PAXes — putting the artifact inside a research PAX would make every other consumer either depend on the wrong PAX or duplicate the data.
+- **Slower versioning cadence.** Versions bump when underlying real-world entities change (a country splits, a currency is retired), not on research-discovery cadence.
+- **Mandatory edge-case policy.** Infrastructure PAXes must ship a `docs/EDGE_CASES.md` (or equivalent section in the description) documenting contested coding choices: succession states, time-varying codes, multi-mapping cases. Different research consumers may legitimately want different policies; the PAX maintainer's choice must be visible and challengeable.
+- **Discoverability hint.** Use the `infrastructure-` prefix on `name:` (e.g., `infrastructure-country-codes-crosswalk`) so marketplace search can distinguish from research PAXes.
+
+A research PAX declares an infrastructure dependency through its manifest's `dependencies:` block — see [Step 2](#step-2-create-the-manifest-paxyaml). The praxis runtime resolves these at install time via the `installed_pax.depends_on_json` index.
 
 ---
 
@@ -156,6 +169,7 @@ provides:
 - `field` — entire research field
 - `enterprise` — business/industry domain
 - `engine` — analytical method package
+- `infrastructure` — shared crosswalks, lookups, normalizers, ID resolvers (see [PAX Types](#pax-types) for full criteria)
 
 ### `author` semantics
 
@@ -164,12 +178,19 @@ The manifest's `author` field has different meanings depending on `pax_type`. **
 | `pax_type` | What `author` means | Example |
 |---|---|---|
 | `paper` | The author(s) of the paper this PAX represents (carried into manifest as a convenience for display/title derivation; the authoritative copy still lives in `sources.json`). | `"Fearon, James D.; Laitin, David D."` |
-| `topic`, `field`, `enterprise`, `engine` | The pack maintainer or curator — the human or org who assembled the PAX, not the authors of the underlying sources. | `"Praxis Agent"`, `"Bartel Lab"`, `"Anthropic"` |
+| `topic`, `field`, `enterprise`, `engine`, `infrastructure` | The pack maintainer or curator — the human or org who assembled the PAX, not the authors of the underlying sources. | `"Praxis Agent"`, `"Bartel Lab"`, `"Anthropic"` |
 
 For paper PAX, treat the manifest `author` as a denormalized cache of the source authors — it's used for title derivation (`shorten_authors()` in the registry script) and display. Keep it consistent with the corresponding entry in `sources.json`.
 
 **Optional manifest fields:**
 - `published_by` *(string)* — Display name shown as the publisher on [pax-market.com](https://pax-market.com). If unset, the marketplace registry workflow auto-stamps the GitHub username of the PR submitter at submission time. Set this explicitly only if you want a custom value (an organization name, a multi-author credit, or "Praxis Agent" for automated PAX generation). **Do not set it speculatively** — leaving it unset gives the right default for community submissions.
+- `dependencies` *(list)* — Other PAXes this PAX requires at install time. Each entry is `{name: <pax-name>, version: <semver-range>}`. Use this primarily to declare **infrastructure PAX** dependencies (a research PAX that joins on country codes depends on `infrastructure-country-codes-crosswalk`). The praxis runtime resolves the chain at install time and refuses to install if a dependency is missing or version-incompatible. Example:
+  ```yaml
+  dependencies:
+    - {name: infrastructure-country-codes-crosswalk, version: ">=1.2.0"}
+    - {name: infrastructure-iso4217-currency-codes, version: ">=1.0.0"}
+  ```
+  Engines and topic packs may also be listed if a research PAX explicitly relies on their constructs or methods. Do not list a dependency speculatively — declare only what `register_dataset` / `derive_observations` / engine steps actually consume.
 - `provides.datasets[]` *(list, v4+)* — Raw data layer. Each entry declares a CSV/Parquet/Excel dataset the PAX ships (or fetches at install time). The praxis installer registers each as a DuckDB-queryable table; playbooks can then derive `construct_observations` rows from it via `register_dataset` + `derive_observations`. **Spec lives in [Raw Datasets (v4)](#raw-datasets-v4) below — populate this manifest block after Step 9 if your PAX needs it.**
 
 ### Step 3: Define the Domain (`knowledge/domain.json`)
@@ -1104,7 +1125,7 @@ These are the canonical enum values for all PAX fields. The Praxis codebase pars
 
 <!-- PAX_SCHEMA_START — do not remove this marker -->
 
-**pax_type values:** paper, topic, field, enterprise, engine
+**pax_type values:** paper, topic, field, enterprise, engine, infrastructure
 
 **source_type values:** academic_paper, journal_article, book, book_chapter, working_paper, report, dataset, manual, synthetic
 

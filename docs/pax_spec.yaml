@@ -43,13 +43,13 @@ legacy_field_aliases:
     remove_after: "2026-08-01"
     migration: "Rename `schema_version:` to `built_against_schema:` in pax.yaml — same value, clearer name."
 
-pax_types: [paper, topic, field, enterprise, engine]
+pax_types: [paper, topic, field, enterprise, engine, infrastructure]
 
 # Controlled vocabularies — these mirror PAX_CREATION_GUIDE.md's PAX_SCHEMA
 # block exactly. The guide block stays as a human-readable view of these
 # values; CI asserts they agree.
 enums:
-  pax_type: [paper, topic, field, enterprise, engine]
+  pax_type: [paper, topic, field, enterprise, engine, infrastructure]
   source_type: [academic_paper, journal_article, book, book_chapter, working_paper, report, dataset, manual, synthetic]
   construct_type: [quantifiable, concept, process, composite, outcome]
   direction: [positive, negative, "null", conditional, unknown]
