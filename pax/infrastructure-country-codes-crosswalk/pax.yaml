@@ -1,0 +1,62 @@
+name: infrastructure-country-codes-crosswalk
+version: "1.0.0"
+pax_type: infrastructure
+built_against_schema: "4.0"
+author: "Praxis Agent"
+created: "2026-05-01"
+license: CC-BY-4.0
+
+description: >-
+  Country-name spelling crosswalk to COW, Polity, and Gleditsch-Ward numeric
+  country codes, derived from Clayton Thyne's (University of Kentucky)
+  replace_ccode_country.do file. Maps 602 country-name spelling variants
+  (including historical states, dependencies, and aliases) to standardized
+  country codes. Includes best-effort ISO 3166-1 alpha-3 enrichment for
+  countries likely to appear in PSED-era datasets (Africa, Latin America,
+  Southeast Asia, 1990–2012). Critical join layer for combining datasets that
+  use different country-coding conventions.
+
+tags:
+  - country-codes
+  - crosswalk
+  - COW
+  - Polity
+  - Gleditsch-Ward
+  - ISO3166
+  - infrastructure
+  - interoperability
+
+provides:
+  constructs:
+    - country_code_cow
+    - country_code_polity
+    - country_code_gw
+    - country_code_iso3
+    - country_name_variant
+  sources:
+    - thyne_country_code_crosswalk
+  findings:
+    - thyne_crosswalk_coverage
+  datasets:
+    - dataset_id: country_codes_crosswalk
+      display_name: "Thyne Country-Code Crosswalk (COW / Polity / G&W / ISO3)"
+      description: >-
+        602 country-name spelling variants mapped to COW, Polity, and
+        Gleditsch-Ward numeric codes, with best-effort ISO3 enrichment.
+        Source: Clayton Thyne's replace_ccode_country.do (University of
+        Kentucky, last updated 2022-05-25). ISO3 column is best-effort and
+        NOT authoritative — see source description.
+      source_url: "https://www.uky.edu/~clthyn2/replace_ccode_country.do"
+      format: csv
+      unit_of_analysis: other
+      bundled: true
+      parquet_relpath: data/country_codes.csv
+      sha256: "9799fb034dd7ebb9e95168dcff509c5230c265ee50d46d7707452dbb7022b36e"
+      row_count: 602
+      column_count: 5
+      license: CC-BY-4.0
+  playbooks:
+    - load_crosswalk
+  engines: []
+
+dependencies: []

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "thyne_crosswalk_coverage",
+    "source_id": "thyne_country_code_crosswalk",
+    "domain_id": "country_coding_systems",
+    "finding_text": "The Thyne country-code crosswalk maps 602 country-name spelling variants to COW numeric codes, covering approximately 200 sovereign states plus dependencies. Among these, 9 entries carry Polity code overrides (where Polity diverges from COW by country name), and 4 G&W code overrides are year-conditional (not country-name-conditional). Best-effort ISO3 enrichment covers 490 of 602 rows (81.4%); the remaining 18.6% are historical states, dependencies (ccode=-999), or entities outside the static lookup table. The crosswalk has been updated incrementally since at least 2012 by contributions from ~10 political science research groups.",
+    "construct_ids": [
+      "country_name_variant",
+      "country_code_cow",
+      "country_code_polity",
+      "country_code_gw",
+      "country_code_iso3"
+    ],
+    "direction": "positive",
+    "confidence": "foundational",
+    "finding_type": "methodological",
+    "evidence_type": "qualitative",
+    "state": "provisional",
+    "unit_of_analysis": "other",
+    "scope_conditions": "All countries in COW state system membership list, post-1816 to present; non-state entities and dependencies coded as -999. ISO3 enrichment most reliable for post-1945 sovereign states."
+  }
+]

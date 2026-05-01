@@ -1,0 +1,95 @@
+[
+  {
+    "id": "country_code_cow",
+    "display_name": "COW Country Code",
+    "construct_type": "quantifiable",
+    "definition": "Numeric country code from the Correlates of War (COW) Project, version 4.1. Identifies a sovereign state or internationally-recognized political entity with a unique integer. Non-state entities and dependencies carry the sentinel value -999.",
+    "domain_ids": ["country_coding_systems"],
+    "source_id": "thyne_country_code_crosswalk",
+    "formal_definition": "ccode ∈ ℤ, range 1–999; -999 for non-state / dependency entries as per COW conventions.",
+    "operational_definition": "Numeric code assigned by the Correlates of War State System Membership list. Retrieved via Thyne's replace_ccode_country.do crosswalk.",
+    "measurement_level": "nominal",
+    "canonical_id": "concept:country_code",
+    "coding_rule": "Match country_name string (case-sensitive) to lookup; return ccode_cow integer. -999 entries are dependencies/non-states and should be filtered for sovereign-state analyses.",
+    "aliases": [
+      {"alias": "ccode", "alias_type": "abbreviation"},
+      {"alias": "COW ccode", "alias_type": "synonym"},
+      {"alias": "Correlates of War country code", "alias_type": "full_name"}
+    ],
+    "measures": ["Correlates of War State System Membership (version 2016)"]
+  },
+  {
+    "id": "country_code_polity",
+    "display_name": "Polity Country Code",
+    "construct_type": "quantifiable",
+    "definition": "Numeric country code from the Polity IV/V project, where it diverges from the COW coding. Most countries share a COW and Polity code; this field captures the subset where they differ. NULL means Polity uses the same code as COW.",
+    "domain_ids": ["country_coding_systems"],
+    "source_id": "thyne_country_code_crosswalk",
+    "formal_definition": "ccode_polity ∈ ℤ ∪ {NULL}; NULL iff Polity code equals COW code for this country-name variant.",
+    "operational_definition": "Polity IV/V project country code where it diverges from COW. Sourced from Thyne's Polity-discrepancy section of replace_ccode_country.do.",
+    "measurement_level": "nominal",
+    "canonical_id": "concept:country_code",
+    "coding_rule": "Use ccode_polity when non-null; fall back to ccode_cow otherwise.",
+    "aliases": [
+      {"alias": "ccode_polity", "alias_type": "abbreviation"},
+      {"alias": "Polity ccode", "alias_type": "synonym"}
+    ],
+    "measures": ["Polity IV/V project country coding"]
+  },
+  {
+    "id": "country_code_gw",
+    "display_name": "Gleditsch-Ward Country Code",
+    "construct_type": "quantifiable",
+    "definition": "Numeric country code from the Gleditsch-Ward (G&W) state system, where it diverges from COW. Most countries share codes; this field captures divergences. NULL means G&W uses the same code as COW. Note: the Thyne do-file encodes most G&W divergences as year-conditional ccode remaps rather than country-name remaps; those time-varying rules are documented in EDGE_CASES.md.",
+    "domain_ids": ["country_coding_systems"],
+    "source_id": "thyne_country_code_crosswalk",
+    "formal_definition": "ccode_gw ∈ ℤ ∪ {NULL}; NULL iff G&W code equals COW code for this country-name variant.",
+    "operational_definition": "Gleditsch-Ward (G&W) system-of-states country code where it diverges from COW. Sourced from G&W discrepancy section of replace_ccode_country.do.",
+    "measurement_level": "nominal",
+    "canonical_id": "concept:country_code",
+    "coding_rule": "Use ccode_gw when non-null; fall back to ccode_cow otherwise. For year-conditional G&W divergences (Germany post-1949, Serbia/Yugoslavia, Vietnam pre-1893), consult EDGE_CASES.md.",
+    "aliases": [
+      {"alias": "ccode_gw", "alias_type": "abbreviation"},
+      {"alias": "G&W ccode", "alias_type": "synonym"},
+      {"alias": "Gleditsch Ward code", "alias_type": "synonym"}
+    ],
+    "measures": ["Gleditsch, Kristian S. & Michael D. Ward (1999) state system membership list"]
+  },
+  {
+    "id": "country_code_iso3",
+    "display_name": "ISO 3166-1 Alpha-3 Code",
+    "construct_type": "concept",
+    "definition": "ISO 3166-1 alpha-3 three-letter country code (e.g., 'USA', 'NGA', 'COL'). Best-effort enrichment derived by mapping COW numeric codes to ISO3 via a static lookup table. NOT authoritative — intended only as a convenience join key for PSED-era datasets (Africa, Latin America, Southeast Asia, 1990–2012). Countries outside that scope may have NULL or incorrect ISO3 values.",
+    "domain_ids": ["country_coding_systems"],
+    "source_id": "thyne_country_code_crosswalk",
+    "operational_definition": "Derived by mapping ccode_cow to ISO 3166-1 alpha-3 via a static embedded lookup. Enrichment covers ~81% of rows. Historical states, dependencies (-999), and obscure entities return NULL.",
+    "measurement_level": "nominal",
+    "canonical_id": "concept:country_code",
+    "coding_rule": "Static COW→ISO3 lookup. NULL for non-state entries (ccode=-999), historical entities without a current ISO3 code, and any entity not in the lookup table. Treat NULL as 'unknown, not as 'no ISO3 code exists'.",
+    "aliases": [
+      {"alias": "iso3", "alias_type": "abbreviation"},
+      {"alias": "ISO-3", "alias_type": "abbreviation"},
+      {"alias": "alpha-3", "alias_type": "synonym"},
+      {"alias": "ISO 3166 alpha-3", "alias_type": "full_name"}
+    ],
+    "measures": ["ISO 3166-1 alpha-3 (best-effort COW mapping, static lookup v2026-05-01)"]
+  },
+  {
+    "id": "country_name_variant",
+    "display_name": "Country Name Spelling Variant",
+    "construct_type": "concept",
+    "definition": "A country name string as it appears in a source dataset — including alternate spellings, historical names, abbreviations, article variants (e.g., 'The Bahamas' vs. 'Bahamas, The'), and transliteration variants. The crosswalk maps each variant to standardized numeric codes.",
+    "domain_ids": ["country_coding_systems"],
+    "source_id": "thyne_country_code_crosswalk",
+    "operational_definition": "Literal string from the 'country' variable in a Stata dataset. Includes leading/trailing whitespace variants and punctuation differences as found in real datasets.",
+    "measurement_level": "nominal",
+    "canonical_id": "concept:country",
+    "coding_rule": "Case-sensitive string match on the country_name column. Leading/trailing whitespace is preserved from the source do-file (some entries have leading spaces).",
+    "aliases": [
+      {"alias": "country", "alias_type": "abbreviation"},
+      {"alias": "country_name", "alias_type": "abbreviation"},
+      {"alias": "country spelling", "alias_type": "synonym"}
+    ],
+    "measures": ["Thyne replace_ccode_country.do country string field"]
+  }
+]

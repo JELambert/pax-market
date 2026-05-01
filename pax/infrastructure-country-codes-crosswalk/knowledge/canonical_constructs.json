@@ -1,0 +1,18 @@
+[
+  {
+    "id": "concept:country",
+    "display_name": "Country",
+    "kind": "concept",
+    "formal_definition": "A sovereign political entity recognized by the international system, identified by a unique name or code. Includes historical states, successor states, and dependencies where coded.",
+    "status": "canonical",
+    "owner": "infrastructure-country-codes-crosswalk"
+  },
+  {
+    "id": "concept:country_code",
+    "display_name": "Country Code",
+    "kind": "concept",
+    "formal_definition": "A standardized identifier — numeric or alpha-3 string — that uniquely identifies a country or political entity within a given coding system (COW, Polity, G&W, ISO 3166-1). Different coding systems assign different codes to the same real-world entity, and divergences are especially common for successor states, breakaway territories, and reunified countries.",
+    "status": "canonical",
+    "owner": "infrastructure-country-codes-crosswalk"
+  }
+]

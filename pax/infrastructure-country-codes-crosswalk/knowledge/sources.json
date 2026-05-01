@@ -1,0 +1,30 @@
+[
+  {
+    "id": "thyne_country_code_crosswalk",
+    "source_type": "dataset",
+    "title": "Country Code Crosswalk (replace_ccode_country.do)",
+    "authors": "Thyne, Clayton L.",
+    "year": 2022,
+    "url": "https://www.uky.edu/~clthyn2/replace_ccode_country.do",
+    "abstract": "A Stata do-file that maps country-name spelling variants — including historical aliases, alternate spellings, abbreviations, and transliterations — to standardized numeric country codes from the COW (Correlates of War), Polity IV/V, and Gleditsch-Ward state-system coding conventions. Maintained and updated incrementally as new spelling variants are encountered in new datasets. As of 2022-05-25, incorporates names from the World Bank WDI, UN Statistics Division, Polity, Penn World Tables, UCDP, ICOW, and several contributor datasets.",
+    "methodology_summary": "Manually maintained Stata do-file. Three sections: (1) COW ccode assignments by country-name string match; (2) Polity ccode overrides for countries where Polity diverges from COW — both country-name-based and year-conditional ccode-based rules; (3) G&W ccode overrides — primarily year-conditional ccode-based rules, with minimal country-name-based rules. Updated by the author each time a new spelling variant or dataset is encountered. Contributions from multiple political science researchers acknowledged in file comments.",
+    "data_availability": "public",
+    "replication_status": "not_attempted",
+    "key_limitations": "Coverage reflects datasets the author has worked with; obscure or newly independent states may be missing. Polity and G&W divergences are incomplete for older historical periods. ISO3 enrichment in this PAX is best-effort only (static COW→ISO3 lookup) and is not authoritative — users requiring authoritative ISO3 mapping should consult the ISO 3166 Maintenance Agency directly. Year-conditional G&W and Polity divergences (e.g., Germany pre/post-reunification, Vietnam, Yugoslavia successor states) cannot be fully captured in a flat crosswalk without a year column; see EDGE_CASES.md.",
+    "population_description": "~200 sovereign states and dependencies, all coding periods, with emphasis on post-1945 country-name conventions used in political science datasets",
+    "study_design": "other",
+    "update_history": [
+      "2012-03-05: World Bank WDI country names (Leah Windsor, Ole Miss)",
+      "2013-12-04: UN country names from unstats.un.org",
+      "2015-05-21: Polity update spellings (Peter White, U Maryland)",
+      "2015-07-01: Geddes/Wright/Frantz dataset spellings (Peter White)",
+      "2015-09-08: Penn World Tables (Curtis Bell, One Earth Future)",
+      "2016-02-08: Penn World Tables additional (Joeri Smits, NADEL)",
+      "2017-01-26: James et al. 2012 GDP time series dataset",
+      "2017-05-30: ICOW/G&W discrepancies (Brendan Apfeld, UT Austin)",
+      "2020-10-13: North Macedonia replacing Macedonia (Holly Hansen, OSU)",
+      "2021-06-15: The Gambia (Phillip Nelson, U Warwick)",
+      "2022-05-25: UCDP country names (Baylee Harrell, U Kentucky)"
+    ]
+  }
+]
