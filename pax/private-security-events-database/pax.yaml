@@ -1,5 +1,5 @@
 name: private-security-events-database
-version: "1.0.0"
+version: "1.3.0"
 pax_type: paper
 built_against_schema: '4.0'
 description: >-
@@ -28,6 +28,15 @@ provides:
     - pmsc_rebel_event_count
     - civil_war_duration
     - conflict_episode
+    - gdp_per_capita
+    - ethnic_fractionalization
+    - ethnic_wars
+    - conflict_intensity
+    - mountainous_terrain
+    - polity
+    - proportion_of_forces
+    - support_rebels
+    - support_government
   datasets:
     - dataset_id: psed_1990_2012
       display_name: "PSED — Private Security Events Database (1990–2012)"
@@ -41,6 +50,7 @@ provides:
       bundled: false
   sources:
     - avant_neu_2019
+    - akcinaroglu_radziszewski_2013
   propositions:
     - psed_govt_events_shorten_war
     - psed_competition_attenuated
@@ -54,6 +64,7 @@ provides:
     - pmsc_competition_attenuated_when_events_controlled
   playbooks:
     - prepare_psed
+    - prepare_ar2013
     - quick_start
 
 tags:
